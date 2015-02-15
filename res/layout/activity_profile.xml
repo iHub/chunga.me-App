@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="utf-8"?>    
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+	android:layout_width="fill_parent"
+	android:layout_height="fill_parent"
+	android:fillViewport="true" >
+		
+	<LinearLayout
+		android:layout_width="fill_parent"
+		android:layout_height="wrap_content"
+		android:orientation="vertical" >	
+	    
+	    <LinearLayout
+	        android:layout_width="match_parent"
+	        android:layout_height="wrap_content"
+	        android:orientation="vertical"
+	        android:layout_weight="0"
+	        android:background="@color/bg" >
+	        
+	        <ImageView
+	            android:id="@+id/logo"
+	            android:layout_width="170dp"
+	            android:layout_height="140dp"
+	            android:layout_gravity="center"
+	            android:layout_marginBottom="30dp"
+	            android:layout_marginTop="30dp"
+	            android:contentDescription="@string/app_name"
+	            android:src="@drawable/logo" />
+	        
+	    </LinearLayout>
+	    
+	    <LinearLayout
+	        android:layout_width="match_parent"
+	        android:layout_height="0dp"
+	        android:orientation="vertical"
+	        android:layout_weight="1"
+	        android:paddingTop="30dp"
+	        android:paddingBottom="30dp"
+	        android:paddingLeft="16dp"
+	        android:paddingRight="16dp" >
+	        
+	        <EditText
+	            android:id="@+id/rangerName"
+	            android:layout_width="match_parent"
+	            android:layout_height="wrap_content"
+	            android:inputType="text"
+	            android:hint="@string/ranger_name"
+	            android:layout_marginBottom="10dp" />
+	        
+	        <EditText
+	            android:id="@+id/rangerID"
+	            android:layout_width="match_parent"
+	            android:layout_height="wrap_content"
+	            android:inputType="text"
+	            android:hint="@string/ranger_id"
+	            android:layout_marginBottom="20dp" />
+	       
+	        <Button
+	            android:id="@+id/signupBtn"
+	            android:layout_width="match_parent"
+	            android:layout_height="wrap_content"
+	            android:text="@string/signup"
+	            android:background="@color/bg"
+	            android:textColor="@android:color/white" />
+	        
+	    </LinearLayout>
+	</LinearLayout>
+</ScrollView>

@@ -1,0 +1,129 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="com.ihub.rangerapp"
+    android:versionCode="1"
+    android:versionName="1.0" >
+
+    <uses-sdk
+        android:minSdkVersion="8"
+        android:targetSdkVersion="21" />
+
+    <application
+        android:allowBackup="true"
+        android:icon="@drawable/ic_launcher"
+        android:label="@string/app_name"
+        android:theme="@style/AppTheme" >
+        <activity
+            android:name=".SplashActivity"
+            android:label="@string/app_name"
+            android:theme="@style/NoActionBar" >
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+        <activity
+            android:name=".PhoneRegistrationActivity"
+            android:label="@string/title_activity_phone_registration" >
+        </activity>
+        <activity
+            android:name=".HomeActivity"
+            android:configChanges="orientation"
+            android:label="@string/title_activity_home"
+            android:theme="@style/NoActionBar" >
+        </activity>
+        <activity
+            android:name=".ProfileActivity"
+            android:label="@string/title_activity_profile"
+            android:theme="@style/NoActionBar"
+            android:windowSoftInputMode="stateHidden" >
+        </activity>
+        <activity
+            android:name=".IntroActivity"
+            android:label="@string/title_activity_intro"
+            android:theme="@style/NoActionBar" >
+        </activity>
+        <activity
+            android:name=".PoachingIncidencesActivity"
+            android:label="@string/title_activity_poaching_incidences"
+            android:theme="@style/NoActionBar" >
+        </activity>
+        <activity
+            android:name=".IvoryActivity"
+            android:label="@string/title_activity_ivory"
+            android:theme="@style/NoActionBar" >
+        </activity>
+        <activity
+            android:name=".GameMeatActivity"
+            android:label="@string/title_activity_game_meat"
+            android:theme="@style/NoActionBar" >
+        </activity>
+        <activity
+            android:name=".CharcoalActivity"
+            android:label="@string/title_activity_charcoal"
+            android:theme="@style/NoActionBar" >
+        </activity>
+        <activity
+            android:name=".SuspiciousAspectsActivity"
+            android:label="@string/title_activity_suspicious_aspects"
+            android:theme="@style/NoActionBar" >
+        </activity>
+        <activity
+            android:name=".GameMeatIncidentActivity"
+            android:label="@string/title_activity_game_meat_incident"
+            android:theme="@style/NoActionBar" >
+        </activity>
+        <activity
+            android:name=".GameMeatTracesActivity"
+            android:label="@string/title_activity_game_meat_traces"
+            android:theme="@style/NoActionBar" >
+        </activity>
+        <activity
+            android:name=".CharcoalKilnSightingsActivity"
+            android:label="@string/title_activity_charcoal_kiln_sightings"
+            android:theme="@style/NoActionBar" >
+        </activity>
+        <activity
+            android:name=".CharcoalArrestsActivity"
+            android:label="@string/title_activity_charcoal_arrests"
+            android:theme="@style/NoActionBar" >
+        </activity>
+        <activity
+            android:name=".HumanAnimalActivity"
+            android:label="@string/title_activity_human_animal"
+            android:theme="@style/NoActionBar" >
+        </activity>
+        <activity
+            android:name=".SightingsActivity"
+            android:label="@string/title_activity_sightings"
+            android:theme="@style/NoActionBar" >
+        </activity>
+        <activity
+            android:name=".AnimalsSightingsActivity"
+            android:label="@string/title_activity_animals_sightings"
+            android:theme="@style/NoActionBar" >
+        </activity>
+        <activity
+            android:name=".PlantsSightingActivity"
+            android:label="@string/title_activity_plants"
+            android:theme="@style/NoActionBar" >
+        </activity>
+        <activity
+            android:name=".VegetationSightingsActivity"
+            android:label="@string/title_activity_vegetation_sightings"
+            android:theme="@style/NoActionBar" >
+        </activity>
+        <activity
+            android:name=".HelpActivity"
+            android:label="@string/title_activity_help"
+            android:theme="@style/NoActionBar" >
+        </activity>
+        <activity
+            android:name=".ExportActivity"
+            android:label="@string/title_activity_export"
+            android:theme="@style/NoActionBar" >
+        </activity>
+    </application>
+
+</manifest>
