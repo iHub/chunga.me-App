@@ -40,5 +40,44 @@
     <string name="title_activity_export">Export</string>
     
     <string name="animal_carcass">Animal Carcass</string>
+    <string name="poaching_incidences">Poaching Incidences</string>
+    <string name="human_wildlife_conflict">Human / Wildlife Conflict</string>
+    <string name="sightings">Sightings</string>
+    <string name="suspicious_activities">Suspicious Activities</string>
+    
+    <string name="elephant">Elephant</string>
+    <string name="rhino">Rhino</string>
+    
+    <string name="save">Save</string>
+    <string name="tools_used">Tools Used</string>
+    <string name="machete">Machete</string>
+    <string name="gun">Gun</string>
+    <string name="hacksaw">Hacksaw</string>
+    <string name="not_sure">Not Sure</string>
+    <string name="extra_notes_optional">Extra Notes (Optional)</string>
+    
+    <string name="type_of_carcass">Type of Carcass</string>
+    <string name="no_of_arrests">No of Arrests</string>
+    <string name="action_taken">Action Taken</string>
+    <string name="proceed">Proceed</string>
+    <string name="name">Name</string>
+    <string name="species">Species</string>
+    <string name="unit_of_measure">Unit of Measure</string>
+    <string name="quantity">Quantity</string>
+    <string name="approximate_age">Approximate Age</string>
+    <string name="type_of_vegetation">Type of Vegetation</string>
+    <string name="season">Season</string>
+    <string name="current_state">Current State</string>
+    <string name="individual">Individual</string>
+    <string name="herd">Herd</string>
+    <string name="herd_identity">Name / Identity of Herd</string>
+    <string name="type_species">Type / species</string>
+    <string name="no_of_animals">Number of Animals</string>
+    
+    <string-array name="plants_unit_of_measure">
+        <item>Unit 1</item>
+        <item>Unit 2</item>
+        <item>Unit 3</item>
+    </string-array>
 
 </resources>

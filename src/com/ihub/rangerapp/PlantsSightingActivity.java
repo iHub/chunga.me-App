@@ -4,9 +4,13 @@ import android.support.v7.app.ActionBarActivity;
 import android.support.v7.widget.Toolbar;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.ArrayAdapter;
+import android.widget.Spinner;
 
 public class PlantsSightingActivity extends ActionBarActivity {
 
+	Spinner unitOfMeasureSpinner;
+	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
@@ -24,5 +28,11 @@ public class PlantsSightingActivity extends ActionBarActivity {
                 PlantsSightingActivity.this.onBackPressed();
             }
         });
+        
+        unitOfMeasureSpinner = (Spinner) findViewById(R.id.unitOfMeasureSpinner);
+        ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(this, R.array.plants_unit_of_measure, android.R.layout.simple_spinner_item);
+        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        unitOfMeasureSpinner.setAdapter(adapter);
+        
 	}
 }

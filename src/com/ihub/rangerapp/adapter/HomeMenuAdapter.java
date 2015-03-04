@@ -10,6 +10,8 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
+
 import java.util.List;
 import com.ihub.rangerapp.HomeActivity;
 import com.ihub.rangerapp.HumanAnimalActivity;
@@ -91,6 +93,9 @@ public class HomeMenuAdapter extends RecyclerView.Adapter<HomeMenuAdapter.ViewHo
 					break;
 				case 2:
 					intent = new Intent(hAct, SightingsActivity.class);
+					break;
+				case 3:
+					Toast.makeText(hAct, "Suspicious Activity", Toast.LENGTH_LONG).show();
 					break;
 				default:
 					break;

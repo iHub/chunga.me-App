@@ -89,9 +89,10 @@ public class HomeActivity extends ActionBarActivity implements OnClickListener {
             mainIntent.addCategory(Intent.CATEGORY_LAUNCHER);
             
             String menuNames[] = new String[]{
-	    		"Poaching Incidences", 
-	    		"Human / Animal Conflict", 
-	    		"Sightings"
+	    		getString(R.string.poaching_incidences), 
+	    		getString(R.string.human_wildlife_conflict), 
+	    		getString(R.string.sightings),
+	    		getString(R.string.suspicious_activities)
             };
             
             Integer drawables[] = new Integer[] {};

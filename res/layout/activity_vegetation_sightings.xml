@@ -24,10 +24,56 @@
 		<LinearLayout
 			android:layout_width="match_parent"
 			android:layout_height="wrap_content"
-			android:orientation="vertical" >
+			android:orientation="vertical"
+			android:padding="16dp" >
+		    
+		    <EditText
+		        android:id="@+id/vegetationText"
+		        android:layout_width="match_parent"
+		        android:layout_height="wrap_content"
+		        android:hint="@string/type_of_vegetation"
+		        android:layout_marginBottom="5dp" />
+		    
+		    <EditText
+		        android:id="@+id/speciesText"
+		        android:layout_width="match_parent"
+		        android:layout_height="wrap_content"
+		        android:hint="@string/season" />
+		    
+		    <LinearLayout
+		        android:layout_width="match_parent"
+		        android:layout_height="wrap_content"
+		        android:orientation="horizontal"
+		        android:layout_marginTop="10dp" >
+		        
+		        <Spinner
+		            android:id="@+id/unitOfMeasureSpinner"
+		            android:layout_width="wrap_content"
+		            android:layout_height="wrap_content"
+		            android:layout_weight="0"
+		            android:minWidth="50dp" />
+		        
+		        <EditText
+		            android:layout_width="0dp"
+		            android:layout_height="wrap_content"
+		            android:layout_weight="1"
+		            android:layout_marginLeft="5dp"
+		            android:hint="@string/quantity" />
+		        
+		    </LinearLayout>
 			
 			
-			
+		    <include layout="@layout/camera_location"/>
+		    
+		    <Button
+		        android:id="@+id/saveBtn"
+		        android:layout_width="match_parent"
+		        android:layout_height="wrap_content"
+		        android:text="@string/save"
+		        android:background="@color/bg"
+		        android:textColor="@android:color/white"
+		        android:layout_marginStart="5dp" />
+		    
 	    </LinearLayout>
 	</ScrollView>
 </RelativeLayout>
