@@ -78,8 +78,7 @@ public class PoachingIncidencesActivity extends ActionBarActivity {
             String menuNames[] = new String[]{
 	    		"Ivory",
 	    		"Game Meat",
-	    		"Charcoal",
-	    		"Suspicious Aspects",
+	    		"Charcoal"
             };
             
             for (String s : menuNames) {

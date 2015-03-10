@@ -18,6 +18,7 @@ import com.ihub.rangerapp.HumanAnimalActivity;
 import com.ihub.rangerapp.PoachingIncidencesActivity;
 import com.ihub.rangerapp.R;
 import com.ihub.rangerapp.SightingsActivity;
+import com.ihub.rangerapp.SuspiciousAspectsActivity;
 import com.ihub.rangerapp.entity.MenuItem;
 
 public class HomeMenuAdapter extends RecyclerView.Adapter<HomeMenuAdapter.ViewHolder> {
@@ -95,7 +96,7 @@ public class HomeMenuAdapter extends RecyclerView.Adapter<HomeMenuAdapter.ViewHo
 					intent = new Intent(hAct, SightingsActivity.class);
 					break;
 				case 3:
-					Toast.makeText(hAct, "Suspicious Activity", Toast.LENGTH_LONG).show();
+					intent = new Intent(hAct, SuspiciousAspectsActivity.class);
 					break;
 				default:
 					break;

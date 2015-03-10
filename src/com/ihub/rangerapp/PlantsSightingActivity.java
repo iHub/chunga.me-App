@@ -10,6 +10,7 @@ import android.widget.Spinner;
 public class PlantsSightingActivity extends ActionBarActivity {
 
 	Spinner unitOfMeasureSpinner;
+	Spinner ageMeasureSpinner;
 	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -33,6 +34,11 @@ public class PlantsSightingActivity extends ActionBarActivity {
         ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(this, R.array.plants_unit_of_measure, android.R.layout.simple_spinner_item);
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         unitOfMeasureSpinner.setAdapter(adapter);
+        
+        ageMeasureSpinner = (Spinner) findViewById(R.id.ageMeasureSpinner);
+        ArrayAdapter<CharSequence> ageMeasureAdapter = ArrayAdapter.createFromResource(this, R.array.age_units_array, android.R.layout.simple_spinner_item);
+        ageMeasureAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        ageMeasureSpinner.setAdapter(ageMeasureAdapter);
         
 	}
 }

@@ -4,7 +4,7 @@
 	android:gravity="center"
 	android:layout_width="match_parent"
 	android:layout_height="match_parent">
-    
+	
 	<android.support.v7.widget.Toolbar
 		android:id="@+id/toolbar"
 		android:layout_width="match_parent"
@@ -20,13 +20,161 @@
 		android:layout_below="@id/toolbar"
 		android:fillViewport="true"
 		android:background="@android:color/white" >
-	
+		
 		<LinearLayout
 			android:layout_width="match_parent"
 			android:layout_height="wrap_content"
 			android:orientation="vertical" >
 			
+		    <LinearLayout
+		        android:layout_width="match_parent"
+		        android:layout_height="wrap_content"
+		        android:orientation="vertical"
+		        android:background="#F5F5F5"
+		        android:gravity="center"
+		        android:paddingTop="10dp"
+		        android:paddingBottom="10dp" >
+		        
+		        <RadioGroup
+		            android:layout_width="wrap_content"
+		            android:layout_height="wrap_content"
+		            android:orientation="horizontal">
+		            
+		            <RadioButton 
+		                android:id="@+id/radio_individual"
+						android:layout_width="wrap_content"
+						android:layout_height="wrap_content"
+						android:text="@string/individual"
+						android:onClick="onTypeRadioButtonClicked"
+						android:layout_marginRight="25dp"
+						android:checked="true" />
+					
+					<RadioButton 
+					    android:id="@+id/radio_herd"
+						android:layout_width="wrap_content"
+						android:layout_height="wrap_content"
+						android:text="@string/herd"
+						android:onClick="onTypeRadioButtonClicked" />
+				</RadioGroup>
+		    </LinearLayout>
+		    
+		    <LinearLayout
+		        android:id="@+id/individualLayout"
+				android:layout_width="match_parent"
+				android:layout_height="wrap_content"
+				android:orientation="vertical"
+				android:paddingLeft="16dp"
+				android:paddingRight="16dp"
+				android:paddingTop="16dp" >
+		        
+		        
+		        <EditText
+			        android:id="@+id/animalNameView"
+			        android:layout_width="match_parent"
+			        android:layout_height="wrap_content"
+			        android:hint="@string/animal"
+			        android:layout_marginBottom="15dp" />
+		        
+		        <TextView
+		            android:layout_width="match_parent"
+		            android:layout_height="wrap_content"
+		            android:text="@string/gender"
+		            android:paddingLeft="5dp"
+		            android:textSize="16sp"
+		            android:layout_marginBottom="5dp" />
+		        
+		        <RadioGroup
+		            android:layout_width="wrap_content"
+		            android:layout_height="wrap_content"
+		            android:orientation="horizontal"
+		            android:layout_marginBottom="15dp" >
+		            
+		            <RadioButton 
+		                android:id="@+id/radio_gender_male"
+						android:layout_width="wrap_content"
+						android:layout_height="wrap_content"
+						android:text="@string/male"
+						android:onClick="onRadioButtonClicked"
+						android:layout_marginRight="25dp" />
+					
+					<RadioButton 
+					    android:id="@+id/radio_gender_female"
+						android:layout_width="wrap_content"
+						android:layout_height="wrap_content"
+						android:text="@string/female"
+						android:onClick="onRadioButtonClicked" />
+				</RadioGroup>
+		        
+		        <EditText
+			        android:id="@+id/approximateAgeView"
+			        android:layout_width="match_parent"
+			        android:layout_height="wrap_content"
+			        android:hint="@string/approximate_age" />
+		        
+			</LinearLayout>
 			
+			<LinearLayout
+		        android:id="@+id/herdLayout"
+				android:layout_width="match_parent"
+				android:layout_height="wrap_content"
+				android:orientation="vertical"
+				android:paddingLeft="16dp"
+				android:paddingRight="16dp"
+				android:paddingTop="16dp"
+				android:visibility="gone" >
+		        
+		        <EditText
+			        android:id="@+id/herdNameView"
+			        android:layout_width="match_parent"
+			        android:layout_height="wrap_content"
+			        android:hint="@string/herd_name_label"
+			        android:layout_marginBottom="15dp" />
+		        
+		        <EditText
+			        android:id="@+id/typeSpeciesView"
+			        android:layout_width="match_parent"
+			        android:layout_height="wrap_content"
+			        android:hint="@string/type_species"
+			        android:layout_marginBottom="15dp" />
+		        
+		        <EditText
+			        android:id="@+id/noOfAnimalsView"
+			        android:layout_width="match_parent"
+			        android:layout_height="wrap_content"
+			        android:hint="@string/no_of_animals" />
+		        
+			</LinearLayout>
+			
+			<LinearLayout
+				android:layout_width="match_parent"
+				android:layout_height="wrap_content"
+				android:orientation="vertical"
+				android:padding="16dp" >
+			    
+			    <TextView
+			        android:layout_width="match_parent"
+			        android:layout_height="wrap_content"
+			        android:textSize="18sp"
+			        android:textColor="@color/bg"
+			        android:text="@string/extra_notes_optional" />
+		        
+		        <EditText
+			        android:id="@+id/extraNotes"
+			        android:layout_width="match_parent"
+			        android:layout_height="wrap_content" />
+		        
+				<include layout="@layout/camera_location"/>
+				
+			    <Button
+			        android:id="@+id/saveBtn"
+			        android:layout_width="match_parent"
+			        android:layout_height="wrap_content"
+			        android:text="@string/save"
+			        android:background="@color/bg"
+			        android:textColor="@android:color/white"
+			        android:layout_marginStart="5dp" />
+			    
+			</LinearLayout>
 			
 	    </LinearLayout>
 	</ScrollView>

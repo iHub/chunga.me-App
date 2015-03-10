@@ -4,9 +4,17 @@ import android.support.v7.app.ActionBarActivity;
 import android.support.v7.widget.Toolbar;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.ArrayAdapter;
+import android.widget.Spinner;
 
 public class VegetationSightingsActivity extends ActionBarActivity {
-
+	
+	Spinner seasonSpinner;
+	Spinner currentStateSpinner;
+	
+	ArrayAdapter<CharSequence> seasonsAdapter;
+	ArrayAdapter<CharSequence> currentStateAdapter;
+	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
@@ -24,5 +32,16 @@ public class VegetationSightingsActivity extends ActionBarActivity {
                 VegetationSightingsActivity.this.onBackPressed();
             }
         });
+        
+        seasonSpinner = (Spinner) findViewById(R.id.seasonSpinner);
+        currentStateSpinner = (Spinner) findViewById(R.id.currentStateSpinner);
+        
+        seasonsAdapter = ArrayAdapter.createFromResource(this, R.array.seasons_array, android.R.layout.simple_spinner_item);
+		seasonsAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+		seasonSpinner.setAdapter(seasonsAdapter);
+		
+		currentStateAdapter = ArrayAdapter.createFromResource(this, R.array.vegetation_current_states_array, android.R.layout.simple_spinner_item);
+		currentStateAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+		currentStateSpinner.setAdapter(currentStateAdapter);
 	}
 }

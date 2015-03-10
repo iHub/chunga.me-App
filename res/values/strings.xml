@@ -26,7 +26,7 @@
     <string name="title_activity_ivory">Ivory</string>
     <string name="title_activity_game_meat">Game Meat</string>
     <string name="title_activity_charcoal">Charcoal</string>
-    <string name="title_activity_suspicious_aspects">Suspicious Aspects</string>
+    <string name="title_activity_suspicious_aspects">Suspicious Activities</string>
     <string name="title_activity_game_meat_incident">Incident</string>
     <string name="title_activity_game_meat_traces">Traces of Incident</string>
     <string name="title_activity_charcoal_kiln_sightings">Kiln Sightings</string>
@@ -44,6 +44,7 @@
     <string name="human_wildlife_conflict">Human / Wildlife Conflict</string>
     <string name="sightings">Sightings</string>
     <string name="suspicious_activities">Suspicious Activities</string>
+    <string name="suspicious_activity">Suspicious Activity</string>
     
     <string name="elephant">Elephant</string>
     <string name="rhino">Rhino</string>
@@ -55,6 +56,7 @@
     <string name="hacksaw">Hacksaw</string>
     <string name="not_sure">Not Sure</string>
     <string name="extra_notes_optional">Extra Notes (Optional)</string>
+    <string name="note">Note</string>
     
     <string name="type_of_carcass">Type of Carcass</string>
     <string name="no_of_arrests">No of Arrests</string>
@@ -73,11 +75,47 @@
     <string name="herd_identity">Name / Identity of Herd</string>
     <string name="type_species">Type / species</string>
     <string name="no_of_animals">Number of Animals</string>
+    <string name="herd_name_label">Name / Identity of Herd</string>
+    
+    <string name="animal">Animal</string>
+    <string name="gender">Gender</string>
+    
+    <string name="male">Male</string>
+    <string name="female">Female</string>
     
     <string-array name="plants_unit_of_measure">
-        <item>Unit 1</item>
-        <item>Unit 2</item>
-        <item>Unit 3</item>
+        <item></item>
+        <item>Acres</item>
+        <item>Hactares</item>
     </string-array>
-
+    
+    <string-array name="gender_array">
+        <item></item>
+        <item>@string/male</item>
+        <item >@string/female</item>
+    </string-array>
+    
+    <string-array name="vegetation_current_states_array">
+        <item></item>
+        <item>State 1</item>
+        <item>State 2</item>
+        <item>State 3</item>
+    </string-array>
+    
+    <string-array name="seasons_array">
+        <item></item>
+        <item>Summer</item>
+        <item>Winter</item>
+        <item>Spring</item>
+        <item>Fall</item>
+    </string-array>
+    
+    <string-array name="age_units_array">
+        <item></item>
+        <item>Day(s)</item>
+        <item>Week(s)</item>
+        <item>Month(s)</item>
+        <item>Year(s)</item>
+    </string-array>
+    
 </resources>
