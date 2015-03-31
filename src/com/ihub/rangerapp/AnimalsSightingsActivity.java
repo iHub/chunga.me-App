@@ -1,16 +1,12 @@
 package com.ihub.rangerapp;
 
-import android.support.v7.app.ActionBarActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.View;
 import android.widget.LinearLayout;
 import android.widget.RadioButton;
 import android.os.Bundle;
 
-public class AnimalsSightingsActivity extends ActionBarActivity {
-	
-//	Spinner genderSpinner;
-//	ArrayAdapter<CharSequence> genderAdapter;
+public class AnimalsSightingsActivity extends CameraGPSActionBarActivity {
 	
 	LinearLayout individualLayout;
 	LinearLayout herdLayout;
@@ -41,6 +37,8 @@ public class AnimalsSightingsActivity extends ActionBarActivity {
 //        genderAdapter = ArrayAdapter.createFromResource(this, R.array.gender_array, android.R.layout.simple_spinner_item);
 //		genderAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
 //		genderSpinner.setAdapter(genderAdapter);
+        
+        initViews();
 	}
 	
 	public void onRadioButtonClicked(View view) {

@@ -25,8 +25,7 @@ public class HomeActivity extends ActionBarActivity implements OnClickListener {
 	private HomeMenuAdapter mAdapter;
     private RecyclerView mRecyclerView;
 
-    private Button exportBtn;
-    private Button helpBtn;
+    private Button shiftBtn;
     
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -46,11 +45,8 @@ public class HomeActivity extends ActionBarActivity implements OnClickListener {
         mAdapter = new HomeMenuAdapter(new ArrayList<com.ihub.rangerapp.entity.MenuItem>(), R.layout.row_application, HomeActivity.this);
         mRecyclerView.setAdapter(mAdapter);
         
-        exportBtn = (Button) findViewById(R.id.exportBtn);
-        exportBtn.setOnClickListener(this);
-        
-        helpBtn = (Button) findViewById(R.id.helpBtn);
-        helpBtn.setOnClickListener(this);
+        shiftBtn = (Button) findViewById(R.id.shiftBtn);
+        shiftBtn.setOnClickListener(this);
                 
         new Handler().postDelayed(new Runnable() {
 			@Override
@@ -89,10 +85,9 @@ public class HomeActivity extends ActionBarActivity implements OnClickListener {
             mainIntent.addCategory(Intent.CATEGORY_LAUNCHER);
             
             String menuNames[] = new String[]{
-	    		getString(R.string.poaching_incidences), 
-	    		getString(R.string.human_wildlife_conflict), 
-	    		getString(R.string.sightings),
-	    		getString(R.string.suspicious_activities)
+	    		getString(R.string.incidences), 
+	    		getString(R.string.sightings), 
+	    		getString(R.string.reports)
             };
             
             Integer drawables[] = new Integer[] {};
@@ -116,11 +111,8 @@ public class HomeActivity extends ActionBarActivity implements OnClickListener {
 
 	@Override
 	public void onClick(View v) {
-		if(v == exportBtn) {
-			Intent intent = new Intent(this, ExportActivity.class);
-			startActivity(intent);
-		} else if (v == helpBtn) {
-			Intent intent = new Intent(this, HelpActivity.class);
+		if(v == shiftBtn) {
+			Intent intent = new Intent(this, StartShiftActivity.class);
 			startActivity(intent);
 		}
 	}

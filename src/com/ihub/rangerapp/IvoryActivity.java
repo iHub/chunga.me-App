@@ -1,12 +1,11 @@
 package com.ihub.rangerapp;
 
-import android.support.v7.app.ActionBarActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.View;
 import android.widget.RadioButton;
 import android.os.Bundle;
 
-public class IvoryActivity extends ActionBarActivity {
+public class IvoryActivity extends CameraGPSActionBarActivity {
 	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -26,6 +25,7 @@ public class IvoryActivity extends ActionBarActivity {
             }
         });
         
+        initViews();
 	}
 	
 	public void onRadioButtonClicked(View view) {

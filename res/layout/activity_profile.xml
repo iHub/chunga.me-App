@@ -55,10 +55,10 @@
 	            android:layout_marginBottom="20dp" />
 	       
 	        <Button
-	            android:id="@+id/signupBtn"
+	            android:id="@+id/goBtn"
 	            android:layout_width="match_parent"
 	            android:layout_height="wrap_content"
-	            android:text="@string/signup"
+	            android:text="@string/go"
 	            android:background="@color/bg"
 	            android:textColor="@android:color/white" />
 	        

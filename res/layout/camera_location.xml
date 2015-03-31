@@ -10,18 +10,19 @@
         android:orientation="horizontal"
         android:layout_marginTop="7dp"
         android:layout_marginBottom="7dp" >
-	    
+        
         <ImageButton
             android:id="@+id/gpsBtn"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:src="@drawable/gps" />
         
-        
         <TextView
-            android:id="@+id/gpsText"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content" />
+			android:id="@+id/gpsText"
+			android:layout_width="wrap_content"
+			android:layout_height="wrap_content"
+			android:layout_marginLeft="20dp"
+			android:layout_marginTop="25dp" />
         
     </LinearLayout>
 		    
@@ -38,11 +39,11 @@
             android:layout_height="wrap_content"
             android:src="@drawable/camera" />
         
-        
         <ImageView
             android:id="@+id/cameraImageView"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content" />
+            android:layout_width="150dp"
+            android:layout_height="150dp"
+            android:layout_marginLeft="20dp" />
         
     </LinearLayout>
     

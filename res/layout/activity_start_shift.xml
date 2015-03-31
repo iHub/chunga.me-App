@@ -1,0 +1,111 @@
+<RelativeLayout
+	xmlns:android="http://schemas.android.com/apk/res/android"
+	xmlns:tools="http://schemas.android.com/tools"
+	android:gravity="center"
+	android:layout_width="match_parent"
+	android:layout_height="match_parent">
+	
+	<android.support.v7.widget.Toolbar
+		android:id="@+id/toolbar"
+		android:layout_width="match_parent"
+		android:layout_height="wrap_content"
+		android:paddingTop="@dimen/tool_bar_top_padding"
+		android:minHeight="?attr/actionBarSize"
+		android:background="@color/bg" />
+	
+	<ScrollView
+	    android:id="@+id/scollView"
+		android:layout_width="match_parent"
+		android:layout_height="match_parent"
+		android:layout_below="@id/toolbar"
+		android:fillViewport="true"
+		android:background="@android:color/white" >
+		
+		<LinearLayout
+			android:layout_width="match_parent"
+			android:layout_height="wrap_content"
+			android:orientation="vertical"
+			android:padding="16dp" >
+		        
+	        <EditText
+		        android:id="@+id/stationView"
+		        android:layout_width="match_parent"
+		        android:layout_height="wrap_content"
+		        android:hint="@string/station"
+		        android:layout_marginBottom="2dp" />
+	        
+	        <EditText
+		        android:id="@+id/ranchView"
+		        android:layout_width="match_parent"
+		        android:layout_height="wrap_content"
+		        android:hint="@string/ranch"
+		        android:layout_marginBottom="2dp" />
+	        
+	        <EditText
+		        android:id="@+id/leaderView"
+		        android:layout_width="match_parent"
+		        android:layout_height="wrap_content"
+		        android:hint="@string/leader"
+		        android:layout_marginBottom="2dp" />
+	        
+	        <EditText
+		        android:id="@+id/noOfMembersView"
+		        android:layout_width="match_parent"
+		        android:layout_height="wrap_content"
+		        android:hint="@string/no_of_members"
+		        android:layout_marginBottom="2dp" />
+	        
+	        <EditText
+		        android:id="@+id/routeView"
+		        android:layout_width="match_parent"
+		        android:layout_height="wrap_content"
+		        android:hint="@string/route"
+		        android:layout_marginBottom="2dp" />
+	        
+	        <EditText
+		        android:id="@+id/modeView"
+		        android:layout_width="match_parent"
+		        android:layout_height="wrap_content"
+		        android:hint="@string/mode"
+		        android:layout_marginBottom="2dp" />
+	        
+	        <EditText
+		        android:id="@+id/weatherView"
+		        android:layout_width="match_parent"
+		        android:layout_height="wrap_content"
+		        android:hint="@string/weather"
+		        android:layout_marginBottom="2dp" />
+	        
+	        <EditText
+		        android:id="@+id/startWPView"
+		        android:layout_width="match_parent"
+		        android:layout_height="wrap_content"
+		        android:hint="@string/start_wp"
+		        android:layout_marginBottom="2dp" />
+	        
+	        <EditText
+		        android:id="@+id/endWPView"
+		        android:layout_width="match_parent"
+		        android:layout_height="wrap_content"
+		        android:hint="@string/end_wp"
+		        android:layout_marginBottom="2dp" />
+	        
+	        <EditText
+		        android:id="@+id/purposeView"
+		        android:layout_width="match_parent"
+		        android:layout_height="wrap_content"
+		        android:hint="@string/purpose"
+		        android:layout_marginBottom="10dp" />
+	        
+			<Button
+		        android:id="@+id/startShiftBtn"
+		        android:layout_width="match_parent"
+		        android:layout_height="wrap_content"
+		        android:text="@string/start_shift"
+		        android:background="@color/bg"
+		        android:textColor="@android:color/white"
+		        android:layout_marginStart="5dp" />
+			
+	    </LinearLayout>
+	</ScrollView>
+</RelativeLayout>

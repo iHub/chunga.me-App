@@ -1,12 +1,11 @@
 package com.ihub.rangerapp;
 
-import android.support.v7.app.ActionBarActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.View;
 import android.os.Bundle;
 
-public class GameMeatActivity extends ActionBarActivity {
-    
+public class GameMeatActivity extends CameraGPSActionBarActivity {
+	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
@@ -24,6 +23,8 @@ public class GameMeatActivity extends ActionBarActivity {
                 GameMeatActivity.this.onBackPressed();
             }
         });
+        
+        initViews();
 	}
 	
 	@Override

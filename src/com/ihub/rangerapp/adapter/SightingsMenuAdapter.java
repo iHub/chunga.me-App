@@ -22,7 +22,6 @@ import com.ihub.rangerapp.GameMeatTracesActivity;
 import com.ihub.rangerapp.PlantsSightingActivity;
 import com.ihub.rangerapp.R;
 import com.ihub.rangerapp.SightingsActivity;
-import com.ihub.rangerapp.VegetationSightingsActivity;
 import com.ihub.rangerapp.entity.MenuItem;
 
 public class SightingsMenuAdapter extends RecyclerView.Adapter<SightingsMenuAdapter.ViewHolder> {
@@ -95,9 +94,6 @@ public class SightingsMenuAdapter extends RecyclerView.Adapter<SightingsMenuAdap
 					break;
 				case 1:
 					intent = new Intent(hAct, PlantsSightingActivity.class);
-					break;
-				case 2:
-					intent = new Intent(hAct, VegetationSightingsActivity.class);
 					break;
 				default:
 					break;

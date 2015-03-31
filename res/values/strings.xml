@@ -18,7 +18,7 @@
     <string name="title_activity_profile">Profile</string>
     <string name="title_activity_intro">Intro</string>
     <string name="title_activity_poaching_incidences">Poaching Incidences</string>
-    <string name="signup">Sign-up</string>
+    <string name="go">Go</string>
     <string name="ranger_name">Ranger Name</string>
     <string name="ranger_id">Ranger ID</string>
     <string name="help">Help</string>
@@ -26,7 +26,7 @@
     <string name="title_activity_ivory">Ivory</string>
     <string name="title_activity_game_meat">Game Meat</string>
     <string name="title_activity_charcoal">Charcoal</string>
-    <string name="title_activity_suspicious_aspects">Suspicious Activities</string>
+    <string name="title_activity_suspicious_aspects">Suspicious Activity</string>
     <string name="title_activity_game_meat_incident">Incident</string>
     <string name="title_activity_game_meat_traces">Traces of Incident</string>
     <string name="title_activity_charcoal_kiln_sightings">Kiln Sightings</string>
@@ -36,19 +36,14 @@
     <string name="title_activity_animals_sightings">Animals</string>
     <string name="title_activity_plants">Plants</string>
     <string name="title_activity_vegetation_sightings">Vegetation</string>
-    <string name="title_activity_help">Help</string>
-    <string name="title_activity_export">Export</string>
-    
     <string name="animal_carcass">Animal Carcass</string>
     <string name="poaching_incidences">Poaching Incidences</string>
     <string name="human_wildlife_conflict">Human / Wildlife Conflict</string>
     <string name="sightings">Sightings</string>
     <string name="suspicious_activities">Suspicious Activities</string>
     <string name="suspicious_activity">Suspicious Activity</string>
-    
     <string name="elephant">Elephant</string>
     <string name="rhino">Rhino</string>
-    
     <string name="save">Save</string>
     <string name="tools_used">Tools Used</string>
     <string name="machete">Machete</string>
@@ -57,7 +52,6 @@
     <string name="not_sure">Not Sure</string>
     <string name="extra_notes_optional">Extra Notes (Optional)</string>
     <string name="note">Note</string>
-    
     <string name="type_of_carcass">Type of Carcass</string>
     <string name="no_of_arrests">No of Arrests</string>
     <string name="action_taken">Action Taken</string>
@@ -76,32 +70,46 @@
     <string name="type_species">Type / species</string>
     <string name="no_of_animals">Number of Animals</string>
     <string name="herd_name_label">Name / Identity of Herd</string>
-    
+    <string name="property_damage">Property Damage</string>
+    <string name="damage_to_humans">Damage to Humans</string>
+    <string name="humans_affected">Humans Affected</string>
+    <string name="incidences">Incidences</string>
+    <string name="reports">Reports</string>
+    <string name="start_shift">Start Shift</string>
+    <string name="end_shift">End Shift</string>
     <string name="animal">Animal</string>
     <string name="gender">Gender</string>
-    
     <string name="male">Male</string>
     <string name="female">Female</string>
-    
+    <string name="validation_ranger_name">Ranger Name is required.</string>
+    <string name="validation_ranger_id">Ranger ID is required.</string>
+    <string name="station">Station</string>
+    <string name="ranch">Ranch</string>
+    <string name="leader">Leader</string>
+    <string name="no_of_members">No of Members</string>
+    <string name="route">Route</string>
+    <string name="mode">Mode</string>
+    <string name="weather">Weather</string>
+    <string name="purpose">Purpose</string>
+    <string name="start_wp">Start WP</string>
+    <string name="end_wp">End WP</string>
+
     <string-array name="plants_unit_of_measure">
         <item></item>
         <item>Acres</item>
         <item>Hactares</item>
     </string-array>
-    
     <string-array name="gender_array">
         <item></item>
         <item>@string/male</item>
-        <item >@string/female</item>
+        <item>@string/female</item>
     </string-array>
-    
     <string-array name="vegetation_current_states_array">
         <item></item>
         <item>State 1</item>
         <item>State 2</item>
         <item>State 3</item>
     </string-array>
-    
     <string-array name="seasons_array">
         <item></item>
         <item>Summer</item>
@@ -109,7 +117,6 @@
         <item>Spring</item>
         <item>Fall</item>
     </string-array>
-    
     <string-array name="age_units_array">
         <item></item>
         <item>Day(s)</item>
@@ -117,5 +124,5 @@
         <item>Month(s)</item>
         <item>Year(s)</item>
     </string-array>
-    
+
 </resources>

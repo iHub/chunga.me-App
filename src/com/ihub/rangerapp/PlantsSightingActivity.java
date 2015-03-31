@@ -7,7 +7,7 @@ import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.Spinner;
 
-public class PlantsSightingActivity extends ActionBarActivity {
+public class PlantsSightingActivity extends CameraGPSActionBarActivity {
 
 	Spinner unitOfMeasureSpinner;
 	Spinner ageMeasureSpinner;
@@ -40,5 +40,6 @@ public class PlantsSightingActivity extends ActionBarActivity {
         ageMeasureAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         ageMeasureSpinner.setAdapter(ageMeasureAdapter);
         
+        initViews();
 	}
 }

@@ -1,11 +1,10 @@
 package com.ihub.rangerapp;
 
-import android.support.v7.app.ActionBarActivity;
 import android.support.v7.widget.Toolbar;
 import android.os.Bundle;
 import android.view.View;
 
-public class CharcoalKilnSightingsActivity extends ActionBarActivity {
+public class CharcoalKilnSightingsActivity extends CameraGPSActionBarActivity {
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -24,5 +23,7 @@ public class CharcoalKilnSightingsActivity extends ActionBarActivity {
                 CharcoalKilnSightingsActivity.this.onBackPressed();
             }
         });
+        
+        initViews();
 	}
 }

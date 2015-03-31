@@ -1,9 +1,12 @@
 package com.ihub.rangerapp;
 
+import com.ihub.rangerapp.data.sqlite.DBPreferences;
+
 import android.app.Activity;
 import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Bundle;
+import android.text.TextUtils;
 
 public class SplashActivity extends Activity {
 	
@@ -30,10 +33,17 @@ public class SplashActivity extends Activity {
 			
 			Intent intent = null;
 			
-			intent = new Intent(SplashActivity.this, ProfileActivity.class);
+			String rangerName = DBPreferences.instance().getPreferenceValue(DBPreferences.RANGER_NAME);
+			
+			if(TextUtils.isEmpty(rangerName))
+				intent = new Intent(SplashActivity.this, ProfileActivity.class);
+			else
+				intent = new Intent(SplashActivity.this, HomeActivity.class);
 			
 			if(intent != null)
 				startActivity(intent);
+			
+			finish();
 		}
 	}
 }
