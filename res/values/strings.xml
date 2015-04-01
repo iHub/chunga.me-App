@@ -17,7 +17,7 @@
     <string name="submit_confirm_button">Place order</string>
     <string name="title_activity_profile">Profile</string>
     <string name="title_activity_intro">Intro</string>
-    <string name="title_activity_poaching_incidences">Poaching Incidences</string>
+    <string name="title_activity_incidences">Incidences</string>
     <string name="go">Go</string>
     <string name="ranger_name">Ranger Name</string>
     <string name="ranger_id">Ranger ID</string>
@@ -93,6 +93,10 @@
     <string name="purpose">Purpose</string>
     <string name="start_wp">Start WP</string>
     <string name="end_wp">End WP</string>
+    
+    <string name="elephant_poaching">Elephant Poaching</string>
+    <string name="game_meat">Game Meat</string>
+    <string name="charcoal_burning">Charcoal Burning</string>
 
     <string-array name="plants_unit_of_measure">
         <item></item>
@@ -124,5 +128,38 @@
         <item>Month(s)</item>
         <item>Year(s)</item>
     </string-array>
-
+    
+    <string-array name="base_stations" >
+        <item>ST2-0</item>
+        <item>ST3-0</item>
+        <item>ST5-1</item>
+        <item>ST5-3</item>
+        <item>ST5-5</item>
+        <item>ST5-7</item>
+        <item>ST6-0</item>
+        <item>ST8-0</item>
+    </string-array> 
+    
+    <string-array name="ranches">
+        <item>Amaka</item>
+        <item>Bachuma</item>
+        <item>Bura</item>
+        <item>Choke</item>
+        <item>Dawida</item>
+        <item>Jojoba</item>
+        <item>Kambanga</item>
+        <item>Kasigau</item>
+        <item>Kutima</item>
+        <item>L.M.D</item>
+        <item>Maungu</item>
+        <item>Mgeno</item>
+        <item>Mwabeja Ranch</item>
+        <item>Ndara</item>
+        <item>Rukinga</item>
+        <item>Sagalla</item>
+        <item>Taita</item>
+        <item>Taru</item>
+        <item>Wangala</item>
+        <item>Washumbu</item>
+    </string-array> 
 </resources>

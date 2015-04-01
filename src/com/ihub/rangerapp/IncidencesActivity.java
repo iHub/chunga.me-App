@@ -1,9 +1,8 @@
 package com.ihub.rangerapp;
 
 import java.util.ArrayList;
-import java.util.Collections;
 import java.util.List;
-import com.ihub.rangerapp.adapter.HomeMenuAdapter;
+import com.ihub.rangerapp.adapter.IncidencesMenuAdapter;
 import com.ihub.rangerapp.anim.CustomItemAnimator;
 import android.support.v7.app.ActionBarActivity;
 import android.support.v7.widget.LinearLayoutManager;
@@ -15,27 +14,31 @@ import android.os.Build;
 import android.os.Bundle;
 import android.os.Handler;
 import android.view.View;
-import android.view.View.OnClickListener;
-import android.widget.Button;
-import android.widget.Toast;
 
-public class HomeActivity extends ActionBarActivity implements OnClickListener {
-	
+public class IncidencesActivity extends ActionBarActivity {
+
 	private List<com.ihub.rangerapp.entity.MenuItem> itemsList = new ArrayList<com.ihub.rangerapp.entity.MenuItem>();
 	
-	private HomeMenuAdapter mAdapter;
+	private IncidencesMenuAdapter mAdapter;
     private RecyclerView mRecyclerView;
 
-    private Button shiftBtn;
-    private Button reportsBtn;
-    
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
-		setContentView(R.layout.activity_home);
+		setContentView(R.layout.activity_poaching_incidences);
 		
 		Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
+        
+        getSupportActionBar().setHomeButtonEnabled(true);
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        
+        toolbar.setNavigationOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                IncidencesActivity.this.onBackPressed();
+            }
+        });
         
         mRecyclerView = (RecyclerView) findViewById(R.id.list);
         mRecyclerView.setLayoutManager(new LinearLayoutManager(this));
@@ -44,15 +47,9 @@ public class HomeActivity extends ActionBarActivity implements OnClickListener {
         	mRecyclerView.setItemAnimator(new CustomItemAnimator());
 		}
         
-        mAdapter = new HomeMenuAdapter(new ArrayList<com.ihub.rangerapp.entity.MenuItem>(), R.layout.row_application, HomeActivity.this);
+        mAdapter = new IncidencesMenuAdapter(new ArrayList<com.ihub.rangerapp.entity.MenuItem>(), R.layout.row_application, IncidencesActivity.this);
         mRecyclerView.setAdapter(mAdapter);
         
-        shiftBtn = (Button) findViewById(R.id.shiftBtn);
-        shiftBtn.setOnClickListener(this);
-        
-        reportsBtn = (Button) findViewById(R.id.reportsBtn);
-        reportsBtn.setOnClickListener(this);
-                
         new Handler().postDelayed(new Runnable() {
 			@Override
 			public void run() {
@@ -61,20 +58,8 @@ public class HomeActivity extends ActionBarActivity implements OnClickListener {
 		}, 300);
 	}
 	
-	@Override
-    protected void onSaveInstanceState(Bundle outState) {
-        super.onSaveInstanceState(outState);
-    }
-	
-    View.OnClickListener fabClickListener = new View.OnClickListener() {
-        @Override
-        public void onClick(View view) {
-            //uploadComponentInfoTask = UploadHelper.getInstance(MainActivity.this, applicationList).uploadAll();
-        }
-    };
-    
-    private class InitializeApplicationsTask extends AsyncTask<Void, Void, Void> {
-    	
+	private class InitializeApplicationsTask extends AsyncTask<Void, Void, Void> {
+		
         @Override
         protected void onPreExecute() {
             mAdapter.clearApplications();
@@ -91,17 +76,15 @@ public class HomeActivity extends ActionBarActivity implements OnClickListener {
             mainIntent.addCategory(Intent.CATEGORY_LAUNCHER);
             
             String menuNames[] = new String[]{
-	    		getString(R.string.incidences), 
-	    		getString(R.string.sightings)
+	    		getString(R.string.elephant_poaching),
+	    		getString(R.string.game_meat),
+	    		getString(R.string.charcoal_burning),
+	    		getString(R.string.suspicious_activities)
             };
-            
-            Integer drawables[] = new Integer[] {};
             
             for (String s : menuNames) {
             	itemsList.add(new com.ihub.rangerapp.entity.MenuItem(s, null));
             }
-            
-            Collections.sort(itemsList);
             
             return null;
         }
@@ -113,13 +96,4 @@ public class HomeActivity extends ActionBarActivity implements OnClickListener {
             super.onPostExecute(result);
         }
     }
-    
-	@Override
-	public void onClick(View v) {
-		if(v == shiftBtn) {
-			Intent intent = new Intent(this, StartShiftActivity.class);
-			startActivity(intent);
-		} else if(v == reportsBtn)
-			Toast.makeText(this, "//TODO implement reports feature", Toast.LENGTH_LONG).show();
-	}
 }

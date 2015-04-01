@@ -55,19 +55,28 @@
 		        android:hint="@string/no_of_members"
 		        android:layout_marginBottom="2dp" />
 	        
-	        <EditText
-		        android:id="@+id/routeView"
-		        android:layout_width="match_parent"
-		        android:layout_height="wrap_content"
-		        android:hint="@string/route"
-		        android:layout_marginBottom="2dp" />
+	        <LinearLayout
+	            android:layout_width="match_parent"
+	            android:layout_height="wrap_content"
+	            android:orientation="horizontal" >
 	        
-	        <EditText
-		        android:id="@+id/modeView"
-		        android:layout_width="match_parent"
-		        android:layout_height="wrap_content"
-		        android:hint="@string/mode"
-		        android:layout_marginBottom="2dp" />
+		        <EditText
+			        android:id="@+id/routeView"
+			        android:layout_width="match_parent"
+			        android:layout_height="wrap_content"
+			        android:hint="@string/route"
+			        android:layout_marginBottom="2dp"
+			        android:layout_weight="1" />
+		        
+		        <EditText
+			        android:id="@+id/modeView"
+			        android:layout_width="match_parent"
+			        android:layout_height="wrap_content"
+			        android:hint="@string/mode"
+			        android:layout_marginBottom="2dp"
+			        android:layout_weight="1" />
+		        
+			</LinearLayout>
 	        
 	        <EditText
 		        android:id="@+id/weatherView"
@@ -76,19 +85,28 @@
 		        android:hint="@string/weather"
 		        android:layout_marginBottom="2dp" />
 	        
-	        <EditText
-		        android:id="@+id/startWPView"
-		        android:layout_width="match_parent"
-		        android:layout_height="wrap_content"
-		        android:hint="@string/start_wp"
-		        android:layout_marginBottom="2dp" />
+	        <LinearLayout
+	            android:layout_width="match_parent"
+	            android:layout_height="wrap_content"
+	            android:orientation="horizontal" >
+	            
+	            <EditText
+			        android:id="@+id/startWPView"
+			        android:layout_width="match_parent"
+			        android:layout_height="wrap_content"
+			        android:hint="@string/start_wp"
+			        android:layout_marginBottom="2dp"
+			        android:layout_weight="1" />
+		        
+		        <EditText
+			        android:id="@+id/endWPView"
+			        android:layout_width="match_parent"
+			        android:layout_height="wrap_content"
+			        android:hint="@string/end_wp"
+			        android:layout_marginBottom="2dp"
+			        android:layout_weight="1" />
 	        
-	        <EditText
-		        android:id="@+id/endWPView"
-		        android:layout_width="match_parent"
-		        android:layout_height="wrap_content"
-		        android:hint="@string/end_wp"
-		        android:layout_marginBottom="2dp" />
+	        </LinearLayout>
 	        
 	        <EditText
 		        android:id="@+id/purposeView"
