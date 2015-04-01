@@ -53,7 +53,8 @@
 		        android:layout_width="match_parent"
 		        android:layout_height="wrap_content"
 		        android:hint="@string/no_of_members"
-		        android:layout_marginBottom="2dp" />
+		        android:layout_marginBottom="2dp"
+		        android:inputType="number" />
 	        
 	        <LinearLayout
 	            android:layout_width="match_parent"
