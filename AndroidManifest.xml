@@ -50,8 +50,8 @@
             android:theme="@style/NoActionBar" >
         </activity>
         <activity
-            android:name=".PoachingIncidencesActivity"
-            android:label="@string/title_activity_poaching_incidences"
+            android:name=".IncidencesActivity"
+            android:label="@string/title_activity_incidences"
             android:theme="@style/NoActionBar" >
         </activity>
         <activity
