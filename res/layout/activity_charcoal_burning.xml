@@ -4,7 +4,7 @@
 	android:gravity="center"
 	android:layout_width="match_parent"
 	android:layout_height="match_parent">
-    
+	
 	<android.support.v7.widget.Toolbar
 		android:id="@+id/toolbar"
 		android:layout_width="match_parent"
@@ -20,11 +20,174 @@
 		android:layout_below="@id/toolbar"
 		android:fillViewport="true"
 		android:background="@android:color/white" >
-	
+		
 		<LinearLayout
 			android:layout_width="match_parent"
 			android:layout_height="wrap_content"
 			android:orientation="vertical" >
+			
+		    <include layout="@layout/camera_location"/>
+			
+		    <LinearLayout
+		        android:layout_width="match_parent"
+		        android:layout_height="wrap_content"
+		        android:orientation="vertical"
+		        android:background="#F5F5F5"
+		        android:gravity="center"
+		        android:paddingTop="10dp"
+		        android:paddingBottom="10dp"
+		        android:layout_marginLeft="10dp"
+		        android:layout_marginRight="10dp"
+		        android:layout_marginBottom="10dp" >
+		        
+		        <RadioGroup
+		            android:layout_width="wrap_content"
+		            android:layout_height="wrap_content"
+		            android:orientation="horizontal">
+		            
+		            <RadioButton 
+		                android:id="@+id/radio_kilns"
+						android:layout_width="wrap_content"
+						android:layout_height="wrap_content"
+						android:text="@string/kilns"
+						android:onClick="onTypeRadioButtonClicked"
+						android:layout_marginRight="25dp"
+						android:checked="true" />
+					
+					<RadioButton 
+					    android:id="@+id/radio_bags"
+						android:layout_width="wrap_content"
+						android:layout_height="wrap_content"
+						android:text="@string/bags"
+						android:onClick="onTypeRadioButtonClicked" />
+				</RadioGroup>
+		    </LinearLayout>
+		    
+		    <LinearLayout
+		        android:id="@+id/kilnsLayout"
+				android:layout_width="match_parent"
+				android:layout_height="wrap_content"
+				android:orientation="vertical"
+				android:paddingLeft="16dp"
+				android:paddingRight="16dp"
+				android:paddingTop="16dp" >
+		        
+		        
+		        <EditText
+			        android:id="@+id/noOfKilnsView"
+			        android:layout_width="match_parent"
+			        android:layout_height="wrap_content"
+			        android:hint="@string/no_of_kilns"
+			        android:layout_marginBottom="10dp"
+			        android:inputType="number" />
+		        
+		        <TextView
+		            android:layout_width="match_parent"
+		            android:layout_height="wrap_content"
+		            android:text="@string/freshness_level"
+		            android:layout_marginBottom="5dp" />
+		        
+		        <Spinner
+		            android:id="@+id/freshnessLevelSpinner"
+		            android:layout_width="match_parent"
+		            android:layout_height="wrap_content"
+		            android:layout_marginBottom="10dp" />
+		        
+		        <EditText
+			        android:id="@+id/treeUsedView"
+			        android:layout_width="match_parent"
+			        android:layout_height="wrap_content"
+			        android:hint="@string/tree_used"
+			        android:layout_marginBottom="10dp" />
+		        
+		        <TextView
+		            android:layout_width="match_parent"
+		            android:layout_height="wrap_content"
+		            android:text="@string/action_taken"
+		            android:layout_marginBottom="5dp" />
+		        
+		        <Spinner
+		            android:id="@+id/kilnActionTakenSpinner"
+		            android:layout_width="match_parent"
+		            android:layout_height="wrap_content"
+		            android:layout_marginBottom="10dp" />
+		        
+			</LinearLayout>
+			
+			<LinearLayout
+		        android:id="@+id/bagsLayout"
+				android:layout_width="match_parent"
+				android:layout_height="wrap_content"
+				android:orientation="vertical"
+				android:paddingLeft="16dp"
+				android:paddingRight="16dp"
+				android:paddingTop="16dp"
+				android:visibility="gone" >
+		        
+		        <EditText
+			        android:id="@+id/noOfBagsView"
+			        android:layout_width="match_parent"
+			        android:layout_height="wrap_content"
+			        android:hint="@string/no_of_bags"
+			        android:layout_marginBottom="10dp"
+			        android:inputType="number" />
+		        
+		        <TextView
+		            android:layout_width="match_parent"
+		            android:layout_height="wrap_content"
+		            android:text="@string/mode_of_transport"
+		            android:layout_marginBottom="5dp" />
+		        
+		        <Spinner
+		            android:id="@+id/modeOfTransportSpinner"
+		            android:layout_width="match_parent"
+		            android:layout_height="wrap_content"
+		            android:layout_marginBottom="10dp" />
+		        
+		        <TextView
+		            android:layout_width="match_parent"
+		            android:layout_height="wrap_content"
+		            android:text="@string/action_taken"
+		            android:layout_marginBottom="5dp" />
+		        
+		        <Spinner
+		            android:id="@+id/bagsActionTakenSpinner"
+		            android:layout_width="match_parent"
+		            android:layout_height="wrap_content"
+		            android:layout_marginBottom="10dp" />
+		        
+			</LinearLayout>
+			
+			<LinearLayout
+				android:layout_width="match_parent"
+				android:layout_height="wrap_content"
+				android:orientation="vertical"
+				android:padding="16dp" >
+			    
+			    <TextView
+			        android:layout_width="match_parent"
+			        android:layout_height="wrap_content"
+			        android:textSize="18sp"
+			        android:textColor="@color/bg"
+			        android:text="@string/extra_notes_optional" />
+		        
+		        <EditText
+			        android:id="@+id/extraNotes"
+			        android:layout_width="match_parent"
+			        android:layout_height="wrap_content"
+			        android:layout_marginBottom="15dp" />
+		        
+			    <Button
+			        android:id="@+id/saveBtn"
+			        android:layout_width="match_parent"
+			        android:layout_height="wrap_content"
+			        android:text="@string/save"
+			        android:background="@color/bg"
+			        android:textColor="@android:color/white"
+			        android:layout_marginStart="5dp" />
+			    
+			</LinearLayout>
+			
 	    </LinearLayout>
 	</ScrollView>
 </RelativeLayout>

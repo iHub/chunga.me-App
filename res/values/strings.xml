@@ -28,8 +28,9 @@
     <string name="title_activity_charcoal">Charcoal</string>
     <string name="title_activity_suspicious_aspects">Suspicious Activity</string>
     <string name="title_activity_game_meat_incident">Incident</string>
-    <string name="title_activity_game_meat_traces">Traces of Incident</string>
-    <string name="title_activity_charcoal_kiln_sightings">Kiln Sightings</string>
+    <string name="title_activity_game_meat_traces">Traces of Incident</string> 
+    <string name="kilns">Kilns</string>
+    <string name="bags">Bags</string>   
     <string name="title_activity_charcoal_arrests">Arrests</string>
     <string name="title_activity_human_animal">Human / Animal Conflict</string>
     <string name="title_activity_sightings">Sightings</string>
@@ -160,8 +161,41 @@
         <item>Wangala</item>
         <item>Washumbu</item>
     </string-array>
+    
+    <string-array name="charcoal_modes_of_transport">
+        <item></item>
+        <item>Mode 1</item>
+        <item>Mode 2</item>
+        <item>Mode 3</item>
+        <item>Mode 4</item>
+        <item>Mode 5</item>
+        <item>Other</item>
+    </string-array>
+    
+    <string-array name="charcoal_actions_taken">
+        <item></item>
+        <item>Action 1</item>
+        <item>Action 2</item>
+        <item>Action 3</item>
+        <item>Action 4</item>
+        <item>Action 5</item>
+    </string-array>
+    
+    <string-array name="kiln_freshness_levels">
+        <item></item>
+        <item>Level 1</item>
+        <item>Level 2</item>
+        <item>Level 3</item>
+        <item>Level 4</item>
+        <item>Level 5</item>
+    </string-array>
 
     <string name="title_activity_elephant_poaching">Elephant Poaching</string>
     <string name="title_activity_suspicious_activities">Suspicious Activities</string>
+    <string name="no_of_bags">No of Bags</string>
+    <string name="no_of_kilns">No of Kilns</string>
+    <string name="mode_of_transport">Mode of Transport</string>
+    <string name="freshness_level">Freshness Level</string>
+    <string name="tree_used">Tree Used</string>
 
 </resources>

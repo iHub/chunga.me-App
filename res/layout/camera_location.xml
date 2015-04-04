@@ -2,14 +2,15 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:orientation="vertical" >
+    android:orientation="vertical"
+    android:layout_marginLeft="20dp" >
     
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
-        android:layout_marginTop="7dp"
-        android:layout_marginBottom="7dp" >
+        android:layout_marginTop="5dp"
+        android:layout_marginBottom="5dp" >
         
         <ImageButton
             android:id="@+id/gpsBtn"
@@ -30,8 +31,7 @@
 		android:layout_width="match_parent"
 		android:layout_height="wrap_content"
 		android:orientation="horizontal"
-		android:layout_marginTop="7dp"
-		android:layout_marginBottom="7dp" >
+		android:layout_marginBottom="5dp" >
 	    
         <ImageButton
             android:id="@+id/cameraBtn"
@@ -41,8 +41,8 @@
         
         <ImageView
             android:id="@+id/cameraImageView"
-            android:layout_width="150dp"
-            android:layout_height="150dp"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
             android:layout_marginLeft="20dp" />
         
     </LinearLayout>
