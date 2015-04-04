@@ -12,8 +12,6 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import java.util.List;
 import com.ihub.rangerapp.GameMeatActivity;
-import com.ihub.rangerapp.GameMeatIncidentActivity;
-import com.ihub.rangerapp.GameMeatTracesActivity;
 import com.ihub.rangerapp.R;
 import com.ihub.rangerapp.entity.MenuItem;
 
@@ -81,16 +79,16 @@ public class GameMeatMenuAdapter extends RecyclerView.Adapter<GameMeatMenuAdapte
 			
 			Intent intent = null;
 			
-			switch (getPosition()) {
-				case 0:
-					intent = new Intent(hAct, GameMeatIncidentActivity.class);
-					break;
-				case 1:
-					intent = new Intent(hAct, GameMeatTracesActivity.class);
-					break;
-				default:
-					break;
-				}
+//			switch (getPosition()) {
+//				case 0:
+//					intent = new Intent(hAct, GameMeatIncidentActivity.class);
+//					break;
+//				case 1:
+//					intent = new Intent(hAct, GameMeatTracesActivity.class);
+//					break;
+//				default:
+//					break;
+//				}
 			
 			if(intent != null) {				
 				if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN) {

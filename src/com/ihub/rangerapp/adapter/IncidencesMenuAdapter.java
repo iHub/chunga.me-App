@@ -11,21 +11,21 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
 import java.util.List;
-import com.ihub.rangerapp.CharcoalActivity;
+import com.ihub.rangerapp.CharcoalBurningActivity;
+import com.ihub.rangerapp.ElephantPoachingActivity;
 import com.ihub.rangerapp.GameMeatActivity;
-import com.ihub.rangerapp.IvoryActivity;
-import com.ihub.rangerapp.IncidencesActivity;
+import com.ihub.rangerapp.IncidentsActivity;
 import com.ihub.rangerapp.R;
-import com.ihub.rangerapp.SuspiciousAspectsActivity;
+import com.ihub.rangerapp.SuspiciousActivitiesActivity;
 import com.ihub.rangerapp.entity.MenuItem;
 
 public class IncidencesMenuAdapter extends RecyclerView.Adapter<IncidencesMenuAdapter.ViewHolder> {
 	
     private List<MenuItem> menuItems;
     private int rowLayout;
-    private IncidencesActivity mAct;
+    private IncidentsActivity mAct;
     
-    public IncidencesMenuAdapter(List<MenuItem> applications, int rowLayout, IncidencesActivity act) {
+    public IncidencesMenuAdapter(List<MenuItem> applications, int rowLayout, IncidentsActivity act) {
         this.menuItems = applications;
         this.rowLayout = rowLayout;
         this.mAct = act;
@@ -68,9 +68,9 @@ public class IncidencesMenuAdapter extends RecyclerView.Adapter<IncidencesMenuAd
         public TextView name;
         public ImageView image;
 
-        IncidencesActivity hAct;
+        IncidentsActivity hAct;
         
-        public ViewHolder(View itemView, IncidencesActivity mAct) {
+        public ViewHolder(View itemView, IncidentsActivity mAct) {
             super(itemView);
             name = (TextView) itemView.findViewById(R.id.countryName);
             //image = (ImageView) itemView.findViewById(R.id.countryImage);
@@ -85,16 +85,16 @@ public class IncidencesMenuAdapter extends RecyclerView.Adapter<IncidencesMenuAd
 			
 			switch (getPosition()) {
 				case 0:
-					intent = new Intent(hAct, IvoryActivity.class);
-					break;
-				case 1:
 					intent = new Intent(hAct, GameMeatActivity.class);
 					break;
+				case 1:
+					intent = new Intent(hAct, CharcoalBurningActivity.class);
+					break;
 				case 2:
-					intent = new Intent(hAct, CharcoalActivity.class);
+					intent = new Intent(hAct, ElephantPoachingActivity.class);
 					break;
 				case 3:
-					intent = new Intent(hAct, SuspiciousAspectsActivity.class);
+					intent = new Intent(hAct, SuspiciousActivitiesActivity.class);
 					break;
 				default:
 					break;

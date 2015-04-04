@@ -20,7 +20,7 @@ public class SightingsActivity extends ActionBarActivity {
 
 private List<com.ihub.rangerapp.entity.MenuItem> itemsList = new ArrayList<com.ihub.rangerapp.entity.MenuItem>();
 	
-	private SightingsMenuAdapter mAdapter;
+	//private SightingsMenuAdapter mAdapter;
     private RecyclerView mRecyclerView;
     
 	@Override
@@ -48,15 +48,15 @@ private List<com.ihub.rangerapp.entity.MenuItem> itemsList = new ArrayList<com.i
         	mRecyclerView.setItemAnimator(new CustomItemAnimator());
 		}
         
-        mAdapter = new SightingsMenuAdapter(new ArrayList<com.ihub.rangerapp.entity.MenuItem>(), R.layout.row_application, SightingsActivity.this);
-        mRecyclerView.setAdapter(mAdapter);
-                
-        new Handler().postDelayed(new Runnable() {
-			@Override
-			public void run() {
-				new InitializeApplicationsTask().execute();
-			}
-		}, 300);
+//        mAdapter = new SightingsMenuAdapter(new ArrayList<com.ihub.rangerapp.entity.MenuItem>(), R.layout.row_application, SightingsActivity.this);
+//        mRecyclerView.setAdapter(mAdapter);
+//                
+//        new Handler().postDelayed(new Runnable() {
+//			@Override
+//			public void run() {
+//				new InitializeApplicationsTask().execute();
+//			}
+//		}, 300);
 	}
 	
 	@Override
@@ -64,44 +64,44 @@ private List<com.ihub.rangerapp.entity.MenuItem> itemsList = new ArrayList<com.i
         super.onSaveInstanceState(outState);
     }
     
-    private class InitializeApplicationsTask extends AsyncTask<Void, Void, Void> {
-    	
-        @Override
-        protected void onPreExecute() {
-            mAdapter.clearApplications();
-            super.onPreExecute();
-        }
-        
-        @Override
-        protected Void doInBackground(Void... params) {
-            itemsList.clear();
-            
-            //Query the applications
-            final Intent mainIntent = new Intent(Intent.ACTION_MAIN, null);
-            mainIntent.addCategory(Intent.CATEGORY_LAUNCHER);
-            
-            String menuNames[] = new String[]{
-	    		"Animals", 
-	    		"Plants",
-	    		"Vegetation"
-            };
-            
-            Integer drawables[] = new Integer[] {};
-            
-            for (String s : menuNames) {
-            	itemsList.add(new com.ihub.rangerapp.entity.MenuItem(s, null));
-            }
-            
-            Collections.sort(itemsList);
-            
-            return null;
-        }
-
-        @Override
-        protected void onPostExecute(Void result) {
-            mRecyclerView.setVisibility(View.VISIBLE);
-            mAdapter.addItems(itemsList);
-            super.onPostExecute(result);
-        }
-    }
+//    private class InitializeApplicationsTask extends AsyncTask<Void, Void, Void> {
+//    	
+//        @Override
+//        protected void onPreExecute() {
+//            mAdapter.clearApplications();
+//            super.onPreExecute();
+//        }
+//        
+//        @Override
+//        protected Void doInBackground(Void... params) {
+//            itemsList.clear();
+//            
+//            //Query the applications
+//            final Intent mainIntent = new Intent(Intent.ACTION_MAIN, null);
+//            mainIntent.addCategory(Intent.CATEGORY_LAUNCHER);
+//            
+//            String menuNames[] = new String[]{
+//	    		"Animals", 
+//	    		"Plants",
+//	    		"Vegetation"
+//            };
+//            
+//            Integer drawables[] = new Integer[] {};
+//            
+//            for (String s : menuNames) {
+//            	itemsList.add(new com.ihub.rangerapp.entity.MenuItem(s, null));
+//            }
+//            
+//            Collections.sort(itemsList);
+//            
+//            return null;
+//        }
+//
+//        @Override
+//        protected void onPostExecute(Void result) {
+//            mRecyclerView.setVisibility(View.VISIBLE);
+//            mAdapter.addItems(itemsList);
+//            super.onPostExecute(result);
+//        }
+//    }
 }

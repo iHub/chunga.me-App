@@ -4,7 +4,7 @@
 	android:gravity="center"
 	android:layout_width="match_parent"
 	android:layout_height="match_parent">
-    
+	
 	<android.support.v7.widget.Toolbar
 		android:id="@+id/toolbar"
 		android:layout_width="match_parent"
@@ -20,38 +20,12 @@
 		android:layout_below="@id/toolbar"
 		android:fillViewport="true"
 		android:background="@android:color/white" >
-	
+		
 		<LinearLayout
 			android:layout_width="match_parent"
 			android:layout_height="wrap_content"
 			android:orientation="vertical"
 			android:padding="16dp" >
-		    
-		    <EditText
-		        android:id="@+id/suspiciousActivityView"
-		        android:layout_width="match_parent"
-		        android:layout_height="wrap_content"
-		        android:hint="@string/suspicious_activity"
-		        android:layout_marginBottom="5dp" />
-		    
-		    <EditText
-		        android:id="@+id/noteView"
-		        android:layout_width="match_parent"
-		        android:layout_height="wrap_content"
-		        android:hint="@string/note" />
-		    
-			
-			
-		    <include layout="@layout/camera_location"/>
-		    
-		    <Button
-		        android:id="@+id/saveBtn"
-		        android:layout_width="match_parent"
-		        android:layout_height="wrap_content"
-		        android:text="@string/save"
-		        android:background="@color/bg"
-		        android:textColor="@android:color/white"
-		        android:layout_marginStart="5dp" />
 		    
 	    </LinearLayout>
 	</ScrollView>

@@ -15,13 +15,13 @@ import android.os.Bundle;
 import android.os.Handler;
 import android.view.View;
 
-public class IncidencesActivity extends ActionBarActivity {
+public class IncidentsActivity extends ActionBarActivity {
 
 	private List<com.ihub.rangerapp.entity.MenuItem> itemsList = new ArrayList<com.ihub.rangerapp.entity.MenuItem>();
 	
 	private IncidencesMenuAdapter mAdapter;
     private RecyclerView mRecyclerView;
-
+    
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
@@ -36,7 +36,7 @@ public class IncidencesActivity extends ActionBarActivity {
         toolbar.setNavigationOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                IncidencesActivity.this.onBackPressed();
+                IncidentsActivity.this.onBackPressed();
             }
         });
         
@@ -47,7 +47,7 @@ public class IncidencesActivity extends ActionBarActivity {
         	mRecyclerView.setItemAnimator(new CustomItemAnimator());
 		}
         
-        mAdapter = new IncidencesMenuAdapter(new ArrayList<com.ihub.rangerapp.entity.MenuItem>(), R.layout.row_application, IncidencesActivity.this);
+        mAdapter = new IncidencesMenuAdapter(new ArrayList<com.ihub.rangerapp.entity.MenuItem>(), R.layout.row_application, IncidentsActivity.this);
         mRecyclerView.setAdapter(mAdapter);
         
         new Handler().postDelayed(new Runnable() {
@@ -76,9 +76,9 @@ public class IncidencesActivity extends ActionBarActivity {
             mainIntent.addCategory(Intent.CATEGORY_LAUNCHER);
             
             String menuNames[] = new String[]{
+            	getString(R.string.game_meat),
+            	getString(R.string.charcoal_burning),
 	    		getString(R.string.elephant_poaching),
-	    		getString(R.string.game_meat),
-	    		getString(R.string.charcoal_burning),
 	    		getString(R.string.suspicious_activities)
             };
             

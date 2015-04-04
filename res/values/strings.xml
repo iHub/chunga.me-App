@@ -74,6 +74,7 @@
     <string name="damage_to_humans">Damage to Humans</string>
     <string name="humans_affected">Humans Affected</string>
     <string name="incidences">Incidences</string>
+    <string name="incidents">Incidents</string>
     <string name="reports">Reports</string>
     <string name="start_shift">Start Shift</string>
     <string name="end_shift">End Shift</string>
@@ -93,7 +94,6 @@
     <string name="purpose">Purpose</string>
     <string name="start_wp">Start WP</string>
     <string name="end_wp">End WP</string>
-    
     <string name="elephant_poaching">Elephant Poaching</string>
     <string name="game_meat">Game Meat</string>
     <string name="charcoal_burning">Charcoal Burning</string>
@@ -128,8 +128,7 @@
         <item>Month(s)</item>
         <item>Year(s)</item>
     </string-array>
-    
-    <string-array name="base_stations" >
+    <string-array name="base_stations">
         <item>ST2-0</item>
         <item>ST3-0</item>
         <item>ST5-1</item>
@@ -138,8 +137,7 @@
         <item>ST5-7</item>
         <item>ST6-0</item>
         <item>ST8-0</item>
-    </string-array> 
-    
+    </string-array>
     <string-array name="ranches">
         <item>Amaka</item>
         <item>Bachuma</item>
@@ -161,5 +159,9 @@
         <item>Taru</item>
         <item>Wangala</item>
         <item>Washumbu</item>
-    </string-array> 
+    </string-array>
+
+    <string name="title_activity_elephant_poaching">Elephant Poaching</string>
+    <string name="title_activity_suspicious_activities">Suspicious Activities</string>
+
 </resources>

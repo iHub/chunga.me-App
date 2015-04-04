@@ -27,92 +27,9 @@
 			android:orientation="vertical"
 			android:padding="16dp" >		    
 			
-		    <TextView
-		        android:layout_width="match_parent"
-		        android:layout_height="wrap_content"
-		        android:textSize="18sp"
-		        android:textColor="@color/bg"
-		        android:text="@string/type_of_carcass"
-		        android:layout_marginBottom="5dp" />
 		    
-		    <Spinner
-		        android:id="@+id/typeOfCarcassSpinner"
-		        android:layout_width="match_parent"
-		        android:layout_height="wrap_content"
-		        android:layout_marginBottom="10dp" />
 		    
-		    <TextView
-		        android:layout_width="match_parent"
-		        android:layout_height="wrap_content"
-		        android:textSize="18sp"
-		        android:textColor="@color/bg"
-		        android:text="@string/no_of_arrests"
-		        android:layout_marginBottom="5dp" />
-		    
-		    <Spinner
-		        android:id="@+id/noOfArrestsSpinner"
-		        android:layout_width="match_parent"
-		        android:layout_height="wrap_content"
-		        android:layout_marginBottom="10dp" />
-		    
-		    <TextView
-		        android:layout_width="match_parent"
-		        android:layout_height="wrap_content"
-		        android:textSize="18sp"
-		        android:textColor="@color/bg"
-		        android:text="@string/action_taken"
-		        android:layout_marginBottom="5dp" />
-		    
-		    <Spinner
-		        android:id="@+id/actionTakenSpinner"
-		        android:layout_width="match_parent"
-		        android:layout_height="wrap_content"
-		        android:layout_marginBottom="10dp" />
-		    
-		    <LinearLayout
-		        android:layout_width="match_parent"
-		        android:layout_height="wrap_content"
-		        android:orientation="horizontal"
-		        android:layout_marginTop="7dp"
-		        android:layout_marginBottom="7dp" >
-			    
-		        <ImageButton
-		            android:id="@+id/gpsBtn"
-		            android:layout_width="wrap_content"
-		            android:layout_height="wrap_content"
-		            android:src="@drawable/gps" />
-		        
-		        
-		        <TextView
-		            android:id="@+id/gpsText"
-		            android:layout_width="wrap_content"
-		            android:layout_height="wrap_content"
-		            android:layout_marginRight="25dp"
-		            android:layout_marginTop="30dp"
-		            android:text="ddddd" />
-		        
-		    </LinearLayout>
-		    
-		    <LinearLayout
-		        android:layout_width="match_parent"
-		        android:layout_height="wrap_content"
-		        android:orientation="horizontal"
-		        android:layout_marginTop="7dp"
-		        android:layout_marginBottom="7dp" >
-			    
-		        <ImageButton
-		            android:id="@+id/cameraBtn"
-		            android:layout_width="wrap_content"
-		            android:layout_height="wrap_content"
-		            android:src="@drawable/camera" />
-		        
-		        
-		        <ImageView
-		            android:id="@+id/cameraImageView"
-		            android:layout_width="wrap_content"
-		            android:layout_height="wrap_content" />
-		        
-		    </LinearLayout>
+		    <include layout="@layout/camera_location"/>
 		    
 		    <Button
 		        android:id="@+id/proceedBtn"

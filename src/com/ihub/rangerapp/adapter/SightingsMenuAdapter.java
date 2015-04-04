@@ -11,14 +11,7 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
 import java.util.List;
-
 import com.ihub.rangerapp.AnimalsSightingsActivity;
-import com.ihub.rangerapp.CharcoalActivity;
-import com.ihub.rangerapp.CharcoalArrestsActivity;
-import com.ihub.rangerapp.CharcoalKilnSightingsActivity;
-import com.ihub.rangerapp.GameMeatActivity;
-import com.ihub.rangerapp.GameMeatIncidentActivity;
-import com.ihub.rangerapp.GameMeatTracesActivity;
 import com.ihub.rangerapp.PlantsSightingActivity;
 import com.ihub.rangerapp.R;
 import com.ihub.rangerapp.SightingsActivity;

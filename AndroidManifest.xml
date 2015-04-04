@@ -50,7 +50,7 @@
             android:theme="@style/NoActionBar" >
         </activity>
         <activity
-            android:name=".IncidencesActivity"
+            android:name=".IncidentsActivity"
             android:label="@string/title_activity_incidences"
             android:theme="@style/NoActionBar" >
         </activity>
@@ -65,7 +65,7 @@
             android:theme="@style/NoActionBar" >
         </activity>
         <activity
-            android:name=".CharcoalActivity"
+            android:name=".CharcoalBurningActivity"
             android:label="@string/title_activity_charcoal"
             android:theme="@style/NoActionBar" >
         </activity>
@@ -127,6 +127,16 @@
         <activity
             android:name=".StartShiftActivity"
             android:label="@string/start_shift"
+            android:theme="@style/NoActionBar" >
+        </activity>
+        <activity
+            android:name=".ElephantPoachingActivity"
+            android:label="@string/title_activity_elephant_poaching"
+            android:theme="@style/NoActionBar" >
+        </activity>
+        <activity
+            android:name=".SuspiciousActivitiesActivity"
+            android:label="@string/title_activity_suspicious_activities"
             android:theme="@style/NoActionBar" >
         </activity>
     </application>

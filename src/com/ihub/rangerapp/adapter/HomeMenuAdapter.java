@@ -10,15 +10,11 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
-import android.widget.Toast;
-
 import java.util.List;
 import com.ihub.rangerapp.HomeActivity;
-import com.ihub.rangerapp.HumanAnimalActivity;
-import com.ihub.rangerapp.IncidencesActivity;
+import com.ihub.rangerapp.IncidentsActivity;
 import com.ihub.rangerapp.R;
 import com.ihub.rangerapp.SightingsActivity;
-import com.ihub.rangerapp.SuspiciousAspectsActivity;
 import com.ihub.rangerapp.entity.MenuItem;
 
 public class HomeMenuAdapter extends RecyclerView.Adapter<HomeMenuAdapter.ViewHolder> {
@@ -87,16 +83,10 @@ public class HomeMenuAdapter extends RecyclerView.Adapter<HomeMenuAdapter.ViewHo
 			
 			switch (getPosition()) {
 				case 0:
-					intent = new Intent(hAct, IncidencesActivity.class);
+					intent = new Intent(hAct, IncidentsActivity.class);
 					break;
 				case 1:
-					intent = new Intent(hAct, HumanAnimalActivity.class);
-					break;
-				case 2:
 					intent = new Intent(hAct, SightingsActivity.class);
-					break;
-				case 3:
-					intent = new Intent(hAct, SuspiciousAspectsActivity.class);
 					break;
 				default:
 					break;
