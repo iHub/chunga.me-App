@@ -26,6 +26,42 @@
 			android:layout_height="wrap_content"
 			android:orientation="vertical"
 			android:padding="16dp" >
+			
+		    <include layout="@layout/camera_location"/>		    
+		    
+		    <TextView
+	            android:layout_width="match_parent"
+	            android:layout_height="wrap_content"
+	            android:text="@string/action_taken"
+	            android:layout_marginBottom="5dp" />
+	        
+	        <Spinner
+	            android:id="@+id/actionTakenSpinner"
+	            android:layout_width="match_parent"
+	            android:layout_height="wrap_content"
+	            android:layout_marginBottom="10dp" />
+			    
+		    <TextView
+		        android:layout_width="match_parent"
+		        android:layout_height="wrap_content"
+		        android:textSize="18sp"
+		        android:textColor="@color/bg"
+		        android:text="@string/extra_notes_optional" />
+	        
+	        <EditText
+		        android:id="@+id/extraNotes"
+		        android:layout_width="match_parent"
+		        android:layout_height="wrap_content"
+		        android:layout_marginBottom="15dp" />
+	        
+		    <Button
+		        android:id="@+id/saveBtn"
+		        android:layout_width="match_parent"
+		        android:layout_height="wrap_content"
+		        android:text="@string/save"
+		        android:background="@color/bg"
+		        android:textColor="@android:color/white"
+		        android:layout_marginStart="5dp" />
 		    
 	    </LinearLayout>
 	</ScrollView>

@@ -214,6 +214,14 @@
         <item>Male</item>
         <item>Female</item>
     </string-array>
+    
+    <string-array name="suspicious_activities_actions_taken">
+        <item></item>
+        <item>Action 1</item>
+        <item>Action 2</item>
+        <item>Action 3</item>
+        <item>Action 4</item>
+    </string-array>
 
     <string name="title_activity_elephant_poaching">Elephant Poaching</string>
     <string name="title_activity_suspicious_activities">Suspicious Activities</string>
