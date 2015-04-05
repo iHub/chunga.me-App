@@ -189,6 +189,31 @@
         <item>Level 4</item>
         <item>Level 5</item>
     </string-array>
+    
+    <string-array name="elephant_poaching_tools_used">
+        <item></item>
+        <item>Tool 1</item>
+        <item>Tool 2</item>
+        <item>Tool 3</item>
+        <item>Tool 4</item>
+        <item>Tool 5</item>
+        <item>Tool 6</item>
+        <item>Tool 7</item>
+    </string-array>
+    
+    <string-array name="age_array">
+        <item></item>
+        <item>Age 1</item>
+        <item>Age 2</item>
+        <item>Age 3</item>
+        <item>Age 4</item>
+    </string-array>
+    
+    <string-array name="sex_array">
+        <item></item>
+        <item>Male</item>
+        <item>Female</item>
+    </string-array>
 
     <string name="title_activity_elephant_poaching">Elephant Poaching</string>
     <string name="title_activity_suspicious_activities">Suspicious Activities</string>
@@ -197,5 +222,8 @@
     <string name="mode_of_transport">Mode of Transport</string>
     <string name="freshness_level">Freshness Level</string>
     <string name="tree_used">Tree Used</string>
+    <string name="age">Age</string>
+    <string name="sex">Sex</string>
+    <string name="ivory_presence">Ivory Presence</string>
 
 </resources>
