@@ -25,14 +25,52 @@
 			android:layout_width="match_parent"
 			android:layout_height="wrap_content"
 			android:orientation="vertical"
-			android:padding="16dp" >		    
-			
-		    
+			android:padding="16dp" >
 		    
 		    <include layout="@layout/camera_location"/>
 		    
+		    <EditText
+		        android:id="@+id/animalView"
+		        android:layout_width="match_parent"
+		        android:layout_height="wrap_content"
+		        android:hint="@string/animal"
+		        android:layout_marginBottom="10dp" />
+		    
+		    <EditText
+		        android:id="@+id/noOfAnimalsView"
+		        android:layout_width="match_parent"
+		        android:layout_height="wrap_content"
+		        android:hint="@string/no_of_animals"
+		        android:layout_marginBottom="10dp"
+		        android:inputType="number" />
+		    
+		    <TextView
+	            android:layout_width="match_parent"
+	            android:layout_height="wrap_content"
+	            android:text="@string/action_taken"
+	            android:layout_marginBottom="5dp" />
+	        
+	        <Spinner
+	            android:id="@+id/actionTakenSpinner"
+	            android:layout_width="match_parent"
+	            android:layout_height="wrap_content"
+	            android:layout_marginBottom="10dp" />
+			    
+		    <TextView
+		        android:layout_width="match_parent"
+		        android:layout_height="wrap_content"
+		        android:textSize="18sp"
+		        android:textColor="@color/bg"
+		        android:text="@string/extra_notes_optional" />
+	        
+	        <EditText
+		        android:id="@+id/extraNotes"
+		        android:layout_width="match_parent"
+		        android:layout_height="wrap_content"
+		        android:layout_marginBottom="15dp" />
+		    
 		    <Button
-		        android:id="@+id/proceedBtn"
+		        android:id="@+id/saveBtn"
 		        android:layout_width="match_parent"
 		        android:layout_height="wrap_content"
 		        android:text="@string/proceed"
