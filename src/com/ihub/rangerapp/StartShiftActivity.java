@@ -1,37 +1,52 @@
 package com.ihub.rangerapp;
 
-import java.util.HashMap;
 import java.util.Map;
-
 import com.ihub.rangerapp.data.service.ShiftService;
 import com.ihub.rangerapp.data.service.ShiftServiceImpl;
 
+import eu.inmite.android.lib.validations.form.FormValidator;
+import eu.inmite.android.lib.validations.form.annotations.MinLength;
+import eu.inmite.android.lib.validations.form.annotations.MinNumberValue;
+import eu.inmite.android.lib.validations.form.annotations.NotEmpty;
+import eu.inmite.android.lib.validations.form.callback.SimpleErrorPopupCallback;
 import android.support.v7.app.ActionBarActivity;
 import android.support.v7.widget.Toolbar;
+import android.view.Gravity;
 import android.view.View;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.Spinner;
 import android.widget.Toast;
 import android.os.AsyncTask;
 import android.os.Bundle;
 
 public class StartShiftActivity extends ActionBarActivity {
 	
+	@NotEmpty(messageId = R.string.validation_leader, order = 1)
+	@MinLength(value = 5, messageId = R.string.validation_leader_length, order = 2)
 	EditText leaderView;
+	
+	@MinNumberValue(value= "1", messageId = R.string.validation_min_member_count, order = 3)
 	EditText noOfMembersView;
+	
+	@NotEmpty(messageId = R.string.validation_start_weight_point, order = 4)
 	EditText startWPView;
+	
+	@NotEmpty(messageId = R.string.validation_end_weight_point, order = 5)
 	EditText endWPView;
+	
+	@NotEmpty(messageId = R.string.validation_purpose, order = 6)
 	EditText purposeView;
 	
 	Button startShiftBtn;
 	
-	
 	//change to drop downs
-	EditText stationView;
-	EditText ranchView;
+	Spinner stationSpinner;
+	Spinner ranchSpinner;
 	EditText routeView;
-	EditText modeView;
-	EditText weatherView;
+	Spinner modeSpinner;
+	Spinner weatherSpinner;
 	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -68,11 +83,79 @@ public class StartShiftActivity extends ActionBarActivity {
 			}
 		});
         
-        stationView = (EditText) findViewById(R.id.stationView);
-        ranchView = (EditText) findViewById(R.id.ranchView);
+        stationSpinner = (Spinner) findViewById(R.id.stationSpinner);
+        ranchSpinner = (Spinner) findViewById(R.id.ranchSpinner);
         routeView = (EditText) findViewById(R.id.routeView);
-        modeView = (EditText) findViewById(R.id.modeView);
-        weatherView = (EditText) findViewById(R.id.weatherView);
+        modeSpinner = (Spinner) findViewById(R.id.modeSpinner);
+        weatherSpinner = (Spinner) findViewById(R.id.weatherSpinner);
+        
+        
+        ArrayAdapter<CharSequence> stationsAdapter = ArrayAdapter.createFromResource(this,
+                R.array.base_stations, android.R.layout.simple_spinner_item);
+        stationsAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        
+        stationSpinner.setAdapter(stationsAdapter);
+        
+        
+        ArrayAdapter<CharSequence> ranchesAdapter = ArrayAdapter.createFromResource(this,
+                R.array.ranches, android.R.layout.simple_spinner_item);
+        ranchesAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        
+        ranchSpinner.setAdapter(ranchesAdapter);
+        
+        
+        ArrayAdapter<CharSequence> modeAdapter = ArrayAdapter.createFromResource(this,
+                R.array.transport_modes, android.R.layout.simple_spinner_item);
+        modeAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        
+        modeSpinner.setAdapter(modeAdapter);
+        
+        ArrayAdapter<CharSequence> weatherAdapter = ArrayAdapter.createFromResource(this,
+                R.array.weather_conditions, android.R.layout.simple_spinner_item);
+        weatherAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        
+        weatherSpinner.setAdapter(weatherAdapter);
+	}
+	
+	private Boolean isValid() {
+		
+		Boolean isValid = FormValidator.validate(this, new SimpleErrorPopupCallback(this));
+		
+		//validate station
+		//validate ranch
+		//validate mode
+		//validate weather
+		
+		if(isValid) {
+			
+			if("".equals(stationSpinner.getSelectedItem().toString())) {
+				isValid = false;
+				showPopupError(getString(R.string.validation_station));
+			}
+			
+			if(isValid && "".equals(ranchSpinner.getSelectedItem().toString())) {
+				isValid = false;
+				showPopupError(getString(R.string.validation_ranch));
+			}
+			
+			if(isValid && "".equals(modeSpinner.getSelectedItem().toString())) {
+				isValid = false;
+				showPopupError(getString(R.string.validation_transport_mode));
+			}
+			
+			if(isValid && "".equals(weatherSpinner.getSelectedItem().toString())) {
+				isValid = false;
+				showPopupError(getString(R.string.validation_weather));
+			}
+		}
+		
+		return isValid;
+	}
+	
+	private void showPopupError(String msg) {
+		Toast toast = Toast.makeText(getApplicationContext(), msg, Toast.LENGTH_LONG);
+		toast.setGravity(Gravity.TOP, 0, 0);
+		toast.show();
 	}
 	
 	protected void startShift() {
@@ -80,21 +163,16 @@ public class StartShiftActivity extends ActionBarActivity {
 		//use asynctask
 		
 		new StartShiftTask().execute(
-				stationView.getText().toString(),
-				ranchView.getText().toString(),
-				leaderView.getText().toString(),
-				noOfMembersView.getText().toString(),
-				routeView.getText().toString(),
-				modeView.getText().toString(),
-				weatherView.getText().toString(),
-				startWPView.getText().toString(),
-				endWPView.getText().toString(),
-				purposeView.getText().toString());
-	}
-
-	private boolean isValid() { //TODO implement
-		
-		return true;
+			stationSpinner.getSelectedItem().toString(),
+			ranchSpinner.getSelectedItem().toString(),
+			leaderView.getText().toString(),
+			noOfMembersView.getText().toString(),
+			routeView.getText().toString(),
+			modeSpinner.getSelectedItem().toString(),
+			weatherSpinner.getSelectedItem().toString(),
+			startWPView.getText().toString(),
+			endWPView.getText().toString(),
+			purposeView.getText().toString());
 	}
 	
 	private boolean hasOpenShift() { //TODO implement

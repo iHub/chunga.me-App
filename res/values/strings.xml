@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-
+    
     <string name="app_name">Chungame</string>
     <string name="hello_world">Hello</string>
     <string name="action_settings">Settings</string>
@@ -98,7 +98,27 @@
     <string name="elephant_poaching">Elephant Poaching</string>
     <string name="game_meat">Game Meat</string>
     <string name="charcoal_burning">Charcoal Burning</string>
-
+    
+<!--     http://openweathermap.org/weather-conditions -->
+    <string-array name="weather_conditions">
+        <item></item>
+        <item>Clear Sky</item>
+        <item>Few Clouds</item>
+        <item>Scattered Clouds</item>
+        <item>Broken Clouds</item>
+        <item>Shower Rain</item>
+        <item>Rain</item>
+        <item>Thunderstorm</item>
+        <item>Mist</item>
+    </string-array>
+    
+    <string-array name="transport_modes">
+        <item></item>
+        <item>Air</item>
+        <item>Rail</item>
+        <item>Road</item>
+    </string-array>
+    
     <string-array name="plants_unit_of_measure">
         <item></item>
         <item>Acres</item>
@@ -130,6 +150,7 @@
         <item>Year(s)</item>
     </string-array>
     <string-array name="base_stations">
+        <item></item>
         <item>ST2-0</item>
         <item>ST3-0</item>
         <item>ST5-1</item>
@@ -140,6 +161,7 @@
         <item>ST8-0</item>
     </string-array>
     <string-array name="ranches">
+        <item></item>
         <item>Amaka</item>
         <item>Bachuma</item>
         <item>Bura</item>
@@ -222,7 +244,7 @@
         <item>Action 3</item>
         <item>Action 4</item>
     </string-array>
-
+    
     <string name="title_activity_elephant_poaching">Elephant Poaching</string>
     <string name="title_activity_suspicious_activities">Suspicious Activities</string>
     <string name="no_of_bags">No of Bags</string>
@@ -233,5 +255,16 @@
     <string name="age">Age</string>
     <string name="sex">Sex</string>
     <string name="ivory_presence">Ivory Presence</string>
-
+    
+    <string name="validation_leader">Leader is required!</string>
+    <string name="validation_leader_length">Leader name must be atleast 5 characters</string>
+    <string name="validation_min_member_count">Members must be more than 0</string>
+    <string name="validation_start_weight_point">Start Weight Point is required!</string>
+    <string name="validation_end_weight_point">End Weight Point is required!</string>
+    <string name="validation_purpose">Purpose is required!</string>
+    <string name="validation_station">Station is required!</string>
+    <string name="validation_transport_mode">Transport Mode is required!</string>
+    <string name="validation_weather">Weather is required!</string>
+    <string name="validation_ranch">Ranch is required!</string>
+    
 </resources>

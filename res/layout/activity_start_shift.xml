@@ -28,20 +28,30 @@
 			android:layout_height="wrap_content"
 			android:orientation="vertical"
 			android:padding="16dp" >
+			
+		    <TextView
+	            android:layout_width="match_parent"
+	            android:layout_height="wrap_content"
+	            android:text="@string/station"
+	            android:layout_marginBottom="5dp" />
 		        
-	        <EditText
-		        android:id="@+id/stationView"
+	        <Spinner
+		        android:id="@+id/stationSpinner"
 		        android:layout_width="match_parent"
 		        android:layout_height="wrap_content"
-		        android:hint="@string/station"
-		        android:layout_marginBottom="2dp" />
+		        android:layout_marginBottom="10dp" />
 	        
-	        <EditText
-		        android:id="@+id/ranchView"
+	        <TextView
+	            android:layout_width="match_parent"
+	            android:layout_height="wrap_content"
+	            android:text="@string/ranch"
+	            android:layout_marginBottom="5dp" />
+	        
+	        <Spinner
+		        android:id="@+id/ranchSpinner"
 		        android:layout_width="match_parent"
 		        android:layout_height="wrap_content"
-		        android:hint="@string/ranch"
-		        android:layout_marginBottom="2dp" />
+		        android:layout_marginBottom="10dp" />
 	        
 	        <EditText
 		        android:id="@+id/leaderView"
@@ -58,35 +68,36 @@
 		        android:layout_marginBottom="2dp"
 		        android:inputType="number" />
 	        
-	        <LinearLayout
-	            android:layout_width="match_parent"
-	            android:layout_height="wrap_content"
-	            android:orientation="horizontal" >
-	        
-		        <EditText
-			        android:id="@+id/routeView"
-			        android:layout_width="match_parent"
-			        android:layout_height="wrap_content"
-			        android:hint="@string/route"
-			        android:layout_marginBottom="2dp"
-			        android:layout_weight="1" />
-		        
-		        <EditText
-			        android:id="@+id/modeView"
-			        android:layout_width="match_parent"
-			        android:layout_height="wrap_content"
-			        android:hint="@string/mode"
-			        android:layout_marginBottom="2dp"
-			        android:layout_weight="1" />
-		        
-			</LinearLayout>
-	        
 	        <EditText
-		        android:id="@+id/weatherView"
+		        android:id="@+id/routeView"
 		        android:layout_width="match_parent"
 		        android:layout_height="wrap_content"
-		        android:hint="@string/weather"
-		        android:layout_marginBottom="2dp" />
+		        android:hint="@string/route"
+		        android:layout_marginBottom="10dp" />
+	        
+	        <TextView
+	            android:layout_width="match_parent"
+	            android:layout_height="wrap_content"
+	            android:text="@string/mode"
+	            android:layout_marginBottom="5dp" />
+	        
+	        <Spinner
+		        android:id="@+id/modeSpinner"
+		        android:layout_width="match_parent"
+		        android:layout_height="wrap_content"
+		        android:layout_marginBottom="10dp" />
+	        
+	        <TextView
+	            android:layout_width="match_parent"
+	            android:layout_height="wrap_content"
+	            android:text="@string/weather"
+	            android:layout_marginBottom="5dp" />
+	        
+	        <Spinner
+		        android:id="@+id/weatherSpinner"
+		        android:layout_width="match_parent"
+		        android:layout_height="wrap_content"
+		        android:layout_marginBottom="10dp" />
 	        
 	        <LinearLayout
 	            android:layout_width="match_parent"
@@ -99,7 +110,8 @@
 			        android:layout_height="wrap_content"
 			        android:hint="@string/start_wp"
 			        android:layout_marginBottom="2dp"
-			        android:layout_weight="1" />
+			        android:layout_weight="1"
+			        android:inputType="number" />
 		        
 		        <EditText
 			        android:id="@+id/endWPView"
@@ -107,7 +119,8 @@
 			        android:layout_height="wrap_content"
 			        android:hint="@string/end_wp"
 			        android:layout_marginBottom="2dp"
-			        android:layout_weight="1" />
+			        android:layout_weight="1"
+			        android:inputType="number" />
 	        
 	        </LinearLayout>
 	        
