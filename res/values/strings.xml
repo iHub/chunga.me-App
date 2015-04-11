@@ -98,6 +98,13 @@
     <string name="elephant_poaching">Elephant Poaching</string>
     <string name="game_meat">Game Meat</string>
     <string name="charcoal_burning">Charcoal Burning</string>
+    <string name="registration_confirmation">Can you confirm that you have entered the right details?</string>
+    <string name="yes">Yes</string>
+    <string name="no">No</string>
+    <string name="start_shift_successful">Shift successfully started.</string>
+    <string name="registration_success">Hi {name} Welcome to RangerApp</string>
+    <string name="shift_successfully_ended">Shift successfully ended</string>
+    <string name="end_shift_confirmation">Are you sure you want to end current shift?</string>
     
 <!--     http://openweathermap.org/weather-conditions -->
     <string-array name="weather_conditions">

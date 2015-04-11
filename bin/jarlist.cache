@@ -1,6 +1,8 @@
 # cache for current jar dependency. DO NOT EDIT.
 # format is <lastModified> <length> <SHA-1> <path>
 # Encoding is UTF-8
-1423164219000 995624 3e4e879d0b3dc11f2feb3f55e77e3b5bd82c4a28 /home/vincent/projects/android-validation-komensky/library/src/main/libs/android-support-v4.jar
-1423414263000 995624 3e4e879d0b3dc11f2feb3f55e77e3b5bd82c4a28 /home/vincent/workspacemobile/RangerApp/libs/android-support-v4.jar
-1423161661000 995624 3e4e879d0b3dc11f2feb3f55e77e3b5bd82c4a28 /home/vincent/workspacemobile/appcompat_v7/libs/android-support-v4.jar
+1428500673000 523661 b69b7abb225c5d1ebf3bab999a276fab7ab8628c /home/vincent/projects/tools/adt-bundle-linux-x86_64-20140702/sdk/extras/android/support/v7/appcompat/libs/android-support-v7-appcompat.jar
+1428500673000 523661 b69b7abb225c5d1ebf3bab999a276fab7ab8628c /home/vincent/workspacemobile/RangerApp/libs/android-support-v7-appcompat.jar
+1428500673000 1074044 33b27a8d2a5b87e6eb6c60e87a5374ffbfeacc3a /home/vincent/projects/android-validation-komensky/library/src/main/libs/android-support-v4.jar
+1428500673000 1074044 33b27a8d2a5b87e6eb6c60e87a5374ffbfeacc3a /home/vincent/workspacemobile/RangerApp/libs/android-support-v4.jar
+1428500673000 1074044 33b27a8d2a5b87e6eb6c60e87a5374ffbfeacc3a /home/vincent/projects/tools/adt-bundle-linux-x86_64-20140702/sdk/extras/android/support/v7/appcompat/libs/android-support-v4.jar

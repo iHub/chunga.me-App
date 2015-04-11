@@ -50,8 +50,8 @@
             android:theme="@style/NoActionBar" >
         </activity>
         <activity
-            android:name=".PoachingIncidencesActivity"
-            android:label="@string/title_activity_poaching_incidences"
+            android:name=".IncidentsActivity"
+            android:label="@string/title_activity_incidences"
             android:theme="@style/NoActionBar" >
         </activity>
         <activity
@@ -65,7 +65,7 @@
             android:theme="@style/NoActionBar" >
         </activity>
         <activity
-            android:name=".CharcoalActivity"
+            android:name=".CharcoalBurningActivity"
             android:label="@string/title_activity_charcoal"
             android:theme="@style/NoActionBar" >
         </activity>
@@ -80,26 +80,6 @@
             android:theme="@style/NoActionBar" >
         </activity>
         <activity
-            android:name=".GameMeatTracesActivity"
-            android:label="@string/title_activity_game_meat_traces"
-            android:theme="@style/NoActionBar" >
-        </activity>
-        <activity
-            android:name=".CharcoalKilnSightingsActivity"
-            android:label="@string/title_activity_charcoal_kiln_sightings"
-            android:theme="@style/NoActionBar" >
-        </activity>
-        <activity
-            android:name=".CharcoalArrestsActivity"
-            android:label="@string/title_activity_charcoal_arrests"
-            android:theme="@style/NoActionBar" >
-        </activity>
-        <activity
-            android:name=".HumanAnimalActivity"
-            android:label="@string/title_activity_human_animal"
-            android:theme="@style/NoActionBar" >
-        </activity>
-        <activity
             android:name=".SightingsActivity"
             android:label="@string/title_activity_sightings"
             android:theme="@style/NoActionBar" >
@@ -107,11 +87,6 @@
         <activity
             android:name=".AnimalsSightingsActivity"
             android:label="@string/title_activity_animals_sightings"
-            android:theme="@style/NoActionBar" >
-        </activity>
-        <activity
-            android:name=".PlantsSightingActivity"
-            android:label="@string/title_activity_plants"
             android:theme="@style/NoActionBar" >
         </activity>
         <activity
@@ -127,6 +102,16 @@
         <activity
             android:name=".StartShiftActivity"
             android:label="@string/start_shift"
+            android:theme="@style/NoActionBar" >
+        </activity>
+        <activity
+            android:name=".ElephantPoachingActivity"
+            android:label="@string/title_activity_elephant_poaching"
+            android:theme="@style/NoActionBar" >
+        </activity>
+        <activity
+            android:name=".SuspiciousActivitiesActivity"
+            android:label="@string/title_activity_suspicious_activities"
             android:theme="@style/NoActionBar" >
         </activity>
     </application>

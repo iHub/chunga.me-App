@@ -18,6 +18,7 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Spinner;
 import android.widget.Toast;
+import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Bundle;
 
@@ -192,7 +193,18 @@ public class StartShiftActivity extends ActionBarActivity {
 		protected void onPostExecute(Map<String, Object> result) {
 			super.onPostExecute(result);
 			
-			Toast.makeText(StartShiftActivity.this, result.get("status") + "", Toast.LENGTH_LONG).show();
+			String status = result.get("status") + "";
+			
+			if("error".equals(status)) {
+				Toast toast = Toast.makeText(StartShiftActivity.this, result.get("message") + "", Toast.LENGTH_LONG);
+				toast.setGravity(Gravity.TOP, 0, 0);
+				toast.show();
+			} else {
+				Toast.makeText(StartShiftActivity.this, getString(R.string.start_shift_successful), Toast.LENGTH_LONG).show();
+				
+				setResult(RESULT_OK, new Intent());
+				finish();
+			}
 		}
 	}
 }

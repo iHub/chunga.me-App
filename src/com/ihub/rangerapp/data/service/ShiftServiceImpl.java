@@ -1,11 +1,16 @@
 package com.ihub.rangerapp.data.service;
 
+import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
 import android.content.ContentValues;
 import android.database.sqlite.SQLiteDatabase;
+import android.database.sqlite.SQLiteStatement;
+import android.provider.BaseColumns;
+
 import com.ihub.rangerapp.RangerApp;
 import com.ihub.rangerapp.data.sqlite.Schemas;
+import com.ihub.rangerapp.data.sqlite.Schemas.Shift;
 
 public class ShiftServiceImpl extends DatabaseService implements ShiftService {
 	
@@ -25,6 +30,13 @@ public class ShiftServiceImpl extends DatabaseService implements ShiftService {
 			String purpose) {
 		
 		Map<String, Object> result = new HashMap<String, Object>();
+		
+		if(hasOpenShift()) {
+			result.put("status", "error");
+ 			result.put("message", "Please end the current shift before proceeding.");
+ 			
+ 			return result;
+		}
 		
 		SQLiteDatabase db = getWritableDatabase(RangerApp.get());
 		
@@ -47,7 +59,57 @@ public class ShiftServiceImpl extends DatabaseService implements ShiftService {
  			result.put("status", "error");
  			result.put("message", e.getMessage());
  		}
-		
+ 		
 		return result;
+	}
+	
+	@Override
+	public Boolean hasOpenShift() {
+		
+		SQLiteDatabase db = getWritableDatabase(RangerApp.get());
+				
+		String sql = "SELECT count(*) FROM " + Schemas.SHIFTS_TABLE + " WHERE " + Schemas.Shift.END_TIME + " IS NULL";
+		 
+		SQLiteStatement s = db.compileStatement( sql );
+		
+		long count = s.simpleQueryForLong();
+		
+		return count > 0;
+	}
+	
+	@Override
+	public Shift getOpenShift() {
+		
+		SQLiteDatabase db = getWritableDatabase(RangerApp.get());
+		
+		String sql = "SELECT * FROM " + Schemas.SHIFTS_TABLE + " WHERE " + Schemas.Shift.END_TIME + " IS NULL";
+		 
+		SQLiteStatement s = db.compileStatement( sql );
+		
+		//TODO
+		
+		return null;
+	}
+
+	@Override
+	public void endCurrentShift() {
+		
+		SQLiteDatabase db = getWritableDatabase(RangerApp.get());
+		
+		String sql = "UPDATE " + Schemas.SHIFTS_TABLE + " SET " + Schemas.Shift.END_TIME + " = date('now') WHERE " + Schemas.Shift.END_TIME + " IS NULL";;
+		 
+		db.compileStatement( sql );
+	}
+
+	@Override
+	public Long getCurrentShiftID() {
+		
+		SQLiteDatabase db = getWritableDatabase(RangerApp.get());
+		
+		String sql = "SELECT " + BaseColumns._ID + " FROM " + Schemas.SHIFTS_TABLE + " WHERE " + Schemas.Shift.END_TIME + " IS NULL";
+		 
+		SQLiteStatement s = db.compileStatement( sql );
+		
+		return s.simpleQueryForLong();
 	}	
 }

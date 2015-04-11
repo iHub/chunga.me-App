@@ -2,6 +2,8 @@ package com.ihub.rangerapp.data.service;
 
 import java.util.Map;
 
+import com.ihub.rangerapp.data.sqlite.Schemas.Shift;
+
 public interface ShiftService {
 
 	public Map<String, Object> startShift(
@@ -15,4 +17,12 @@ public interface ShiftService {
 			String startWP,
 			String endWP,
 			String purpose);
+	
+	public Boolean hasOpenShift();
+	
+	public Shift getOpenShift();
+	
+	public void endCurrentShift();
+	
+	public Long getCurrentShiftID();
 }
