@@ -67,9 +67,9 @@ public class ShiftServiceImpl extends DatabaseService implements ShiftService {
 	public Boolean hasOpenShift() {
 		
 		SQLiteDatabase db = getWritableDatabase(RangerApp.get());
-				
+		
 		String sql = "SELECT count(*) FROM " + Schemas.SHIFTS_TABLE + " WHERE " + Schemas.Shift.END_TIME + " IS NULL";
-		 
+		
 		SQLiteStatement s = db.compileStatement( sql );
 		
 		long count = s.simpleQueryForLong();
@@ -83,7 +83,7 @@ public class ShiftServiceImpl extends DatabaseService implements ShiftService {
 		SQLiteDatabase db = getWritableDatabase(RangerApp.get());
 		
 		String sql = "SELECT * FROM " + Schemas.SHIFTS_TABLE + " WHERE " + Schemas.Shift.END_TIME + " IS NULL";
-		 
+		
 		SQLiteStatement s = db.compileStatement( sql );
 		
 		//TODO
@@ -96,9 +96,11 @@ public class ShiftServiceImpl extends DatabaseService implements ShiftService {
 		
 		SQLiteDatabase db = getWritableDatabase(RangerApp.get());
 		
-		String sql = "UPDATE " + Schemas.SHIFTS_TABLE + " SET " + Schemas.Shift.END_TIME + " = date('now') WHERE " + Schemas.Shift.END_TIME + " IS NULL";;
-		 
-		db.compileStatement( sql );
+		Long currentShiftID = getCurrentShiftID();
+		
+		ContentValues args = new ContentValues();
+	    args.put(Schemas.Shift.END_TIME, new Date().getTime());
+	    db.update(Schemas.SHIFTS_TABLE, args, BaseColumns._ID + "=" + currentShiftID, null);
 	}
 
 	@Override

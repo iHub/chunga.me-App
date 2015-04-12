@@ -16,7 +16,7 @@ import android.content.Intent;
 import android.os.Bundle;
 
 public class ProfileActivity extends ActionBarActivity {
-
+	
 	@NotEmpty(messageId = R.string.validation_ranger_name, order = 1)
 	EditText rangerName;
 	
@@ -26,6 +26,7 @@ public class ProfileActivity extends ActionBarActivity {
 	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
+		
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_profile);
 		
@@ -35,6 +36,7 @@ public class ProfileActivity extends ActionBarActivity {
 		goBtn = (Button) findViewById(R.id.goBtn);
 		
 		goBtn.setOnClickListener(new View.OnClickListener() {
+			
 			@Override
 			public void onClick(View v) {
 				
