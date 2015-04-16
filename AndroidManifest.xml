@@ -114,6 +114,11 @@
             android:label="@string/title_activity_suspicious_activities"
             android:theme="@style/NoActionBar" >
         </activity>
+        <activity
+            android:name=".WaterholesActivity"
+            android:label="@string/title_activity_waterholes"
+            android:theme="@style/NoActionBar" >
+        </activity>
     </application>
 
 </manifest>

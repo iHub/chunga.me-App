@@ -13,6 +13,7 @@ import android.widget.TextView;
 import java.util.List;
 import com.ihub.rangerapp.AnimalsSightingsActivity;
 import com.ihub.rangerapp.SightingsActivity;
+import com.ihub.rangerapp.WaterholesActivity;
 import com.ihub.rangerapp.entity.MenuItem;
 import com.ihub.rangerapp.R;
 
@@ -85,7 +86,7 @@ public class SightingsMenuAdapter extends RecyclerView.Adapter<SightingsMenuAdap
 					intent = new Intent(hAct, AnimalsSightingsActivity.class);
 					break;
 				case 1:
-					//intent = new Intent(hAct, WaterholesActivity.class);
+					intent = new Intent(hAct, WaterholesActivity.class);
 					break;
 				default:
 					break;

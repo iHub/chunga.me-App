@@ -111,16 +111,16 @@
 				</RadioGroup>
 				
 		        <TextView
-			            android:layout_width="match_parent"
-			            android:layout_height="wrap_content"
-			            android:text="@string/age"
-			            android:layout_marginBottom="5dp" />
-			        
-			        <Spinner
-			            android:id="@+id/ageSpinner"
-			            android:layout_width="match_parent"
-			            android:layout_height="wrap_content"
-			            android:layout_marginBottom="10dp" />
+		            android:layout_width="match_parent"
+		            android:layout_height="wrap_content"
+		            android:text="@string/age"
+		            android:layout_marginBottom="5dp" />
+		        
+		        <Spinner
+		            android:id="@+id/ageSpinner"
+		            android:layout_width="match_parent"
+		            android:layout_height="wrap_content"
+		            android:layout_marginBottom="10dp" />
 		        
 		        <EditText
 			        android:id="@+id/distanceSeenView"
@@ -155,10 +155,29 @@
 			        android:layout_marginBottom="15dp" />
 		        
 		        <EditText
-			        android:id="@+id/noOfAnimalsView"
+			        android:id="@+id/herdNoOfAnimalsView"
 			        android:layout_width="match_parent"
 			        android:layout_height="wrap_content"
-			        android:hint="@string/no_of_animals" />
+			        android:hint="@string/no_of_animals"
+			        android:inputType="number" />
+		        
+		        <TextView
+		            android:layout_width="match_parent"
+		            android:layout_height="wrap_content"
+		            android:text="@string/age"
+		            android:layout_marginBottom="5dp" />
+		        
+		        <Spinner
+		            android:id="@+id/herdAgeSpinner"
+		            android:layout_width="match_parent"
+		            android:layout_height="wrap_content"
+		            android:layout_marginBottom="10dp" />
+		        
+		        <EditText
+			        android:id="@+id/herdDistanceSeenView"
+			        android:layout_width="match_parent"
+			        android:layout_height="wrap_content"
+			        android:hint="@string/distance_seen" />
 		        
 			</LinearLayout>
 			

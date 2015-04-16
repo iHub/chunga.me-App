@@ -11,6 +11,9 @@ public class Schemas {
 	public static String CHARCOAL_BAGS_TABLE = "tbl_charcoal_bags";
 	public static String ELEPHANT_POACHING_TABLE = "tbl_elephant_poaching";
 	public static String SUSPICIOUS_ACTIVITIES_TABLE = "tbl_suspicious_activities";
+	public static String INDIVIDUAL_ANIMAL_SIGHTING_TABLE = "tbl_individual_animal_sighting";
+	public static String ANIMAL_HERD_SIGHTING_TABLE = "tbl_animal_herd_sighting";
+	public static String WATER_HOLES_TABLE = "tbl_waterhole";
 	
 	public static void initialize(SQLiteDatabase db) {
 		createShiftTable(db);
@@ -19,8 +22,82 @@ public class Schemas {
 		createCharcoalBagsTable(db);
 		createElephantPoachingTable(db);
 		createSuspiciousActivitiesTable(db);
+		createWaterholesTable(db);
+		createIndividualAnimalSightingsTable(db);
+		createAnimalHerdSightingsTable(db);
 	}
 	
+	private static void createAnimalHerdSightingsTable(SQLiteDatabase db) {
+		String sql = "create table " + ANIMAL_HERD_SIGHTING_TABLE + "(" +
+				BaseColumns._ID + " integer primary key autoincrement," +
+				AnimalHerdSighting.NAME + " text," +
+				AnimalHerdSighting.TYPE + " text," +
+				AnimalHerdSighting.NUMBER_OF_ANIMALS + " integer," +
+				AnimalHerdSighting.AGE + " text," +
+				AnimalHerdSighting.DISTANCE_SEEN + " integer," +
+				AnimalHerdSighting.EXTRA_NOTES + " text," +
+				AnimalHerdSighting.WP + " text," +
+				AnimalHerdSighting.IMAGE_PATH + " text," +
+				AnimalHerdSighting.DATE_CREATED + " DATE DEFAULT (datetime('now','localtime'))" +
+			");";
+		
+			db.execSQL(sql);
+	}
+
+	private static void createIndividualAnimalSightingsTable(SQLiteDatabase db) {
+		String sql = "create table " + INDIVIDUAL_ANIMAL_SIGHTING_TABLE + "(" +
+			BaseColumns._ID + " integer primary key autoincrement," +
+			IndividualAnimalSighting.ANIMAL + " text," +
+			IndividualAnimalSighting.GENDER + " text," +
+			IndividualAnimalSighting.AGE + " text," +
+			IndividualAnimalSighting.DISTANCE_SEEN + " integer," +
+			IndividualAnimalSighting.EXTRA_NOTES + " text," +
+			IndividualAnimalSighting.WP + " text," +
+			IndividualAnimalSighting.IMAGE_PATH + " text," +
+			IndividualAnimalSighting.DATE_CREATED + " DATE DEFAULT (datetime('now','localtime'))" +
+		");";
+		
+		db.execSQL(sql);
+	}
+	
+	public static class IndividualAnimalSighting {
+		public static String ANIMAL = "animal";
+		public static String GENDER = "gender";
+		public static String AGE = "age";
+		public static String DISTANCE_SEEN = "distance_seen";
+		public static String EXTRA_NOTES = "extra_notes";
+		public static String WP = "wp";
+		public static String IMAGE_PATH = "image_path";
+		public static String DATE_CREATED = "date_created";
+	}
+	
+	public static class AnimalHerdSighting {
+		public static String NAME = "name";
+		public static String TYPE = "type";
+		public static String NUMBER_OF_ANIMALS = "no_of_animals";
+		public static String AGE = "age";
+		public static String DISTANCE_SEEN = "distance_seen";
+		public static String EXTRA_NOTES = "extra_notes";
+		public static String WP = "wp";
+		public static String IMAGE_PATH = "image_path";
+		public static String DATE_CREATED = "date_created";
+	}
+
+	private static void createWaterholesTable(SQLiteDatabase db) {
+		String sql = "create table " + WATER_HOLES_TABLE + "(" +
+				BaseColumns._ID + " integer primary key autoincrement," +
+				Waterhole.NAME + " text," +
+				Waterhole.LEVEL_OF_WATER + " text," +
+				Waterhole.NUMBER_OF_ANIMALS + " integer," +
+				Waterhole.EXTRA_NOTES + " text," +
+				Waterhole.WP + " text," +
+				Waterhole.IMAGE_PATH + " text," +
+				Waterhole.DATE_CREATED + " DATE DEFAULT (datetime('now','localtime'))" +
+			");";
+			
+			db.execSQL(sql);
+	}
+
 	private static void createSuspiciousActivitiesTable(SQLiteDatabase db) {
 		String sql = "create table " + SUSPICIOUS_ACTIVITIES_TABLE + "(" +
 				BaseColumns._ID + " integer primary key autoincrement," +
@@ -118,6 +195,16 @@ public class Schemas {
 		");";
 		
 		db.execSQL(sql);
+	}
+	
+	public static class Waterhole {
+		public static String NAME = "name";
+		public static String LEVEL_OF_WATER = "level_of_water";
+		public static String NUMBER_OF_ANIMALS = "no_of_animals";
+		public static String EXTRA_NOTES = "extra_notes";
+		public static String WP = "wp";
+		public static String IMAGE_PATH = "image_path";
+		public static String DATE_CREATED = "date_created";
 	}
 	
 	public static class GameMeat {

@@ -108,6 +108,10 @@
     <string name="end_shift_confirmation">Are you sure you want to end current shift?</string>
     <string name="record_save_success_msg">Record successfully saved.</string>
     <string name="validation_photo">Photo is required!</string>
+    
+    <string name="name_of_waterhole">Name of Waterhole</string>
+    <string name="level_of_water">Level of Water</string>
+    <string name="no_of_animals_seen">No of Animals Seen</string>
 
     <!-- http://openweathermap.org/weather-conditions -->
     <string-array name="weather_conditions">
@@ -260,6 +264,14 @@
         <item></item>
         <item>Yes</item>
         <item>No</item>
+    </string-array>
+    
+    <string-array name="levels_of_water_array">
+        <item></item>
+        <item>Level 1</item>
+        <item>Level 2</item>
+        <item>Level 3</item>
+        <item>Level 4</item>
     </string-array>
 
     <string name="title_activity_elephant_poaching">Elephant Poaching</string>

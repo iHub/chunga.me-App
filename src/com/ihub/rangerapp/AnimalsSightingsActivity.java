@@ -22,6 +22,12 @@ public class AnimalsSightingsActivity extends CameraGPSActionBarActivity {
 	EditText extraNotes;
 	Button saveBtn;
 	
+	EditText herdNameView;
+	EditText typeSpeciesView;
+	EditText herdNoOfAnimalsView;
+	Spinner herdAgeSpinner;
+	EditText herdDistanceSeenView;
+	
 	Boolean isMale = false;
 	Boolean isIndividualView = true;
 	
@@ -48,12 +54,11 @@ public class AnimalsSightingsActivity extends CameraGPSActionBarActivity {
         
         initViews();
         
-        
         ageSpinner = (Spinner) findViewById(R.id.ageSpinner);
         ArrayAdapter<CharSequence> ageAdapter = ArrayAdapter.createFromResource(this,
                 R.array.age_array, android.R.layout.simple_spinner_item);
 		ageAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-        
+		
         ageSpinner.setAdapter(ageAdapter);
         
         animalNameView = (EditText) findViewById(R.id.animalNameView);
@@ -61,6 +66,18 @@ public class AnimalsSightingsActivity extends CameraGPSActionBarActivity {
         extraNotes = (EditText) findViewById(R.id.extraNotes);
         saveBtn = (Button) findViewById(R.id.saveBtn);
         
+        herdNameView = (EditText) findViewById(R.id.herdNameView);
+        typeSpeciesView = (EditText) findViewById(R.id.typeSpeciesView);
+        herdNoOfAnimalsView = (EditText) findViewById(R.id.herdNoOfAnimalsView);
+        herdAgeSpinner = (Spinner) findViewById(R.id.herdAgeSpinner);
+        herdDistanceSeenView = (EditText) findViewById(R.id.herdDistanceSeenView);
+        
+        ArrayAdapter<CharSequence> herdAgeAdapter = ArrayAdapter.createFromResource(this,
+                R.array.age_array, android.R.layout.simple_spinner_item);
+        herdAgeAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        
+		herdAgeSpinner.setAdapter(herdAgeAdapter);
+		
         saveBtn.setOnClickListener(new View.OnClickListener() {
         	
 			@Override
