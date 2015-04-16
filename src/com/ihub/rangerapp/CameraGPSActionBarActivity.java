@@ -3,6 +3,7 @@ package com.ihub.rangerapp;
 import java.io.File;
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.Map;
 
 import com.ihub.rangerapp.location.Coordinate;
 
@@ -19,11 +20,14 @@ import android.os.Bundle;
 import android.os.Environment;
 import android.provider.MediaStore;
 import android.support.v7.app.ActionBarActivity;
+import android.text.TextUtils;
 import android.util.Log;
+import android.view.Gravity;
 import android.view.View;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 public class CameraGPSActionBarActivity extends ActionBarActivity {
 
@@ -178,5 +182,44 @@ public class CameraGPSActionBarActivity extends ActionBarActivity {
 		        fileName = mediaFile.getAbsolutePath();
 	    
 	    return mediaFile;
+	}
+	
+	public String getWP() {
+		return "0 40";
+	}
+	
+	protected void showSaveResult(Map<String, Object> result) {
+		
+		String status = result.get("status").toString();
+		
+		if("success".equals(status)) {
+			
+			Toast toast = Toast.makeText(this, R.string.record_save_success_msg, Toast.LENGTH_LONG);
+			toast.setGravity(Gravity.TOP, 0, 0);
+			toast.show();
+			
+			finish();
+			
+		} else {
+			
+			Toast toast = Toast.makeText(this, result.get("message").toString(), Toast.LENGTH_LONG);
+			toast.setGravity(Gravity.TOP, 0, 0);
+			toast.show();
+			
+		}
+	}
+	
+	protected Boolean isValid() {
+		
+		Boolean isValid = true;
+		
+		if(TextUtils.isEmpty(fileName)) {
+			isValid = false;
+			Toast toast = Toast.makeText(this, getString(R.string.validation_photo), Toast.LENGTH_LONG);
+			toast.setGravity(Gravity.TOP, 0, 0);
+			toast.show();
+		}
+		
+		return isValid;
 	}
 }

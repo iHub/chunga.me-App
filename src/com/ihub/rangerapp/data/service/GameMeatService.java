@@ -1,0 +1,23 @@
+package com.ihub.rangerapp.data.service;
+
+import java.util.Map;
+
+public interface GameMeatService {
+
+	public Map<String, Object> save(
+		String animal, 
+		Integer noOfAnimals, 
+		String actionTaken, 
+		String extraNotes,
+		String imagePath,
+		String wp);		
+	
+	public Map<String, Object> edit(
+		Integer id, 
+		String animal, 
+		Integer noOfAnimals, 
+		String actionTaken, 
+		String extraNotes,
+		String imagePath,
+		String wp);
+}

@@ -7,8 +7,6 @@ import com.ihub.rangerapp.adapter.HomeMenuAdapter;
 import com.ihub.rangerapp.anim.CustomItemAnimator;
 import com.ihub.rangerapp.data.service.ShiftService;
 import com.ihub.rangerapp.data.service.ShiftServiceImpl;
-import com.ihub.rangerapp.data.sqlite.DBPreferences;
-
 import android.support.v7.app.ActionBarActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
@@ -186,7 +184,6 @@ public class HomeActivity extends ActionBarActivity implements OnClickListener {
 		.setPositiveButton(R.string.yes, new DialogInterface.OnClickListener() {
 			
 			public void onClick(DialogInterface dialog, int id) {
-				
 				new EndShiftTask().execute();
 			}
 		})

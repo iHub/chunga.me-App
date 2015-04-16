@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    
+
     <string name="app_name">Chungame</string>
     <string name="hello_world">Hello</string>
     <string name="action_settings">Settings</string>
@@ -17,7 +17,7 @@
     <string name="submit_confirm_button">Place order</string>
     <string name="title_activity_profile">Profile</string>
     <string name="title_activity_intro">Intro</string>
-    <string name="title_activity_incidences">Incidences</string>
+    <string name="title_activity_incidences">Incidents</string>
     <string name="go">Go</string>
     <string name="ranger_name">Ranger Name</string>
     <string name="ranger_id">Ranger ID</string>
@@ -28,9 +28,9 @@
     <string name="title_activity_charcoal">Charcoal</string>
     <string name="title_activity_suspicious_aspects">Suspicious Activity</string>
     <string name="title_activity_game_meat_incident">Incident</string>
-    <string name="title_activity_game_meat_traces">Traces of Incident</string> 
+    <string name="title_activity_game_meat_traces">Traces of Incident</string>
     <string name="kilns">Kilns</string>
-    <string name="bags">Bags</string>   
+    <string name="bags">Bags</string>
     <string name="title_activity_charcoal_arrests">Arrests</string>
     <string name="title_activity_human_animal">Human / Animal Conflict</string>
     <string name="title_activity_sightings">Sightings</string>
@@ -46,7 +46,7 @@
     <string name="elephant">Elephant</string>
     <string name="rhino">Rhino</string>
     <string name="save">Save</string>
-    <string name="tools_used">Tools Used</string>
+    <string name="tools_used">Tool Used</string>
     <string name="machete">Machete</string>
     <string name="gun">Gun</string>
     <string name="hacksaw">Hacksaw</string>
@@ -62,6 +62,7 @@
     <string name="unit_of_measure">Unit of Measure</string>
     <string name="quantity">Quantity</string>
     <string name="approximate_age">Approximate Age</string>
+    <string name="distance_seen">Distance Seen</string>
     <string name="type_of_vegetation">Type of Vegetation</string>
     <string name="season">Season</string>
     <string name="current_state">Current State</string>
@@ -105,8 +106,10 @@
     <string name="registration_success">Hi {name} Welcome to RangerApp</string>
     <string name="shift_successfully_ended">Shift successfully ended</string>
     <string name="end_shift_confirmation">Are you sure you want to end current shift?</string>
-    
-<!--     http://openweathermap.org/weather-conditions -->
+    <string name="record_save_success_msg">Record successfully saved.</string>
+    <string name="validation_photo">Photo is required!</string>
+
+    <!-- http://openweathermap.org/weather-conditions -->
     <string-array name="weather_conditions">
         <item></item>
         <item>Clear Sky</item>
@@ -118,14 +121,12 @@
         <item>Thunderstorm</item>
         <item>Mist</item>
     </string-array>
-    
     <string-array name="transport_modes">
         <item></item>
         <item>Air</item>
-        <item>Rail</item>
-        <item>Road</item>
+        <item>Vehicle</item>
+        <item>Foot</item>
     </string-array>
-    
     <string-array name="plants_unit_of_measure">
         <item></item>
         <item>Acres</item>
@@ -190,7 +191,6 @@
         <item>Wangala</item>
         <item>Washumbu</item>
     </string-array>
-    
     <string-array name="charcoal_modes_of_transport">
         <item></item>
         <item>Mode 1</item>
@@ -200,7 +200,6 @@
         <item>Mode 5</item>
         <item>Other</item>
     </string-array>
-    
     <string-array name="charcoal_actions_taken">
         <item></item>
         <item>Action 1</item>
@@ -209,7 +208,6 @@
         <item>Action 4</item>
         <item>Action 5</item>
     </string-array>
-    
     <string-array name="kiln_freshness_levels">
         <item></item>
         <item>Level 1</item>
@@ -218,32 +216,32 @@
         <item>Level 4</item>
         <item>Level 5</item>
     </string-array>
-    
     <string-array name="elephant_poaching_tools_used">
         <item></item>
-        <item>Tool 1</item>
-        <item>Tool 2</item>
-        <item>Tool 3</item>
-        <item>Tool 4</item>
-        <item>Tool 5</item>
-        <item>Tool 6</item>
-        <item>Tool 7</item>
+        <item>Gun</item>
+        <item>Poisoned Arrow(s)</item>
+        <item>Non-Poisoned Arrow(s)</item>
+        <item>Snare</item>
+        <item>Poisoned Spike</item>
+        <item>Poisoned Watermelon</item>
     </string-array>
-    
+    <string-array name="elephant_poaching_action_taken">
+        <item></item>
+        <item>Action 1</item>
+        <item>Action 2</item>
+        <item>Action 3</item>
+    </string-array>
     <string-array name="age_array">
         <item></item>
-        <item>Age 1</item>
-        <item>Age 2</item>
-        <item>Age 3</item>
-        <item>Age 4</item>
+        <item>Adult</item>
+        <item>Semi-Adult</item>
+        <item>Juvenile</item>
     </string-array>
-    
     <string-array name="sex_array">
         <item></item>
         <item>Male</item>
         <item>Female</item>
     </string-array>
-    
     <string-array name="suspicious_activities_actions_taken">
         <item></item>
         <item>Action 1</item>
@@ -251,7 +249,19 @@
         <item>Action 3</item>
         <item>Action 4</item>
     </string-array>
-    
+    <string-array name="game_meat_actions_taken">
+        <item></item>
+        <item>Action 1</item>
+        <item>Action 2</item>
+        <item>Action 3</item>
+        <item>Action 4</item>
+    </string-array>
+    <string-array name="ivory_presence">
+        <item></item>
+        <item>Yes</item>
+        <item>No</item>
+    </string-array>
+
     <string name="title_activity_elephant_poaching">Elephant Poaching</string>
     <string name="title_activity_suspicious_activities">Suspicious Activities</string>
     <string name="no_of_bags">No of Bags</string>
@@ -261,8 +271,7 @@
     <string name="tree_used">Tree Used</string>
     <string name="age">Age</string>
     <string name="sex">Sex</string>
-    <string name="ivory_presence">Ivory Presence</string>
-    
+    <string name="ivory_presence">Ivory Present</string>
     <string name="validation_leader">Leader is required!</string>
     <string name="validation_leader_length">Leader name must be atleast 5 characters</string>
     <string name="validation_min_member_count">Members must be more than 0</string>
@@ -273,5 +282,6 @@
     <string name="validation_transport_mode">Transport Mode is required!</string>
     <string name="validation_weather">Weather is required!</string>
     <string name="validation_ranch">Ranch is required!</string>
-    
+    <string name="title_activity_waterholes">Waterholes</string>
+
 </resources>

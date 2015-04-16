@@ -1,15 +1,23 @@
 package com.ihub.rangerapp;
 
+import java.util.Map;
+
+import com.ihub.rangerapp.data.service.SuspiciousActivitiesService;
+import com.ihub.rangerapp.data.service.SuspiciousActivitiesServiceImpl;
+
 import android.support.v7.app.ActionBarActivity;
 import android.support.v7.widget.Toolbar;
+import android.text.TextUtils;
 import android.os.Bundle;
+import android.view.Gravity;
 import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Spinner;
+import android.widget.Toast;
 
-public class SuspiciousActivitiesActivity extends ActionBarActivity {
+public class SuspiciousActivitiesActivity extends CameraGPSActionBarActivity {
 	
 	Spinner actionTakenSpinner;
 	EditText extraNotes;
@@ -34,6 +42,8 @@ public class SuspiciousActivitiesActivity extends ActionBarActivity {
             }
         });
         
+        initViews();
+        
         actionTakenSpinner = (Spinner) findViewById(R.id.actionTakenSpinner);
         extraNotes = (EditText) findViewById(R.id.extraNotes);
         saveBtn = (Button) findViewById(R.id.saveBtn);
@@ -43,5 +53,35 @@ public class SuspiciousActivitiesActivity extends ActionBarActivity {
         actionTakenAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         
         actionTakenSpinner.setAdapter(actionTakenAdapter);
+        
+        saveBtn.setOnClickListener(new View.OnClickListener() {
+			
+			@Override
+			public void onClick(View v) {
+				if(isValid())
+					save();
+			}
+		});
+	}
+	
+	protected void save() {
+		
+		SuspiciousActivitiesService service = new SuspiciousActivitiesServiceImpl();
+		Map<String, Object> result = service.save(actionTakenSpinner.getSelectedItem().toString(), extraNotes.getText().toString(), fileName, getWP());
+		showSaveResult(result);
+	}
+	
+	protected Boolean isValid() {
+
+		Boolean isValid = true;
+		
+		if(TextUtils.isEmpty(fileName)) {
+			isValid = false;
+			Toast toast = Toast.makeText(this, getString(R.string.validation_photo), Toast.LENGTH_LONG);
+			toast.setGravity(Gravity.TOP, 0, 0);
+			toast.show();
+		}
+		
+		return isValid;
 	}
 }
