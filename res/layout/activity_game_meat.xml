@@ -36,6 +36,7 @@
 		        android:layout_width="match_parent"
 		        android:layout_height="wrap_content"
 		        android:hint="@string/animal"
+		        android:textColorHint="@color/bg"
 		        android:layout_marginBottom="10dp" />
 		    
 		    <EditText
@@ -43,6 +44,7 @@
 		        android:layout_width="match_parent"
 		        android:layout_height="wrap_content"
 		        android:hint="@string/no_of_animals"
+		        android:textColorHint="@color/bg"
 		        android:layout_marginBottom="10dp"
 		        android:inputType="number" />
 		    
@@ -50,7 +52,8 @@
 	            android:layout_width="match_parent"
 	            android:layout_height="wrap_content"
 	            android:text="@string/action_taken"
-	            android:layout_marginBottom="5dp" />
+	            android:textSize="18sp"
+	            android:textColor="@color/bg" />
 	        
 	        <Spinner
 	            android:id="@+id/actionTakenSpinner"
@@ -75,7 +78,7 @@
 		        android:id="@+id/saveBtn"
 		        android:layout_width="match_parent"
 		        android:layout_height="wrap_content"
-		        android:text="@string/proceed"
+		        android:text="@string/save"
 		        android:background="@color/bg"
 		        android:textColor="@android:color/white"
 		        android:layout_marginStart="5dp" />

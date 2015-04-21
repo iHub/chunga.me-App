@@ -1,5 +1,8 @@
 package com.ihub.rangerapp;
 
+import java.util.Map;
+import com.ihub.rangerapp.data.service.AnimalSightingsService;
+import com.ihub.rangerapp.data.service.AnimalSightingsServiceImpl;
 import android.support.v7.widget.Toolbar;
 import android.view.View;
 import android.widget.ArrayAdapter;
@@ -90,12 +93,54 @@ public class AnimalsSightingsActivity extends CameraGPSActionBarActivity {
 		});
 	}
 	
-	protected void saveHerd() {
-		
-	}
-	
 	protected void saveIndividual() {
 		
+		if(isValid()) {
+			
+			Integer distanceSeen = 0;
+			
+			try {
+				distanceSeen = Integer.valueOf(distanceSeenView.getText().toString());
+			} catch (Exception e) {}
+			
+			AnimalSightingsService service = new AnimalSightingsServiceImpl();
+			Map<String, Object> result = service.saveIndividualAnimal(
+					animalNameView.getText().toString(), 
+					isMale ? "M" : "F", 
+					ageSpinner.getSelectedItem().toString(), 
+					distanceSeen, 
+					extraNotes.getText().toString(), 
+					fileName, 
+					getWP());
+			
+			showSaveResult(result);
+		}
+	}
+
+	protected void saveHerd() {
+		
+		if(isValid()) {
+			Integer noOfAnimals = 0;
+			Integer distanceSeen = 0;
+			
+			try {
+				noOfAnimals = Integer.valueOf(herdNameView.getText().toString());
+			} catch (Exception e) {}
+			
+			try {
+				distanceSeen = Integer.valueOf(herdDistanceSeenView.getText().toString());
+			} catch (Exception e) {}
+			
+			AnimalSightingsService service = new AnimalSightingsServiceImpl();
+			Map<String , Object> result = service.saveHerd(
+					herdNameView.getText().toString(), 
+					typeSpeciesView.getText().toString(), 
+					noOfAnimals, 
+					herdAgeSpinner.getSelectedItem().toString(), 
+					distanceSeen, extraNotes.getText().toString(), fileName, getWP());
+			
+			showSaveResult(result);
+		}
 	}
 
 	public void onGenderRadioButtonClicked(View view) {

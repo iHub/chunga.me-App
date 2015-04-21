@@ -19,6 +19,9 @@
     <string name="title_activity_intro">Intro</string>
     <string name="title_activity_incidences">Incidents</string>
     <string name="go">Go</string>
+    <string name="from_gallery">From Gallery</string>
+    <string name="open_camera">Open Camera</string>
+    <string name="open_gallery">Open Gallery</string>
     <string name="ranger_name">Ranger Name</string>
     <string name="ranger_id">Ranger ID</string>
     <string name="help">Help</string>
@@ -108,10 +111,10 @@
     <string name="end_shift_confirmation">Are you sure you want to end current shift?</string>
     <string name="record_save_success_msg">Record successfully saved.</string>
     <string name="validation_photo">Photo is required!</string>
-    
     <string name="name_of_waterhole">Name of Waterhole</string>
     <string name="level_of_water">Level of Water</string>
     <string name="no_of_animals_seen">No of Animals Seen</string>
+    <string name="select_date">Select Date</string>
 
     <!-- http://openweathermap.org/weather-conditions -->
     <string-array name="weather_conditions">
@@ -197,28 +200,28 @@
     </string-array>
     <string-array name="charcoal_modes_of_transport">
         <item></item>
-        <item>Mode 1</item>
-        <item>Mode 2</item>
-        <item>Mode 3</item>
-        <item>Mode 4</item>
-        <item>Mode 5</item>
+        <item>Foot</item>
+        <item>Vehicle</item>
         <item>Other</item>
     </string-array>
-    <string-array name="charcoal_actions_taken">
+    <string-array name="charcoal_kilns_actions_taken">
         <item></item>
-        <item>Action 1</item>
-        <item>Action 2</item>
-        <item>Action 3</item>
-        <item>Action 4</item>
-        <item>Action 5</item>
+        <item>None</item>
+        <item>Destroyed on Site</item>
+        <item>Taken to Greenhouse/HQ</item>
+        <item>Warned</item>
+    </string-array>
+    <string-array name="charcoal_bags_actions_taken">
+        <item></item>
+        <item>Taken to Greenhouse/HQ</item>
+        <item>Taken to Chief\'s camp</item>
+        <item>Taken to Voi Police Station</item>
+        <item>Warned</item>
     </string-array>
     <string-array name="kiln_freshness_levels">
         <item></item>
-        <item>Level 1</item>
-        <item>Level 2</item>
-        <item>Level 3</item>
-        <item>Level 4</item>
-        <item>Level 5</item>
+        <item>Active</item>
+        <item>Fresh</item>
     </string-array>
     <string-array name="elephant_poaching_tools_used">
         <item></item>
@@ -231,9 +234,11 @@
     </string-array>
     <string-array name="elephant_poaching_action_taken">
         <item></item>
-        <item>Action 1</item>
-        <item>Action 2</item>
-        <item>Action 3</item>
+        <item>None</item>
+        <item>Handed over to KWS</item>
+        <item>Reported to KWS</item>
+        <item>Laid an Ambush</item>
+        <item>Taken to Greenhouse/HQ</item>
     </string-array>
     <string-array name="age_array">
         <item></item>
@@ -248,24 +253,25 @@
     </string-array>
     <string-array name="suspicious_activities_actions_taken">
         <item></item>
-        <item>Action 1</item>
-        <item>Action 2</item>
-        <item>Action 3</item>
-        <item>Action 4</item>
+        <item>None</item>
+        <item>Reported to KWS</item>
+        <item>Laid an ambush</item>
     </string-array>
     <string-array name="game_meat_actions_taken">
         <item></item>
-        <item>Action 1</item>
-        <item>Action 2</item>
-        <item>Action 3</item>
-        <item>Action 4</item>
+        <item>None</item>
+        <item>Taken to MacKinnon Police St.</item>
+        <item>Taken to Voi Police Station</item>
+        <item>Reported to KWS</item>
+        <item>Warned</item>
+        <item>Laid an ambush</item>
+        <item>Taken to Greenhouse/HQ</item>
     </string-array>
     <string-array name="ivory_presence">
         <item></item>
         <item>Yes</item>
         <item>No</item>
     </string-array>
-    
     <string-array name="levels_of_water_array">
         <item></item>
         <item>Level 1</item>
@@ -275,7 +281,7 @@
     </string-array>
 
     <string name="title_activity_elephant_poaching">Elephant Poaching</string>
-    <string name="title_activity_suspicious_activities">Suspicious Activities</string>
+    <string name="title_activity_suspicious_activities">Suspicious Activity</string>
     <string name="no_of_bags">No of Bags</string>
     <string name="no_of_kilns">No of Kilns</string>
     <string name="mode_of_transport">Mode of Transport</string>
@@ -295,5 +301,6 @@
     <string name="validation_weather">Weather is required!</string>
     <string name="validation_ranch">Ranch is required!</string>
     <string name="title_activity_waterholes">Waterholes</string>
+    <string name="title_activity_reports">Reports</string>
 
 </resources>

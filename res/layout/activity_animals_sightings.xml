@@ -35,7 +35,8 @@
 		        android:background="#F5F5F5"
 		        android:gravity="center"
 		        android:paddingTop="10dp"
-		        android:paddingBottom="10dp" >
+		        android:paddingBottom="10dp"
+		        android:layout_marginBottom="16dp" >
 		        
 		        <RadioGroup
 		            android:layout_width="wrap_content"
@@ -77,6 +78,7 @@
 			        android:layout_width="match_parent"
 			        android:layout_height="wrap_content"
 			        android:hint="@string/animal"
+			        android:textColorHint="@color/bg"
 			        android:layout_marginBottom="15dp" />
 		        
 		        <TextView
@@ -84,7 +86,8 @@
 		            android:layout_height="wrap_content"
 		            android:text="@string/gender"
 		            android:paddingLeft="5dp"
-		            android:textSize="16sp"
+		            android:textSize="18sp"
+		            android:textColor="@color/bg"
 		            android:layout_marginBottom="5dp" />
 		        
 		        <RadioGroup
@@ -114,7 +117,8 @@
 		            android:layout_width="match_parent"
 		            android:layout_height="wrap_content"
 		            android:text="@string/age"
-		            android:layout_marginBottom="5dp" />
+		            android:textSize="18sp"
+		            android:textColor="@color/bg" />
 		        
 		        <Spinner
 		            android:id="@+id/ageSpinner"
@@ -126,7 +130,8 @@
 			        android:id="@+id/distanceSeenView"
 			        android:layout_width="match_parent"
 			        android:layout_height="wrap_content"
-			        android:hint="@string/distance_seen" />
+			        android:hint="@string/distance_seen"
+			        android:textColorHint="@color/bg" />
 		        
 			</LinearLayout>
 			
@@ -145,6 +150,7 @@
 			        android:layout_width="match_parent"
 			        android:layout_height="wrap_content"
 			        android:hint="@string/herd_name_label"
+			        android:textColorHint="@color/bg"
 			        android:layout_marginBottom="15dp" />
 		        
 		        <EditText
@@ -152,6 +158,7 @@
 			        android:layout_width="match_parent"
 			        android:layout_height="wrap_content"
 			        android:hint="@string/type_species"
+			        android:textColorHint="@color/bg"
 			        android:layout_marginBottom="15dp" />
 		        
 		        <EditText
@@ -159,12 +166,15 @@
 			        android:layout_width="match_parent"
 			        android:layout_height="wrap_content"
 			        android:hint="@string/no_of_animals"
+			        android:textColorHint="@color/bg"
 			        android:inputType="number" />
 		        
 		        <TextView
 		            android:layout_width="match_parent"
 		            android:layout_height="wrap_content"
 		            android:text="@string/age"
+		            android:textSize="18sp"
+		            android:textColor="@color/bg"
 		            android:layout_marginBottom="5dp" />
 		        
 		        <Spinner
@@ -177,7 +187,8 @@
 			        android:id="@+id/herdDistanceSeenView"
 			        android:layout_width="match_parent"
 			        android:layout_height="wrap_content"
-			        android:hint="@string/distance_seen" />
+			        android:hint="@string/distance_seen"
+			        android:textColorHint="@color/bg" />
 		        
 			</LinearLayout>
 			

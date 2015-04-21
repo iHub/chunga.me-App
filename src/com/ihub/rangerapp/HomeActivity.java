@@ -172,8 +172,10 @@ public class HomeActivity extends ActionBarActivity implements OnClickListener {
 				endCurrentShift();
 			}
 			
-		} else if(v == reportsBtn)
-			Toast.makeText(this, "//TODO implement reports feature", Toast.LENGTH_LONG).show();
+		} else if(v == reportsBtn) {
+			Intent intent = new Intent(this, ReportsActivity.class);
+			startActivity(intent);
+		}
 	}
 	
 	private void endCurrentShift() {

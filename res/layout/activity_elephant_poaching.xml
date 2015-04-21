@@ -35,6 +35,8 @@
 	            android:layout_width="match_parent"
 	            android:layout_height="wrap_content"
 	            android:text="@string/tools_used"
+	            android:textSize="18sp"
+		        android:textColor="@color/bg"
 	            android:layout_marginBottom="5dp" />
 	        
 	        <Spinner
@@ -48,6 +50,7 @@
 		        android:layout_width="match_parent"
 		        android:layout_height="wrap_content"
 		        android:hint="@string/no_of_animals"
+		        android:textColorHint="@color/bg"
 		        android:layout_marginBottom="10dp"
 		        android:inputType="number" />
 		    
@@ -68,6 +71,8 @@
 			            android:layout_width="match_parent"
 			            android:layout_height="wrap_content"
 			            android:text="@string/age"
+			            android:textSize="18sp"
+		        android:textColor="@color/bg"
 			            android:layout_marginBottom="5dp" />
 			        
 			        <Spinner
@@ -89,6 +94,8 @@
 			            android:layout_width="match_parent"
 			            android:layout_height="wrap_content"
 			            android:text="@string/sex"
+			            android:textSize="18sp"
+			            android:textColor="@color/bg"
 			            android:layout_marginBottom="5dp" />
 			        
 			        <Spinner
@@ -106,6 +113,8 @@
 	            android:layout_width="match_parent"
 	            android:layout_height="wrap_content"
 	            android:text="@string/ivory_presence"
+	            android:textSize="18sp"
+		        android:textColor="@color/bg"
 	            android:layout_marginBottom="5dp" />
 	        
 	        <Spinner
@@ -119,6 +128,8 @@
 	            android:layout_width="match_parent"
 	            android:layout_height="wrap_content"
 	            android:text="@string/action_taken"
+	            android:textSize="18sp"
+		        android:textColor="@color/bg"
 	            android:layout_marginBottom="5dp" />
 	        
 	        <Spinner

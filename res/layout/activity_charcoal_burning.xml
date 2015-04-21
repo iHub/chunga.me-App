@@ -80,6 +80,7 @@
 			        android:layout_width="match_parent"
 			        android:layout_height="wrap_content"
 			        android:hint="@string/no_of_kilns"
+			        android:textColorHint="@color/bg"
 			        android:layout_marginBottom="10dp"
 			        android:inputType="number" />
 		        
@@ -87,7 +88,8 @@
 		            android:layout_width="match_parent"
 		            android:layout_height="wrap_content"
 		            android:text="@string/freshness_level"
-		            android:layout_marginBottom="5dp" />
+		            android:textSize="18sp"
+			        android:textColor="@color/bg" />
 		        
 		        <Spinner
 		            android:id="@+id/freshnessLevelSpinner"
@@ -100,13 +102,15 @@
 			        android:layout_width="match_parent"
 			        android:layout_height="wrap_content"
 			        android:hint="@string/tree_used"
+			        android:textColorHint="@color/bg"
 			        android:layout_marginBottom="10dp" />
 		        
 		        <TextView
 		            android:layout_width="match_parent"
 		            android:layout_height="wrap_content"
 		            android:text="@string/action_taken"
-		            android:layout_marginBottom="5dp" />
+		            android:textSize="18sp"
+			        android:textColor="@color/bg" />
 		        
 		        <Spinner
 		            android:id="@+id/kilnActionTakenSpinner"
@@ -131,6 +135,7 @@
 			        android:layout_width="match_parent"
 			        android:layout_height="wrap_content"
 			        android:hint="@string/no_of_bags"
+			        android:textColorHint="@color/bg"
 			        android:layout_marginBottom="10dp"
 			        android:inputType="number" />
 		        
@@ -138,7 +143,8 @@
 		            android:layout_width="match_parent"
 		            android:layout_height="wrap_content"
 		            android:text="@string/mode_of_transport"
-		            android:layout_marginBottom="5dp" />
+		            android:textSize="18sp"
+			        android:textColor="@color/bg" />
 		        
 		        <Spinner
 		            android:id="@+id/modeOfTransportSpinner"
@@ -150,7 +156,8 @@
 		            android:layout_width="match_parent"
 		            android:layout_height="wrap_content"
 		            android:text="@string/action_taken"
-		            android:layout_marginBottom="5dp" />
+		            android:textSize="18sp"
+			        android:textColor="@color/bg" />
 		        
 		        <Spinner
 		            android:id="@+id/bagsActionTakenSpinner"

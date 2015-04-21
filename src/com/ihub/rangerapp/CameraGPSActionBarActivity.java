@@ -5,27 +5,35 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.Map;
 
+import com.ihub.rangerapp.data.service.ShiftService;
+import com.ihub.rangerapp.data.service.ShiftServiceImpl;
 import com.ihub.rangerapp.location.Coordinate;
 
 import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
+import android.database.Cursor;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.location.Location;
 import android.location.LocationListener;
 import android.location.LocationManager;
 import android.net.Uri;
+import android.os.AsyncTask;
 import android.os.Bundle;
 import android.os.Environment;
 import android.provider.MediaStore;
 import android.support.v7.app.ActionBarActivity;
+import android.support.v7.widget.PopupMenu;
+import android.support.v7.widget.PopupMenu.OnMenuItemClickListener;
 import android.text.TextUtils;
 import android.util.Log;
 import android.view.Gravity;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.ImageButton;
 import android.widget.ImageView;
+import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -33,6 +41,8 @@ public class CameraGPSActionBarActivity extends ActionBarActivity {
 
 	ImageButton gpsBtn;
 	ImageButton cameraBtn;
+	
+	ProgressBar progressBar;
 	
 	TextView gpsText;
 	ImageView cameraImageView;
@@ -57,12 +67,15 @@ public class CameraGPSActionBarActivity extends ActionBarActivity {
 
 		locationListener = new LocationListener() {
 			public void onLocationChanged(Location location) {
-		      //makeUseOfNewLocation(location);
+
 				lastLocation = location;
 				
 				if(gpsText != null) {
 					gpsText.setText(locationToString(location));
 				}
+				
+				if(progressBar != null)
+					progressBar.setIndeterminate(false);
 		    }
 
 		    public void onStatusChanged(String provider, int status, Bundle extras) {}
@@ -91,7 +104,29 @@ public class CameraGPSActionBarActivity extends ActionBarActivity {
 			initLocationManager();
 		
 		locationManager.requestLocationUpdates(LocationManager.NETWORK_PROVIDER, 0, 0, locationListener);
+		new CheckHasOpenShiftApplicationTask().execute();
 	}
+	
+	private class CheckHasOpenShiftApplicationTask extends AsyncTask<Void, Void, Void> {
+    	
+		@Override
+		protected Void doInBackground(Void... params) {
+			ShiftService service = new ShiftServiceImpl();
+			
+			if(!service.hasOpenShift()) {
+				Intent intent = new Intent(CameraGPSActionBarActivity.this, StartShiftActivity.class);
+				startActivityForResult(intent, 10);
+			}
+				
+			
+			return null;
+		}
+		
+		@Override
+		protected void onPostExecute(Void result) {
+			super.onPostExecute(result);
+		}
+    }
 
 	protected void initViews() {
 		gpsBtn = (ImageButton) findViewById(R.id.gpsBtn);
@@ -100,14 +135,22 @@ public class CameraGPSActionBarActivity extends ActionBarActivity {
 		gpsText = (TextView) findViewById(R.id.gpsText);
 		cameraImageView = (ImageView) findViewById(R.id.cameraImageView);
 		
+		progressBar = (ProgressBar) findViewById(R.id.progressBar);
+		progressBar.setIndeterminate(true);
+		
 		cameraBtn.setOnClickListener(new View.OnClickListener() {
 			
 			@Override
 			public void onClick(View v) {
-				Uri uri = getOutputMediaFileUri();
-        		Intent intent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
-        		intent.putExtra(MediaStore.EXTRA_OUTPUT, uri);
-        		startActivityForResult(intent, 300);
+				showUploadPopup(v);
+			}
+		});
+		
+		cameraImageView.setOnClickListener(new View.OnClickListener() {
+			
+			@Override
+			public void onClick(View v) {
+				zoom();
 			}
 		});
 		
@@ -130,6 +173,11 @@ public class CameraGPSActionBarActivity extends ActionBarActivity {
 		});
 	}
 	
+	protected void zoom() {
+		// TODO Auto-generated method stub
+		
+	}
+
 	public String locationToString(Location location) {
 		Coordinate c = new Coordinate(location.getLatitude(), location.getLongitude());
 		return c.toString();
@@ -156,6 +204,31 @@ public class CameraGPSActionBarActivity extends ActionBarActivity {
 			    	cameraImageView.invalidate();
 			    	
 			    }
+			} else if (requestCode == 200) {
+				
+				Uri selectedimg = data.getData();
+								
+				String[] filePathColumn = { MediaStore.Images.Media.DATA };
+
+	            Cursor cursor = getContentResolver().query(
+	            		selectedimg, filePathColumn, null, null, null);
+	            cursor.moveToFirst();
+
+	            int columnIndex = cursor.getColumnIndex(filePathColumn[0]);
+	            String filePath = cursor.getString(columnIndex);
+	            cursor.close();
+	            
+	            fileName = filePath;	
+	            
+	            if(cameraImageView != null) {
+			    	Bitmap myBitmap = BitmapFactory.decodeFile(fileName);
+
+			    	cameraImageView.setImageBitmap(myBitmap);
+			    	//cameraImageView.setImageResource(R.drawable.hacksaw);
+			    	cameraImageView.setVisibility(View.VISIBLE);
+			    	cameraImageView.invalidate();
+			    	
+			    }
 			}
 		}
 		
@@ -166,7 +239,7 @@ public class CameraGPSActionBarActivity extends ActionBarActivity {
 	private File getOutputMediaFile() {
 		
 	    File mediaStorageDir = new File(Environment.getExternalStoragePublicDirectory(
-	              Environment.DIRECTORY_PICTURES), "Kendy");
+	              Environment.DIRECTORY_PICTURES), "RangerApp");
 	    
 	    if (! mediaStorageDir.exists()){
 	        if (! mediaStorageDir.mkdirs()){
@@ -182,6 +255,39 @@ public class CameraGPSActionBarActivity extends ActionBarActivity {
 		        fileName = mediaFile.getAbsolutePath();
 	    
 	    return mediaFile;
+	}
+	
+	protected void showUploadPopup(View v) {
+    	PopupMenu popup = new PopupMenu(this, v);
+    	popup.getMenuInflater().inflate(R.menu.upload_popup, popup.getMenu());
+    	
+    	popup.setOnMenuItemClickListener(new OnMenuItemClickListener() {
+            
+    		@Override
+            public boolean onMenuItemClick(MenuItem item) {
+            	
+            	if(item.getItemId() == R.id.openCamera) {
+            		
+            		Uri uri = getOutputMediaFileUri();
+            		Intent intent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
+            		intent.putExtra(MediaStore.EXTRA_OUTPUT, uri);
+            		startActivityForResult(intent, 300);
+            		
+            	} else if(item.getItemId() == R.id.fromGallery) {
+            		
+            		Intent intent = new Intent();
+            	    intent.setType("image/*");
+            	    intent.setAction(Intent.ACTION_GET_CONTENT);
+
+            	    startActivityForResult(Intent.createChooser(intent,
+            	            getString(R.string.open_gallery)), 200);
+            	    
+            	}
+            	
+            	return true;
+            }
+        });
+        popup.show();
 	}
 	
 	public String getWP() {

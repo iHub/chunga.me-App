@@ -32,17 +32,19 @@
 		    <include layout="@layout/camera_location"/>		
 		    
 		    <EditText
-			        android:id="@+id/waterholeName"
-			        android:layout_width="match_parent"
-			        android:layout_height="wrap_content"
-			        android:hint="@string/name_of_waterhole"
-			        android:layout_marginBottom="15dp" />
+		        android:id="@+id/waterholeName"
+		        android:layout_width="match_parent"
+		        android:layout_height="wrap_content"
+		        android:hint="@string/name_of_waterhole"
+		        android:textColorHint="@color/bg"
+		        android:layout_marginBottom="15dp" />
 		    
 		    <TextView
 	            android:layout_width="match_parent"
 	            android:layout_height="wrap_content"
 	            android:text="@string/level_of_water"
-	            android:layout_marginBottom="5dp" />
+	            android:textSize="18sp"
+	            android:textColor="@color/bg" />
 	        
 	        <Spinner
 	            android:id="@+id/levelOfWaterSpinner"
@@ -55,6 +57,7 @@
 		        android:layout_width="match_parent"
 		        android:layout_height="wrap_content"
 		        android:hint="@string/no_of_animals_seen"
+		        android:textColorHint="@color/bg"
 		        android:layout_marginBottom="15dp" />
 			    
 		    <TextView

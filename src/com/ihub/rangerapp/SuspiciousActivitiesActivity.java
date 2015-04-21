@@ -4,8 +4,6 @@ import java.util.Map;
 
 import com.ihub.rangerapp.data.service.SuspiciousActivitiesService;
 import com.ihub.rangerapp.data.service.SuspiciousActivitiesServiceImpl;
-
-import android.support.v7.app.ActionBarActivity;
 import android.support.v7.widget.Toolbar;
 import android.text.TextUtils;
 import android.os.Bundle;

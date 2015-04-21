@@ -52,7 +52,7 @@ public class GameMeatActivity extends CameraGPSActionBarActivity {
         saveBtn = (Button) findViewById(R.id.saveBtn);
         
         ArrayAdapter<CharSequence> actionTakenAdapter = ArrayAdapter.createFromResource(this,
-                R.array.suspicious_activities_actions_taken, android.R.layout.simple_spinner_item);
+                R.array.game_meat_actions_taken, android.R.layout.simple_spinner_item);
         actionTakenAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         
         actionTakenSpinner.setAdapter(actionTakenAdapter);

@@ -4,8 +4,6 @@ import java.util.Map;
 
 import com.ihub.rangerapp.data.service.CharcoalService;
 import com.ihub.rangerapp.data.service.CharcoalServiceImpl;
-
-import android.support.v7.app.ActionBarActivity;
 import android.support.v7.widget.Toolbar;
 import android.text.TextUtils;
 import android.view.Gravity;
@@ -161,7 +159,7 @@ public class CharcoalBurningActivity extends CameraGPSActionBarActivity {
 		kilnActionTakenSpinner = (Spinner) findViewById(R.id.kilnActionTakenSpinner);
 		
 		kilnActionTakenAdapter = ArrayAdapter.createFromResource(this,
-                R.array.charcoal_actions_taken, android.R.layout.simple_spinner_item);
+                R.array.charcoal_kilns_actions_taken, android.R.layout.simple_spinner_item);
         kilnActionTakenAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         
         kilnActionTakenSpinner.setAdapter(kilnActionTakenAdapter);
@@ -181,7 +179,7 @@ public class CharcoalBurningActivity extends CameraGPSActionBarActivity {
         modeOfTransportSpinner.setAdapter(kilnsModeOfTransportAdapter);
         
         kilnsActionTakenAdapter = ArrayAdapter.createFromResource(this,
-                R.array.charcoal_actions_taken, android.R.layout.simple_spinner_item);
+                R.array.charcoal_bags_actions_taken, android.R.layout.simple_spinner_item);
         kilnsActionTakenAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         
         bagsActionTakenSpinner.setAdapter(kilnsActionTakenAdapter);
