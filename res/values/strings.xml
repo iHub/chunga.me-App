@@ -37,7 +37,7 @@
     <string name="title_activity_charcoal_arrests">Arrests</string>
     <string name="title_activity_human_animal">Human / Animal Conflict</string>
     <string name="title_activity_sightings">Sightings</string>
-    <string name="title_activity_animals_sightings">Animals</string>
+    <string name="animals">Animals</string>
     <string name="title_activity_plants">Plants</string>
     <string name="title_activity_vegetation_sightings">Vegetation</string>
     <string name="animal_carcass">Animal Carcass</string>
@@ -300,7 +300,8 @@
     <string name="validation_transport_mode">Transport Mode is required!</string>
     <string name="validation_weather">Weather is required!</string>
     <string name="validation_ranch">Ranch is required!</string>
-    <string name="title_activity_waterholes">Waterholes</string>
+    <string name="waterholes">Waterholes</string>
     <string name="title_activity_reports">Reports</string>
+    <string name="title_activity_report_viewer">Report</string>
 
 </resources>
