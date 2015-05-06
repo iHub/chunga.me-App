@@ -25,6 +25,8 @@ public class GameMeatActivity extends CameraGPSActionBarActivity {
 	EditText extraNotes;
 	Button saveBtn;
 	
+	Boolean isEdit = false;
+	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
@@ -65,6 +67,15 @@ public class GameMeatActivity extends CameraGPSActionBarActivity {
 					save();
 			}
 		});
+        
+        if(!TextUtils.isEmpty(getIntent().getStringExtra("animal")))
+    		animalView.setText(getIntent().getStringExtra("animal"));
+        
+        
+        
+        if(getIntent().hasExtra("edit")) {
+        	
+        }
 	}
 	
 	protected void save() {
@@ -104,4 +115,8 @@ public class GameMeatActivity extends CameraGPSActionBarActivity {
     protected void onSaveInstanceState(Bundle outState) {
         super.onSaveInstanceState(outState);
     }
+	
+	protected void setIsEdit(Boolean isEdit) {
+		this.isEdit = isEdit;
+	}
 }

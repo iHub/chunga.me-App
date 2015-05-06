@@ -1,7 +1,10 @@
 package com.ihub.rangerapp.data.service;
 
+import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
+
+import javax.xml.validation.Schema;
 
 import android.content.ContentValues;
 import android.database.sqlite.SQLiteDatabase;
@@ -39,8 +42,7 @@ public class GameMeatServiceImpl extends DatabaseService implements GameMeatServ
 	
 	@Override
 	public Map<String, Object> edit(Integer id, String animal, Integer noOfAnimals, String actionTaken, String extraNotes, String imagePath, String wp) {
-
+		
 		return null;
 	}
-
 }

@@ -1,34 +1,50 @@
 package com.ihub.rangerapp;
 
+import com.ihub.rangerapp.view.reports.GameMeatReport;
+import com.ihub.rangerapp.view.reports.ReportFragment;
+
 import android.support.v7.app.ActionBarActivity;
+import android.support.v7.widget.Toolbar;
+import android.view.View;
+import android.app.Fragment;
 import android.os.Bundle;
-import android.view.Menu;
-import android.view.MenuItem;
 
 public class ReportViewerActivity extends ActionBarActivity {
-
+	
+	ReportFragment fragment;
+	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_report_viewer);
-	}
-
-	@Override
-	public boolean onCreateOptionsMenu(Menu menu) {
-		// Inflate the menu; this adds items to the action bar if it is present.
-		getMenuInflater().inflate(R.menu.report_viewer, menu);
-		return true;
-	}
-
-	@Override
-	public boolean onOptionsItemSelected(MenuItem item) {
-		// Handle action bar item clicks here. The action bar will
-		// automatically handle clicks on the Home/Up button, so long
-		// as you specify a parent activity in AndroidManifest.xml.
-		int id = item.getItemId();
-		if (id == R.id.action_settings) {
-			return true;
+		
+		Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
+        setSupportActionBar(toolbar);
+        
+        getSupportActionBar().setHomeButtonEnabled(true);
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        
+        toolbar.setNavigationOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                ReportViewerActivity.this.onBackPressed();
+            }
+        });
+        
+        if (savedInstanceState == null) {
+			fragment = getFragment();
+			getSupportFragmentManager().beginTransaction()
+					.add(R.id.container, fragment).commit();
 		}
-		return super.onOptionsItemSelected(item);
+	}
+	
+	protected ReportFragment getFragment() {
+		
+		String viewClass = getIntent().getStringExtra("viewClass");
+		
+		if(GameMeatReport.class.getSimpleName().equals(viewClass))
+			return new GameMeatReport();
+		
+		return new GameMeatReport();
 	}
 }

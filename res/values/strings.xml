@@ -9,7 +9,7 @@
     <string name="next">Next</string>
     <string name="prev">Previous</string>
     <string name="finish">Submit order</string>
-    <string name="review">Review</string>
+    <string name="incident_photo">Incident Photo</string>
     <string name="label_your_name">Name</string>
     <string name="label_your_email">Email</string>
     <string name="hint_your_name">e.g. Larry</string>

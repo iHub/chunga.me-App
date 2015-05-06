@@ -88,7 +88,7 @@
         </activity>
         <activity
             android:name=".AnimalsSightingsActivity"
-            android:label="@string/title_activity_animals_sightings"
+            android:label="@string/animals"
             android:theme="@style/NoActionBar" >
         </activity>
         <activity
@@ -118,12 +118,17 @@
         </activity>
         <activity
             android:name=".WaterholesActivity"
-            android:label="@string/title_activity_waterholes"
+            android:label="@string/waterholes"
             android:theme="@style/NoActionBar" >
         </activity>
         <activity
             android:name=".ReportsActivity"
             android:label="@string/title_activity_reports"
+            android:theme="@style/NoActionBar" >
+        </activity>
+        <activity
+            android:name=".ReportViewerActivity"
+            android:label="@string/title_activity_report_viewer"
             android:theme="@style/NoActionBar" >
         </activity>
     </application>

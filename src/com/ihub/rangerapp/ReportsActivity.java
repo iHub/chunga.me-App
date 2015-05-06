@@ -1,10 +1,7 @@
 package com.ihub.rangerapp;
 
-import java.lang.reflect.Method;
-
 import com.ihub.rangerapp.view.DateFragment;
 import com.ihub.rangerapp.view.ReportsView;
-
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v7.app.ActionBarActivity;

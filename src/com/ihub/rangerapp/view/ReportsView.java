@@ -47,7 +47,7 @@ public class ReportsView extends Fragment {
 	}
 	
 	private class InitializeApplicationsTask extends AsyncTask<Void, Void, Void> {
-    	
+		
         @Override
         protected void onPreExecute() {
             adapter.clearApplications();

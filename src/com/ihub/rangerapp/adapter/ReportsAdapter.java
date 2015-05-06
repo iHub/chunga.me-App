@@ -7,6 +7,7 @@ import com.ihub.rangerapp.R;
 import com.ihub.rangerapp.ReportViewerActivity;
 import com.ihub.rangerapp.SightingsActivity;
 import com.ihub.rangerapp.entity.MenuItem;
+import com.ihub.rangerapp.view.reports.GameMeatReport;
 
 import android.annotation.TargetApi;
 import android.app.Activity;
@@ -62,10 +63,12 @@ public class ReportsAdapter extends RecyclerView.Adapter<ReportsAdapter.ViewHold
         	
 			Intent intent = null;
 			
+			String viewClass = "";
+			
 			switch (getPosition()) {
 			
 				case 0:
-					
+					viewClass = GameMeatReport.class.getSimpleName();
 					break;
 				case 1:
 					
@@ -75,6 +78,7 @@ public class ReportsAdapter extends RecyclerView.Adapter<ReportsAdapter.ViewHold
 				}
 			
 			intent = new Intent(activity, ReportViewerActivity.class);
+			intent.putExtra("viewClass", viewClass);
 			
 			if(intent != null) {				
 				if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN) {
