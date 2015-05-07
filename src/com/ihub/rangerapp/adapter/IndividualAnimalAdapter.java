@@ -8,6 +8,7 @@ import java.util.List;
 import android.app.Activity;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
+import android.media.ThumbnailUtils;
 import android.text.TextUtils;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -60,18 +61,18 @@ public class IndividualAnimalAdapter extends AmazingAdapter {
 		final IndividualAnimalModel model = (IndividualAnimalModel) this.getItem(position);
 		
 		if (convertView == null) {
-			convertView = LayoutInflater.from(activity).inflate(R.layout.report_row_individual_animals, null);
+			convertView = LayoutInflater.from(activity).inflate(R.layout.report_row_default, null);
 		}
 		
 		ImageView imageView = (ImageView) convertView.findViewById(R.id.imageView);
 		
 		try {
-			Bitmap myBitmap = BitmapFactory.decodeFile(model.getImagePath());
+			Bitmap myBitmap = ThumbnailUtils.extractThumbnail(BitmapFactory.decodeFile(model.getImagePath()), 48, 48);
 	    	imageView.setImageBitmap(myBitmap);
 		} catch (Exception e) {}
     	
 		TextView nameView = (TextView) convertView.findViewById(R.id.nameView);
-
+		nameView.setText(TextUtils.isEmpty(model.getAnimal()) ? "( Undefined )" : model.getAnimal());
 		
 		TextView dateView = (TextView) convertView.findViewById(R.id.dateView);
 		

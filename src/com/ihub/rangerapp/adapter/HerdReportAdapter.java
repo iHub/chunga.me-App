@@ -8,6 +8,7 @@ import java.util.List;
 import android.app.Activity;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
+import android.media.ThumbnailUtils;
 import android.text.TextUtils;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -16,7 +17,6 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.ihub.rangerapp.R;
-import com.ihub.rangerapp.model.CharcoalKilnModel;
 import com.ihub.rangerapp.model.HerdModel;
 import com.ihub.rangerapp.util.DateUtil;
 
@@ -58,20 +58,22 @@ public class HerdReportAdapter extends AmazingAdapter {
 	@Override
 	public View getAmazingView(int position, View convertView, ViewGroup parent) {
 		
-		final CharcoalKilnModel model = (CharcoalKilnModel) this.getItem(position);
+		final HerdModel model = (HerdModel) this.getItem(position);
 		
 		if (convertView == null) {
-			convertView = LayoutInflater.from(activity).inflate(R.layout.report_row_animal_herd, null);
+			convertView = LayoutInflater.from(activity).inflate(R.layout.report_row_default, null);
 		}
 		
 		ImageView imageView = (ImageView) convertView.findViewById(R.id.imageView);
 		
 		try {
-			Bitmap myBitmap = BitmapFactory.decodeFile(model.getImagePath());
+			Bitmap myBitmap = ThumbnailUtils.extractThumbnail(BitmapFactory.decodeFile(model.getImagePath()), 48, 48);
 	    	imageView.setImageBitmap(myBitmap);
 		} catch (Exception e) {}
     	
 		TextView nameView = (TextView) convertView.findViewById(R.id.nameView);
+		
+		nameView.setText(TextUtils.isEmpty(model.getName()) ? "( Undefined )" : model.getName());
 
 		
 		TextView dateView = (TextView) convertView.findViewById(R.id.dateView);

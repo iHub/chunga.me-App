@@ -5,6 +5,7 @@ import java.util.Map;
 public interface GameMeatService {
 
 	public Map<String, Object> save(
+		Integer id,
 		String animal, 
 		Integer noOfAnimals, 
 		String actionTaken, 

@@ -4,13 +4,15 @@ import java.util.HashMap;
 import java.util.Map;
 import android.content.ContentValues;
 import android.database.sqlite.SQLiteDatabase;
+import android.provider.BaseColumns;
+
 import com.ihub.rangerapp.RangerApp;
 import com.ihub.rangerapp.data.sqlite.Schemas;
 
 public class ElephantServiceImpl extends DatabaseService implements ElephantService {
 	
 	@Override
-	public Map<String, Object> save(String toolUsed, Integer noOfAnimals,
+	public Map<String, Object> save(Integer id, String toolUsed, Integer noOfAnimals,
 			String age, String sex, String ivoryPresence, String actionTaken,
 			String extraNotes, String imagePath, String wp) {
 
@@ -30,8 +32,15 @@ public class ElephantServiceImpl extends DatabaseService implements ElephantServ
  		values.put(Schemas.ElephantPoaching.WP, wp);
  		
  		try {
- 			db.insert(Schemas.ELEPHANT_POACHING_TABLE, null, values);
- 			result.put("status", "success");
+ 			
+ 			if(id == -1) {
+ 				db.insert(Schemas.ELEPHANT_POACHING_TABLE, null, values);
+ 	 			result.put("status", "success");
+ 			} else {
+ 				db.update(Schemas.ELEPHANT_POACHING_TABLE, values, BaseColumns._ID + "=" + id, null);
+ 				result.put("status", "success");
+ 			}
+ 			
  		} catch (Exception e) {
  			result.put("status", "error");
  			result.put("message", e.getMessage());

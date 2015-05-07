@@ -4,13 +4,15 @@ import java.util.HashMap;
 import java.util.Map;
 import android.content.ContentValues;
 import android.database.sqlite.SQLiteDatabase;
+import android.provider.BaseColumns;
+
 import com.ihub.rangerapp.RangerApp;
 import com.ihub.rangerapp.data.sqlite.Schemas;
 
 public class CharcoalServiceImpl extends DatabaseService implements CharcoalService {
 
 	@Override
-	public Map<String, Object> saveBagsData(Integer noOfBags, String mode,
+	public Map<String, Object> saveBagsData(Integer id, Integer noOfBags, String mode,
 		String actionTaken, String extraNotes, String imagePath, String wp) {
 		
 		Map<String, Object> result = new HashMap<String, Object>();
@@ -26,8 +28,15 @@ public class CharcoalServiceImpl extends DatabaseService implements CharcoalServ
  		values.put(Schemas.CharcoalBags.WP, wp);
  		
  		try {
- 			db.insert(Schemas.CHARCOAL_BAGS_TABLE, null, values);
- 			result.put("status", "success");
+ 			
+ 			if(id == -1) {
+ 				db.insert(Schemas.CHARCOAL_BAGS_TABLE, null, values);
+ 	 			result.put("status", "success");
+ 			} else {
+ 				db.update(Schemas.CHARCOAL_BAGS_TABLE, values, BaseColumns._ID + "=" + id, null);
+ 				result.put("status", "success");
+ 			}
+ 			
  		} catch (Exception e) {
  			result.put("status", "error");
  			result.put("message", e.getMessage());
@@ -37,7 +46,7 @@ public class CharcoalServiceImpl extends DatabaseService implements CharcoalServ
 	}
 
 	@Override
-	public Map<String, Object> saveKilns(Integer noOfKilns,
+	public Map<String, Object> saveKilns(Integer id, Integer noOfKilns,
 		String freshnessLevels, String treeUsed, String actionTaken,
 		String extraNotes, String imagePath, String wp) {
 		
@@ -55,8 +64,15 @@ public class CharcoalServiceImpl extends DatabaseService implements CharcoalServ
  		values.put(Schemas.CharcoalKilns.WP, wp); 		
  		
  		try {
- 			db.insert(Schemas.CHARCOAL_KILN_TABLE, null, values);
- 			result.put("status", "success");
+ 			
+ 			if(id == -1) {
+ 				db.insert(Schemas.CHARCOAL_KILN_TABLE, null, values);
+ 	 			result.put("status", "success");
+ 			} else {
+ 				db.update(Schemas.CHARCOAL_KILN_TABLE, values, BaseColumns._ID + "=" + id, null);
+ 				result.put("status", "success");
+ 			}
+ 			
  		} catch (Exception e) {
  			result.put("status", "error");
  			result.put("message", e.getMessage());

@@ -5,6 +5,7 @@ import java.util.Map;
 public interface WaterholeService {
 
 	public Map<String, Object> save(
+			Integer id,
 			String name,
 			String level,
 			Integer noOfAnimalsSeen,

@@ -4,13 +4,15 @@ import java.util.HashMap;
 import java.util.Map;
 import android.content.ContentValues;
 import android.database.sqlite.SQLiteDatabase;
+import android.provider.BaseColumns;
+
 import com.ihub.rangerapp.RangerApp;
 import com.ihub.rangerapp.data.sqlite.Schemas;
 
 public class AnimalSightingsServiceImpl extends DatabaseService implements AnimalSightingsService {
 
 	@Override
-	public Map<String, Object> saveIndividualAnimal(String name, String gender, String age, Integer distanceSeen, String extraNotes, String imagePath, String wp) {
+	public Map<String, Object> saveIndividualAnimal(Integer id, String name, String gender, String age, Integer distanceSeen, String extraNotes, String imagePath, String wp) {
 		
 		Map<String, Object> result = new HashMap<String, Object>();
 		
@@ -26,8 +28,15 @@ public class AnimalSightingsServiceImpl extends DatabaseService implements Anima
  		values.put(Schemas.IndividualAnimalSighting.WP, wp);
  		
  		try {
- 			db.insert(Schemas.INDIVIDUAL_ANIMAL_SIGHTING_TABLE, null, values);
- 			result.put("status", "success");
+ 			
+ 			if(id == -1) {
+ 				db.insert(Schemas.INDIVIDUAL_ANIMAL_SIGHTING_TABLE, null, values);
+ 	 			result.put("status", "success");
+ 			} else {
+ 				db.update(Schemas.INDIVIDUAL_ANIMAL_SIGHTING_TABLE, values, BaseColumns._ID + "=" + id, null);
+ 				result.put("status", "success");
+ 			}
+ 			
  		} catch (Exception e) {
  			result.put("status", "error");
  			result.put("message", e.getMessage());
@@ -37,7 +46,7 @@ public class AnimalSightingsServiceImpl extends DatabaseService implements Anima
 	}
 
 	@Override
-	public Map<String, Object> saveHerd(String name, String species, Integer noOfAnimals, String age, Integer distanceSeen, String extraNotes, String imagePath, String wp) {
+	public Map<String, Object> saveHerd(Integer id, String name, String species, Integer noOfAnimals, String age, Integer distanceSeen, String extraNotes, String imagePath, String wp) {
 
 		Map<String, Object> result = new HashMap<String, Object>();
 		
@@ -54,8 +63,15 @@ public class AnimalSightingsServiceImpl extends DatabaseService implements Anima
  		values.put(Schemas.AnimalHerdSighting.WP, wp);
  		
  		try {
- 			db.insert(Schemas.ANIMAL_HERD_SIGHTING_TABLE, null, values);
- 			result.put("status", "success");
+ 			
+ 			if(id == -1) {
+ 				db.insert(Schemas.ANIMAL_HERD_SIGHTING_TABLE, null, values);
+ 	 			result.put("status", "success");
+ 			} else {
+ 				db.update(Schemas.ANIMAL_HERD_SIGHTING_TABLE, values, BaseColumns._ID + "=" + id, null);
+ 				result.put("status", "success");
+ 			}
+ 			
  		} catch (Exception e) {
  			result.put("status", "error");
  			result.put("message", e.getMessage());

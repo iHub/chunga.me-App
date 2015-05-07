@@ -18,6 +18,7 @@ import android.graphics.BitmapFactory;
 import android.location.Location;
 import android.location.LocationListener;
 import android.location.LocationManager;
+import android.media.ThumbnailUtils;
 import android.net.Uri;
 import android.os.AsyncTask;
 import android.os.Bundle;
@@ -53,10 +54,15 @@ public class CameraGPSActionBarActivity extends ActionBarActivity {
 	Location lastLocation;
 	
 	String fileName;
+		
+	Integer mode = 1; //1 - Create, 2 - Edit, 3 - View
 	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
+		
+		Intent data = getIntent();
+        mode = data.getIntExtra("mode", 1);
 		
 		initLocationManager();
 	}
@@ -70,12 +76,14 @@ public class CameraGPSActionBarActivity extends ActionBarActivity {
 
 				lastLocation = location;
 				
-				if(gpsText != null) {
-					gpsText.setText(locationToString(location));
+				if(mode == 1) {
+					if(gpsText != null) {
+						gpsText.setText(locationToString(location));
+					}
+					
+					if(progressBar != null)
+						progressBar.setIndeterminate(false);
 				}
-				
-				if(progressBar != null)
-					progressBar.setIndeterminate(false);
 		    }
 
 		    public void onStatusChanged(String provider, int status, Bundle extras) {}
@@ -136,7 +144,7 @@ public class CameraGPSActionBarActivity extends ActionBarActivity {
 		cameraImageView = (ImageView) findViewById(R.id.cameraImageView);
 		
 		progressBar = (ProgressBar) findViewById(R.id.progressBar);
-		progressBar.setIndeterminate(true);
+		progressBar.setIndeterminate(mode == 1);
 		
 		cameraBtn.setOnClickListener(new View.OnClickListener() {
 			
@@ -154,23 +162,44 @@ public class CameraGPSActionBarActivity extends ActionBarActivity {
 			}
 		});
 		
-		gpsBtn.setOnClickListener(new View.OnClickListener() {
-			@Override
-			public void onClick(View v) {
-				String l = "";
-				if(lastLocation != null)
-					l = lastLocation.getLatitude() + "     " + lastLocation.getLatitude();
-				
-				Location lc  = locationManager.getLastKnownLocation(LocationManager.NETWORK_PROVIDER);
+		if(mode != 1) {
+			cameraBtn.setEnabled(false);
 			
-				if(gpsText != null) {
-					
-					if(lc != null)
-						gpsText.setText(locationToString(lc));
-				}
-				
+			if(getIntent().hasExtra("imagePath")) {
+				try {
+					fileName = getIntent().getStringExtra("imagePath");
+					Bitmap myBitmap = ThumbnailUtils.extractThumbnail(BitmapFactory.decodeFile(fileName), 48, 48);
+			    	cameraImageView.setImageBitmap(myBitmap);
+				} catch (Exception e) {}
 			}
-		});
+			
+			if(getIntent().hasExtra("wp") && !TextUtils.isEmpty(getIntent().getStringExtra("wp"))) {
+				gpsText.setText(getWP());
+			}
+		}
+		
+		if(mode != 1) {
+			
+			gpsBtn.setOnClickListener(new View.OnClickListener() {
+				@Override
+				public void onClick(View v) {
+					String l = "";
+					if(lastLocation != null)
+						l = lastLocation.getLatitude() + "     " + lastLocation.getLatitude();
+					
+					Location lc  = locationManager.getLastKnownLocation(LocationManager.NETWORK_PROVIDER);
+				
+					if(gpsText != null) {
+						
+						if(lc != null)
+							gpsText.setText(locationToString(lc));
+					}
+					
+				}
+			});
+		}
+		
+		
 	}
 	
 	protected void zoom() {
@@ -196,8 +225,9 @@ public class CameraGPSActionBarActivity extends ActionBarActivity {
 			if(requestCode == 300) {
 				
 				if(cameraImageView != null) {
-			    	Bitmap myBitmap = BitmapFactory.decodeFile(fileName);
-
+					
+			    	Bitmap myBitmap = ThumbnailUtils.extractThumbnail(BitmapFactory.decodeFile(fileName), 48, 48);
+			    	
 			    	cameraImageView.setImageBitmap(myBitmap);
 			    	//cameraImageView.setImageResource(R.drawable.hacksaw);
 			    	cameraImageView.setVisibility(View.VISIBLE);
@@ -291,7 +321,7 @@ public class CameraGPSActionBarActivity extends ActionBarActivity {
 	}
 	
 	public String getWP() {
-		return "0 40";
+		return "0,40";
 	}
 	
 	protected void showSaveResult(Map<String, Object> result) {
@@ -300,7 +330,7 @@ public class CameraGPSActionBarActivity extends ActionBarActivity {
 		
 		if("success".equals(status)) {
 			
-			Toast toast = Toast.makeText(this, R.string.record_save_success_msg, Toast.LENGTH_LONG);
+			Toast toast = Toast.makeText(this, mode == 1 ? R.string.record_save_success_msg : R.string.record_update_success_msg, Toast.LENGTH_LONG);
 			toast.setGravity(Gravity.TOP, 0, 0);
 			toast.show();
 			

@@ -5,6 +5,7 @@ import java.util.Map;
 public interface AnimalSightingsService {
 	
 	public Map<String, Object> saveIndividualAnimal(
+			Integer id,
 			String name,
 			String gender,
 			String age,
@@ -14,6 +15,7 @@ public interface AnimalSightingsService {
 			String wp);
 	
 	public Map<String, Object> saveHerd(
+			Integer id,
 			String name,
 			String species,
 			Integer noOfAnimals,

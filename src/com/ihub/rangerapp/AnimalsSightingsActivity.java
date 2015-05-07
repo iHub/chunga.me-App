@@ -4,13 +4,16 @@ import java.util.Map;
 import com.ihub.rangerapp.data.service.AnimalSightingsService;
 import com.ihub.rangerapp.data.service.AnimalSightingsServiceImpl;
 import android.support.v7.widget.Toolbar;
+import android.text.TextUtils;
 import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.LinearLayout;
+import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.Spinner;
+import android.content.Intent;
 import android.os.Bundle;
 
 public class AnimalsSightingsActivity extends CameraGPSActionBarActivity {
@@ -34,6 +37,10 @@ public class AnimalsSightingsActivity extends CameraGPSActionBarActivity {
 	Boolean isMale = false;
 	Boolean isIndividualView = true;
 	
+	LinearLayout switchView;
+	RadioButton radioGenderMale;
+	RadioButton radioGenderFemale;
+	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
@@ -52,8 +59,15 @@ public class AnimalsSightingsActivity extends CameraGPSActionBarActivity {
             }
         });
         
+        switchView = (LinearLayout) findViewById(R.id.switchView);
+        
+        radioGenderMale = (RadioButton) findViewById(R.id.radio_gender_male);
+        radioGenderFemale = (RadioButton) findViewById(R.id.radio_gender_female);
+        
         individualLayout = (LinearLayout) findViewById(R.id.individualLayout);
         herdLayout = (LinearLayout) findViewById(R.id.herdLayout);
+        
+        Intent data = getIntent();
         
         initViews();
         
@@ -85,14 +99,95 @@ public class AnimalsSightingsActivity extends CameraGPSActionBarActivity {
         	
 			@Override
 			public void onClick(View v) {
-				if(isIndividualView)
-					saveIndividual();
-				else
-					saveHerd();
+				
+				if(mode == 3) {
+					finish();
+				} else
+					if(isIndividualView)
+						saveIndividual();
+					else
+						saveHerd();
+				
+				
 			}
 		});
+        
+        if(mode != 1) {
+        	switchView.setVisibility(View.GONE);
+        	
+        	if(mode == 2) {
+            	saveBtn.setText(getString(R.string.edit));
+            } else {
+            	saveBtn.setText(getString(R.string.close));
+            }
+        	
+        	if(data.hasExtra("view")) {
+        		
+        		if("herd".equals(data.getStringExtra("view"))) {
+        			initHerdData();
+        		} else
+        			initIndividualData();
+        	}
+        }
 	}
 	
+	private void initIndividualData() {
+		herdLayout.setVisibility(View.GONE);
+    	individualLayout.setVisibility(View.VISIBLE);
+    	isIndividualView = true;
+    	
+    	if(!TextUtils.isEmpty(getIntent().getStringExtra("animal")))
+    		animalNameView.setText(getIntent().getStringExtra("animal"));
+    	
+    	if(!TextUtils.isEmpty(getIntent().getStringExtra("gender"))) {
+    		
+    		if("M".equals(getIntent().getStringExtra("gender")))
+    			radioGenderMale.setChecked(true);
+    		else
+    			radioGenderFemale.setChecked(true);
+    	}
+    	
+    	if(!TextUtils.isEmpty(getIntent().getStringExtra("age")))
+        	for(int i = 0; i < ageSpinner.getAdapter().getCount(); i++) {
+        		if(ageSpinner.getItemAtPosition(i).toString().equals(getIntent().getStringExtra("age")))
+        			ageSpinner.setSelection(i);
+        	}
+        
+        if(getIntent().hasExtra("distanceSeen"))
+        	distanceSeenView.setText(getIntent().getIntExtra("distanceSeen", 0) + "");
+        
+        if(!TextUtils.isEmpty(getIntent().getStringExtra("extraNotes")))
+    		extraNotes.setText(getIntent().getStringExtra("extraNotes"));
+	}
+
+	private void initHerdData() {
+		
+		herdLayout.setVisibility(View.VISIBLE);
+    	individualLayout.setVisibility(View.GONE);
+    	isIndividualView = false;
+    	
+    	if(!TextUtils.isEmpty(getIntent().getStringExtra("name")))
+    		herdNameView.setText(getIntent().getStringExtra("name"));
+    	
+    	if(!TextUtils.isEmpty(getIntent().getStringExtra("type")))
+    		typeSpeciesView.setText(getIntent().getStringExtra("type"));
+    	
+    	if(getIntent().hasExtra("noOfAnimals"))
+        	herdNoOfAnimalsView.setText(getIntent().getIntExtra("noOfAnimals", 0) + "");
+    	
+    	if(!TextUtils.isEmpty(getIntent().getStringExtra("age")))
+        	for(int i = 0; i < herdAgeSpinner.getAdapter().getCount(); i++) {
+        		if(herdAgeSpinner.getItemAtPosition(i).toString().equals(getIntent().getStringExtra("age")))
+        			herdAgeSpinner.setSelection(i);
+        	}
+        
+        if(getIntent().hasExtra("distanceSeen"))
+        	herdDistanceSeenView.setText(getIntent().getIntExtra("distanceSeen", 0) + "");
+        
+        if(!TextUtils.isEmpty(getIntent().getStringExtra("extraNotes")))
+    		extraNotes.setText(getIntent().getStringExtra("extraNotes"));
+	}
+
 	protected void saveIndividual() {
 		
 		if(isValid()) {
@@ -103,8 +198,13 @@ public class AnimalsSightingsActivity extends CameraGPSActionBarActivity {
 				distanceSeen = Integer.valueOf(distanceSeenView.getText().toString());
 			} catch (Exception e) {}
 			
+			Integer id = -1;
+			if(mode == 2)
+				id = getIntent().getIntExtra("id", -1);
+			
 			AnimalSightingsService service = new AnimalSightingsServiceImpl();
 			Map<String, Object> result = service.saveIndividualAnimal(
+					id,
 					animalNameView.getText().toString(), 
 					isMale ? "M" : "F", 
 					ageSpinner.getSelectedItem().toString(), 
@@ -132,7 +232,13 @@ public class AnimalsSightingsActivity extends CameraGPSActionBarActivity {
 			} catch (Exception e) {}
 			
 			AnimalSightingsService service = new AnimalSightingsServiceImpl();
+			
+			Integer id = -1;
+			if(mode == 2)
+				id = getIntent().getIntExtra("id", -1);
+			
 			Map<String , Object> result = service.saveHerd(
+					id,
 					herdNameView.getText().toString(), 
 					typeSpeciesView.getText().toString(), 
 					noOfAnimals, 

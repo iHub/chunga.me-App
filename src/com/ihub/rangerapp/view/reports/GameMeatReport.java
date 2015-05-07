@@ -1,8 +1,6 @@
 package com.ihub.rangerapp.view.reports;
 
-import java.util.Calendar;
 import java.util.Date;
-
 import com.ihub.rangerapp.GameMeatActivity;
 import com.ihub.rangerapp.adapter.AmazingAdapter;
 import com.ihub.rangerapp.adapter.GameMeatReportAdapter;
@@ -32,23 +30,20 @@ public class GameMeatReport extends ReportFragment {
 		try {
 			date = DateUtil.parse(model.getDateCreated());
 		} catch (Exception e) {}
-		
+				
 		if(date != null) {
-			date  = DateUtil.addDays(1, new Date());
+			date  = DateUtil.addDays(1, date);
 			
 			if(date.after(new Date()))
 				canEdit = true;
 		}
-		
-		//TODO check date before editing
-		
+				
 		Intent intent = new Intent(getActivity(), GameMeatActivity.class);
 		intent.putExtras(model.getExtras());
 		
-		if(canEdit)
-			intent.putExtra("edit", true);
+		intent.putExtra("mode", canEdit ? 2 : 3);
 		
-		getActivity().startActivity(intent);
+		getActivity().startActivityForResult(intent, 100);
 	}
 	
 	@Override

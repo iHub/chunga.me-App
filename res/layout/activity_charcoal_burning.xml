@@ -29,6 +29,7 @@
 			android:orientation="vertical" >
 			
 		    <LinearLayout
+		        android:id="@+id/switchView"
 		        android:layout_width="match_parent"
 		        android:layout_height="wrap_content"
 		        android:orientation="vertical"
@@ -74,13 +75,17 @@
 				android:paddingRight="16dp"
 				android:paddingTop="16dp" >
 		        
+		        <TextView
+		            android:layout_width="match_parent"
+		            android:layout_height="wrap_content"
+		            android:text="@string/no_of_kilns"
+		            android:textSize="18sp"
+		            android:textColor="@color/bg" />
 		        
 		        <EditText
 			        android:id="@+id/noOfKilnsView"
 			        android:layout_width="match_parent"
 			        android:layout_height="wrap_content"
-			        android:hint="@string/no_of_kilns"
-			        android:textColorHint="@color/bg"
 			        android:layout_marginBottom="10dp"
 			        android:inputType="number" />
 		        
@@ -130,12 +135,17 @@
 				android:paddingTop="16dp"
 				android:visibility="gone" >
 		        
+			    <TextView
+		            android:layout_width="match_parent"
+		            android:layout_height="wrap_content"
+		            android:text="@string/no_of_bags"
+		            android:textSize="18sp"
+		            android:textColor="@color/bg" />
+		        
 		        <EditText
 			        android:id="@+id/noOfBagsView"
 			        android:layout_width="match_parent"
 			        android:layout_height="wrap_content"
-			        android:hint="@string/no_of_bags"
-			        android:textColorHint="@color/bg"
 			        android:layout_marginBottom="10dp"
 			        android:inputType="number" />
 		        

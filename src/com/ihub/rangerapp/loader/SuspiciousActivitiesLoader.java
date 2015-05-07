@@ -5,6 +5,8 @@ import java.util.List;
 
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
+import android.util.Log;
+
 import com.ihub.rangerapp.RangerApp;
 import com.ihub.rangerapp.data.sqlite.DB;
 import com.ihub.rangerapp.data.sqlite.Schemas;
@@ -34,6 +36,8 @@ public class SuspiciousActivitiesLoader extends DataLoader {
 		Cursor cursor = db.rawQuery(sql, null);
 		
 		if (cursor.moveToFirst()) {
+			Log.v("SuspiciousActivities", "has records.............................................");
+			
 			do {
 				
 				Integer id = cursor.getInt(0);

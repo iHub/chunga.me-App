@@ -4,19 +4,17 @@ import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
-
 import android.app.Activity;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
+import android.media.ThumbnailUtils;
 import android.text.TextUtils;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
-
 import com.ihub.rangerapp.R;
-import com.ihub.rangerapp.model.IndividualAnimalModel;
 import com.ihub.rangerapp.model.SuspiciousActivityModel;
 import com.ihub.rangerapp.util.DateUtil;
 
@@ -58,21 +56,25 @@ public class SuspiciousActivitiesReportAdapter extends AmazingAdapter {
 	@Override
 	public View getAmazingView(int position, View convertView, ViewGroup parent) {
 		
-		final IndividualAnimalModel model = (IndividualAnimalModel) this.getItem(position);
+		final SuspiciousActivityModel model = (SuspiciousActivityModel) this.getItem(position);
 		
 		if (convertView == null) {
-			convertView = LayoutInflater.from(activity).inflate(R.layout.report_row_suspicious_activities, null);
+			convertView = LayoutInflater.from(activity).inflate(R.layout.report_row_default, null);
 		}
 		
 		ImageView imageView = (ImageView) convertView.findViewById(R.id.imageView);
 		
 		try {
-			Bitmap myBitmap = BitmapFactory.decodeFile(model.getImagePath());
+			Bitmap myBitmap = ThumbnailUtils.extractThumbnail(BitmapFactory.decodeFile(model.getImagePath()), 48, 48);
 	    	imageView.setImageBitmap(myBitmap);
 		} catch (Exception e) {}
     	
 		TextView nameView = (TextView) convertView.findViewById(R.id.nameView);
 
+		if(!TextUtils.isEmpty(model.getActionTaken()))
+			nameView.setText(model.getActionTaken());
+		else
+			nameView.setText("( Undefined )");
 		
 		TextView dateView = (TextView) convertView.findViewById(R.id.dateView);
 		

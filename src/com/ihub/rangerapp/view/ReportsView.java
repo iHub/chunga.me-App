@@ -65,10 +65,12 @@ public class ReportsView extends Fragment {
             
             String menuNames[] = new String[]{
 	    		getString(R.string.game_meat), 
-	    		getString(R.string.charcoal_burning),
+	    		getString(R.string.charcoal_burning_bags),
+	    		getString(R.string.charcoal_burning_kilns),
 	    		getString(R.string.elephant_poaching),
 	    		getString(R.string.suspicious_activities),
-	    		getString(R.string.animals),
+	    		getString(R.string.animals_individual),
+	    		getString(R.string.animals_herds),
 	    		getString(R.string.waterholes)
             };
             

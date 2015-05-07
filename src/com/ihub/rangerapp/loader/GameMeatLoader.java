@@ -31,7 +31,7 @@ public class GameMeatLoader extends DataLoader {
 		SQLiteDatabase db = DB.instance().getWritableDatabase(
 				application.getApplicationContext());
 
-		String sql =  "SELECT * FROM " + tableName() + " LIMIT <skip>, <count>";
+		String sql =  "SELECT * FROM " + tableName() + " order by _id DESC LIMIT <skip>, <count>";
 		sql = sql.replace("<skip>", config.offset() + "").replace(" <count>", config.limit() + "");
 		
 		Log.v(GameMeatLoader.class.getSimpleName(), sql);

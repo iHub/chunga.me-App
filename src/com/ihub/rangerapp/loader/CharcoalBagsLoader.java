@@ -5,15 +5,10 @@ import java.util.List;
 
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
-import android.provider.BaseColumns;
-
 import com.ihub.rangerapp.RangerApp;
 import com.ihub.rangerapp.data.sqlite.DB;
 import com.ihub.rangerapp.data.sqlite.Schemas;
-import com.ihub.rangerapp.data.sqlite.Schemas.CharcoalBags;
 import com.ihub.rangerapp.model.CharcoalBagModel;
-import com.ihub.rangerapp.model.CharcoalKilnModel;
-import com.ihub.rangerapp.model.ElephantPoachingModel;
 import com.ihub.rangerapp.model.Model;
 import com.ihub.rangerapp.util.PagingLoadConfig;
 
@@ -45,12 +40,12 @@ public class CharcoalBagsLoader extends DataLoader {
 				Integer noOfBags = cursor.getInt(1);
 				String modeOfTransport = cursor.getString(2);
 				
-				String actionTaken = cursor.getString(6);
-				String extraNotes = cursor.getString(7);
-				String wp = cursor.getString(8);
-				String imagePath = cursor.getString(9);
-				String dateCreated = cursor.getString(10);
-												
+				String actionTaken = cursor.getString(3);
+				String extraNotes = cursor.getString(4);
+				String wp = cursor.getString(5);
+				String imagePath = cursor.getString(6);
+				String dateCreated = cursor.getString(7);
+				
 				CharcoalBagModel  model = new CharcoalBagModel();
 				model.setId(id);
 				model.setNoOfBags(noOfBags);

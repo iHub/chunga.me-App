@@ -5,6 +5,7 @@ import java.util.Map;
 public interface ElephantService {
 
 	public Map<String, Object> save(
+		Integer id,
 		String toolUsed,
 		Integer noOfAnimals,
 		String age,

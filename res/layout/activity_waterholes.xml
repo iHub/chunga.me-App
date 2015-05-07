@@ -29,14 +29,19 @@
 			android:orientation="vertical"
 			android:padding="16dp" >
 			
-		    <include layout="@layout/camera_location"/>		
+		    <include layout="@layout/camera_location"/>	
+		    
+		    <TextView
+	            android:layout_width="match_parent"
+	            android:layout_height="wrap_content"
+	            android:text="@string/name_of_waterhole"
+	            android:textSize="18sp"
+	            android:textColor="@color/bg" />	
 		    
 		    <EditText
 		        android:id="@+id/waterholeName"
 		        android:layout_width="match_parent"
 		        android:layout_height="wrap_content"
-		        android:hint="@string/name_of_waterhole"
-		        android:textColorHint="@color/bg"
 		        android:layout_marginBottom="15dp" />
 		    
 		    <TextView
@@ -51,14 +56,20 @@
 	            android:layout_width="match_parent"
 	            android:layout_height="wrap_content"
 	            android:layout_marginBottom="10dp" />
+	        
+	        <TextView
+	            android:layout_width="match_parent"
+	            android:layout_height="wrap_content"
+	            android:text="@string/no_of_animals_seen"
+	            android:textSize="18sp"
+	            android:textColor="@color/bg" />
 		    
 		    <EditText
 		        android:id="@+id/noOfAnimalsSeenView"
 		        android:layout_width="match_parent"
 		        android:layout_height="wrap_content"
-		        android:hint="@string/no_of_animals_seen"
-		        android:textColorHint="@color/bg"
-		        android:layout_marginBottom="15dp" />
+		        android:layout_marginBottom="15dp"
+		        android:inputType="number" />
 			    
 		    <TextView
 		        android:layout_width="match_parent"

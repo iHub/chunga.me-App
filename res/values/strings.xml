@@ -19,6 +19,8 @@
     <string name="title_activity_intro">Intro</string>
     <string name="title_activity_incidences">Incidents</string>
     <string name="go">Go</string>
+    <string name="edit">Edit</string>
+    <string name="close">Close</string>
     <string name="from_gallery">From Gallery</string>
     <string name="open_camera">Open Camera</string>
     <string name="open_gallery">Open Gallery</string>
@@ -38,6 +40,8 @@
     <string name="title_activity_human_animal">Human / Animal Conflict</string>
     <string name="title_activity_sightings">Sightings</string>
     <string name="animals">Animals</string>
+    <string name="animals_herds">Animals (Herds)</string>
+    <string name="animals_individual">Animals (Individual)</string>
     <string name="title_activity_plants">Plants</string>
     <string name="title_activity_vegetation_sightings">Vegetation</string>
     <string name="animal_carcass">Animal Carcass</string>
@@ -65,7 +69,7 @@
     <string name="unit_of_measure">Unit of Measure</string>
     <string name="quantity">Quantity</string>
     <string name="approximate_age">Approximate Age</string>
-    <string name="distance_seen">Distance Seen</string>
+    <string name="distance_seen">Distance Seen (Metres)</string>
     <string name="type_of_vegetation">Type of Vegetation</string>
     <string name="season">Season</string>
     <string name="current_state">Current State</string>
@@ -102,6 +106,8 @@
     <string name="elephant_poaching">Elephant Poaching</string>
     <string name="game_meat">Game Meat</string>
     <string name="charcoal_burning">Charcoal Burning</string>
+    <string name="charcoal_burning_kilns">Charcoal Burning (Kilns)</string>
+    <string name="charcoal_burning_bags">Charcoal Burning (Bags)</string>
     <string name="registration_confirmation">Can you confirm that you have entered the right details?</string>
     <string name="yes">Yes</string>
     <string name="no">No</string>
@@ -110,6 +116,7 @@
     <string name="shift_successfully_ended">Shift successfully ended</string>
     <string name="end_shift_confirmation">Are you sure you want to end current shift?</string>
     <string name="record_save_success_msg">Record successfully saved.</string>
+    <string name="record_update_success_msg">Record successfully updated.</string>
     <string name="validation_photo">Photo is required!</string>
     <string name="name_of_waterhole">Name of Waterhole</string>
     <string name="level_of_water">Level of Water</string>

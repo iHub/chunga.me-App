@@ -5,6 +5,7 @@ import java.util.Map;
 public interface CharcoalService {
 
 	public Map<String, Object> saveBagsData(
+		Integer id,
 		Integer noOfBags,
 		String mode,
 		String actionTaken,
@@ -14,6 +15,7 @@ public interface CharcoalService {
 	);
 	
 	public Map<String, Object> saveKilns(
+		Integer id,
 		Integer noOfKilns,
 		String freshnessLevels,
 		String treeUsed,

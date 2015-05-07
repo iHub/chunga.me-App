@@ -29,6 +29,7 @@
 			android:orientation="vertical" >
 			
 		    <LinearLayout
+		        android:id="@+id/switchView"
 		        android:layout_width="match_parent"
 		        android:layout_height="wrap_content"
 		        android:orientation="vertical"
@@ -72,13 +73,17 @@
 				android:paddingRight="16dp"
 				android:paddingTop="16dp" >
 		        
+		        <TextView
+	            android:layout_width="match_parent"
+	            android:layout_height="wrap_content"
+	            android:text="@string/animal"
+	            android:textSize="18sp"
+	            android:textColor="@color/bg" />
 		        
 		        <EditText
 			        android:id="@+id/animalNameView"
 			        android:layout_width="match_parent"
 			        android:layout_height="wrap_content"
-			        android:hint="@string/animal"
-			        android:textColorHint="@color/bg"
 			        android:layout_marginBottom="15dp" />
 		        
 		        <TextView
@@ -126,12 +131,17 @@
 		            android:layout_height="wrap_content"
 		            android:layout_marginBottom="10dp" />
 		        
+		        <TextView
+		            android:layout_width="match_parent"
+		            android:layout_height="wrap_content"
+		            android:text="@string/distance_seen"
+		            android:textSize="18sp"
+		            android:textColor="@color/bg" />
+		        
 		        <EditText
 			        android:id="@+id/distanceSeenView"
 			        android:layout_width="match_parent"
-			        android:layout_height="wrap_content"
-			        android:hint="@string/distance_seen"
-			        android:textColorHint="@color/bg" />
+			        android:layout_height="wrap_content" />
 		        
 			</LinearLayout>
 			
@@ -145,28 +155,43 @@
 				android:paddingTop="16dp"
 				android:visibility="gone" >
 		        
+			    <TextView
+		            android:layout_width="match_parent"
+		            android:layout_height="wrap_content"
+		            android:text="@string/herd_name_label"
+		            android:textSize="18sp"
+		            android:textColor="@color/bg" />
+		        
 		        <EditText
 			        android:id="@+id/herdNameView"
 			        android:layout_width="match_parent"
 			        android:layout_height="wrap_content"
-			        android:hint="@string/herd_name_label"
-			        android:textColorHint="@color/bg"
 			        android:layout_marginBottom="15dp" />
+		        
+		        <TextView
+		            android:layout_width="match_parent"
+		            android:layout_height="wrap_content"
+		            android:text="@string/type_species"
+		            android:textSize="18sp"
+		            android:textColor="@color/bg" />
 		        
 		        <EditText
 			        android:id="@+id/typeSpeciesView"
 			        android:layout_width="match_parent"
 			        android:layout_height="wrap_content"
-			        android:hint="@string/type_species"
-			        android:textColorHint="@color/bg"
 			        android:layout_marginBottom="15dp" />
+		        
+		        <TextView
+		            android:layout_width="match_parent"
+		            android:layout_height="wrap_content"
+		            android:text="@string/no_of_animals"
+		            android:textSize="18sp"
+		            android:textColor="@color/bg" />
 		        
 		        <EditText
 			        android:id="@+id/herdNoOfAnimalsView"
 			        android:layout_width="match_parent"
 			        android:layout_height="wrap_content"
-			        android:hint="@string/no_of_animals"
-			        android:textColorHint="@color/bg"
 			        android:inputType="number" />
 		        
 		        <TextView
@@ -183,12 +208,17 @@
 		            android:layout_height="wrap_content"
 		            android:layout_marginBottom="10dp" />
 		        
+		        <TextView
+		            android:layout_width="match_parent"
+		            android:layout_height="wrap_content"
+		            android:text="@string/distance_seen"
+		            android:textSize="18sp"
+		            android:textColor="@color/bg" />
+		        
 		        <EditText
 			        android:id="@+id/herdDistanceSeenView"
 			        android:layout_width="match_parent"
-			        android:layout_height="wrap_content"
-			        android:hint="@string/distance_seen"
-			        android:textColorHint="@color/bg" />
+			        android:layout_height="wrap_content" />
 		        
 			</LinearLayout>
 			

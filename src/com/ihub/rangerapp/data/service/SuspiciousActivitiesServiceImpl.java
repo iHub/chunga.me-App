@@ -5,6 +5,7 @@ import java.util.Map;
 
 import android.content.ContentValues;
 import android.database.sqlite.SQLiteDatabase;
+import android.provider.BaseColumns;
 
 import com.ihub.rangerapp.RangerApp;
 import com.ihub.rangerapp.data.sqlite.Schemas;
@@ -12,7 +13,7 @@ import com.ihub.rangerapp.data.sqlite.Schemas;
 public class SuspiciousActivitiesServiceImpl extends DatabaseService implements SuspiciousActivitiesService {
 
 	@Override
-	public Map<String, Object> save(String actionTaken, String extraNotes, String imagePath, String wp) {
+	public Map<String, Object> save(Integer id, String actionTaken, String extraNotes, String imagePath, String wp) {
 		
 		Map<String, Object> result = new HashMap<String, Object>();
 	
@@ -25,8 +26,15 @@ public class SuspiciousActivitiesServiceImpl extends DatabaseService implements 
 		values.put(Schemas.SuspiciousActivities.WP, wp);
 		
 		try {
-			db.insert(Schemas.ELEPHANT_POACHING_TABLE, null, values);
-			result.put("status", "success");
+			
+			if(id == -1) {
+ 				db.insert(Schemas.SUSPICIOUS_ACTIVITIES_TABLE, null, values);
+ 	 			result.put("status", "success");
+ 			} else {
+ 				db.update(Schemas.SUSPICIOUS_ACTIVITIES_TABLE, values, BaseColumns._ID + "=" + id, null);
+ 				result.put("status", "success");
+ 			}
+			
 		} catch (Exception e) {
 			result.put("status", "error");
 			result.put("message", e.getMessage());

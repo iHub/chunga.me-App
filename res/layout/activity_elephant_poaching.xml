@@ -44,13 +44,18 @@
 	            android:layout_width="match_parent"
 	            android:layout_height="wrap_content"
 	            android:layout_marginBottom="10dp" />
+	        
+	        <TextView
+	            android:layout_width="match_parent"
+	            android:layout_height="wrap_content"
+	            android:text="@string/no_of_animals"
+	            android:textSize="18sp"
+	            android:textColor="@color/bg" />
 		    
 		    <EditText
 		        android:id="@+id/noOfAnimalsView"
 		        android:layout_width="match_parent"
 		        android:layout_height="wrap_content"
-		        android:hint="@string/no_of_animals"
-		        android:textColorHint="@color/bg"
 		        android:layout_marginBottom="10dp"
 		        android:inputType="number" />
 		    

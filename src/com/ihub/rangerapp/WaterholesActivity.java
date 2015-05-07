@@ -3,10 +3,11 @@ package com.ihub.rangerapp;
 import java.util.Map;
 import com.ihub.rangerapp.data.service.WaterholeService;
 import com.ihub.rangerapp.data.service.WaterholeServiceImpl;
+
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
-import android.view.Menu;
-import android.view.MenuItem;
+import android.text.TextUtils;
 import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
@@ -40,6 +41,8 @@ public class WaterholesActivity extends CameraGPSActionBarActivity {
             }
         });
         
+        Intent data = getIntent();
+        
         initViews();
         
         waterholeName = (EditText) findViewById(R.id.waterholeName);
@@ -59,10 +62,39 @@ public class WaterholesActivity extends CameraGPSActionBarActivity {
         	
 			@Override
 			public void onClick(View v) {
-				if(isValid())
-					save();
+				if(mode == 3)
+					finish();
+				else
+					if(isValid())
+						save();
 			}
 		});
+        
+        if(mode != 1) {
+        	
+        	//TODO prefill values
+        	
+        	if(!TextUtils.isEmpty(getIntent().getStringExtra("name")))
+        		waterholeName.setText(getIntent().getStringExtra("name"));
+        	
+        	if(!TextUtils.isEmpty(getIntent().getStringExtra("levelOfWater")))
+            	for(int i = 0; i < levelOfWaterAdapter.getCount(); i++) {
+            		if(levelOfWaterSpinner.getItemAtPosition(i).toString().equals(getIntent().getStringExtra("levelOfWater")))
+            			levelOfWaterSpinner.setSelection(i);
+            	}
+        	
+        	if(data.hasExtra("numberOfAnimals"))
+            	noOfAnimalsSeenView.setText(data.getIntExtra("numberOfAnimals", 0) + "");
+        	
+        	if(!TextUtils.isEmpty(getIntent().getStringExtra("extraNotes")))
+        		extraNotes.setText(getIntent().getStringExtra("extraNotes"));
+            
+            if(mode == 2) {
+            	saveBtn.setText(getString(R.string.edit));
+            } else {
+            	saveBtn.setText(getString(R.string.close));
+            }
+        }
 	}
 	
 	protected void save() {
@@ -73,8 +105,13 @@ public class WaterholesActivity extends CameraGPSActionBarActivity {
 			noOfAnimals = Integer.valueOf(noOfAnimalsSeenView.getText().toString());
 		} catch (Exception e) {}
 		
+		Integer id = -1;
+		if(mode == 2)
+			id = getIntent().getIntExtra("id", -1);
+		
 		WaterholeService service = new WaterholeServiceImpl();
 		Map<String, Object> result = service.save(
+			id,
 			waterholeName.getText().toString(), 
 			levelOfWaterSpinner.getSelectedItem().toString(), 
 			noOfAnimals, 

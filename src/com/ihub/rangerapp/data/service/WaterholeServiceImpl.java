@@ -5,6 +5,7 @@ import java.util.Map;
 
 import android.content.ContentValues;
 import android.database.sqlite.SQLiteDatabase;
+import android.provider.BaseColumns;
 
 import com.ihub.rangerapp.RangerApp;
 import com.ihub.rangerapp.data.sqlite.Schemas;
@@ -12,7 +13,7 @@ import com.ihub.rangerapp.data.sqlite.Schemas;
 public class WaterholeServiceImpl extends DatabaseService implements WaterholeService {
 
 	@Override
-	public Map<String, Object> save(String name, String level, Integer noOfAnimalsSeen, String extraNotes, String imagePath, String wp) {
+	public Map<String, Object> save(Integer id, String name, String level, Integer noOfAnimalsSeen, String extraNotes, String imagePath, String wp) {
 		
 		Map<String, Object> result = new HashMap<String, Object>();
 		
@@ -27,8 +28,15 @@ public class WaterholeServiceImpl extends DatabaseService implements WaterholeSe
 		values.put(Schemas.Waterhole.WP, wp);
 		
 		try {
-			db.insert(Schemas.WATER_HOLES_TABLE, null, values);
-			result.put("status", "success");
+			
+			if(id == -1) {
+ 				db.insert(Schemas.WATER_HOLES_TABLE, null, values);
+ 	 			result.put("status", "success");
+ 			} else {
+ 				db.update(Schemas.WATER_HOLES_TABLE, values, BaseColumns._ID + "=" + id, null);
+ 				result.put("status", "success");
+ 			}
+			
 		} catch (Exception e) {
 			result.put("status", "error");
 			result.put("message", e.getMessage());

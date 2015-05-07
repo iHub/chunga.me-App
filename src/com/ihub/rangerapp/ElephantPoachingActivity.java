@@ -7,6 +7,7 @@ import com.ihub.rangerapp.data.service.ElephantServiceImpl;
 
 import android.support.v7.widget.Toolbar;
 import android.text.TextUtils;
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.Gravity;
 import android.view.View;
@@ -45,6 +46,8 @@ public class ElephantPoachingActivity extends CameraGPSActionBarActivity {
                 ElephantPoachingActivity.this.onBackPressed();
             }
         });
+        
+        Intent data = getIntent();
         
         initViews();
         
@@ -100,6 +103,53 @@ public class ElephantPoachingActivity extends CameraGPSActionBarActivity {
 					save();
 			}
 		});
+        
+        if(mode != 1) {
+        	
+        	if(data.hasExtra("noOfAnimals"))
+            	noOfAnimalsView.setText(data.getIntExtra("noOfAnimals", 0) + "");
+        	
+        	if(!TextUtils.isEmpty(getIntent().getStringExtra("toolsUsed")))
+            	for(int i = 0; i < toolsUsedAdapter.getCount(); i++) {
+            		if(toolsUsedSpinner.getItemAtPosition(i).toString().equals(getIntent().getStringExtra("toolsUsed")))
+            			toolsUsedSpinner.setSelection(i);
+            	}
+        	
+        	if(!TextUtils.isEmpty(getIntent().getStringExtra("age")))
+            	for(int i = 0; i < ageAdapter.getCount(); i++) {
+            		if(ageSpinner.getItemAtPosition(i).toString().equals(getIntent().getStringExtra("age")))
+            			ageSpinner.setSelection(i);
+            	}
+        	
+        	if(!TextUtils.isEmpty(getIntent().getStringExtra("sex")))
+            	for(int i = 0; i < sexAdapter.getCount(); i++) {
+            		if(sexSpinner.getItemAtPosition(i).toString().equals(getIntent().getStringExtra("sex")))
+            			sexSpinner.setSelection(i);
+            	}
+        	
+        	
+        	if(!TextUtils.isEmpty(getIntent().getStringExtra("ivoryPresence")))
+            	for(int i = 0; i < ivoryPresenceAdapter.getCount(); i++) {
+            		if(ivoryPresenceSpinner.getItemAtPosition(i).toString().equals(getIntent().getStringExtra("ivoryPresence")))
+            			ivoryPresenceSpinner.setSelection(i);
+            	}
+        	
+        	if(!TextUtils.isEmpty(getIntent().getStringExtra("actionTaken")))
+            	for(int i = 0; i < actionTakenAdapter.getCount(); i++) {
+            		if(actionTakenSpinner.getItemAtPosition(i).toString().equals(getIntent().getStringExtra("actionTaken")))
+            			actionTakenSpinner.setSelection(i);
+            	}
+        	
+        	
+        	if(!TextUtils.isEmpty(getIntent().getStringExtra("extraNotes")))
+        		extraNotes.setText(getIntent().getStringExtra("extraNotes"));
+            
+            if(mode == 2) {
+            	saveBtn.setText(getString(R.string.edit));
+            } else {
+            	saveBtn.setText(getString(R.string.close));
+            }
+        }
 	}
 	
 	protected void save() {
@@ -112,7 +162,12 @@ public class ElephantPoachingActivity extends CameraGPSActionBarActivity {
 			noOfAnimals = Integer.valueOf(noOfAnimalsView.getText().toString());
 		} catch(Exception e) {}
 		
+		Integer id = -1;
+		if(mode == 2)
+			id = getIntent().getIntExtra("id", -1);
+		
 		Map<String, Object> result = service.save(
+				id,
 				toolsUsedSpinner.getSelectedItem().toString(), 
 				noOfAnimals, 
 				ageSpinner.getSelectedItem().toString(), 
