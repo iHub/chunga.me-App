@@ -1,7 +1,6 @@
 package com.ihub.rangerapp;
 
 import com.ihub.rangerapp.data.sqlite.DBPreferences;
-
 import android.app.Activity;
 import android.content.Intent;
 import android.os.AsyncTask;
@@ -17,23 +16,18 @@ public class SplashActivity extends Activity {
 		new Task().execute();
 	}
 	
-	class Task extends AsyncTask<Void, Void, Void> {
+	class Task extends AsyncTask<Void, String, String> {
 		
 		@Override
-		protected Void doInBackground(Void... params) {
+		protected String doInBackground(Void... params) {
 			
-			try {
-				Thread.sleep(2800);
-			} catch (InterruptedException e) {}
-			return null;
+			return DBPreferences.instance().getPreferenceValue(DBPreferences.RANGER_NAME);
 		}
 		
 		@Override
-		protected void onPostExecute(Void result) {
+		protected void onPostExecute(String rangerName) {
 			
 			Intent intent = null;
-			
-			String rangerName = DBPreferences.instance().getPreferenceValue(DBPreferences.RANGER_NAME);
 			
 			if(TextUtils.isEmpty(rangerName))
 				intent = new Intent(SplashActivity.this, ProfileActivity.class);

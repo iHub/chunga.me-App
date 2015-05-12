@@ -34,7 +34,7 @@ public class ReportsView extends Fragment {
 		
 		mRecyclerView = (RecyclerView) view.findViewById(R.id.list);
         mRecyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
-		
+        
 		adapter = new ReportsAdapter(new ArrayList<com.ihub.rangerapp.entity.MenuItem>(), R.layout.row_application, getActivity());
         mRecyclerView.setAdapter(adapter);
         

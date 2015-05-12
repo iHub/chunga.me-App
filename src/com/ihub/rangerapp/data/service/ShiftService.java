@@ -14,8 +14,8 @@ public interface ShiftService {
 			String route,
 			String mode,
 			String weather,
-			String startWP,
-			String endWP,
+			String lat,
+			String lon,
 			String purpose);
 	
 	public Boolean hasOpenShift();

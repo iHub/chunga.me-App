@@ -3,7 +3,6 @@ package com.ihub.rangerapp;
 import java.util.Map;
 import com.ihub.rangerapp.data.service.ShiftService;
 import com.ihub.rangerapp.data.service.ShiftServiceImpl;
-
 import eu.inmite.android.lib.validations.form.FormValidator;
 import eu.inmite.android.lib.validations.form.annotations.MinLength;
 import eu.inmite.android.lib.validations.form.annotations.MinNumberValue;
@@ -31,11 +30,11 @@ public class StartShiftActivity extends ActionBarActivity {
 	@MinNumberValue(value= "1", messageId = R.string.validation_min_member_count, order = 3)
 	EditText noOfMembersView;
 	
-	@NotEmpty(messageId = R.string.validation_start_weight_point, order = 4)
-	EditText startWPView;
+	@NotEmpty(messageId = R.string.validation_lat, order = 4)
+	EditText latView;
 	
-	@NotEmpty(messageId = R.string.validation_end_weight_point, order = 5)
-	EditText endWPView;
+	@NotEmpty(messageId = R.string.validation_long, order = 5)
+	EditText longView;
 	
 	@NotEmpty(messageId = R.string.validation_purpose, order = 6)
 	EditText purposeView;
@@ -69,8 +68,8 @@ public class StartShiftActivity extends ActionBarActivity {
         
         leaderView = (EditText) findViewById(R.id.leaderView);
         noOfMembersView = (EditText) findViewById(R.id.noOfMembersView);
-        startWPView = (EditText) findViewById(R.id.startWPView);
-        endWPView = (EditText) findViewById(R.id.endWPView);
+        latView = (EditText) findViewById(R.id.latView);
+        longView = (EditText) findViewById(R.id.longView);
         purposeView = (EditText) findViewById(R.id.purposeView);
         
         startShiftBtn = (Button) findViewById(R.id.startShiftBtn);
@@ -120,33 +119,32 @@ public class StartShiftActivity extends ActionBarActivity {
 	
 	private Boolean isValid() {
 		
-		Boolean isValid = FormValidator.validate(this, new SimpleErrorPopupCallback(this));
-		
-		//validate station
-		//validate ranch
-		//validate mode
-		//validate weather
+		Boolean isValid = FormValidator.validate(this, new SimpleErrorPopupCallback(this, true));
 		
 		if(isValid) {
 			
-			if("".equals(stationSpinner.getSelectedItem().toString())) {
+			if(stationSpinner.getSelectedItemPosition() == 0) {
 				isValid = false;
 				showPopupError(getString(R.string.validation_station));
+				stationSpinner.requestFocus();
 			}
 			
-			if(isValid && "".equals(ranchSpinner.getSelectedItem().toString())) {
+			if(isValid && ranchSpinner.getSelectedItemPosition() == 0) {
 				isValid = false;
 				showPopupError(getString(R.string.validation_ranch));
+				ranchSpinner.requestFocus();
 			}
 			
-			if(isValid && "".equals(modeSpinner.getSelectedItem().toString())) {
+			if(isValid && modeSpinner.getSelectedItemPosition() == 0) {
 				isValid = false;
 				showPopupError(getString(R.string.validation_transport_mode));
+				modeSpinner.requestFocus();
 			}
-			
-			if(isValid && "".equals(weatherSpinner.getSelectedItem().toString())) {
+			//
+			if(isValid && weatherSpinner.getSelectedItemPosition() == 0) {
 				isValid = false;
 				showPopupError(getString(R.string.validation_weather));
+				weatherSpinner.requestFocus();
 			}
 		}
 		
@@ -160,9 +158,7 @@ public class StartShiftActivity extends ActionBarActivity {
 	}
 	
 	protected void startShift() {
-		//call service which saves data to local db
-		//use asynctask
-		
+				
 		new StartShiftTask().execute(
 			stationSpinner.getSelectedItem().toString(),
 			ranchSpinner.getSelectedItem().toString(),
@@ -171,8 +167,8 @@ public class StartShiftActivity extends ActionBarActivity {
 			routeView.getText().toString(),
 			modeSpinner.getSelectedItem().toString(),
 			weatherSpinner.getSelectedItem().toString(),
-			startWPView.getText().toString(),
-			endWPView.getText().toString(),
+			latView.getText().toString(),
+			longView.getText().toString(),
 			purposeView.getText().toString());
 	}
 	

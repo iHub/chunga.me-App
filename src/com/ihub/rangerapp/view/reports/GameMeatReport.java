@@ -47,6 +47,12 @@ public class GameMeatReport extends ReportFragment {
 	}
 	
 	@Override
+	public void onActivityResult(int requestCode, int resultCode, Intent data) {
+		super.onActivityResult(requestCode, resultCode, data);
+		
+	}
+	
+	@Override
 	public String getLoaderName() {
 		return GameMeatLoader.class.getSimpleName();
 	}

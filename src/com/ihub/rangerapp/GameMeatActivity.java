@@ -75,13 +75,13 @@ public class GameMeatActivity extends CameraGPSActionBarActivity {
         
         switch(mode) {
         	case 1:
-        	
+        		
         		break;
         	case 2:
         	case 3:
         		if(!TextUtils.isEmpty(getIntent().getStringExtra("animal")))
             		animalView.setText(getIntent().getStringExtra("animal"));
-                
+        		
                 if(data.hasExtra("noOfAnimals"))
                 	noOfAnimalsView.setText(data.getIntExtra("noOfAnimals", 0) + "");
                 
@@ -105,7 +105,6 @@ public class GameMeatActivity extends CameraGPSActionBarActivity {
         		
         		break;
         }
-        
 	}
 	
 	protected void save() {
@@ -128,6 +127,12 @@ public class GameMeatActivity extends CameraGPSActionBarActivity {
 				extraNotes.getText().toString(), 
 				fileName, 
 				getWP());
+		
+		if(mode == 2) {
+			Intent data = new Intent();
+			
+			setResult(RESULT_OK, data);
+		}
 		
 		showSaveResult(result);
 	}

@@ -17,6 +17,7 @@ import com.ihub.rangerapp.view.AmazingListView;
 import com.ihub.rangerapp.view.BaseView;
 
 import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v4.widget.SwipeRefreshLayout.OnRefreshListener;
@@ -45,6 +46,8 @@ public abstract class RefreshListView extends BaseView implements OnRefreshListe
 	Map<String, Object> loadParams = new HashMap<String, Object>();
 	
 	Boolean isRefresh = false;
+	
+	int selectedPosition = -1;
 	
 	public RefreshListView() {}
 	
@@ -212,7 +215,9 @@ public abstract class RefreshListView extends BaseView implements OnRefreshListe
 		}
 	}
 
-	public abstract void onItemSelected(AdapterView<?> parent, View view, int position, long id);
+	public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+		this.selectedPosition = position;
+	}
 	
 	@Override
 	public boolean onOptionsItemSelected(MenuItem item) {

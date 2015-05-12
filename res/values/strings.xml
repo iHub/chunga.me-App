@@ -102,6 +102,8 @@
     <string name="weather">Weather</string>
     <string name="purpose">Purpose</string>
     <string name="start_wp">Start WP</string>
+    <string name="lat">Lat</string>
+    <string name="lon">Long</string>
     <string name="end_wp">End WP</string>
     <string name="elephant_poaching">Elephant Poaching</string>
     <string name="game_meat">Game Meat</string>
@@ -125,7 +127,7 @@
 
     <!-- http://openweathermap.org/weather-conditions -->
     <string-array name="weather_conditions">
-        <item></item>
+        <item>Select Weather Condition</item>
         <item>Clear Sky</item>
         <item>Few Clouds</item>
         <item>Scattered Clouds</item>
@@ -136,7 +138,7 @@
         <item>Mist</item>
     </string-array>
     <string-array name="transport_modes">
-        <item></item>
+        <item>Select Mode</item>
         <item>Air</item>
         <item>Vehicle</item>
         <item>Foot</item>
@@ -172,7 +174,7 @@
         <item>Year(s)</item>
     </string-array>
     <string-array name="base_stations">
-        <item></item>
+        <item>Select Station</item>
         <item>ST2-0</item>
         <item>ST3-0</item>
         <item>ST5-1</item>
@@ -183,7 +185,7 @@
         <item>ST8-0</item>
     </string-array>
     <string-array name="ranches">
-        <item></item>
+        <item>Select Ranch</item>
         <item>Amaka</item>
         <item>Bachuma</item>
         <item>Bura</item>
@@ -300,8 +302,8 @@
     <string name="validation_leader">Leader is required!</string>
     <string name="validation_leader_length">Leader name must be atleast 5 characters</string>
     <string name="validation_min_member_count">Members must be more than 0</string>
-    <string name="validation_start_weight_point">Start Weight Point is required!</string>
-    <string name="validation_end_weight_point">End Weight Point is required!</string>
+    <string name="validation_lat">Latitude is required!</string>
+    <string name="validation_long">Longitude is required!</string>
     <string name="validation_purpose">Purpose is required!</string>
     <string name="validation_station">Station is required!</string>
     <string name="validation_transport_mode">Transport Mode is required!</string>

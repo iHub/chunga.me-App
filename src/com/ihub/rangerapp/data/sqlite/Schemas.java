@@ -186,12 +186,12 @@ public class Schemas {
 				Shift.ROUTE + " text," +
 				Shift.MODE + " text," +
 				Shift.WEATHER + " text," +
-				Shift.START_WP + " INTEGER," +
-				Shift.END_WP + " INTEGER," +
 				Shift.PURPOSE + " text," +
 				Shift.START_TIME + " DATE DEFAULT (datetime('now','localtime'))," +
 				Shift.END_TIME + " DATE," +
-				Shift.DATE_CREATED + " DATE DEFAULT (datetime('now','localtime'))" +
+				Shift.DATE_CREATED + " DATE DEFAULT (datetime('now','localtime'))," +
+				Shift.START_LAT + " TEXT," +
+				Shift.START_LON + " TEXT" +
 		");";
 		
 		db.execSQL(sql);
@@ -267,12 +267,12 @@ public class Schemas {
 		public static String ROUTE = "route";
 		public static String MODE = "mode";
 		public static String WEATHER = "weather";
-		public static String START_WP = "start_wp";
-		public static String END_WP = "end_wp";
 		public static String PURPOSE = "purpose";
 		public static String START_TIME = "start_time";
 		public static String END_TIME = "end_time";
 		public static String DATE_CREATED = "date_created";
+		public static String START_LAT = "start_latitude";
+		public static String START_LON = "start_longitude";
 	}
 	
 	public static void onUpgrage(SQLiteDatabase db, int oldVersion, int newVersion) {}

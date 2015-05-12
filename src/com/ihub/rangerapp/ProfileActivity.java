@@ -40,7 +40,7 @@ public class ProfileActivity extends ActionBarActivity {
 			@Override
 			public void onClick(View v) {
 				
-				if(FormValidator.validate(ProfileActivity.this, new SimpleErrorPopupCallback(ProfileActivity.this))) {
+				if(FormValidator.validate(ProfileActivity.this, new SimpleErrorPopupCallback(ProfileActivity.this, true))) {
 					
 					new AlertDialog.Builder(ProfileActivity.this)
 					.setMessage(getString(R.string.registration_confirmation))

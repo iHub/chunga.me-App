@@ -25,8 +25,8 @@ public class ShiftServiceImpl extends DatabaseService implements ShiftService {
 			String route, 
 			String mode, 
 			String weather, 
-			String startWP, 
-			String endWP, 
+			String lat, 
+			String lon, 
 			String purpose) {
 		
 		Map<String, Object> result = new HashMap<String, Object>();
@@ -48,11 +48,12 @@ public class ShiftServiceImpl extends DatabaseService implements ShiftService {
  		values.put(Schemas.Shift.ROUTE, route);
  		values.put(Schemas.Shift.MODE, mode);
  		values.put(Schemas.Shift.WEATHER, weather);
- 		values.put(Schemas.Shift.START_WP, Integer.valueOf(startWP));
- 		values.put(Schemas.Shift.END_WP, Integer.valueOf(endWP));
+ 		values.put(Schemas.Shift.START_LAT, lat);
+ 		values.put(Schemas.Shift.START_LON, Integer.valueOf(lon));
  		values.put(Schemas.Shift.PURPOSE, purpose);
  		
  		try {
+ 			
  			db.insert(Schemas.SHIFTS_TABLE, null, values);
  			result.put("status", "success");
  		} catch (Exception e) {
