@@ -46,14 +46,15 @@ public class CameraGPSActionBarActivity extends ActionBarActivity {
 	ProgressBar progressBar;
 	
 	TextView gpsText;
-	ImageView cameraImageView;
+	ImageView imageView;
 	
 	LocationManager locationManager;
 	LocationListener locationListener;
 	
 	Location lastLocation;
 	
-	String fileName;
+	String cameraNewImageUrl = "";
+	String imagePath;
 		
 	Integer mode = 1; //1 - Create, 2 - Edit, 3 - View
 	
@@ -141,7 +142,7 @@ public class CameraGPSActionBarActivity extends ActionBarActivity {
 		cameraBtn = (ImageButton) findViewById(R.id.cameraBtn);
 		
 		gpsText = (TextView) findViewById(R.id.gpsText);
-		cameraImageView = (ImageView) findViewById(R.id.cameraImageView);
+		imageView = (ImageView) findViewById(R.id.imageView);
 		
 		progressBar = (ProgressBar) findViewById(R.id.progressBar);
 		progressBar.setIndeterminate(mode == 1);
@@ -154,7 +155,7 @@ public class CameraGPSActionBarActivity extends ActionBarActivity {
 			}
 		});
 		
-		cameraImageView.setOnClickListener(new View.OnClickListener() {
+		imageView.setOnClickListener(new View.OnClickListener() {
 			
 			@Override
 			public void onClick(View v) {
@@ -167,9 +168,8 @@ public class CameraGPSActionBarActivity extends ActionBarActivity {
 			
 			if(getIntent().hasExtra("imagePath")) {
 				try {
-					fileName = getIntent().getStringExtra("imagePath");
-					Bitmap myBitmap = ThumbnailUtils.extractThumbnail(BitmapFactory.decodeFile(fileName), 48, 48);
-			    	cameraImageView.setImageBitmap(myBitmap);
+					imagePath = getIntent().getStringExtra("imagePath");
+					showImage(imagePath);
 				} catch (Exception e) {}
 			}
 			
@@ -203,10 +203,15 @@ public class CameraGPSActionBarActivity extends ActionBarActivity {
 	}
 	
 	protected void zoom() {
-		// TODO Auto-generated method stub
-		
-	}
 
+		if(!TextUtils.isEmpty(CameraGPSActionBarActivity.this.imagePath)) {
+			
+			Intent intent = new Intent(CameraGPSActionBarActivity.this, PhotoActivity.class);
+			intent.putExtra("path", imagePath);
+			startActivity(intent);
+		}
+	}
+	
 	public String locationToString(Location location) {
 		Coordinate c = new Coordinate(location.getLatitude(), location.getLongitude());
 		return c.toString();
@@ -224,16 +229,9 @@ public class CameraGPSActionBarActivity extends ActionBarActivity {
 			
 			if(requestCode == 300) {
 				
-				if(cameraImageView != null) {
-					
-			    	Bitmap myBitmap = ThumbnailUtils.extractThumbnail(BitmapFactory.decodeFile(fileName), 48, 48);
-			    	
-			    	cameraImageView.setImageBitmap(myBitmap);
-			    	//cameraImageView.setImageResource(R.drawable.hacksaw);
-			    	cameraImageView.setVisibility(View.VISIBLE);
-			    	cameraImageView.invalidate();
-			    	
-			    }
+				this.imagePath = cameraNewImageUrl;
+				showImage(imagePath);
+				
 			} else if (requestCode == 200) {
 				
 				Uri selectedimg = data.getData();
@@ -248,22 +246,23 @@ public class CameraGPSActionBarActivity extends ActionBarActivity {
 	            String filePath = cursor.getString(columnIndex);
 	            cursor.close();
 	            
-	            fileName = filePath;	
+	            this.imagePath = filePath;
 	            
-	            if(cameraImageView != null) {
-			    	Bitmap myBitmap = BitmapFactory.decodeFile(fileName);
-
-			    	cameraImageView.setImageBitmap(myBitmap);
-			    	//cameraImageView.setImageResource(R.drawable.hacksaw);
-			    	cameraImageView.setVisibility(View.VISIBLE);
-			    	cameraImageView.invalidate();
-			    	
-			    }
+	            showImage(imagePath);
 			}
 		}
+	}
+	
+	protected void showImage(final String path) {
 		
+		Bitmap myBitmap = null;
 		
+		try {
+			myBitmap = ThumbnailUtils.extractThumbnail(BitmapFactory.decodeFile(path), 48, 48);
+		} catch (Exception e) {}
 		
+		if(myBitmap != null)
+			imageView.setImageBitmap(myBitmap);
 	}
 	
 	private File getOutputMediaFile() {
@@ -282,7 +281,7 @@ public class CameraGPSActionBarActivity extends ActionBarActivity {
 	    String timeStamp = new SimpleDateFormat("yyyyMMdd_HHmmss").format(new Date());
 	    File mediaFile = new File(mediaStorageDir.getPath() + File.separator +
 		        "IMG_"+ timeStamp + ".jpg");
-		        fileName = mediaFile.getAbsolutePath();
+	    cameraNewImageUrl = mediaFile.getAbsolutePath();
 	    
 	    return mediaFile;
 	}
@@ -349,7 +348,7 @@ public class CameraGPSActionBarActivity extends ActionBarActivity {
 		
 		Boolean isValid = true;
 		
-		if(TextUtils.isEmpty(fileName)) {
+		if(TextUtils.isEmpty(imagePath)) {
 			isValid = false;
 			Toast toast = Toast.makeText(this, getString(R.string.validation_photo), Toast.LENGTH_LONG);
 			toast.setGravity(Gravity.TOP, 0, 0);

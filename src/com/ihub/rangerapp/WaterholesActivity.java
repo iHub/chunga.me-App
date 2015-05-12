@@ -116,7 +116,7 @@ public class WaterholesActivity extends CameraGPSActionBarActivity {
 			levelOfWaterSpinner.getSelectedItem().toString(), 
 			noOfAnimals, 
 			extraNotes.getText().toString(), 
-			fileName, 
+			imagePath, 
 			getWP());
 		
 		showSaveResult(result);

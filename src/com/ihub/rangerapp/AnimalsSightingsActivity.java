@@ -210,7 +210,7 @@ public class AnimalsSightingsActivity extends CameraGPSActionBarActivity {
 					ageSpinner.getSelectedItem().toString(), 
 					distanceSeen, 
 					extraNotes.getText().toString(), 
-					fileName, 
+					imagePath, 
 					getWP());
 			
 			showSaveResult(result);
@@ -243,7 +243,7 @@ public class AnimalsSightingsActivity extends CameraGPSActionBarActivity {
 					typeSpeciesView.getText().toString(), 
 					noOfAnimals, 
 					herdAgeSpinner.getSelectedItem().toString(), 
-					distanceSeen, extraNotes.getText().toString(), fileName, getWP());
+					distanceSeen, extraNotes.getText().toString(), imagePath, getWP());
 			
 			showSaveResult(result);
 		}

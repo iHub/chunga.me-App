@@ -300,7 +300,6 @@
     <string name="sex">Sex</string>
     <string name="ivory_presence">Ivory Present</string>
     <string name="validation_leader">Leader is required!</string>
-    <string name="validation_leader_length">Leader name must be atleast 5 characters</string>
     <string name="validation_min_member_count">Members must be more than 0</string>
     <string name="validation_lat">Latitude is required!</string>
     <string name="validation_long">Longitude is required!</string>
@@ -312,5 +311,6 @@
     <string name="waterholes">Waterholes</string>
     <string name="title_activity_reports">Reports</string>
     <string name="title_activity_report_viewer">Report</string>
+    <string name="title_activity_photo">Photo</string>
 
 </resources>

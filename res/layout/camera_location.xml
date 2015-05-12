@@ -20,8 +20,8 @@
             android:layout_marginTop="26dp" />
         
         <ImageView
-            android:id="@+id/cameraImageView"
-            android:layout_width="160dp"
+            android:id="@+id/imageView"
+            android:layout_width="80dp"
             android:layout_height="80dp"
             android:layout_marginLeft="30dp"
             android:background="@drawable/my_borders"

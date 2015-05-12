@@ -93,7 +93,7 @@ public class SuspiciousActivitiesActivity extends CameraGPSActionBarActivity {
 			id = getIntent().getIntExtra("id", -1);
 		
 		SuspiciousActivitiesService service = new SuspiciousActivitiesServiceImpl();
-		Map<String, Object> result = service.save(id, actionTakenSpinner.getSelectedItem().toString(), extraNotes.getText().toString(), fileName, getWP());
+		Map<String, Object> result = service.save(id, actionTakenSpinner.getSelectedItem().toString(), extraNotes.getText().toString(), imagePath, getWP());
 		showSaveResult(result);
 	}
 	
@@ -101,7 +101,7 @@ public class SuspiciousActivitiesActivity extends CameraGPSActionBarActivity {
 
 		Boolean isValid = true;
 		
-		if(TextUtils.isEmpty(fileName)) {
+		if(TextUtils.isEmpty(imagePath)) {
 			isValid = false;
 			Toast toast = Toast.makeText(this, getString(R.string.validation_photo), Toast.LENGTH_LONG);
 			toast.setGravity(Gravity.TOP, 0, 0);

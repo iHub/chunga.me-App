@@ -175,7 +175,7 @@ public class ElephantPoachingActivity extends CameraGPSActionBarActivity {
 				ivoryPresenceSpinner.getSelectedItem().toString(), 
 				actionTakenSpinner.getSelectedItem().toString(), 
 				extraNotes.getText().toString(), 
-				fileName, getWP());
+				imagePath, getWP());
 		
 		showSaveResult(result);
 	}
@@ -184,7 +184,7 @@ public class ElephantPoachingActivity extends CameraGPSActionBarActivity {
 		
 		Boolean isValid = true;
 		
-		if(TextUtils.isEmpty(fileName)) {
+		if(TextUtils.isEmpty(imagePath)) {
 			isValid = false;
 			Toast toast = Toast.makeText(this, getString(R.string.validation_photo), Toast.LENGTH_LONG);
 			toast.setGravity(Gravity.TOP, 0, 0);
