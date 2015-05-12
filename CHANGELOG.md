@@ -28,5 +28,14 @@ All notable changes to this project will be documented in this file.
 - Created Reports Loaders for all the reports
 - Replace Hints With Labels for Edit Fields
 
+## 0.0.7 - 2015-05-05
+### Added
+- Implemented the save functions for all the data capture views. By Default, it can save a form with only the picture and GPS coordinates provided
+
+## 0.0.7 - 2015-02-15
+### Added
+- Initialised the project
+- Created the Signup Page
+- Created the Home Menu Page
 
 
