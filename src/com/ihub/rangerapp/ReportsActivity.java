@@ -3,14 +3,13 @@ package com.ihub.rangerapp;
 import com.ihub.rangerapp.view.DateFragment;
 import com.ihub.rangerapp.view.ReportsView;
 import android.support.v4.app.FragmentManager;
-import android.support.v4.app.FragmentTransaction;
 import android.support.v7.app.ActionBarActivity;
 import android.support.v7.widget.Toolbar;
 import android.os.Bundle;
 import android.view.View;
 
 public class ReportsActivity extends ActionBarActivity {
-
+	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
@@ -33,16 +32,8 @@ public class ReportsActivity extends ActionBarActivity {
             return;
         }
         
-        FragmentManager fragmentManager = getSupportFragmentManager();
-        FragmentTransaction fragmentTransaction = 
-        fragmentManager.beginTransaction();
-        
-        DateFragment fragment = new DateFragment();
-        fragmentTransaction.add(android.R.id.content, fragment);
-        
-        fragmentTransaction.commit();
-        
-        
+      showReportsView();
+      
 	}
 	
 	public void showReportsView() {
@@ -51,7 +42,6 @@ public class ReportsActivity extends ActionBarActivity {
         ReportsView fragment = new ReportsView();
         fragmentManager.beginTransaction()
         	.replace(android.R.id.content, fragment)
-        	.addToBackStack("reports")
         	.commit();
 	}
 }
