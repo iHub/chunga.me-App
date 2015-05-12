@@ -191,7 +191,9 @@ public class Schemas {
 				Shift.END_TIME + " DATE," +
 				Shift.DATE_CREATED + " DATE DEFAULT (datetime('now','localtime'))," +
 				Shift.START_LAT + " TEXT," +
-				Shift.START_LON + " TEXT" +
+				Shift.START_LON + " TEXT," +
+				Shift.END_LAT + " TEXT," +
+				Shift.END_LON + " TEXT" +
 		");";
 		
 		db.execSQL(sql);
@@ -273,6 +275,8 @@ public class Schemas {
 		public static String DATE_CREATED = "date_created";
 		public static String START_LAT = "start_latitude";
 		public static String START_LON = "start_longitude";
+		public static String END_LAT = "end_latitude";
+		public static String END_LON = "end_longitude";
 	}
 	
 	public static void onUpgrage(SQLiteDatabase db, int oldVersion, int newVersion) {}
