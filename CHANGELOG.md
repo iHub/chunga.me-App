@@ -14,6 +14,10 @@ All notable changes to this project will be documented in this file.
 - Fixed the start shift bug on some phones by focusing on invalid fields
 - Changed Weigh Points to Coordinates on Start Shift
 
+## 0.0.7 - 2015-05-10
+### Added
+- Added place holder text on start shift dropdowns
+
 ## 0.0.7 - 2015-05-06
 ### Added
 - Created Reports Views for Game Meat, Charcoal Burning, Suspicious Activities, Animal Sightings, Elephant Poaching and Waterholes
@@ -22,7 +26,7 @@ All notable changes to this project will be documented in this file.
 ### Added
 - Created a generic Reports Viewer
 - Created Reports Loaders for all the reports
-- 
+- Replace Hints With Labels for Edit Fields
 
 
 
