@@ -4,7 +4,6 @@ import java.util.Map;
 import com.ihub.rangerapp.data.service.ShiftService;
 import com.ihub.rangerapp.data.service.ShiftServiceImpl;
 import eu.inmite.android.lib.validations.form.FormValidator;
-import eu.inmite.android.lib.validations.form.annotations.MinLength;
 import eu.inmite.android.lib.validations.form.annotations.MinNumberValue;
 import eu.inmite.android.lib.validations.form.annotations.NotEmpty;
 import eu.inmite.android.lib.validations.form.callback.SimpleErrorPopupCallback;
@@ -24,7 +23,6 @@ import android.os.Bundle;
 public class StartShiftActivity extends ActionBarActivity {
 	
 	@NotEmpty(messageId = R.string.validation_leader, order = 1)
-	@MinLength(value = 5, messageId = R.string.validation_leader_length, order = 2)
 	EditText leaderView;
 	
 	@MinNumberValue(value= "1", messageId = R.string.validation_min_member_count, order = 3)
