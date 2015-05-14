@@ -4,11 +4,13 @@ import java.io.File;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.Map;
-
 import com.ihub.rangerapp.data.service.ShiftService;
 import com.ihub.rangerapp.data.service.ShiftServiceImpl;
 import com.ihub.rangerapp.location.Coordinate;
 
+import eu.inmite.android.lib.validations.form.FormValidator;
+import eu.inmite.android.lib.validations.form.annotations.NotEmpty;
+import eu.inmite.android.lib.validations.form.callback.SimpleErrorPopupCallback;
 import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
@@ -32,20 +34,25 @@ import android.util.Log;
 import android.view.Gravity;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.ProgressBar;
-import android.widget.TextView;
 import android.widget.Toast;
 
 public class CameraGPSActionBarActivity extends ActionBarActivity {
-
+	
 	ImageButton gpsBtn;
 	ImageButton cameraBtn;
 	
 	ProgressBar progressBar;
 	
-	TextView gpsText;
+	@NotEmpty(messageId = R.string.validation_lat, order = 1)
+	EditText latView;
+	//
+	@NotEmpty(messageId = R.string.validation_long, order = 2)
+	EditText longView;
+	
 	ImageView imageView;
 	
 	LocationManager locationManager;
@@ -55,7 +62,7 @@ public class CameraGPSActionBarActivity extends ActionBarActivity {
 	
 	String cameraNewImageUrl = "";
 	String imagePath;
-		
+	
 	Integer mode = 1; //1 - Create, 2 - Edit, 3 - View
 	
 	@Override
@@ -64,9 +71,11 @@ public class CameraGPSActionBarActivity extends ActionBarActivity {
 		
 		Intent data = getIntent();
         mode = data.getIntExtra("mode", 1);
-		
+        
 		initLocationManager();
 	}
+	
+	
 	
 	private void initLocationManager() {
 		
@@ -78,8 +87,10 @@ public class CameraGPSActionBarActivity extends ActionBarActivity {
 				lastLocation = location;
 				
 				if(mode == 1) {
-					if(gpsText != null) {
-						gpsText.setText(locationToString(location));
+					
+					if(latView != null) {
+						latView.setText(String.valueOf(location.getLatitude()));
+						longView.setText(String.valueOf(location.getLongitude()));
 					}
 					
 					if(progressBar != null)
@@ -141,7 +152,9 @@ public class CameraGPSActionBarActivity extends ActionBarActivity {
 		gpsBtn = (ImageButton) findViewById(R.id.gpsBtn);
 		cameraBtn = (ImageButton) findViewById(R.id.cameraBtn);
 		
-		gpsText = (TextView) findViewById(R.id.gpsText);
+		latView = (EditText) findViewById(R.id.latView);
+		longView = (EditText) findViewById(R.id.longView);
+		
 		imageView = (ImageView) findViewById(R.id.imageView);
 		
 		progressBar = (ProgressBar) findViewById(R.id.progressBar);
@@ -174,7 +187,6 @@ public class CameraGPSActionBarActivity extends ActionBarActivity {
 			}
 			
 			if(getIntent().hasExtra("wp") && !TextUtils.isEmpty(getIntent().getStringExtra("wp"))) {
-				gpsText.setText(getWP());
 			}
 		}
 		
@@ -188,13 +200,11 @@ public class CameraGPSActionBarActivity extends ActionBarActivity {
 						l = lastLocation.getLatitude() + "     " + lastLocation.getLatitude();
 					
 					Location lc  = locationManager.getLastKnownLocation(LocationManager.NETWORK_PROVIDER);
-				
-					if(gpsText != null) {
-						
-						if(lc != null)
-							gpsText.setText(locationToString(lc));
-					}
 					
+					if(lc != null) {
+						latView.setText(String.valueOf(lc.getLatitude()));
+						longView.setText(String.valueOf(lc.getLongitude()));
+					}
 				}
 			});
 		}
@@ -345,14 +355,33 @@ public class CameraGPSActionBarActivity extends ActionBarActivity {
 	}
 	
 	protected Boolean isValid() {
-		
+					
 		Boolean isValid = true;
 		
-		if(TextUtils.isEmpty(imagePath)) {
+		if(latView.getText().toString().length() == 0) {
+			
+			latView.setError(getString(R.string.validation_lat));
+			latView.requestFocus();
 			isValid = false;
-			Toast toast = Toast.makeText(this, getString(R.string.validation_photo), Toast.LENGTH_LONG);
-			toast.setGravity(Gravity.TOP, 0, 0);
-			toast.show();
+		}
+		
+		if(isValid) {
+			if(longView.getText().toString().length() == 0) {
+				
+				longView.setError(getString(R.string.validation_long));
+				longView.requestFocus();
+				isValid = false;
+			}
+		}
+						
+		if(isValid) {
+			
+			if(TextUtils.isEmpty(imagePath)) {
+				isValid = false;
+				Toast toast = Toast.makeText(this, getString(R.string.validation_photo), Toast.LENGTH_LONG);
+				toast.setGravity(Gravity.TOP, 0, 0);
+				toast.show();
+			}
 		}
 		
 		return isValid;

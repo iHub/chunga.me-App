@@ -137,20 +137,6 @@ public class GameMeatActivity extends CameraGPSActionBarActivity {
 		showSaveResult(result);
 	}
 	
-	protected Boolean isValid() {
-		
-		Boolean isValid = true;
-		
-		if(TextUtils.isEmpty(imagePath)) {
-			isValid = false;
-			Toast toast = Toast.makeText(this, getString(R.string.validation_photo), Toast.LENGTH_LONG);
-			toast.setGravity(Gravity.TOP, 0, 0);
-			toast.show();
-		}
-		
-		return isValid;
-	}
-	
 	@Override
     protected void onSaveInstanceState(Bundle outState) {
         super.onSaveInstanceState(outState);
