@@ -12,7 +12,9 @@ import eu.inmite.android.lib.validations.form.FormValidator;
 import eu.inmite.android.lib.validations.form.annotations.NotEmpty;
 import eu.inmite.android.lib.validations.form.callback.SimpleErrorPopupCallback;
 import android.app.Activity;
+import android.app.AlertDialog;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.database.Cursor;
 import android.graphics.Bitmap;
@@ -385,5 +387,21 @@ public class CameraGPSActionBarActivity extends ActionBarActivity {
 		}
 		
 		return isValid;
+	}
+	
+	@Override
+	public void onBackPressed() {
+		
+		new AlertDialog.Builder(this)
+			.setMessage(getString(R.string.exit_confirmation))
+			.setCancelable(false)
+			.setPositiveButton(R.string.yes, new DialogInterface.OnClickListener() {
+				
+				public void onClick(DialogInterface dialog, int id) {
+					finish();
+				}
+			})
+			.setNegativeButton(R.string.no, null)
+			.show();
 	}
 }

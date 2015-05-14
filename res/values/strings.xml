@@ -117,6 +117,7 @@
     <string name="registration_success">Hi {name} Welcome to RangerApp</string>
     <string name="shift_successfully_ended">Shift successfully ended</string>
     <string name="end_shift_confirmation">Are you sure you want to end current shift?</string>
+    <string name="exit_confirmation">Are you sure you want to exit?</string>
     <string name="record_save_success_msg">Record successfully saved.</string>
     <string name="record_update_success_msg">Record successfully updated.</string>
     <string name="validation_photo">Photo is required!</string>

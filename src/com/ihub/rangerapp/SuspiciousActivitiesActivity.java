@@ -6,6 +6,8 @@ import com.ihub.rangerapp.data.service.SuspiciousActivitiesService;
 import com.ihub.rangerapp.data.service.SuspiciousActivitiesServiceImpl;
 import android.support.v7.widget.Toolbar;
 import android.text.TextUtils;
+import android.app.AlertDialog;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.Gravity;
@@ -95,19 +97,5 @@ public class SuspiciousActivitiesActivity extends CameraGPSActionBarActivity {
 		SuspiciousActivitiesService service = new SuspiciousActivitiesServiceImpl();
 		Map<String, Object> result = service.save(id, actionTakenSpinner.getSelectedItem().toString(), extraNotes.getText().toString(), imagePath, getWP());
 		showSaveResult(result);
-	}
-	
-	protected Boolean isValid() {
-
-		Boolean isValid = true;
-		
-		if(TextUtils.isEmpty(imagePath)) {
-			isValid = false;
-			Toast toast = Toast.makeText(this, getString(R.string.validation_photo), Toast.LENGTH_LONG);
-			toast.setGravity(Gravity.TOP, 0, 0);
-			toast.show();
-		}
-		
-		return isValid;
 	}
 }

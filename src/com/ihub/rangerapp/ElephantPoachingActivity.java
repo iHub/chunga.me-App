@@ -7,6 +7,8 @@ import com.ihub.rangerapp.data.service.ElephantServiceImpl;
 
 import android.support.v7.widget.Toolbar;
 import android.text.TextUtils;
+import android.app.AlertDialog;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.Gravity;
@@ -178,19 +180,5 @@ public class ElephantPoachingActivity extends CameraGPSActionBarActivity {
 				imagePath, getWP());
 		
 		showSaveResult(result);
-	}
-	
-	protected Boolean isValid() {
-		
-		Boolean isValid = true;
-		
-		if(TextUtils.isEmpty(imagePath)) {
-			isValid = false;
-			Toast toast = Toast.makeText(this, getString(R.string.validation_photo), Toast.LENGTH_LONG);
-			toast.setGravity(Gravity.TOP, 0, 0);
-			toast.show();
-		}
-		
-		return isValid;
 	}
 }

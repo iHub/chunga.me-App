@@ -181,17 +181,16 @@ public class HomeActivity extends ActionBarActivity implements OnClickListener {
 	private void endCurrentShift() {
 		
 		new AlertDialog.Builder(this)
-		.setMessage(getString(R.string.end_shift_confirmation))
-		.setCancelable(false)
-		.setPositiveButton(R.string.yes, new DialogInterface.OnClickListener() {
-			
-			public void onClick(DialogInterface dialog, int id) {
-				new EndShiftTask().execute();
-			}
-		})
-		.setNegativeButton(R.string.no, null)
-		.show();
-		
+			.setMessage(getString(R.string.end_shift_confirmation))
+			.setCancelable(false)
+			.setPositiveButton(R.string.yes, new DialogInterface.OnClickListener() {
+				
+				public void onClick(DialogInterface dialog, int id) {
+					new EndShiftTask().execute();
+				}
+			})
+			.setNegativeButton(R.string.no, null)
+			.show();
 		
 	}
 	

@@ -15,6 +15,8 @@ import android.widget.LinearLayout;
 import android.widget.RadioButton;
 import android.widget.Spinner;
 import android.widget.Toast;
+import android.app.AlertDialog;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 
@@ -218,20 +220,6 @@ public class CharcoalBurningActivity extends CameraGPSActionBarActivity {
 			
 			showSaveResult(result);
 		}
-	}
-	
-	protected Boolean isValid() {
-
-		Boolean isValid = true;
-		
-		if(TextUtils.isEmpty(imagePath)) {
-			isValid = false;
-			Toast toast = Toast.makeText(this, getString(R.string.validation_photo), Toast.LENGTH_LONG);
-			toast.setGravity(Gravity.TOP, 0, 0);
-			toast.show();
-		}
-		
-		return isValid;
 	}
 	
 	private void initKilnsView() {

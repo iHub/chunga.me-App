@@ -4,6 +4,8 @@ import java.util.Map;
 import com.ihub.rangerapp.data.service.WaterholeService;
 import com.ihub.rangerapp.data.service.WaterholeServiceImpl;
 
+import android.app.AlertDialog;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
