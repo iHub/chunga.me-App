@@ -84,7 +84,8 @@
 			        android:id="@+id/animalNameView"
 			        android:layout_width="match_parent"
 			        android:layout_height="wrap_content"
-			        android:layout_marginBottom="15dp" />
+			        android:layout_marginBottom="15dp"
+			        android:inputType="textCapSentences" />
 		        
 		        <TextView
 		            android:layout_width="match_parent"
@@ -142,7 +143,7 @@
 			        android:id="@+id/distanceSeenView"
 			        android:layout_width="match_parent"
 			        android:layout_height="wrap_content"
-			        android:inputType="number" />
+			        android:inputType="numberDecimal" />
 		          
 			</LinearLayout>
 			
@@ -167,7 +168,8 @@
 			        android:id="@+id/herdNameView"
 			        android:layout_width="match_parent"
 			        android:layout_height="wrap_content"
-			        android:layout_marginBottom="15dp" />
+			        android:layout_marginBottom="15dp"
+			        android:inputType="textCapSentences" />
 		        
 		        <TextView
 		            android:layout_width="match_parent"
@@ -180,7 +182,8 @@
 			        android:id="@+id/typeSpeciesView"
 			        android:layout_width="match_parent"
 			        android:layout_height="wrap_content"
-			        android:layout_marginBottom="15dp" />
+			        android:layout_marginBottom="15dp"
+			        android:inputType="textCapSentences" />
 		        
 		        <TextView
 		            android:layout_width="match_parent"
@@ -219,7 +222,8 @@
 		        <EditText
 			        android:id="@+id/herdDistanceSeenView"
 			        android:layout_width="match_parent"
-			        android:layout_height="wrap_content" />
+			        android:layout_height="wrap_content"
+			        android:inputType="numberDecimal" />
 		        
 			</LinearLayout>
 			
@@ -239,7 +243,9 @@
 		        <EditText
 			        android:id="@+id/extraNotes"
 			        android:layout_width="match_parent"
-			        android:layout_height="wrap_content" />
+			        android:layout_height="wrap_content"
+			        android:inputType="textCapSentences"
+			        android:minLines="2" />
 				
 			    <Button
 			        android:id="@+id/saveBtn"

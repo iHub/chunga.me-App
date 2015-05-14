@@ -102,13 +102,19 @@
 		            android:layout_height="wrap_content"
 		            android:layout_marginBottom="10dp" />
 		        
+		        <TextView
+		            android:layout_width="match_parent"
+		            android:layout_height="wrap_content"
+		            android:text="@string/tree_used"
+		            android:textSize="18sp"
+			        android:textColor="@color/bg" />
+		        
 		        <EditText
 			        android:id="@+id/treeUsedView"
 			        android:layout_width="match_parent"
 			        android:layout_height="wrap_content"
-			        android:hint="@string/tree_used"
-			        android:textColorHint="@color/bg"
-			        android:layout_marginBottom="10dp" />
+			        android:layout_marginBottom="10dp"
+			        android:inputType="textCapSentences" />
 		        
 		        <TextView
 		            android:layout_width="match_parent"
@@ -194,7 +200,9 @@
 			        android:id="@+id/extraNotes"
 			        android:layout_width="match_parent"
 			        android:layout_height="wrap_content"
-			        android:layout_marginBottom="15dp" />
+			        android:layout_marginBottom="15dp"
+			        android:inputType="textCapSentences"
+			        android:minLines="2" />
 		        
 			    <Button
 			        android:id="@+id/saveBtn"
