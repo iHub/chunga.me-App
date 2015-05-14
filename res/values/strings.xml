@@ -1,11 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 
-    <string name="app_name">Chungame</string>
+    <string name="app_name">Chunga.me</string>
     <string name="hello_world">Hello</string>
     <string name="action_settings">Settings</string>
     <string name="title_activity_phone_registration">Register</string>
-    <string name="title_activity_home">Chungame</string>
     <string name="next">Next</string>
     <string name="prev">Previous</string>
     <string name="finish">Submit order</string>
