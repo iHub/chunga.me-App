@@ -57,6 +57,16 @@ public class IncidencesMenuAdapter extends RecyclerView.Adapter<IncidencesMenuAd
     public void onBindViewHolder(final ViewHolder viewHolder, int i) {
         final MenuItem item = menuItems.get(i);
         viewHolder.name.setText(item.getName());
+        
+        if(mAct.getString(R.string.game_meat).equals(item.getName())) {
+        	viewHolder.image.setImageResource(R.drawable.antelope);
+        } else if(mAct.getString(R.string.charcoal_burning).equals(item.getName())) {
+        	viewHolder.image.setImageResource(R.drawable.sack);
+        } else if(mAct.getString(R.string.elephant_poaching).equals(item.getName())) {
+        	viewHolder.image.setImageResource(R.drawable.icon_elephant);
+        } else if(mAct.getString(R.string.suspicious_activities).equals(item.getName())) {
+        	viewHolder.image.setImageResource(R.drawable.suspicious);
+        }
     }
     
     @Override
@@ -73,7 +83,7 @@ public class IncidencesMenuAdapter extends RecyclerView.Adapter<IncidencesMenuAd
         public ViewHolder(View itemView, IncidentsActivity mAct) {
             super(itemView);
             name = (TextView) itemView.findViewById(R.id.countryName);
-            //image = (ImageView) itemView.findViewById(R.id.countryImage);
+            image = (ImageView) itemView.findViewById(R.id.imageView);
             hAct = mAct;
             name.setOnClickListener(this);
         }

@@ -34,6 +34,7 @@ public class IncidentsActivity extends ActionBarActivity {
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         
         toolbar.setNavigationOnClickListener(new View.OnClickListener() {
+        	
             @Override
             public void onClick(View v) {
                 IncidentsActivity.this.onBackPressed();
@@ -47,7 +48,7 @@ public class IncidentsActivity extends ActionBarActivity {
         	mRecyclerView.setItemAnimator(new CustomItemAnimator());
 		}
         
-        mAdapter = new IncidencesMenuAdapter(new ArrayList<com.ihub.rangerapp.entity.MenuItem>(), R.layout.row_application, IncidentsActivity.this);
+        mAdapter = new IncidencesMenuAdapter(new ArrayList<com.ihub.rangerapp.entity.MenuItem>(), R.layout.row_incidents, IncidentsActivity.this);
         mRecyclerView.setAdapter(mAdapter);
         
         new Handler().postDelayed(new Runnable() {
