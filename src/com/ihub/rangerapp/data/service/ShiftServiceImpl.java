@@ -49,7 +49,7 @@ public class ShiftServiceImpl extends DatabaseService implements ShiftService {
  		values.put(Schemas.Shift.MODE, mode);
  		values.put(Schemas.Shift.WEATHER, weather);
  		values.put(Schemas.Shift.START_LAT, lat);
- 		values.put(Schemas.Shift.START_LON, Integer.valueOf(lon));
+ 		values.put(Schemas.Shift.START_LON, lon);
  		values.put(Schemas.Shift.PURPOSE, purpose);
  		
  		try {
@@ -93,7 +93,7 @@ public class ShiftServiceImpl extends DatabaseService implements ShiftService {
 	}
 
 	@Override
-	public void endCurrentShift() {
+	public void endCurrentShift(String lat, String lon) {
 		
 		SQLiteDatabase db = getWritableDatabase(RangerApp.get());
 		
@@ -101,6 +101,8 @@ public class ShiftServiceImpl extends DatabaseService implements ShiftService {
 		
 		ContentValues args = new ContentValues();
 	    args.put(Schemas.Shift.END_TIME, new Date().getTime());
+	    args.put(Schemas.Shift.END_LAT, lat);
+	    args.put(Schemas.Shift.END_LON, lon);
 	    db.update(Schemas.SHIFTS_TABLE, args, BaseColumns._ID + "=" + currentShiftID, null);
 	}
 

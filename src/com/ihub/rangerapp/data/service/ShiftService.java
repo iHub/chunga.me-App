@@ -22,7 +22,7 @@ public interface ShiftService {
 	
 	public Shift getOpenShift();
 	
-	public void endCurrentShift();
+	public void endCurrentShift(String lat, String lon);
 	
 	public Long getCurrentShiftID();
 }

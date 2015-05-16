@@ -103,6 +103,8 @@
     <string name="start_wp">Start WP</string>
     <string name="lat">Lat</string>
     <string name="lon">Long</string>
+    <string name="latitude">Latitude</string>
+    <string name="longitude">Longitude</string>
     <string name="end_wp">End WP</string>
     <string name="elephant_poaching">Elephant Poaching</string>
     <string name="game_meat">Game Meat</string>
@@ -124,6 +126,7 @@
     <string name="level_of_water">Level of Water</string>
     <string name="no_of_animals_seen">No of Animals Seen</string>
     <string name="select_date">Select Date</string>
+    <string name="end_shift_view_msg">End Shift Coordinates</string>
 
     <!-- http://openweathermap.org/weather-conditions -->
     <string-array name="weather_conditions">

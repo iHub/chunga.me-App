@@ -11,9 +11,14 @@ import android.support.v7.app.ActionBarActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
+import android.text.TextUtils;
 import android.app.AlertDialog;
+import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.location.Location;
+import android.location.LocationListener;
+import android.location.LocationManager;
 import android.os.AsyncTask;
 import android.os.Build;
 import android.os.Bundle;
@@ -22,6 +27,7 @@ import android.view.Gravity;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.Toast;
 
 public class HomeActivity extends ActionBarActivity implements OnClickListener {
@@ -32,7 +38,14 @@ public class HomeActivity extends ActionBarActivity implements OnClickListener {
     private RecyclerView mRecyclerView;
 
     private Button shiftBtn;
-    private Button reportsBtn;
+    private Button reportsBtn; 
+    private View endShiftView;
+    private AlertDialog endDialog;
+    
+    LocationManager locationManager;
+	LocationListener locationListener;
+	
+	Location lastLocation;
     
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -66,6 +79,53 @@ public class HomeActivity extends ActionBarActivity implements OnClickListener {
 		}, 300);
         
         checkHasOpenShift();
+        
+        initLocationManager();
+	}
+	
+	private void initLocationManager() {
+		
+		locationManager = (LocationManager) this.getSystemService(Context.LOCATION_SERVICE);
+
+		locationListener = new LocationListener() {
+			public void onLocationChanged(Location location) {
+				lastLocation = location;
+				
+				if(endDialog != null && endDialog.isShowing()) {
+					if(endShiftView != null) {
+						EditText endLat = (EditText) endDialog.findViewById(R.id.latitudeView);
+						EditText endLon = (EditText) endDialog.findViewById(R.id.longitudeView);
+						
+						endLat.setText(String.valueOf(location.getLatitude()));
+						endLon.setText(String.valueOf(location.getLongitude()));
+					}
+				}
+		    }
+
+		    public void onStatusChanged(String provider, int status, Bundle extras) {}
+
+		    public void onProviderEnabled(String provider) {}
+
+		    public void onProviderDisabled(String provider) {}
+		};
+
+		  locationManager.requestLocationUpdates(LocationManager.NETWORK_PROVIDER, 0, 0, locationListener);
+	}
+	
+	@Override
+	protected void onPause() {
+		super.onPause();
+		locationManager.removeUpdates(locationListener);
+	}
+	
+	@Override
+	protected void onResume() {
+		super.onResume();
+		
+		if(locationManager == null)
+			initLocationManager();
+		
+		locationManager.requestLocationUpdates(LocationManager.NETWORK_PROVIDER, 0, 0, locationListener);
 	}
 	
 	private void checkHasOpenShift() {
@@ -95,13 +155,16 @@ public class HomeActivity extends ActionBarActivity implements OnClickListener {
 		}
     }
     
-    class EndShiftTask extends AsyncTask<Void, Void, Void> {
+    class EndShiftTask extends AsyncTask<String, Void, Void> {
 
 		@Override
-		protected Void doInBackground(Void... params) {
+		protected Void doInBackground(String... params) {
+			
+			String lat = params[0];
+			String lon = params[1];
 			
 			ShiftService service = new ShiftServiceImpl();
-			service.endCurrentShift();
+			service.endCurrentShift(lat, lon);
 			
 			return null;
 		}
@@ -115,6 +178,9 @@ public class HomeActivity extends ActionBarActivity implements OnClickListener {
 			Toast toast = Toast.makeText(getApplicationContext(), R.string.shift_successfully_ended, Toast.LENGTH_LONG);
 			toast.setGravity(Gravity.TOP, 0, 0);
 			toast.show();
+			
+			if(endDialog != null)
+				endDialog.dismiss();
 		}
     	
     }
@@ -180,17 +246,70 @@ public class HomeActivity extends ActionBarActivity implements OnClickListener {
 	
 	private void endCurrentShift() {
 		
-		new AlertDialog.Builder(this)
-			.setMessage(getString(R.string.end_shift_confirmation))
-			.setCancelable(false)
-			.setPositiveButton(R.string.yes, new DialogInterface.OnClickListener() {
-				
-				public void onClick(DialogInterface dialog, int id) {
-					new EndShiftTask().execute();
-				}
-			})
-			.setNegativeButton(R.string.no, null)
-			.show();
+		final AlertDialog.Builder alert = new AlertDialog.Builder(this);
+		
+		endShiftView = getLayoutInflater().inflate(R.layout.end_shift_view, null, false);
+		
+		final EditText endLatView = (EditText) endShiftView.findViewById(R.id.latitudeView);
+		final EditText endLonView = (EditText) endShiftView.findViewById(R.id.longitudeView);
+		
+		if(lastLocation != null) {
+			endLatView.setText(String.valueOf(lastLocation.getLatitude()));
+			endLonView.setText(String.valueOf(lastLocation.getLongitude()));
+		}
+		
+		alert.setView(endShiftView);
+	    alert.setPositiveButton("Ok", null);
+
+	    alert.setNegativeButton("Cancel", null);
+	    
+	    endDialog = alert.create();
+	    
+	    endDialog.setOnShowListener(new DialogInterface.OnShowListener() {
+
+	        @Override
+	        public void onShow(DialogInterface dialog) {
+
+	            Button b = endDialog.getButton(AlertDialog.BUTTON_POSITIVE);
+	            b.setOnClickListener(new View.OnClickListener() {
+
+	                @Override
+	                public void onClick(View view) {
+	                    // TODO Do something
+	                	
+	                	Boolean isValid = true;
+	                	
+	                	String endLat = endLatView.getText().toString().trim();
+	                	String endLon = endLonView.getText().toString().trim();
+	                	
+	                	if(TextUtils.isEmpty(endLat)) {
+	                		endLatView.setError(getString(R.string.validation_lat));
+	                		
+	                		endLatView.requestFocus();
+	                		isValid = false;
+	                	}
+	                	
+	                	if(isValid) {
+	                		if(TextUtils.isEmpty(endLon)) {
+	                			endLonView.setError(getString(R.string.validation_long));
+		                		isValid = false;
+		                		endLonView.requestFocus();
+		                	}
+	                	}
+	                	
+	                	if(isValid)
+	                		new EndShiftTask().execute(endLat, endLon);
+
+	                    //Dismiss once everything is OK.
+	                    //d.dismiss();
+	                }
+	            });
+	        }
+	    });
+	    
+	    endDialog.show();
+	    
+	   // set coordinates;
 		
 	}
 	
