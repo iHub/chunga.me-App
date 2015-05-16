@@ -16,7 +16,11 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Spinner;
 import android.widget.Toast;
+import android.content.Context;
 import android.content.Intent;
+import android.location.Location;
+import android.location.LocationListener;
+import android.location.LocationManager;
 import android.os.AsyncTask;
 import android.os.Bundle;
 
@@ -45,6 +49,11 @@ public class StartShiftActivity extends ActionBarActivity {
 	EditText routeView;
 	Spinner modeSpinner;
 	Spinner weatherSpinner;
+	
+	LocationManager locationManager;
+	LocationListener locationListener;
+	
+	Location lastLocation;
 	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -113,6 +122,49 @@ public class StartShiftActivity extends ActionBarActivity {
         weatherAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         
         weatherSpinner.setAdapter(weatherAdapter);
+        
+        initLocationManager();
+	}
+	
+	private void initLocationManager() {
+		
+		locationManager = (LocationManager) this.getSystemService(Context.LOCATION_SERVICE);
+
+		locationListener = new LocationListener() {
+			public void onLocationChanged(Location location) {
+
+				lastLocation = location;
+				
+				if(latView != null) {
+					latView.setText(String.valueOf(location.getLatitude()));
+					longView.setText(String.valueOf(location.getLongitude()));
+				}
+		    }
+
+		    public void onStatusChanged(String provider, int status, Bundle extras) {}
+
+		    public void onProviderEnabled(String provider) {}
+
+		    public void onProviderDisabled(String provider) {}
+		};
+
+		  locationManager.requestLocationUpdates(LocationManager.NETWORK_PROVIDER, 0, 0, locationListener);
+	}
+	
+	@Override
+	protected void onPause() {
+		super.onPause();
+		locationManager.removeUpdates(locationListener);
+	}
+	
+	@Override
+	protected void onResume() {
+		super.onResume();
+		
+		if(locationManager == null)
+			initLocationManager();
+		
+		locationManager.requestLocationUpdates(LocationManager.NETWORK_PROVIDER, 0, 0, locationListener);
 	}
 	
 	private Boolean isValid() {

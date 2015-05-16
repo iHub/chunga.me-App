@@ -20,7 +20,6 @@ public class SplashActivity extends Activity {
 		
 		@Override
 		protected String doInBackground(Void... params) {
-			
 			return DBPreferences.instance().getPreferenceValue(DBPreferences.RANGER_NAME);
 		}
 		
