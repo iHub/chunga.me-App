@@ -7,17 +7,13 @@ import com.ihub.rangerapp.data.service.ElephantServiceImpl;
 
 import android.support.v7.widget.Toolbar;
 import android.text.TextUtils;
-import android.app.AlertDialog;
-import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
-import android.view.Gravity;
 import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Spinner;
-import android.widget.Toast;
 
 public class ElephantPoachingActivity extends CameraGPSActionBarActivity {
 	
@@ -168,14 +164,19 @@ public class ElephantPoachingActivity extends CameraGPSActionBarActivity {
 		if(mode == 2)
 			id = getIntent().getIntExtra("id", -1);
 		
+		String toolUsed = toolsUsedSpinner.getSelectedItemPosition() == 0 ? "" : toolsUsedSpinner.getSelectedItem().toString();
+		String age = ageSpinner.getSelectedItemPosition() == 0 ? "" : ageSpinner.getSelectedItem().toString();
+		String sex = sexSpinner.getSelectedItemPosition() == 0 ? "" : sexSpinner.getSelectedItem().toString();
+		String action = actionTakenSpinner.getSelectedItemPosition() == 0 ? "" : actionTakenSpinner.getSelectedItem().toString();
+		
 		Map<String, Object> result = service.save(
 				id,
-				toolsUsedSpinner.getSelectedItem().toString(), 
+				toolUsed, 
 				noOfAnimals, 
-				ageSpinner.getSelectedItem().toString(), 
-				sexSpinner.getSelectedItem().toString(), 
+				age, 
+				sex, 
 				ivoryPresenceSpinner.getSelectedItem().toString(), 
-				actionTakenSpinner.getSelectedItem().toString(), 
+				action, 
 				extraNotes.getText().toString(), 
 				imagePath, getWP());
 		

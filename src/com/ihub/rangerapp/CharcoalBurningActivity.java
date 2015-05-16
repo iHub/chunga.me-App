@@ -1,12 +1,10 @@
 package com.ihub.rangerapp;
 
 import java.util.Map;
-
 import com.ihub.rangerapp.data.service.CharcoalService;
 import com.ihub.rangerapp.data.service.CharcoalServiceImpl;
 import android.support.v7.widget.Toolbar;
 import android.text.TextUtils;
-import android.view.Gravity;
 import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
@@ -14,9 +12,6 @@ import android.widget.EditText;
 import android.widget.LinearLayout;
 import android.widget.RadioButton;
 import android.widget.Spinner;
-import android.widget.Toast;
-import android.app.AlertDialog;
-import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 
@@ -181,13 +176,16 @@ public class CharcoalBurningActivity extends CameraGPSActionBarActivity {
 			if(mode == 2)
 				id = getIntent().getIntExtra("id", -1);
 			
+			String freshnessLevel = freshnessLevelSpinner.getSelectedItemPosition() == 0 ? "" : freshnessLevelSpinner.getSelectedItem().toString();
+			String kilnActionTaken = kilnActionTakenSpinner.getSelectedItemPosition() == 0 ? "" : kilnActionTakenSpinner.getSelectedItem().toString();
+			
 			CharcoalService service = new CharcoalServiceImpl();
 			Map<String, Object> result = service.saveKilns(
 					id,
 					noOfKilns, 
-					freshnessLevelSpinner.getSelectedItem().toString(), 
+					freshnessLevel, 
 					treeUsedView.getText().toString(), 
-					kilnActionTakenSpinner.getSelectedItem().toString(), 
+					kilnActionTaken, 
 					extraNotes.getText().toString(), 
 					imagePath, 
 					getWP());
@@ -210,12 +208,15 @@ public class CharcoalBurningActivity extends CameraGPSActionBarActivity {
 			if(mode == 2)
 				id = getIntent().getIntExtra("id", -1);
 			
+			String modeOfTransport = modeOfTransportSpinner.getSelectedItemPosition() == 0 ? "" : modeOfTransportSpinner.getSelectedItem().toString();
+			String bagsActionTaken = bagsActionTakenSpinner.getSelectedItemPosition() == 0 ? "" : bagsActionTakenSpinner.getSelectedItem().toString();
+			
 			CharcoalService service = new CharcoalServiceImpl();
 			Map<String, Object> result = service.saveBagsData(
 					id,
 					noOfBags, 
-					modeOfTransportSpinner.getSelectedItem().toString(), 
-					bagsActionTakenSpinner.getSelectedItem().toString(), 
+					modeOfTransport, 
+					bagsActionTaken, 
 					extraNotes.getText().toString(), imagePath, getWP());
 			
 			showSaveResult(result);

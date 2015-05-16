@@ -13,8 +13,6 @@ import android.widget.LinearLayout;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.Spinner;
-import android.app.AlertDialog;
-import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 
@@ -204,12 +202,14 @@ public class AnimalsSightingsActivity extends CameraGPSActionBarActivity {
 			if(mode == 2)
 				id = getIntent().getIntExtra("id", -1);
 			
+			String age = ageSpinner.getSelectedItemPosition() == 0 ? "" : ageSpinner.getSelectedItem().toString();
+			
 			AnimalSightingsService service = new AnimalSightingsServiceImpl();
 			Map<String, Object> result = service.saveIndividualAnimal(
 					id,
 					animalNameView.getText().toString(), 
 					isMale ? "M" : "F", 
-					ageSpinner.getSelectedItem().toString(), 
+					age, 
 					distanceSeen, 
 					extraNotes.getText().toString(), 
 					imagePath, 
@@ -239,12 +239,14 @@ public class AnimalsSightingsActivity extends CameraGPSActionBarActivity {
 			if(mode == 2)
 				id = getIntent().getIntExtra("id", -1);
 			
+			String age = herdAgeSpinner.getSelectedItemPosition() == 0 ? "" : herdAgeSpinner.getSelectedItem().toString();
+			
 			Map<String , Object> result = service.saveHerd(
 					id,
 					herdNameView.getText().toString(), 
 					typeSpeciesView.getText().toString(), 
 					noOfAnimals, 
-					herdAgeSpinner.getSelectedItem().toString(), 
+					age, 
 					distanceSeen, extraNotes.getText().toString(), imagePath, getWP());
 			
 			showSaveResult(result);

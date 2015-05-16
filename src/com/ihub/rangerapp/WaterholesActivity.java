@@ -111,11 +111,13 @@ public class WaterholesActivity extends CameraGPSActionBarActivity {
 		if(mode == 2)
 			id = getIntent().getIntExtra("id", -1);
 		
+		String level = levelOfWaterSpinner.getSelectedItemPosition() == 0 ? "" : levelOfWaterSpinner.getSelectedItem().toString();
+		
 		WaterholeService service = new WaterholeServiceImpl();
 		Map<String, Object> result = service.save(
 			id,
 			waterholeName.getText().toString(), 
-			levelOfWaterSpinner.getSelectedItem().toString(), 
+			level, 
 			noOfAnimals, 
 			extraNotes.getText().toString(), 
 			imagePath, 

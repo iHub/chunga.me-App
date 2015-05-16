@@ -1,8 +1,6 @@
 package com.ihub.rangerapp;
 
 import java.util.Map;
-
-import com.ihub.rangerapp.HomeActivity.EndShiftTask;
 import com.ihub.rangerapp.data.service.GameMeatService;
 import com.ihub.rangerapp.data.service.GameMeatServiceImpl;
 import android.support.v7.widget.Toolbar;
@@ -12,8 +10,6 @@ import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Spinner;
-import android.app.AlertDialog;
-import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 
@@ -121,11 +117,13 @@ public class GameMeatActivity extends CameraGPSActionBarActivity {
 		if(mode == 2)
 			id = getIntent().getIntExtra("id", -1);
 		
+		String actionTaken = actionTakenSpinner.getSelectedItemPosition() == 0 ? "" : actionTakenSpinner.getSelectedItem().toString();
+		
 		Map<String, Object> result = service.save(
 				id,
 				animalView.getText().toString(), 
 				noOfAnimals, 
-				actionTakenSpinner.getSelectedItem().toString(), 
+				actionTaken, 
 				extraNotes.getText().toString(), 
 				imagePath, 
 				getWP());
