@@ -286,12 +286,14 @@
     </string-array>
     <string-array name="levels_of_water_array">
         <item>Select Level</item>
-        <item>Level 1</item>
-        <item>Level 2</item>
-        <item>Level 3</item>
-        <item>Level 4</item>
+        <item>Full</item>
+        <item>Half-full</item>
+        <item>Quarter-full</item>
+        <item>Small pool</item>
+        <item>Muddy</item>
+        <item>Dry</item>
     </string-array>
-
+    
     <string name="title_activity_elephant_poaching">Elephant Poaching</string>
     <string name="title_activity_suspicious_activities">Suspicious Activity</string>
     <string name="no_of_bags">No of Bags</string>

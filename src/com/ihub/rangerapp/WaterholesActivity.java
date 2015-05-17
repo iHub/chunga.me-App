@@ -3,26 +3,26 @@ package com.ihub.rangerapp;
 import java.util.Map;
 import com.ihub.rangerapp.data.service.WaterholeService;
 import com.ihub.rangerapp.data.service.WaterholeServiceImpl;
-
-import android.app.AlertDialog;
-import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
 import android.text.TextUtils;
 import android.view.View;
 import android.widget.ArrayAdapter;
+import android.widget.AutoCompleteTextView;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Spinner;
 
 public class WaterholesActivity extends CameraGPSActionBarActivity {
 	
-	EditText waterholeName;
+	AutoCompleteTextView waterholeName;
 	Spinner levelOfWaterSpinner;
 	EditText noOfAnimalsSeenView;
 	EditText extraNotes;
 	Button saveBtn;
+	
+	String waterholes[] = {"Tank5D","Tank7D","Sagana","Marembo","Panda2","KamAma","Washu1","Maung1","Salama","Matopeni","Simon","KCB","Pika pika","Tank8","TaiKam","Amaka1","Washu2","Camp Tsavo","Mwakaramba","Marungu","Garawa","Punda","Rukin1","Ngumu","Porini","Chui","Kongoni","Rukin2","Catherine","Pombe","Twiga","Simba","Mbuyuni","Nyoka","Kivuko","Taita2","Taita3","Tank6","Tank7","Kamba1","Sagal1","Mgeno1","Maung2","Choke1","Sagal2","Choke2","Choke3","Choke4","Maung3","Patricia","Mswahili","Maung5","SimbaMGE","Katana","SagallaTank","Sagal3","Rukin3","Rukin4","Tank1","Tank2","Bunduki","Tank5","Kisima","Mbugani juu","MwakarambaD","Jojoba","Mpya","Bendera","SagNo9","Kifaru","British","Nyekundu","Mairimba","Mlamba","Fisi","Somali","Panda1","Mangale","Jiwe","Sagatisa","Pua na Mdomo","Ndovu","Gae Rock","Henry ","Jeruman","Jiwe la simba","Mali ya Mungu","Matopeni ndogo ","Nyati","Ian","Kona","Mnago","Hunters","Roadside","Shifta","Mwamba","Mfamayo","Alice","Bahati","Juliana","Kambanga","Choke","Impala","Makwasinyi","Nyaga","Kasigau","Mikuluni","Catherine2","Lokidori","Jongolo"};
 	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -47,7 +47,13 @@ public class WaterholesActivity extends CameraGPSActionBarActivity {
         
         initViews();
         
-        waterholeName = (EditText) findViewById(R.id.waterholeName);
+        waterholeName = (AutoCompleteTextView) findViewById(R.id.waterholeName);
+        
+        ArrayAdapter<String> waterholeAdapter = new ArrayAdapter<String>(this,
+                android.R.layout.simple_dropdown_item_1line, waterholes);
+        waterholeName.setAdapter(waterholeAdapter);
+        waterholeName.setThreshold(2);
+        
         levelOfWaterSpinner = (Spinner) findViewById(R.id.levelOfWaterSpinner);
         noOfAnimalsSeenView = (EditText) findViewById(R.id.noOfAnimalsSeenView);
         extraNotes = (EditText) findViewById(R.id.extraNotes);

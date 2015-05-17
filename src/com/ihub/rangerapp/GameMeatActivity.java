@@ -7,6 +7,7 @@ import android.support.v7.widget.Toolbar;
 import android.text.TextUtils;
 import android.view.View;
 import android.widget.ArrayAdapter;
+import android.widget.AutoCompleteTextView;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Spinner;
@@ -15,12 +16,14 @@ import android.os.Bundle;
 
 public class GameMeatActivity extends CameraGPSActionBarActivity {
 	
-	EditText animalView;
+	AutoCompleteTextView animalView;
 	EditText noOfAnimalsView;
 	Spinner actionTakenSpinner;
 	
 	EditText extraNotes;
 	Button saveBtn;
+	
+	String animals[] = {"Antelope", "Buffalo", "Gorilla", "Rabbit", "Warthog"};
 	
 	//Boolean isEdit = false;
 	
@@ -46,7 +49,7 @@ public class GameMeatActivity extends CameraGPSActionBarActivity {
         
         initViews();
         
-        animalView = (EditText) findViewById(R.id.animalView);
+        animalView = (AutoCompleteTextView) findViewById(R.id.animalView);
         noOfAnimalsView = (EditText) findViewById(R.id.noOfAnimalsView);
         actionTakenSpinner = (Spinner) findViewById(R.id.actionTakenSpinner);
         extraNotes = (EditText) findViewById(R.id.extraNotes);
@@ -55,6 +58,11 @@ public class GameMeatActivity extends CameraGPSActionBarActivity {
         ArrayAdapter<CharSequence> actionTakenAdapter = ArrayAdapter.createFromResource(this,
                 R.array.game_meat_actions_taken, android.R.layout.simple_spinner_item);
         actionTakenAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        
+        ArrayAdapter<String> animalsAdapter = new ArrayAdapter<String>(this,
+                android.R.layout.simple_dropdown_item_1line, animals);
+        animalView.setAdapter(animalsAdapter);
+        animalView.setThreshold(1);
         
         actionTakenSpinner.setAdapter(actionTakenAdapter);
         

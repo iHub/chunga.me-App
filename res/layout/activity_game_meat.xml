@@ -38,7 +38,7 @@
 	            android:textSize="18sp"
 	            android:textColor="@color/bg" />
 		    
-		    <EditText
+		    <AutoCompleteTextView
 		        android:id="@+id/animalView"
 		        android:layout_width="match_parent"
 		        android:layout_height="wrap_content"

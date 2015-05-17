@@ -7,6 +7,7 @@ import android.support.v7.widget.Toolbar;
 import android.text.TextUtils;
 import android.view.View;
 import android.widget.ArrayAdapter;
+import android.widget.AutoCompleteTextView;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.LinearLayout;
@@ -21,7 +22,7 @@ public class CharcoalBurningActivity extends CameraGPSActionBarActivity {
 	LinearLayout bagsLayout;
 	
 	EditText noOfKilnsView;
-	EditText treeUsedView;
+	AutoCompleteTextView treeUsedView;
 	
 	EditText noOfBagsView;
 	
@@ -43,6 +44,8 @@ public class CharcoalBurningActivity extends CameraGPSActionBarActivity {
 	Button saveBtn;
 	
 	LinearLayout switchView;
+	
+	String trees[] = {"Acacia bussei","Acacia etbaica","Acacia hockii","Acacia mellifera","Acacia nilotica","Acacia robusta","Acacia senegal","Acacia sp","Acacia thomasii","Acacia tortilis","Acacia zanzibarica","Albizia anthelmintica","Albizia harveyi","Albizia zimmermannii","Balanites aegyptiaca","Balanites pedicellaris","Boscia angustifolia","Boscia coriacea","Boswellia neglecta","Cassia abbreviata","Cassia siamea","Commiphora africana","Commiphora baluensis","Commiphora campestris","Commiphora confusa","Commiphora edulis","Commiphora eminii","Commiphora holtziana","Commiphora lindensis","Commiphora schimperi","Commiphora sp","Dalbergia melanoxylon","Delonix elata","Diospyros consolatae","Diospyros mespiliformis","Dobera glabra","Erythrina abyssinica","Euclea divinorum","Euphorbia bussei","Euphorbia quinquecostata","Ficus lutea","Gardenia volkensii","Haplocoelum foliolosum","Lannea alata","Lannea rivae","Lannea schweinfurthii","Lannea sp","Manilkara mochisia","Manilkara sulcata","Melia volkensii","Newtonia hildebrandtii","Ormocarpum kirkii","Pittosporum viridiflorum","Platycelyphium voense","Salvadora persica","Sterculia africana","Tamarindus indica","Terminalia brownii","Terminalia prunoides","Terminalia spinosa","Unknown","Zanthoxylum chalybeum"};
 	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -226,7 +229,12 @@ public class CharcoalBurningActivity extends CameraGPSActionBarActivity {
 	private void initKilnsView() {
 		
 		noOfKilnsView = (EditText) findViewById(R.id.noOfKilnsView);
-		treeUsedView = (EditText) findViewById(R.id.treeUsedView);
+		treeUsedView = (AutoCompleteTextView) findViewById(R.id.treeUsedView);
+		
+		ArrayAdapter<String> treesAdapter = new ArrayAdapter<String>(this,
+                android.R.layout.simple_dropdown_item_1line, trees);
+        treeUsedView.setAdapter(treesAdapter);
+        treeUsedView.setThreshold(1);
 		
 		freshnessLevelSpinner = (Spinner) findViewById(R.id.freshnessLevelSpinner);
 		
