@@ -1,9 +1,10 @@
 package com.ihub.rangerapp;
 
 import java.util.ArrayList;
-import java.util.Collections;
 import java.util.List;
-import com.ihub.rangerapp.adapter.ReportsAdapter;
+
+import com.ihub.rangerapp.adapter.AnimalReportsAdapter;
+import com.ihub.rangerapp.adapter.CharcoalBurningReportAdapter;
 import com.ihub.rangerapp.anim.CustomItemAnimator;
 
 import android.support.v7.app.ActionBarActivity;
@@ -15,19 +16,21 @@ import android.os.AsyncTask;
 import android.os.Build;
 import android.os.Bundle;
 import android.os.Handler;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
 
-public class ReportsActivity extends ActionBarActivity {
+public class AnimalReportsActivity extends ActionBarActivity {
+
+private List<com.ihub.rangerapp.entity.MenuItem> itemsList = new ArrayList<com.ihub.rangerapp.entity.MenuItem>();
 	
-	private ReportsAdapter adapter;
-	private RecyclerView mRecyclerView;
-	
-	private List<com.ihub.rangerapp.entity.MenuItem> itemsList = new ArrayList<com.ihub.rangerapp.entity.MenuItem>();
-	
+	private AnimalReportsAdapter mAdapter;
+    private RecyclerView mRecyclerView;
+    
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
-		setContentView(R.layout.activity_reports);
+		setContentView(R.layout.activity_menu);
 		
 		Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
@@ -36,25 +39,22 @@ public class ReportsActivity extends ActionBarActivity {
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         
         toolbar.setNavigationOnClickListener(new View.OnClickListener() {
+        	
             @Override
             public void onClick(View v) {
-                ReportsActivity.this.onBackPressed();
+                AnimalReportsActivity.this.onBackPressed();
             }
         });
-        
-        if (savedInstanceState != null) {
-            return;
-        }
         
         mRecyclerView = (RecyclerView) findViewById(R.id.list);
         mRecyclerView.setLayoutManager(new LinearLayoutManager(this));
         
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.HONEYCOMB) {
         	mRecyclerView.setItemAnimator(new CustomItemAnimator());
-		}	
+		}
         
-		adapter = new ReportsAdapter(new ArrayList<com.ihub.rangerapp.entity.MenuItem>(), R.layout.row_application, this);
-        mRecyclerView.setAdapter(adapter);
+        mAdapter = new AnimalReportsAdapter(new ArrayList<com.ihub.rangerapp.entity.MenuItem>(), R.layout.row_application, AnimalReportsActivity.this);
+        mRecyclerView.setAdapter(mAdapter);
         
         new Handler().postDelayed(new Runnable() {
 			@Override
@@ -62,14 +62,13 @@ public class ReportsActivity extends ActionBarActivity {
 				new InitializeApplicationsTask().execute();
 			}
 		}, 300);
-      
 	}
 	
 	private class InitializeApplicationsTask extends AsyncTask<Void, Void, Void> {
 		
         @Override
         protected void onPreExecute() {
-            adapter.clearApplications();
+            mAdapter.clearApplications();
             super.onPreExecute();
         }
         
@@ -83,21 +82,13 @@ public class ReportsActivity extends ActionBarActivity {
             mainIntent.addCategory(Intent.CATEGORY_LAUNCHER);
             
             String menuNames[] = new String[]{
-	    		getString(R.string.game_meat), 
-	    		getString(R.string.charcoal_burning),
-	    		getString(R.string.elephant_poaching),
-	    		getString(R.string.suspicious_activities),
-	    		getString(R.string.animal_sighting),
-	    		getString(R.string.waterhole_sighting)
+            	getString(R.string.individual),
+            	getString(R.string.herd),
             };
-            
-            Integer drawables[] = new Integer[] {};
             
             for (String s : menuNames) {
             	itemsList.add(new com.ihub.rangerapp.entity.MenuItem(s, null));
             }
-            
-            Collections.sort(itemsList);
             
             return null;
         }
@@ -105,7 +96,7 @@ public class ReportsActivity extends ActionBarActivity {
         @Override
         protected void onPostExecute(Void result) {
             mRecyclerView.setVisibility(View.VISIBLE);
-            adapter.addItems(itemsList);
+            mAdapter.addItems(itemsList);
             super.onPostExecute(result);
         }
     }

@@ -47,7 +47,7 @@ public class DateFragment extends Fragment {
 			public void onClick(View v) {
 				Activity act = getActivity();
 				
-				((ReportsActivity)getActivity()).showReportsView();
+				//((ReportsActivity)getActivity()).showReportsView();
 				
 //				try {
 //	        		Method m = act.getClass().getMethod("showReportsView", boolean.class);

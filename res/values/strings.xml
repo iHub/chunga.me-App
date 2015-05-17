@@ -39,6 +39,8 @@
     <string name="title_activity_human_animal">Human / Animal Conflict</string>
     <string name="title_activity_sightings">Sightings</string>
     <string name="animals">Animals</string>
+    <string name="animal_sighting">Animal Sightings</string>
+    <string name="waterhole_sighting">Waterhole Sightings</string>
     <string name="animals_herds">Animals (Herds)</string>
     <string name="animals_individual">Animals (Individual)</string>
     <string name="title_activity_plants">Plants</string>
@@ -293,7 +295,7 @@
         <item>Muddy</item>
         <item>Dry</item>
     </string-array>
-    
+
     <string name="title_activity_elephant_poaching">Elephant Poaching</string>
     <string name="title_activity_suspicious_activities">Suspicious Activity</string>
     <string name="no_of_bags">No of Bags</string>
@@ -317,5 +319,7 @@
     <string name="title_activity_reports">Reports</string>
     <string name="title_activity_report_viewer">Report</string>
     <string name="title_activity_photo">Photo</string>
+    <string name="title_activity_charcoal_burning_report">Charcoal Burning</string>
+    <string name="title_activity_animal_reports">Animal Reports</string>
 
 </resources>

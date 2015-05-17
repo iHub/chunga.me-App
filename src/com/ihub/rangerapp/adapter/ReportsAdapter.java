@@ -2,6 +2,8 @@ package com.ihub.rangerapp.adapter;
 
 import java.util.List;
 
+import com.ihub.rangerapp.AnimalReportsActivity;
+import com.ihub.rangerapp.CharcoalBurningReportActivity;
 import com.ihub.rangerapp.IncidentsActivity;
 import com.ihub.rangerapp.R;
 import com.ihub.rangerapp.ReportViewerActivity;
@@ -29,7 +31,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 public class ReportsAdapter extends RecyclerView.Adapter<ReportsAdapter.ViewHolder> {
-
+	
 	private List<MenuItem> menuItems;
     private int rowLayout;
     private Activity activity;
@@ -70,7 +72,7 @@ public class ReportsAdapter extends RecyclerView.Adapter<ReportsAdapter.ViewHold
         	
 			Intent intent = null;
 			
-			String viewClass = "";
+			String viewClass = null;
 			String title = "Report";
 			
 			try {
@@ -83,33 +85,33 @@ public class ReportsAdapter extends RecyclerView.Adapter<ReportsAdapter.ViewHold
 					viewClass = GameMeatReport.class.getSimpleName();
 					break;
 				case 1:
-					viewClass = CharcoalBurningBagsReport.class.getSimpleName();
+					intent = new Intent(activity, CharcoalBurningReportActivity.class);
 					break;
 				case 2:
-					viewClass = CharcoalBurningKilnsReport.class.getSimpleName();
-					break;
-				case 3:
 					viewClass = ElephantPoachingReport.class.getSimpleName();
 					break;
-				case 4:
+				case 3:
 					viewClass = SuspiciousActivitiesReport.class.getSimpleName();
 					break;
+				case 4:
+					intent = new Intent(activity, AnimalReportsActivity.class);
+					break;
 				case 5:
-					viewClass = IndividualAnimalsReport.class.getSimpleName();
-					break;
-				case 6:
-					viewClass = HerdsReport.class.getSimpleName();
-					break;
-				case 7:
 					viewClass = WaterholesReport.class.getSimpleName();
 					break;
 				default:
 					break;
 				}
 			
-			intent = new Intent(activity, ReportViewerActivity.class);
-			intent.putExtra("viewClass", viewClass);
-			intent.putExtra("title", title);
+			
+			if(intent == null) {
+				intent = new Intent(activity, ReportViewerActivity.class);
+				
+				if(viewClass != null) {
+					intent.putExtra("viewClass", viewClass);
+					intent.putExtra("title", title);
+				}
+			}
 			
 			if(intent != null) {				
 				if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN) {
