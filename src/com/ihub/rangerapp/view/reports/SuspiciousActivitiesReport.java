@@ -1,11 +1,16 @@
 package com.ihub.rangerapp.view.reports;
 
+import java.text.SimpleDateFormat;
 import java.util.Date;
 
+import com.ihub.rangerapp.ReportViewerActivity;
 import com.ihub.rangerapp.SuspiciousActivitiesActivity;
 import com.ihub.rangerapp.adapter.AmazingAdapter;
 import com.ihub.rangerapp.adapter.SuspiciousActivitiesReportAdapter;
+import com.ihub.rangerapp.entity.SummaryItem;
 import com.ihub.rangerapp.loader.SuspiciousActivitiesLoader;
+import com.ihub.rangerapp.model.GameMeatModel;
+import com.ihub.rangerapp.model.Model;
 import com.ihub.rangerapp.model.SuspiciousActivityModel;
 import com.ihub.rangerapp.util.DateUtil;
 
@@ -41,12 +46,33 @@ AmazingAdapter adapter;
 		
 		//TODO check date before editing
 		
-		Intent intent = new Intent(getActivity(), SuspiciousActivitiesActivity.class);
-		intent.putExtras(model.getExtras());
+//		Intent intent = new Intent(getActivity(), SuspiciousActivitiesActivity.class);
+//		intent.putExtras(model.getExtras());
+//		
+//		intent.putExtra("mode", canEdit ? 2 : 3);
+//		
+//		getActivity().startActivity(intent);
 		
-		intent.putExtra("mode", canEdit ? 2 : 3);
+		addReviewItems(model, date);
+		showSummaryView();
+	}
+	
+
+	public void addReviewItems(Model m, Date date){
 		
-		getActivity().startActivity(intent);
+		SuspiciousActivityModel model = (SuspiciousActivityModel) m;
+		
+		ReportViewerActivity activity = (ReportViewerActivity) getActivity();
+		
+		activity.clearReviewItems();
+		activity.addReviewItem(new SummaryItem("Image", model.getImagePath(), "", 1));
+		activity.addReviewItem(new SummaryItem("Latitude", model.getLatitude(), "", 2));
+		activity.addReviewItem(new SummaryItem("Longitude", model.getLongitude(), "", 3));
+		activity.addReviewItem(new SummaryItem("Action Taken", model.getActionTaken(), "", 4));
+		activity.addReviewItem(new SummaryItem("Extra Notes", model.getExtraNotes(), "", 5));
+		
+		if(date != null)
+			activity.addReviewItem(new SummaryItem("Date Created", new SimpleDateFormat( "yyyy-MM-dd" ).format(date), "", 6));
 	}
 	
 	@Override

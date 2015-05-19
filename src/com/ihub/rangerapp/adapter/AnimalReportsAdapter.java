@@ -10,14 +10,10 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 import java.util.List;
-
 import com.ihub.rangerapp.AnimalReportsActivity;
-import com.ihub.rangerapp.CharcoalBurningReportActivity;
 import com.ihub.rangerapp.R;
 import com.ihub.rangerapp.ReportViewerActivity;
 import com.ihub.rangerapp.entity.MenuItem;
-import com.ihub.rangerapp.view.reports.CharcoalBurningBagsReport;
-import com.ihub.rangerapp.view.reports.CharcoalBurningKilnsReport;
 import com.ihub.rangerapp.view.reports.HerdsReport;
 import com.ihub.rangerapp.view.reports.IndividualAnimalsReport;
 

@@ -235,7 +235,7 @@ public class AnimalsSightingsActivity extends CameraGPSActionBarActivity {
 			Integer distanceSeen = 0;
 			
 			try {
-				noOfAnimals = Integer.valueOf(herdNameView.getText().toString());
+				noOfAnimals = Integer.valueOf(herdNoOfAnimalsView.getText().toString());
 			} catch (Exception e) {}
 			
 			try {

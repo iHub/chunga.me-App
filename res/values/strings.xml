@@ -17,6 +17,7 @@
     <string name="title_activity_profile">Profile</string>
     <string name="title_activity_intro">Intro</string>
     <string name="title_activity_incidences">Incidents</string>
+    <string name="summary">Summary</string>
     <string name="go">Go</string>
     <string name="edit">Edit</string>
     <string name="close">Close</string>

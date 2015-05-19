@@ -3,8 +3,6 @@ package com.ihub.rangerapp.view;
 import java.lang.reflect.Method;
 
 import com.ihub.rangerapp.R;
-import com.ihub.rangerapp.ReportsActivity;
-
 import android.app.Activity;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
@@ -14,7 +12,6 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.DatePicker;
-import android.widget.Toast;
 
 public class DateFragment extends Fragment {
 	
@@ -46,15 +43,6 @@ public class DateFragment extends Fragment {
 			@Override
 			public void onClick(View v) {
 				Activity act = getActivity();
-				
-				//((ReportsActivity)getActivity()).showReportsView();
-				
-//				try {
-//	        		Method m = act.getClass().getMethod("showReportsView", boolean.class);
-//	        		m.invoke(act);
-//	        	} catch(Exception e) {
-//	        		e.printStackTrace();
-//	        	}
 			}
 		});
 	}

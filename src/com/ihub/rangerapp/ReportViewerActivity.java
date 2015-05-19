@@ -1,5 +1,9 @@
 package com.ihub.rangerapp;
 
+import java.util.ArrayList;
+import java.util.List;
+
+import com.ihub.rangerapp.entity.SummaryItem;
 import com.ihub.rangerapp.view.reports.CharcoalBurningBagsReport;
 import com.ihub.rangerapp.view.reports.CharcoalBurningKilnsReport;
 import com.ihub.rangerapp.view.reports.ElephantPoachingReport;
@@ -13,12 +17,13 @@ import com.ihub.rangerapp.view.reports.WaterholesReport;
 import android.support.v7.app.ActionBarActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.View;
-import android.app.Fragment;
 import android.os.Bundle;
 
 public class ReportViewerActivity extends ActionBarActivity {
 	
 	ReportFragment fragment;
+	
+	public List<SummaryItem> reviewItems = new ArrayList<SummaryItem>();
 	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -72,5 +77,21 @@ public class ReportViewerActivity extends ActionBarActivity {
 			return new WaterholesReport();
 		
 		return new GameMeatReport();
+	}
+
+	public List<SummaryItem> getReviewItems() {
+		return reviewItems;
+	}
+
+	public void setReviewItems(List<SummaryItem> reviewItems) {
+		this.reviewItems = reviewItems;
+	}
+	
+	public void addReviewItem(SummaryItem item) {
+		this.reviewItems.add(item);
+	}
+	
+	public void clearReviewItems() {
+		reviewItems.clear();
 	}
 }

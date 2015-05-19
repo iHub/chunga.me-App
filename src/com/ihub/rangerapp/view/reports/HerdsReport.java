@@ -1,12 +1,17 @@
 package com.ihub.rangerapp.view.reports;
 
+import java.text.SimpleDateFormat;
 import java.util.Date;
 
 import com.ihub.rangerapp.AnimalsSightingsActivity;
+import com.ihub.rangerapp.ReportViewerActivity;
 import com.ihub.rangerapp.adapter.AmazingAdapter;
 import com.ihub.rangerapp.adapter.HerdReportAdapter;
+import com.ihub.rangerapp.entity.SummaryItem;
 import com.ihub.rangerapp.loader.HerdsLoader;
 import com.ihub.rangerapp.model.HerdModel;
+import com.ihub.rangerapp.model.IndividualAnimalModel;
+import com.ihub.rangerapp.model.Model;
 import com.ihub.rangerapp.util.DateUtil;
 
 import android.content.Context;
@@ -41,13 +46,37 @@ AmazingAdapter adapter;
 		
 		//TODO check date before editing
 		
-		Intent intent = new Intent(getActivity(), AnimalsSightingsActivity.class);
-		intent.putExtra("view", "herd");
-		intent.putExtras(model.getExtras());
+//		Intent intent = new Intent(getActivity(), AnimalsSightingsActivity.class);
+//		intent.putExtra("view", "herd");
+//		intent.putExtras(model.getExtras());
+//		
+//		intent.putExtra("mode", canEdit ? 2 : 3);
+//		
+//		getActivity().startActivity(intent);
 		
-		intent.putExtra("mode", canEdit ? 2 : 3);
+		addReviewItems(model, date);
+		showSummaryView();
+	}
+	
+	public void addReviewItems(Model m, Date date){
 		
-		getActivity().startActivity(intent);
+		HerdModel model = (HerdModel) m;
+		
+		ReportViewerActivity activity = (ReportViewerActivity) getActivity();
+		
+		activity.clearReviewItems();
+		activity.addReviewItem(new SummaryItem("Image", model.getImagePath(), "", 1));
+		activity.addReviewItem(new SummaryItem("Latitude", model.getLatitude(), "", 2));
+		activity.addReviewItem(new SummaryItem("Longitude", model.getLongitude(), "", 3));
+		activity.addReviewItem(new SummaryItem("Name", model.getName(), "", 4));
+		activity.addReviewItem(new SummaryItem("Type", model.getType(), "", 5));
+		activity.addReviewItem(new SummaryItem("No of Animals", model.getNoOfAnimals() + "", "", 6));
+		activity.addReviewItem(new SummaryItem("Age", model.getAge(), "", 7));
+		activity.addReviewItem(new SummaryItem("Distance Seen (Mtrs)", model.getDistanceSeen() + "", "", 8));
+		activity.addReviewItem(new SummaryItem("Extra Notes", model.getExtraNotes(), "", 9));
+		
+		if(date != null)
+			activity.addReviewItem(new SummaryItem("Date Created", new SimpleDateFormat( "yyyy-MM-dd" ).format(date), "", 10));
 	}
 	
 	@Override
