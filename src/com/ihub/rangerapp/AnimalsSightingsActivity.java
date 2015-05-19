@@ -38,7 +38,7 @@ public class AnimalsSightingsActivity extends CameraGPSActionBarActivity {
 	Boolean isMale = false;
 	Boolean isIndividualView = true;
 	
-	LinearLayout switchView;
+	RadioGroup radioGroup;
 	RadioButton radioGenderMale;
 	RadioButton radioGenderFemale;
 	
@@ -62,7 +62,7 @@ public class AnimalsSightingsActivity extends CameraGPSActionBarActivity {
             }
         });
         
-        switchView = (LinearLayout) findViewById(R.id.switchView);
+        radioGroup = (RadioGroup) findViewById(R.id.radioGroup);
         
         radioGenderMale = (RadioButton) findViewById(R.id.radio_gender_male);
         radioGenderFemale = (RadioButton) findViewById(R.id.radio_gender_female);
@@ -122,7 +122,10 @@ public class AnimalsSightingsActivity extends CameraGPSActionBarActivity {
 		});
         
         if(mode != 1) {
-        	switchView.setVisibility(View.GONE);
+        	radioGroup.setVisibility(View.GONE);
+        	
+        	latView.setText(getIntent().getStringExtra("lat"));
+            longView.setText(getIntent().getStringExtra("lon"));
         	
         	if(mode == 2) {
             	saveBtn.setText(getString(R.string.edit));
@@ -222,7 +225,21 @@ public class AnimalsSightingsActivity extends CameraGPSActionBarActivity {
 					distanceSeen, 
 					extraNotes.getText().toString(), 
 					imagePath, 
-					getWP());
+					latView.getText().toString(),
+					longView.getText().toString());
+			
+			if(mode == 2) {
+				Intent data = new Intent();
+				
+				data.putExtra("id", id);
+				data.putExtra("animal", animalNameView.getText().toString());
+				data.putExtra("gender", isMale ? "M" : "F");
+				data.putExtra("age", age);
+				data.putExtra("distanceSeen", distanceSeen);
+				data.putExtra("extraNotes", extraNotes.getText().toString());
+				
+				setResult(RESULT_OK, data);
+			}
 			
 			showSaveResult(result);
 		}
@@ -256,7 +273,25 @@ public class AnimalsSightingsActivity extends CameraGPSActionBarActivity {
 					typeSpeciesView.getText().toString(), 
 					noOfAnimals, 
 					age, 
-					distanceSeen, extraNotes.getText().toString(), imagePath, getWP());
+					distanceSeen,
+					extraNotes.getText().toString(), 
+					imagePath, 
+					latView.getText().toString(),
+					longView.getText().toString());
+			
+			if(mode == 2) {
+				Intent data = new Intent();
+				
+				data.putExtra("id", id);
+				data.putExtra("name", herdNameView.getText().toString());
+				data.putExtra("type", typeSpeciesView.getText().toString());
+				data.putExtra("noOfAnimals", noOfAnimals);
+				data.putExtra("age", age);
+				data.putExtra("distanceSeen", distanceSeen);
+				data.putExtra("extraNotes", extraNotes.getText().toString());
+				
+				setResult(RESULT_OK, data);
+			}
 			
 			showSaveResult(result);
 		}

@@ -14,7 +14,7 @@ public class ElephantServiceImpl extends DatabaseService implements ElephantServ
 	@Override
 	public Map<String, Object> save(Integer id, String toolUsed, Integer noOfAnimals,
 			String age, String sex, String ivoryPresence, String actionTaken,
-			String extraNotes, String imagePath, String wp) {
+			String extraNotes, String imagePath, String lat, String lon) {
 
 		Map<String, Object> result = new HashMap<String, Object>();
 		
@@ -29,7 +29,8 @@ public class ElephantServiceImpl extends DatabaseService implements ElephantServ
  		values.put(Schemas.ElephantPoaching.ACTION_TAKEN, actionTaken);
  		values.put(Schemas.ElephantPoaching.EXTRA_NOTES, extraNotes);
  		values.put(Schemas.ElephantPoaching.IMAGE_PATH, imagePath);
- 		values.put(Schemas.ElephantPoaching.WP, wp);
+ 		values.put(Schemas.ElephantPoaching.LAT, lat);
+ 		values.put(Schemas.ElephantPoaching.LON, lon);
  		
  		try {
  			

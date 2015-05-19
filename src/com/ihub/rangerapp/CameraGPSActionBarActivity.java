@@ -7,10 +7,7 @@ import java.util.Map;
 import com.ihub.rangerapp.data.service.ShiftService;
 import com.ihub.rangerapp.data.service.ShiftServiceImpl;
 import com.ihub.rangerapp.location.Coordinate;
-
-import eu.inmite.android.lib.validations.form.FormValidator;
 import eu.inmite.android.lib.validations.form.annotations.NotEmpty;
-import eu.inmite.android.lib.validations.form.callback.SimpleErrorPopupCallback;
 import android.app.Activity;
 import android.app.AlertDialog;
 import android.content.Context;
@@ -329,10 +326,6 @@ public class CameraGPSActionBarActivity extends ActionBarActivity {
             }
         });
         popup.show();
-	}
-	
-	public String getWP() {
-		return "0,40";
 	}
 	
 	protected void showSaveResult(Map<String, Object> result) {

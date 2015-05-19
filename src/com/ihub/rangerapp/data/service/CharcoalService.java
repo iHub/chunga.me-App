@@ -11,7 +11,8 @@ public interface CharcoalService {
 		String actionTaken,
 		String extraNotes,
 		String imagePath,
-		String wp
+		String lat,
+		String lon
 	);
 	
 	public Map<String, Object> saveKilns(
@@ -22,6 +23,7 @@ public interface CharcoalService {
 		String actionTaken,
 		String extraNotes,
 		String imagePath,
-		String wp
+		String lat,
+		String lon
 	);
 }

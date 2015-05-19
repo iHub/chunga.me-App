@@ -1,7 +1,18 @@
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout 
+    xmlns:android="http://schemas.android.com/apk/res/android"
     style="@style/WizardPageContainer">
-
-    <TextView style="@style/WizardPageTitle" />
+    
+    <LinearLayout
+		android:layout_width="match_parent"
+		android:layout_height="wrap_content"
+		android:orientation="vertical"
+		android:background="#F5F5F5"
+		android:padding="5dp" >
+		
+        <TextView 
+            style="@style/WizardPageTitle" />
+        
+	</LinearLayout>
 
     <ListView android:id="@android:id/list"
         android:layout_width="match_parent"

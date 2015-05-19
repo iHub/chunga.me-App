@@ -137,21 +137,20 @@ public class HomeActivity extends ActionBarActivity implements OnClickListener {
         super.onSaveInstanceState(outState);
     }
     
-    private class CheckHasOpenShiftApplicationTask extends AsyncTask<Void, Void, Void> {
+    private class CheckHasOpenShiftApplicationTask extends AsyncTask<Void, Void, Boolean> {
     	
 		@Override
-		protected Void doInBackground(Void... params) {
+		protected Boolean doInBackground(Void... params) {
 			ShiftService service = new ShiftServiceImpl();
-			
-			if(service.hasOpenShift())
-				shiftBtn.setText(getString(R.string.end_shift));
-			
-			return null;
+			return service.hasOpenShift();
 		}
 		
 		@Override
-		protected void onPostExecute(Void result) {
-			super.onPostExecute(result);
+		protected void onPostExecute(Boolean hasOpenShift) {
+			super.onPostExecute(hasOpenShift);
+			
+			if(hasOpenShift)
+				shiftBtn.setText(getString(R.string.end_shift));
 		}
     }
     
@@ -308,9 +307,6 @@ public class HomeActivity extends ActionBarActivity implements OnClickListener {
 	    });
 	    
 	    endDialog.show();
-	    
-	   // set coordinates;
-		
 	}
 	
 	@Override

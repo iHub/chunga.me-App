@@ -4,22 +4,12 @@ import android.content.Intent;
 
 public class WaterholeModel extends Model {
 
-	Integer id;
 	String name;
 	String levelOfWater;
 	Integer numberOfAnimals;
 	String extraNotes;
-	String wp;
 	String imagePath;
 	String dateCreated;
-	
-	public Integer getId() {
-		return id;
-	}
-
-	public void setId(Integer id) {
-		this.id = id;
-	}
 
 	public String getName() {
 		return name;
@@ -53,14 +43,6 @@ public class WaterholeModel extends Model {
 		this.extraNotes = extraNotes;
 	}
 
-	public String getWp() {
-		return wp;
-	}
-
-	public void setWp(String wp) {
-		this.wp = wp;
-	}
-
 	public String getImagePath() {
 		return imagePath;
 	}
@@ -86,7 +68,8 @@ public class WaterholeModel extends Model {
 		intent.putExtra("levelOfWater", levelOfWater);
 		intent.putExtra("numberOfAnimals", numberOfAnimals);
 		intent.putExtra("extraNotes", extraNotes);
-		intent.putExtra("wp", wp);
+		intent.putExtra("lat", latitude);
+		intent.putExtra("lon", longitude);
 		intent.putExtra("imagePath", imagePath);
 		intent.putExtra("dateCreated", dateCreated);
 		return intent;

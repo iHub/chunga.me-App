@@ -16,6 +16,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import com.ihub.rangerapp.R;
 import com.ihub.rangerapp.model.GameMeatModel;
+import com.ihub.rangerapp.model.Model;
 import com.ihub.rangerapp.util.DateUtil;
 
 public class GameMeatReportAdapter extends AmazingAdapter {
@@ -109,8 +110,19 @@ public class GameMeatReportAdapter extends AmazingAdapter {
 	}
 
 	@Override
-	public void add(Object model) {
-		models.add((GameMeatModel) model);
+	public void add(Model model) {
+		
+		Boolean hasModel = false;
+		
+		for(Model m : models) {
+			if(m.getId() == model.getId()) {
+				hasModel = true;
+				break;
+			}
+		}
+		
+		if(!hasModel)
+			models.add((GameMeatModel) model);
 	}
 
 	@Override

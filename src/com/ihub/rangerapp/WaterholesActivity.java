@@ -96,6 +96,9 @@ public class WaterholesActivity extends CameraGPSActionBarActivity {
         	
         	if(!TextUtils.isEmpty(getIntent().getStringExtra("extraNotes")))
         		extraNotes.setText(getIntent().getStringExtra("extraNotes"));
+        	
+        	latView.setText(getIntent().getStringExtra("lat"));
+            longView.setText(getIntent().getStringExtra("lon"));
             
             if(mode == 2) {
             	saveBtn.setText(getString(R.string.edit));
@@ -127,7 +130,20 @@ public class WaterholesActivity extends CameraGPSActionBarActivity {
 			noOfAnimals, 
 			extraNotes.getText().toString(), 
 			imagePath, 
-			getWP());
+			latView.getText().toString(),
+			longView.getText().toString());
+		
+		if(mode == 2) {
+			Intent data = new Intent();
+			
+			data.putExtra("id", id);
+			data.putExtra("name", waterholeName.getText().toString());
+			data.putExtra("numberOfAnimals", noOfAnimals);
+			data.putExtra("levelOfWater", level);
+			data.putExtra("extraNotes", extraNotes.getText().toString());
+			
+			setResult(RESULT_OK, data);
+		}
 		
 		showSaveResult(result);
 	}

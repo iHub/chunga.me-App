@@ -1,5 +1,6 @@
 package com.ihub.rangerapp.adapter;
 
+import com.ihub.rangerapp.model.Model;
 import com.ihub.rangerapp.view.AmazingListView;
 
 import android.app.Activity;
@@ -188,7 +189,7 @@ public abstract class AmazingAdapter extends BaseAdapter implements SectionIndex
 	@Override
 	public abstract Object[] getSections();
 	
-	public abstract void add(Object model);
+	public abstract void add(Model model);
 
 	public abstract void clear();
 }

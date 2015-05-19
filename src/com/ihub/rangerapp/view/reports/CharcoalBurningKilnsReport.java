@@ -44,16 +44,38 @@ public class CharcoalBurningKilnsReport extends ReportFragment {
 				canEdit = true;
 		}
 		
-//		Intent intent = new Intent(getActivity(), CharcoalBurningActivity.class);
-//		intent.putExtra("view", "bag");
-//		intent.putExtras(model.getExtras());
-//		
-//		intent.putExtra("mode", canEdit ? 2 : 3);
-//		
-//		getActivity().startActivity(intent);
+		setIsSelectedEditable(canEdit);
+		setExtras(model.getExtras());
+		setRecordID(model.getId());
 		
 		addReviewItems(model, date);
 		showSummaryView();
+	}
+	
+	@Override
+	public void onActivityResult(int requestCode, int resultCode, Intent data) {
+		super.onActivityResult(requestCode, resultCode, data);
+		
+		getActivity().onBackPressed();
+		
+		int rID = data.getIntExtra("id", 0);
+				
+		for(int i = 0; i < adapter.getCount(); i++) {
+			CharcoalKilnModel m = (CharcoalKilnModel) adapter.getItem(i);
+			
+			if(m.getId() == rID) {
+				
+				m.setFreshnessLevels(data.getStringExtra("freshnessLevels"));
+				m.setNoOfKilns(data.getIntExtra("noOfKilns", 0));
+				m.setTreeUsed(data.getStringExtra("treeUsed"));
+				m.setActionTaken(data.getStringExtra("actionTaken"));
+				m.setExtraNotes(data.getStringExtra("extraNotes"));
+				
+				adapter.notifyDataSetChanged();
+				break;
+				
+			}
+		}
 	}
 	
 	public void addReviewItems(Model m, Date date){
@@ -94,5 +116,18 @@ public class CharcoalBurningKilnsReport extends ReportFragment {
 		}
 		
 		return adapter;
+	}
+	
+	public void startEdit() {
+		Intent intent = new Intent(getActivity(), getEditActivity());
+		intent.putExtras(getExtras());
+		intent.putExtra("view", "kiln");
+		intent.putExtra("mode", getIsSelectedEditable() ? 2 : 3);
+		startActivityForResult(intent, 100);
+	}
+
+	@Override
+	public Class<?> getEditActivity() {
+		return CharcoalBurningActivity.class;
 	}
 }

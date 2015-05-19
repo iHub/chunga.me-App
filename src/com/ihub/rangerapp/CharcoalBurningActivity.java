@@ -12,6 +12,7 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.LinearLayout;
 import android.widget.RadioButton;
+import android.widget.RadioGroup;
 import android.widget.Spinner;
 import android.content.Intent;
 import android.os.Bundle;
@@ -43,7 +44,7 @@ public class CharcoalBurningActivity extends CameraGPSActionBarActivity {
 	EditText extraNotes;
 	Button saveBtn;
 	
-	LinearLayout switchView;
+	RadioGroup radioGroup;
 	
 	String trees[] = {"Acacia bussei","Acacia etbaica","Acacia hockii","Acacia mellifera","Acacia nilotica","Acacia robusta","Acacia senegal","Acacia sp","Acacia thomasii","Acacia tortilis","Acacia zanzibarica","Albizia anthelmintica","Albizia harveyi","Albizia zimmermannii","Balanites aegyptiaca","Balanites pedicellaris","Boscia angustifolia","Boscia coriacea","Boswellia neglecta","Cassia abbreviata","Cassia siamea","Commiphora africana","Commiphora baluensis","Commiphora campestris","Commiphora confusa","Commiphora edulis","Commiphora eminii","Commiphora holtziana","Commiphora lindensis","Commiphora schimperi","Commiphora sp","Dalbergia melanoxylon","Delonix elata","Diospyros consolatae","Diospyros mespiliformis","Dobera glabra","Erythrina abyssinica","Euclea divinorum","Euphorbia bussei","Euphorbia quinquecostata","Ficus lutea","Gardenia volkensii","Haplocoelum foliolosum","Lannea alata","Lannea rivae","Lannea schweinfurthii","Lannea sp","Manilkara mochisia","Manilkara sulcata","Melia volkensii","Newtonia hildebrandtii","Ormocarpum kirkii","Pittosporum viridiflorum","Platycelyphium voense","Salvadora persica","Sterculia africana","Tamarindus indica","Terminalia brownii","Terminalia prunoides","Terminalia spinosa","Unknown","Zanthoxylum chalybeum"};
 	
@@ -69,7 +70,7 @@ public class CharcoalBurningActivity extends CameraGPSActionBarActivity {
         
         initViews();
         
-        switchView = (LinearLayout) findViewById(R.id.switchView);
+        radioGroup = (RadioGroup) findViewById(R.id.radioGroup);
         kilnsLayout = (LinearLayout) findViewById(R.id.kilnsLayout);
         bagsLayout = (LinearLayout) findViewById(R.id.bagsLayout);
         
@@ -95,7 +96,10 @@ public class CharcoalBurningActivity extends CameraGPSActionBarActivity {
 		});
         
         if(mode != 1) {
-        	switchView.setVisibility(View.GONE);
+        	radioGroup.setVisibility(View.GONE);
+        	
+        	latView.setText(getIntent().getStringExtra("lat"));
+            longView.setText(getIntent().getStringExtra("lon"));
         	
         	if(mode == 2) {
             	saveBtn.setText(getString(R.string.edit));
@@ -191,7 +195,21 @@ public class CharcoalBurningActivity extends CameraGPSActionBarActivity {
 					kilnActionTaken, 
 					extraNotes.getText().toString(), 
 					imagePath, 
-					getWP());
+					latView.getText().toString(),
+					longView.getText().toString());
+			
+			if(mode == 2) {
+				Intent data = new Intent();
+				
+				data.putExtra("id", id);
+				data.putExtra("noOfKilns", noOfKilns);
+				data.putExtra("freshnessLevels", freshnessLevel);
+				data.putExtra("treeUsed", treeUsedView.getText().toString());
+				data.putExtra("actionTaken", kilnActionTaken);
+				data.putExtra("extraNotes", extraNotes.getText().toString());
+				
+				setResult(RESULT_OK, data);
+			}
 			
 			showSaveResult(result);
 		}
@@ -220,7 +238,22 @@ public class CharcoalBurningActivity extends CameraGPSActionBarActivity {
 					noOfBags, 
 					modeOfTransport, 
 					bagsActionTaken, 
-					extraNotes.getText().toString(), imagePath, getWP());
+					extraNotes.getText().toString(), 
+					imagePath,
+					latView.getText().toString(),
+					longView.getText().toString());
+			
+			if(mode == 2) {
+				Intent data = new Intent();
+				
+				data.putExtra("id", id);
+				data.putExtra("noOfBags", noOfBags);
+				data.putExtra("modeOfTransport", modeOfTransport);
+				data.putExtra("actionTaken", bagsActionTaken);
+				data.putExtra("extraNotes", extraNotes.getText().toString());
+				
+				setResult(RESULT_OK, data);
+			}
 			
 			showSaveResult(result);
 		}

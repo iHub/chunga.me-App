@@ -6,23 +6,28 @@ import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.media.ThumbnailUtils;
 import android.os.Bundle;
+import android.os.Handler;
 import android.support.v4.app.ListFragment;
 import android.text.TextUtils;
 import android.view.LayoutInflater;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.TextView;
+import android.widget.Toast;
+
 import java.util.ArrayList;
 import java.util.List;
-
-import com.ihub.rangerapp.CameraGPSActionBarActivity;
 import com.ihub.rangerapp.PhotoActivity;
 import com.ihub.rangerapp.R;
 import com.ihub.rangerapp.ReportViewerActivity;
 import com.ihub.rangerapp.entity.SummaryItem;
+import com.ihub.rangerapp.view.reports.ReportFragment;
 
 public class SummaryFragment extends ListFragment {
 	
@@ -30,13 +35,16 @@ public class SummaryFragment extends ListFragment {
     
     private ReviewAdapter mReviewAdapter;
     
-    public SummaryFragment() {
-    	
-    }
+    Boolean isEditable = false;
+    
+    public SummaryFragment() {}
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        
+        setHasOptionsMenu(true);
+        
         mReviewAdapter = new ReviewAdapter();
         
         //load items
@@ -46,6 +54,13 @@ public class SummaryFragment extends ListFragment {
         	
         	ReportViewerActivity activity = (ReportViewerActivity) getActivity();
         	mCurrentReviewItems.addAll(activity.getReviewItems());
+        	
+        	if(activity.getCurrentReport() != null) {
+        		ReportFragment currentReport = activity.getCurrentReport();
+        		
+        		isEditable = currentReport.getIsSelectedEditable();
+        		getActivity().supportInvalidateOptionsMenu();
+        	}
         }
     }
 
@@ -139,7 +154,7 @@ public class SummaryFragment extends ListFragment {
         		
         		if(myBitmap != null)
         			imageView.setImageBitmap(myBitmap);
-            	
+        		
             } else {
             	((TextView) rootView.findViewById(android.R.id.text2)).setText(value);
             }
@@ -154,4 +169,31 @@ public class SummaryFragment extends ListFragment {
             return mCurrentReviewItems.size();
         }
     }
+    
+    @Override
+    public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
+        inflater.inflate(R.menu.edit_menu, menu);
+        menu.getItem(0).setVisible(isEditable);
+        super.onCreateOptionsMenu(menu, inflater);
+    }
+    
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+    	
+    	if(item.getItemId() == R.id.action_edit) {
+    		openEditView();
+    	}
+    	return super.onOptionsItemSelected(item);
+    }
+    
+	private void openEditView() {
+		if(getActivity() instanceof ReportViewerActivity) {
+			
+        	ReportViewerActivity activity = (ReportViewerActivity) getActivity();
+        	
+        	if(activity.getCurrentReport() != null) {
+        		activity.getCurrentReport().startEdit();
+        	}
+        }
+	}
 }

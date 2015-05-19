@@ -12,7 +12,7 @@ import com.ihub.rangerapp.data.sqlite.Schemas;
 public class GameMeatServiceImpl extends DatabaseService implements GameMeatService {
 	
 	@Override
-	public Map<String, Object> save(Integer id, String animal, Integer noOfAnimals, String actionTaken, String extraNotes, String imagePath, String wp) {
+	public Map<String, Object> save(Integer id, String animal, Integer noOfAnimals, String actionTaken, String extraNotes, String imagePath, String lat, String lon) {
 		
 		Map<String, Object> result = new HashMap<String, Object>();
 		
@@ -23,7 +23,8 @@ public class GameMeatServiceImpl extends DatabaseService implements GameMeatServ
  		values.put(Schemas.GameMeat.NO_OF_ANIMALS, noOfAnimals);
  		values.put(Schemas.GameMeat.ACTION_TAKEN, actionTaken);
  		values.put(Schemas.GameMeat.EXTRA_NOTES, extraNotes);
- 		values.put(Schemas.GameMeat.WP, wp);
+ 		values.put(Schemas.GameMeat.LAT, lat);
+ 		values.put(Schemas.GameMeat.LON, lon);
  		values.put(Schemas.GameMeat.IMAGE_PATH, imagePath);
  		
  		try {
@@ -45,7 +46,7 @@ public class GameMeatServiceImpl extends DatabaseService implements GameMeatServ
 	}
 	
 	@Override
-	public Map<String, Object> edit(Integer id, String animal, Integer noOfAnimals, String actionTaken, String extraNotes, String imagePath, String wp) {
+	public Map<String, Object> edit(Integer id, String animal, Integer noOfAnimals, String actionTaken, String extraNotes, String imagePath, String lat, String lon) {
 		
 		return null;
 	}

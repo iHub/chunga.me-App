@@ -18,6 +18,7 @@ import android.widget.TextView;
 
 import com.ihub.rangerapp.R;
 import com.ihub.rangerapp.model.IndividualAnimalModel;
+import com.ihub.rangerapp.model.Model;
 import com.ihub.rangerapp.util.DateUtil;
 
 public class IndividualAnimalAdapter extends AmazingAdapter {
@@ -111,8 +112,19 @@ public class IndividualAnimalAdapter extends AmazingAdapter {
 	}
 
 	@Override
-	public void add(Object model) {
-		models.add((IndividualAnimalModel) model);
+	public void add(Model model) {
+
+		Boolean hasModel = false;
+		
+		for(Model m : models) {
+			if(m.getId() == model.getId()) {
+				hasModel = true;
+				break;
+			}
+		}
+		
+		if(!hasModel)
+			models.add((IndividualAnimalModel) model);
 	}
 
 	@Override

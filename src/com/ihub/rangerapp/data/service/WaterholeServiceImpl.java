@@ -13,7 +13,7 @@ import com.ihub.rangerapp.data.sqlite.Schemas;
 public class WaterholeServiceImpl extends DatabaseService implements WaterholeService {
 
 	@Override
-	public Map<String, Object> save(Integer id, String name, String level, Integer noOfAnimalsSeen, String extraNotes, String imagePath, String wp) {
+	public Map<String, Object> save(Integer id, String name, String level, Integer noOfAnimalsSeen, String extraNotes, String imagePath, String lat, String lon) {
 		
 		Map<String, Object> result = new HashMap<String, Object>();
 		
@@ -25,7 +25,8 @@ public class WaterholeServiceImpl extends DatabaseService implements WaterholeSe
 		values.put(Schemas.Waterhole.NUMBER_OF_ANIMALS, noOfAnimalsSeen);
 		values.put(Schemas.Waterhole.EXTRA_NOTES, extraNotes);
 		values.put(Schemas.Waterhole.IMAGE_PATH, imagePath);
-		values.put(Schemas.Waterhole.WP, wp);
+		values.put(Schemas.Waterhole.LAT, lat);
+		values.put(Schemas.Waterhole.LON, lon);
 		
 		try {
 			

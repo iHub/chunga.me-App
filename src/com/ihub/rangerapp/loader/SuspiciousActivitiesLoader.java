@@ -36,22 +36,23 @@ public class SuspiciousActivitiesLoader extends DataLoader {
 		Cursor cursor = db.rawQuery(sql, null);
 		
 		if (cursor.moveToFirst()) {
-			Log.v("SuspiciousActivities", "has records.............................................");
 			
 			do {
 				
 				Integer id = cursor.getInt(0);
 				String actionTaken = cursor.getString(1);
 				String extraNotes = cursor.getString(2);
-				String wp = cursor.getString(3);
-				String imagePath = cursor.getString(4);
-				String dateCreated = cursor.getString(5);
+				String latitude = cursor.getString(3);
+				String longitude = cursor.getString(4);
+				String imagePath = cursor.getString(5);
+				String dateCreated = cursor.getString(6);
 												
 				SuspiciousActivityModel  model = new SuspiciousActivityModel();
 				model.setId(id);
 				model.setActionTaken(actionTaken);
 				model.setExtraNotes(extraNotes);
-				model.setWp(wp);
+				model.setLatitude(latitude);
+				model.setLongitude(longitude);
 				model.setImagePath(imagePath);
 				model.setDateCreated(dateCreated);
 				

@@ -13,7 +13,7 @@ public class CharcoalServiceImpl extends DatabaseService implements CharcoalServ
 
 	@Override
 	public Map<String, Object> saveBagsData(Integer id, Integer noOfBags, String mode,
-		String actionTaken, String extraNotes, String imagePath, String wp) {
+		String actionTaken, String extraNotes, String imagePath, String lat, String lon) {
 		
 		Map<String, Object> result = new HashMap<String, Object>();
 		
@@ -25,7 +25,8 @@ public class CharcoalServiceImpl extends DatabaseService implements CharcoalServ
  		values.put(Schemas.CharcoalBags.ACTION_TAKEN, actionTaken);
  		values.put(Schemas.CharcoalBags.EXTRA_NOTES, extraNotes);
  		values.put(Schemas.CharcoalBags.IMAGE_PATH, imagePath);
- 		values.put(Schemas.CharcoalBags.WP, wp);
+ 		values.put(Schemas.CharcoalBags.LAT, lat);
+ 		values.put(Schemas.CharcoalBags.LON, lon);
  		
  		try {
  			
@@ -48,7 +49,7 @@ public class CharcoalServiceImpl extends DatabaseService implements CharcoalServ
 	@Override
 	public Map<String, Object> saveKilns(Integer id, Integer noOfKilns,
 		String freshnessLevels, String treeUsed, String actionTaken,
-		String extraNotes, String imagePath, String wp) {
+		String extraNotes, String imagePath, String lat, String lon) {
 		
 		Map<String, Object> result = new HashMap<String, Object>();
 		
@@ -61,7 +62,8 @@ public class CharcoalServiceImpl extends DatabaseService implements CharcoalServ
  		values.put(Schemas.CharcoalKilns.ACTION_TAKEN, actionTaken);
  		values.put(Schemas.CharcoalKilns.EXTRA_NOTES, extraNotes);
  		values.put(Schemas.CharcoalKilns.IMAGE_PATH, imagePath);
- 		values.put(Schemas.CharcoalKilns.WP, wp); 		
+ 		values.put(Schemas.CharcoalKilns.LAT, lat);
+ 		values.put(Schemas.CharcoalKilns.LON, lon);
  		
  		try {
  			

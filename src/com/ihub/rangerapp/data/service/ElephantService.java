@@ -14,6 +14,7 @@ public interface ElephantService {
 		String actionTaken,
 		String extraNotes,
 		String imagePath,
-		String wp
+		String lat,
+		String lon
 	);
 }

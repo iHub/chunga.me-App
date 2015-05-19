@@ -24,9 +24,7 @@ public class GameMeatActivity extends CameraGPSActionBarActivity {
 	Button saveBtn;
 	
 	String animals[] = {"Antelope", "Buffalo", "Gorilla", "Rabbit", "Warthog"};
-	
-	//Boolean isEdit = false;
-	
+		
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
@@ -100,6 +98,9 @@ public class GameMeatActivity extends CameraGPSActionBarActivity {
                 if(!TextUtils.isEmpty(getIntent().getStringExtra("extraNotes")))
             		extraNotes.setText(getIntent().getStringExtra("extraNotes"));
                 
+                latView.setText(getIntent().getStringExtra("lat"));
+                longView.setText(getIntent().getStringExtra("lon"));
+                
                 if(mode == 2) {
                 	saveBtn.setText(getString(R.string.edit));
                 } else {
@@ -117,6 +118,7 @@ public class GameMeatActivity extends CameraGPSActionBarActivity {
 		
 		GameMeatService service = new GameMeatServiceImpl();
 		Integer noOfAnimals = 0;
+		
 		try {
 			noOfAnimals = Integer.valueOf(noOfAnimalsView.getText().toString());
 		} catch (Exception e) {}
@@ -134,10 +136,17 @@ public class GameMeatActivity extends CameraGPSActionBarActivity {
 				actionTaken, 
 				extraNotes.getText().toString(), 
 				imagePath, 
-				getWP());
+				latView.getText().toString(),
+				longView.getText().toString());
 		
 		if(mode == 2) {
 			Intent data = new Intent();
+			
+			data.putExtra("id", id);
+			data.putExtra("animal", animalView.getText().toString());
+			data.putExtra("noOfAnimals", noOfAnimals);
+			data.putExtra("actionTaken", actionTaken);
+			data.putExtra("extraNotes", extraNotes.getText().toString());
 			
 			setResult(RESULT_OK, data);
 		}

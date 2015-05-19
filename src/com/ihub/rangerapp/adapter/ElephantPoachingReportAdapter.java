@@ -6,6 +6,7 @@ import java.util.Date;
 import java.util.List;
 import com.ihub.rangerapp.R;
 import com.ihub.rangerapp.model.ElephantPoachingModel;
+import com.ihub.rangerapp.model.Model;
 import com.ihub.rangerapp.util.DateUtil;
 import android.app.Activity;
 import android.graphics.Bitmap;
@@ -113,8 +114,18 @@ public class ElephantPoachingReportAdapter extends AmazingAdapter {
 	}
 
 	@Override
-	public void add(Object model) {
-		models.add((ElephantPoachingModel) model);
+	public void add(Model model) {
+		Boolean hasModel = false;
+		
+		for(Model m : models) {
+			if(m.getId() == model.getId()) {
+				hasModel = true;
+				break;
+			}
+		}
+		
+		if(!hasModel)
+			models.add((ElephantPoachingModel) model);
 	}
 
 	@Override

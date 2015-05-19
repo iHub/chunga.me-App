@@ -4,23 +4,13 @@ import android.content.Intent;
 
 public class IndividualAnimalModel extends Model {
 
-	Integer id;
 	String animal;
 	String gender;
 	String age;
 	Integer distanceSeen;
 	String extraNotes;
-	String wp;
 	String imagePath;
 	String dateCreated;
-	
-	public Integer getId() {
-		return id;
-	}
-
-	public void setId(Integer id) {
-		this.id = id;
-	}
 
 	public String getAnimal() {
 		return animal;
@@ -62,14 +52,6 @@ public class IndividualAnimalModel extends Model {
 		this.extraNotes = extraNotes;
 	}
 
-	public String getWp() {
-		return wp;
-	}
-
-	public void setWp(String wp) {
-		this.wp = wp;
-	}
-
 	public String getImagePath() {
 		return imagePath;
 	}
@@ -95,7 +77,8 @@ public class IndividualAnimalModel extends Model {
 		intent.putExtra("age", age);
 		intent.putExtra("distanceSeen", distanceSeen);
 		intent.putExtra("extraNotes", extraNotes);
-		intent.putExtra("wp", wp);
+		intent.putExtra("lat", latitude);
+		intent.putExtra("lon", longitude);
 		intent.putExtra("imagePath", imagePath);
 		intent.putExtra("dateCreated", dateCreated);
 		

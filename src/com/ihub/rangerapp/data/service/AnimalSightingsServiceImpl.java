@@ -12,7 +12,7 @@ import com.ihub.rangerapp.data.sqlite.Schemas;
 public class AnimalSightingsServiceImpl extends DatabaseService implements AnimalSightingsService {
 
 	@Override
-	public Map<String, Object> saveIndividualAnimal(Integer id, String name, String gender, String age, Integer distanceSeen, String extraNotes, String imagePath, String wp) {
+	public Map<String, Object> saveIndividualAnimal(Integer id, String name, String gender, String age, Integer distanceSeen, String extraNotes, String imagePath, String lat, String lon) {
 		
 		Map<String, Object> result = new HashMap<String, Object>();
 		
@@ -25,7 +25,8 @@ public class AnimalSightingsServiceImpl extends DatabaseService implements Anima
  		values.put(Schemas.IndividualAnimalSighting.DISTANCE_SEEN, distanceSeen);
  		values.put(Schemas.IndividualAnimalSighting.EXTRA_NOTES, extraNotes);
  		values.put(Schemas.IndividualAnimalSighting.IMAGE_PATH, imagePath);
- 		values.put(Schemas.IndividualAnimalSighting.WP, wp);
+ 		values.put(Schemas.IndividualAnimalSighting.LAT, lat);
+ 		values.put(Schemas.IndividualAnimalSighting.LON, lon);
  		
  		try {
  			
@@ -46,7 +47,7 @@ public class AnimalSightingsServiceImpl extends DatabaseService implements Anima
 	}
 
 	@Override
-	public Map<String, Object> saveHerd(Integer id, String name, String species, Integer noOfAnimals, String age, Integer distanceSeen, String extraNotes, String imagePath, String wp) {
+	public Map<String, Object> saveHerd(Integer id, String name, String species, Integer noOfAnimals, String age, Integer distanceSeen, String extraNotes, String imagePath, String lat, String lon) {
 
 		Map<String, Object> result = new HashMap<String, Object>();
 		
@@ -60,7 +61,8 @@ public class AnimalSightingsServiceImpl extends DatabaseService implements Anima
  		values.put(Schemas.AnimalHerdSighting.DISTANCE_SEEN, distanceSeen);
  		values.put(Schemas.AnimalHerdSighting.EXTRA_NOTES, extraNotes);
  		values.put(Schemas.AnimalHerdSighting.IMAGE_PATH, imagePath);
- 		values.put(Schemas.AnimalHerdSighting.WP, wp);
+ 		values.put(Schemas.AnimalHerdSighting.LAT, lat);
+ 		values.put(Schemas.AnimalHerdSighting.LON, lon);
  		
  		try {
  			

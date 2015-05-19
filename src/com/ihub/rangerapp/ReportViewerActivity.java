@@ -20,8 +20,8 @@ import android.view.View;
 import android.os.Bundle;
 
 public class ReportViewerActivity extends ActionBarActivity {
-	
-	ReportFragment fragment;
+		
+	ReportFragment currentReport = null;
 	
 	public List<SummaryItem> reviewItems = new ArrayList<SummaryItem>();
 	
@@ -44,9 +44,9 @@ public class ReportViewerActivity extends ActionBarActivity {
         });
         
         if (savedInstanceState == null) {
-			fragment = getFragment();
+			currentReport = getFragment();
 			getSupportFragmentManager().beginTransaction()
-					.add(R.id.container, fragment).commit();
+					.add(R.id.container, currentReport).commit();
 		}
         
         if(getIntent().hasExtra("title"))
@@ -93,5 +93,9 @@ public class ReportViewerActivity extends ActionBarActivity {
 	
 	public void clearReviewItems() {
 		reviewItems.clear();
+	}
+
+	public ReportFragment getCurrentReport() {
+		return currentReport;
 	}
 }

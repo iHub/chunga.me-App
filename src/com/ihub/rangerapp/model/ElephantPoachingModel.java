@@ -4,7 +4,6 @@ import android.content.Intent;
 
 public class ElephantPoachingModel extends Model {
 
-	Integer id;
 	String toolsUsed;
 	Integer noOfAnimals;
 	String age;
@@ -12,16 +11,9 @@ public class ElephantPoachingModel extends Model {
 	String ivoryPresence;
 	String actionTaken;
 	String extraNotes;
-	String wp;
 	String imagePath;
 	String dateCreated;
 	
-	public Integer getId() {
-		return id;
-	}
-	public void setId(Integer id) {
-		this.id = id;
-	}
 	public String getToolsUsed() {
 		return toolsUsed;
 	}
@@ -64,12 +56,6 @@ public class ElephantPoachingModel extends Model {
 	public void setExtraNotes(String extraNotes) {
 		this.extraNotes = extraNotes;
 	}
-	public String getWp() {
-		return wp;
-	}
-	public void setWp(String wp) {
-		this.wp = wp;
-	}
 	public String getImagePath() {
 		return imagePath;
 	}
@@ -94,7 +80,8 @@ public class ElephantPoachingModel extends Model {
 		intent.putExtra("ivoryPresence", ivoryPresence);
 		intent.putExtra("actionTaken", actionTaken);
 		intent.putExtra("extraNotes", extraNotes);
-		intent.putExtra("wp", wp);
+		intent.putExtra("lat", latitude);
+		intent.putExtra("lon", longitude);
 		intent.putExtra("imagePath", imagePath);
 		intent.putExtra("dateCreated", dateCreated);
 		

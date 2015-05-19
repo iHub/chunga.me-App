@@ -9,6 +9,7 @@ import com.ihub.rangerapp.adapter.AmazingAdapter;
 import com.ihub.rangerapp.adapter.IndividualAnimalAdapter;
 import com.ihub.rangerapp.entity.SummaryItem;
 import com.ihub.rangerapp.loader.IndividualAnimalsLoader;
+import com.ihub.rangerapp.model.GameMeatModel;
 import com.ihub.rangerapp.model.IndividualAnimalModel;
 import com.ihub.rangerapp.model.Model;
 import com.ihub.rangerapp.model.SuspiciousActivityModel;
@@ -43,18 +44,38 @@ public class IndividualAnimalsReport extends ReportFragment {
 				canEdit = true;
 		}
 		
-		//TODO check date before editing
-		
-//		Intent intent = new Intent(getActivity(), AnimalsSightingsActivity.class);
-//		intent.putExtras(model.getExtras());
-//		intent.putExtra("view", "individual");
-//		
-//		intent.putExtra("mode", canEdit ? 2 : 3);
-//		
-//		getActivity().startActivity(intent);
+		setIsSelectedEditable(canEdit);
+		setExtras(model.getExtras());
+		setRecordID(model.getId());
 		
 		addReviewItems(model, date);
 		showSummaryView();
+	}
+	
+	@Override
+	public void onActivityResult(int requestCode, int resultCode, Intent data) {
+		super.onActivityResult(requestCode, resultCode, data);
+		
+		getActivity().onBackPressed();
+		
+		int rID = data.getIntExtra("id", 0);
+				
+		for(int i = 0; i < adapter.getCount(); i++) {
+			IndividualAnimalModel m = (IndividualAnimalModel) adapter.getItem(i);
+			
+			if(m.getId() == rID) {
+				
+				m.setAnimal(data.getStringExtra("animal"));
+				m.setGender(data.getStringExtra("gender"));
+				m.setAge(data.getStringExtra("age"));
+				m.setDistanceSeen(data.getIntExtra("distanceSeen", 0));
+				m.setExtraNotes(data.getStringExtra("extraNotes"));
+				
+				adapter.notifyDataSetChanged();
+				break;
+				
+			}
+		}
 	}
 	
 	public void addReviewItems(Model m, Date date){
@@ -95,5 +116,18 @@ public class IndividualAnimalsReport extends ReportFragment {
 		}
 		
 		return adapter;
+	}
+
+	public void startEdit() {
+		Intent intent = new Intent(getActivity(), getEditActivity());
+		intent.putExtras(getExtras());
+		intent.putExtra("view", "individual");
+		intent.putExtra("mode", getIsSelectedEditable() ? 2 : 3);
+		startActivityForResult(intent, 100);
+	}
+
+	@Override
+	public Class<?> getEditActivity() {
+		return AnimalsSightingsActivity.class;
 	}
 }

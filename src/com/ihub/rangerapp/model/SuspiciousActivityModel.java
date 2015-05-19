@@ -4,19 +4,11 @@ import android.content.Intent;
 
 public class SuspiciousActivityModel extends Model {
 
-	Integer id;
 	String actionTaken;
 	String extraNotes;
-	String wp;
 	String imagePath;
 	String dateCreated;
 	
-	public Integer getId() {
-		return id;
-	}
-	public void setId(Integer id) {
-		this.id = id;
-	}
 	public String getActionTaken() {
 		return actionTaken;
 	}
@@ -28,12 +20,6 @@ public class SuspiciousActivityModel extends Model {
 	}
 	public void setExtraNotes(String extraNotes) {
 		this.extraNotes = extraNotes;
-	}
-	public String getWp() {
-		return wp;
-	}
-	public void setWp(String wp) {
-		this.wp = wp;
 	}
 	public String getImagePath() {
 		return imagePath;
@@ -54,7 +40,8 @@ public class SuspiciousActivityModel extends Model {
 		intent.putExtra("id", id);
 		intent.putExtra("actionTaken", actionTaken);
 		intent.putExtra("extraNotes", extraNotes);
-		intent.putExtra("wp", wp);
+		intent.putExtra("lat", latitude);
+		intent.putExtra("lon", longitude);
 		intent.putExtra("imagePath", imagePath);
 		intent.putExtra("dateCreated", dateCreated);
 

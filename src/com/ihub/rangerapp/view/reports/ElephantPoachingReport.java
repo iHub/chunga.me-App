@@ -2,15 +2,19 @@ package com.ihub.rangerapp.view.reports;
 
 import java.text.SimpleDateFormat;
 import java.util.Date;
+
+import com.ihub.rangerapp.ElephantPoachingActivity;
 import com.ihub.rangerapp.ReportViewerActivity;
 import com.ihub.rangerapp.adapter.AmazingAdapter;
 import com.ihub.rangerapp.adapter.ElephantPoachingReportAdapter;
 import com.ihub.rangerapp.entity.SummaryItem;
 import com.ihub.rangerapp.loader.ElephantPoachingLoader;
 import com.ihub.rangerapp.model.ElephantPoachingModel;
+import com.ihub.rangerapp.model.GameMeatModel;
 import com.ihub.rangerapp.model.Model;
 import com.ihub.rangerapp.util.DateUtil;
 import android.content.Context;
+import android.content.Intent;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.BaseAdapter;
@@ -38,14 +42,10 @@ public class ElephantPoachingReport extends ReportFragment {
 			if(date.after(new Date()))
 				canEdit = true;
 		}
-		//TODO check date before editing
 		
-//		Intent intent = new Intent(getActivity(), ElephantPoachingActivity.class);
-//		intent.putExtras(model.getExtras());
-//		
-//		intent.putExtra("mode", canEdit ? 2 : 3);
-//		
-//		getActivity().startActivity(intent);
+		setIsSelectedEditable(canEdit);
+		setExtras(model.getExtras());
+		setRecordID(model.getId());
 		
 		addReviewItems(model, date);
 		showSummaryView();
@@ -74,6 +74,35 @@ public class ElephantPoachingReport extends ReportFragment {
 	}
 	
 	@Override
+	public void onActivityResult(int requestCode, int resultCode, Intent data) {
+		super.onActivityResult(requestCode, resultCode, data);
+		
+		getActivity().onBackPressed();
+		
+		int rID = data.getIntExtra("id", 0);
+				
+		for(int i = 0; i < adapter.getCount(); i++) {
+			ElephantPoachingModel m = (ElephantPoachingModel) adapter.getItem(i);
+			
+			if(m.getId() == rID) {
+				
+				m.setToolsUsed(data.getStringExtra("toolsUsed"));
+				m.setNoOfAnimals(data.getIntExtra("noOfAnimals", 0));
+				m.setActionTaken(data.getStringExtra("actionTaken"));
+				m.setExtraNotes(data.getStringExtra("extraNotes"));
+				
+				m.setAge(data.getStringExtra("age"));
+				m.setSex(data.getStringExtra("sex"));
+				m.setIvoryPresence(data.getStringExtra("ivoryPresence"));
+				
+				adapter.notifyDataSetChanged();
+				break;
+				
+			}
+		}
+	}
+	
+	@Override
 	public String getLoaderName() {
 		return ElephantPoachingLoader.class.getSimpleName();
 	}
@@ -91,5 +120,10 @@ public class ElephantPoachingReport extends ReportFragment {
 		}
 		
 		return adapter;
+	}
+
+	@Override
+	public Class<?> getEditActivity() {
+		return ElephantPoachingActivity.class;
 	}
 }

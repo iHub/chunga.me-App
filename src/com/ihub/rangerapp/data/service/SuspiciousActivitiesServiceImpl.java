@@ -13,7 +13,7 @@ import com.ihub.rangerapp.data.sqlite.Schemas;
 public class SuspiciousActivitiesServiceImpl extends DatabaseService implements SuspiciousActivitiesService {
 
 	@Override
-	public Map<String, Object> save(Integer id, String actionTaken, String extraNotes, String imagePath, String wp) {
+	public Map<String, Object> save(Integer id, String actionTaken, String extraNotes, String imagePath, String lat, String lon) {
 		
 		Map<String, Object> result = new HashMap<String, Object>();
 	
@@ -23,7 +23,8 @@ public class SuspiciousActivitiesServiceImpl extends DatabaseService implements 
 		values.put(Schemas.SuspiciousActivities.ACTION_TAKEN, actionTaken);
 		values.put(Schemas.SuspiciousActivities.EXTRA_NOTES, extraNotes);
 		values.put(Schemas.SuspiciousActivities.IMAGE_PATH, imagePath);
-		values.put(Schemas.SuspiciousActivities.WP, wp);
+		values.put(Schemas.SuspiciousActivities.LAT, lat);
+		values.put(Schemas.SuspiciousActivities.LON, lon);
 		
 		try {
 			

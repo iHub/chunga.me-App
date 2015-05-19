@@ -11,7 +11,8 @@ public interface GameMeatService {
 		String actionTaken, 
 		String extraNotes,
 		String imagePath,
-		String wp);		
+		String lat,
+		String lon);		
 	
 	public Map<String, Object> edit(
 		Integer id, 
@@ -20,5 +21,6 @@ public interface GameMeatService {
 		String actionTaken, 
 		String extraNotes,
 		String imagePath,
-		String wp);
+		String lat,
+		String lon);
 }

@@ -44,19 +44,36 @@ AmazingAdapter adapter;
 				canEdit = true;
 		}
 		
-		//TODO check date before editing
-		
-//		Intent intent = new Intent(getActivity(), SuspiciousActivitiesActivity.class);
-//		intent.putExtras(model.getExtras());
-//		
-//		intent.putExtra("mode", canEdit ? 2 : 3);
-//		
-//		getActivity().startActivity(intent);
+		setIsSelectedEditable(canEdit);
+		setExtras(model.getExtras());
+		setRecordID(model.getId());
 		
 		addReviewItems(model, date);
 		showSummaryView();
 	}
 	
+	@Override
+	public void onActivityResult(int requestCode, int resultCode, Intent data) {
+		super.onActivityResult(requestCode, resultCode, data);
+		
+		getActivity().onBackPressed();
+		
+		int rID = data.getIntExtra("id", 0);
+				
+		for(int i = 0; i < adapter.getCount(); i++) {
+			SuspiciousActivityModel m = (SuspiciousActivityModel) adapter.getItem(i);
+			
+			if(m.getId() == rID) {
+				
+				m.setActionTaken(data.getStringExtra("actionTaken"));
+				m.setExtraNotes(data.getStringExtra("extraNotes"));
+				
+				adapter.notifyDataSetChanged();
+				break;
+				
+			}
+		}
+	}
 
 	public void addReviewItems(Model m, Date date){
 		
@@ -93,5 +110,11 @@ AmazingAdapter adapter;
 		}
 		
 		return adapter;
+	}
+
+
+	@Override
+	public Class<?> getEditActivity() {
+		return SuspiciousActivitiesActivity.class;
 	}
 }

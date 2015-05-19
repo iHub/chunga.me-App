@@ -12,7 +12,8 @@ public interface AnimalSightingsService {
 			Integer distanceSeen,
 			String extraNotes,
 			String imagePath,
-			String wp);
+			String lat,
+			String lon);
 	
 	public Map<String, Object> saveHerd(
 			Integer id,
@@ -23,5 +24,6 @@ public interface AnimalSightingsService {
 			Integer distanceSeen,
 			String extraNotes,
 			String imagePath,
-			String wp);
+			String lat,
+			String lon);
 }

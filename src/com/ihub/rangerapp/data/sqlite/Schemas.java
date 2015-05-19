@@ -36,7 +36,8 @@ public class Schemas {
 				AnimalHerdSighting.AGE + " text," +
 				AnimalHerdSighting.DISTANCE_SEEN + " integer," +
 				AnimalHerdSighting.EXTRA_NOTES + " text," +
-				AnimalHerdSighting.WP + " text," +
+				AnimalHerdSighting.LAT + " text," +
+				AnimalHerdSighting.LON + " text," +
 				AnimalHerdSighting.IMAGE_PATH + " text," +
 				AnimalHerdSighting.DATE_CREATED + " DATE DEFAULT (datetime('now','localtime'))" +
 			");";
@@ -52,7 +53,8 @@ public class Schemas {
 			IndividualAnimalSighting.AGE + " text," +
 			IndividualAnimalSighting.DISTANCE_SEEN + " integer," +
 			IndividualAnimalSighting.EXTRA_NOTES + " text," +
-			IndividualAnimalSighting.WP + " text," +
+			IndividualAnimalSighting.LAT + " text," +
+			IndividualAnimalSighting.LON + " text," +
 			IndividualAnimalSighting.IMAGE_PATH + " text," +
 			IndividualAnimalSighting.DATE_CREATED + " DATE DEFAULT (datetime('now','localtime'))" +
 		");";
@@ -66,7 +68,8 @@ public class Schemas {
 		public static String AGE = "age";
 		public static String DISTANCE_SEEN = "distance_seen";
 		public static String EXTRA_NOTES = "extra_notes";
-		public static String WP = "wp";
+		public static String LAT = "latitude";
+		public static String LON = "longitude";
 		public static String IMAGE_PATH = "image_path";
 		public static String DATE_CREATED = "date_created";
 	}
@@ -78,7 +81,8 @@ public class Schemas {
 		public static String AGE = "age";
 		public static String DISTANCE_SEEN = "distance_seen";
 		public static String EXTRA_NOTES = "extra_notes";
-		public static String WP = "wp";
+		public static String LAT = "latitude";
+		public static String LON = "longitude";
 		public static String IMAGE_PATH = "image_path";
 		public static String DATE_CREATED = "date_created";
 	}
@@ -90,7 +94,8 @@ public class Schemas {
 				Waterhole.LEVEL_OF_WATER + " text," +
 				Waterhole.NUMBER_OF_ANIMALS + " integer," +
 				Waterhole.EXTRA_NOTES + " text," +
-				Waterhole.WP + " text," +
+				Waterhole.LAT + " text," +
+				Waterhole.LON + " text," +
 				Waterhole.IMAGE_PATH + " text," +
 				Waterhole.DATE_CREATED + " DATE DEFAULT (datetime('now','localtime'))" +
 			");";
@@ -103,7 +108,8 @@ public class Schemas {
 				BaseColumns._ID + " integer primary key autoincrement," +
 				SuspiciousActivities.ACTION_TAKEN + " text," +
 				SuspiciousActivities.EXTRA_NOTES + " text," +
-				SuspiciousActivities.WP + " text," +
+				SuspiciousActivities.LAT + " text," +
+				SuspiciousActivities.LON + " text," +
 				SuspiciousActivities.IMAGE_PATH + " text," +
 				SuspiciousActivities.DATE_CREATED + " DATE DEFAULT (datetime('now','localtime'))" +
 			");";
@@ -121,7 +127,8 @@ public class Schemas {
 				ElephantPoaching.IVORY_PRESENCE + " text," +
 				ElephantPoaching.ACTION_TAKEN + " text," +
 				ElephantPoaching.EXTRA_NOTES + " text," +
-				ElephantPoaching.WP + " text," +
+				ElephantPoaching.LAT + " text," +
+				ElephantPoaching.LON + " text," +
 				ElephantPoaching.IMAGE_PATH + " text," +
 				ElephantPoaching.DATE_CREATED + " DATE DEFAULT (datetime('now','localtime'))" +
 			");";
@@ -136,7 +143,8 @@ public class Schemas {
 				CharcoalBags.MODE_OF_TRANSPORT + " text, " +
 				CharcoalBags.ACTION_TAKEN + " text," +
 				CharcoalBags.EXTRA_NOTES + " text," +
-				CharcoalBags.WP + " text," +
+				CharcoalBags.LAT + " text," +
+				CharcoalBags.LON + " text," +
 				CharcoalBags.IMAGE_PATH + " text," +
 				CharcoalBags.DATE_CREATED + " DATE DEFAULT (datetime('now','localtime'))" +
 			");";
@@ -151,7 +159,8 @@ public class Schemas {
 			GameMeat.NO_OF_ANIMALS + " INTEGER, " +
 			GameMeat.ACTION_TAKEN + " text," +
 			GameMeat.EXTRA_NOTES + " text," +
-			GameMeat.WP + " text," +
+			GameMeat.LAT + " text," +
+			GameMeat.LON + " text," +
 			GameMeat.IMAGE_PATH + " text," +
 			GameMeat.DATE_CREATED + " DATE DEFAULT (datetime('now','localtime'))" +
 		");";
@@ -167,7 +176,8 @@ public class Schemas {
 			CharcoalKilns.TREE_USED + " text," +
 			CharcoalKilns.ACTION_TAKEN + " text," +
 			CharcoalKilns.EXTRA_NOTES + " text," +
-			CharcoalKilns.WP + " text," +
+			CharcoalKilns.LAT + " text," +
+			CharcoalKilns.LON + " text," +
 			CharcoalKilns.IMAGE_PATH + " text," +
 			CharcoalKilns.DATE_CREATED + " DATE DEFAULT (datetime('now','localtime'))" +
 		");";
@@ -204,7 +214,8 @@ public class Schemas {
 		public static String LEVEL_OF_WATER = "level_of_water";
 		public static String NUMBER_OF_ANIMALS = "no_of_animals";
 		public static String EXTRA_NOTES = "extra_notes";
-		public static String WP = "wp";
+		public static String LAT = "latitude";
+		public static String LON = "longitude";
 		public static String IMAGE_PATH = "image_path";
 		public static String DATE_CREATED = "date_created";
 	}
@@ -214,7 +225,8 @@ public class Schemas {
 		public static String NO_OF_ANIMALS = "no_of_animals";
 		public static String ACTION_TAKEN = "action_taken";
 		public static String EXTRA_NOTES = "extra_notes";
-		public static String WP = "wp";
+		public static String LAT = "latitude";
+		public static String LON = "longitude";
 		public static String IMAGE_PATH = "image_path";
 		public static String DATE_CREATED = "date_created";
 	}
@@ -225,7 +237,8 @@ public class Schemas {
 		public static String TREE_USED = "tree_used";
 		public static String ACTION_TAKEN = "action_taken";
 		public static String EXTRA_NOTES = "extra_notes";
-		public static String WP = "wp";
+		public static String LAT = "latitude";
+		public static String LON = "longitude";
 		public static String IMAGE_PATH = "image_path";
 		public static String DATE_CREATED = "date_created";
 	}
@@ -235,7 +248,8 @@ public class Schemas {
 		public static String MODE_OF_TRANSPORT = "mode_of_transport";
 		public static String ACTION_TAKEN = "action_taken";
 		public static String EXTRA_NOTES = "extra_notes";
-		public static String WP = "wp";
+		public static String LAT = "latitude";
+		public static String LON = "longitude";
 		public static String IMAGE_PATH = "image_path";
 		public static String DATE_CREATED = "date_created";
 	}
@@ -248,7 +262,8 @@ public class Schemas {
 		public static String IVORY_PRESENCE = "ivory_presence";
 		public static String ACTION_TAKEN = "action_taken";
 		public static String EXTRA_NOTES = "extra_notes";
-		public static String WP = "wp";
+		public static String LAT = "latitude";
+		public static String LON = "longitude";
 		public static String IMAGE_PATH = "image_path";
 		public static String DATE_CREATED = "date_created";
 	}
@@ -256,7 +271,8 @@ public class Schemas {
 	public static class SuspiciousActivities {
 		public static String ACTION_TAKEN = "action_taken";
 		public static String EXTRA_NOTES = "extra_notes";
-		public static String WP = "wp";
+		public static String LAT = "latitude";
+		public static String LON = "longitude";
 		public static String IMAGE_PATH = "image_path";
 		public static String DATE_CREATED = "date_created";
 	}

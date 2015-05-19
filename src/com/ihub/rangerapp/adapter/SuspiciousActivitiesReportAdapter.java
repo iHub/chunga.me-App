@@ -15,6 +15,7 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
 import com.ihub.rangerapp.R;
+import com.ihub.rangerapp.model.Model;
 import com.ihub.rangerapp.model.SuspiciousActivityModel;
 import com.ihub.rangerapp.util.DateUtil;
 
@@ -113,8 +114,18 @@ public class SuspiciousActivitiesReportAdapter extends AmazingAdapter {
 	}
 
 	@Override
-	public void add(Object model) {
-		models.add((SuspiciousActivityModel) model);
+	public void add(Model model) {
+		Boolean hasModel = false;
+		
+		for(Model m : models) {
+			if(m.getId() == model.getId()) {
+				hasModel = true;
+				break;
+			}
+		}
+		
+		if(!hasModel)
+			models.add((SuspiciousActivityModel) model);
 	}
 
 	@Override

@@ -4,23 +4,13 @@ import android.content.Intent;
 
 public class CharcoalKilnModel extends Model {
 
-	Integer id;
 	Integer noOfKilns;
 	String freshnessLevels;
 	String treeUsed;
 	String actionTaken;
 	String extraNotes;
-	String wp;
 	String imagePath;
 	String dateCreated;
-	
-	public Integer getId() {
-		return id;
-	}
-
-	public void setId(Integer id) {
-		this.id = id;
-	}
 
 	public Integer getNoOfKilns() {
 		return noOfKilns;
@@ -62,14 +52,6 @@ public class CharcoalKilnModel extends Model {
 		this.extraNotes = extraNotes;
 	}
 
-	public String getWp() {
-		return wp;
-	}
-
-	public void setWp(String wp) {
-		this.wp = wp;
-	}
-
 	public String getImagePath() {
 		return imagePath;
 	}
@@ -95,7 +77,8 @@ public class CharcoalKilnModel extends Model {
 		intent.putExtra("treeUsed", treeUsed);
 		intent.putExtra("actionTaken", actionTaken);
 		intent.putExtra("extraNotes", extraNotes);
-		intent.putExtra("wp", wp);
+		intent.putExtra("lat", latitude);
+		intent.putExtra("lon", longitude);
 		intent.putExtra("imagePath", imagePath);
 		intent.putExtra("dateCreated", dateCreated);
 		return intent;

@@ -9,6 +9,7 @@ import com.ihub.rangerapp.adapter.AmazingAdapter;
 import com.ihub.rangerapp.adapter.HerdReportAdapter;
 import com.ihub.rangerapp.entity.SummaryItem;
 import com.ihub.rangerapp.loader.HerdsLoader;
+import com.ihub.rangerapp.model.GameMeatModel;
 import com.ihub.rangerapp.model.HerdModel;
 import com.ihub.rangerapp.model.IndividualAnimalModel;
 import com.ihub.rangerapp.model.Model;
@@ -44,18 +45,39 @@ AmazingAdapter adapter;
 				canEdit = true;
 		}
 		
-		//TODO check date before editing
-		
-//		Intent intent = new Intent(getActivity(), AnimalsSightingsActivity.class);
-//		intent.putExtra("view", "herd");
-//		intent.putExtras(model.getExtras());
-//		
-//		intent.putExtra("mode", canEdit ? 2 : 3);
-//		
-//		getActivity().startActivity(intent);
+		setIsSelectedEditable(canEdit);
+		setExtras(model.getExtras());
+		setRecordID(model.getId());
 		
 		addReviewItems(model, date);
 		showSummaryView();
+	}
+	
+	@Override
+	public void onActivityResult(int requestCode, int resultCode, Intent data) {
+		super.onActivityResult(requestCode, resultCode, data);
+		
+		getActivity().onBackPressed();
+		
+		int rID = data.getIntExtra("id", 0);
+				
+		for(int i = 0; i < adapter.getCount(); i++) {
+			HerdModel m = (HerdModel) adapter.getItem(i);
+			
+			if(m.getId() == rID) {
+				
+				m.setName(data.getStringExtra("name"));
+				m.setType(data.getStringExtra("type"));
+				m.setNoOfAnimals(data.getIntExtra("noOfAnimals", 0));
+				m.setAge(data.getStringExtra("age"));
+				m.setDistanceSeen(data.getIntExtra("distanceSeen", 0));
+				m.setExtraNotes(data.getStringExtra("extraNotes"));
+				
+				adapter.notifyDataSetChanged();
+				break;
+				
+			}
+		}
 	}
 	
 	public void addReviewItems(Model m, Date date){
@@ -97,5 +119,18 @@ AmazingAdapter adapter;
 		}
 		
 		return adapter;
+	}
+	
+	public void startEdit() {
+		Intent intent = new Intent(getActivity(), getEditActivity());
+		intent.putExtras(getExtras());
+		intent.putExtra("view", "herd");
+		intent.putExtra("mode", getIsSelectedEditable() ? 2 : 3);
+		startActivityForResult(intent, 100);
+	}
+
+	@Override
+	public Class<?> getEditActivity() {
+		return AnimalsSightingsActivity.class;
 	}
 }

@@ -45,9 +45,10 @@ public class ElephantPoachingLoader extends DataLoader {
 				
 				String actionTaken = cursor.getString(6);
 				String extraNotes = cursor.getString(7);
-				String wp = cursor.getString(8);
-				String imagePath = cursor.getString(9);
-				String dateCreated = cursor.getString(10);
+				String latitude = cursor.getString(8);
+				String longitude = cursor.getString(9);
+				String imagePath = cursor.getString(10);
+				String dateCreated = cursor.getString(11);
 												
 				ElephantPoachingModel  model = new ElephantPoachingModel();
 				model.setId(id);
@@ -59,7 +60,8 @@ public class ElephantPoachingLoader extends DataLoader {
 				model.setActionTaken(actionTaken);
 				
 				model.setExtraNotes(extraNotes);
-				model.setWp(wp);
+				model.setLatitude(latitude);
+				model.setLongitude(longitude);
 				model.setImagePath(imagePath);
 				model.setDateCreated(dateCreated);
 				

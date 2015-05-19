@@ -5,11 +5,21 @@ import android.content.Intent;
 
 public abstract class Model implements Serializable {
 	
+	Integer id;
+	
 	String latitude = "";
 	
 	String longitude = "";
 
 	public Model() {
+	}
+	
+	public Integer getId() {
+		return id;
+	}
+	
+	public void setId(Integer id) {
+		this.id = id;
 	}
 	
 	public abstract Intent getExtras();

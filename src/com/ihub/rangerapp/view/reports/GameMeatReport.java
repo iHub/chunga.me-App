@@ -2,6 +2,8 @@ package com.ihub.rangerapp.view.reports;
 
 import java.text.SimpleDateFormat;
 import java.util.Date;
+
+import com.ihub.rangerapp.GameMeatActivity;
 import com.ihub.rangerapp.ReportViewerActivity;
 import com.ihub.rangerapp.adapter.AmazingAdapter;
 import com.ihub.rangerapp.adapter.GameMeatReportAdapter;
@@ -12,9 +14,11 @@ import com.ihub.rangerapp.model.Model;
 import com.ihub.rangerapp.util.DateUtil;
 import android.content.Context;
 import android.content.Intent;
+import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.BaseAdapter;
+import android.widget.Toast;
 
 public class GameMeatReport extends ReportFragment {
 	
@@ -39,13 +43,10 @@ public class GameMeatReport extends ReportFragment {
 			if(date.after(new Date()))
 				canEdit = true;
 		}
-				
-//		Intent intent = new Intent(getActivity(), GameMeatActivity.class);
-//		intent.putExtras(model.getExtras());
-//		
-//		intent.putExtra("mode", canEdit ? 2 : 3);
-//		
-//		getActivity().startActivityForResult(intent, 100);
+		
+		setIsSelectedEditable(canEdit);
+		setExtras(model.getExtras());
+		setRecordID(model.getId());
 		
 		addReviewItems(model, date);
 		showSummaryView();
@@ -74,6 +75,25 @@ public class GameMeatReport extends ReportFragment {
 	public void onActivityResult(int requestCode, int resultCode, Intent data) {
 		super.onActivityResult(requestCode, resultCode, data);
 		
+		getActivity().onBackPressed();
+		
+		int rID = data.getIntExtra("id", 0);
+				
+		for(int i = 0; i < adapter.getCount(); i++) {
+			GameMeatModel m = (GameMeatModel) adapter.getItem(i);
+			
+			if(m.getId() == rID) {
+				
+				m.setAnimal(data.getStringExtra("animal"));
+				m.setNoOfAnimals(data.getIntExtra("noOfAnimals", 0));
+				m.setActionTaken(data.getStringExtra("actionTaken"));
+				m.setExtraNotes(data.getStringExtra("extraNotes"));
+				
+				adapter.notifyDataSetChanged();
+				break;
+				
+			}
+		}
 	}
 	
 	@Override
@@ -94,5 +114,10 @@ public class GameMeatReport extends ReportFragment {
 		}
 		
 		return adapter;
+	}
+
+	@Override
+	public Class<?> getEditActivity() {
+		return GameMeatActivity.class;
 	}
 }

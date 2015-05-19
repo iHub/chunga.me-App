@@ -34,6 +34,7 @@ public class CharcoalBagsLoader extends DataLoader {
 		Cursor cursor = db.rawQuery(sql, null);
 		
 		if (cursor.moveToFirst()) {
+			
 			do {
 				
 				Integer id = cursor.getInt(0);
@@ -42,9 +43,10 @@ public class CharcoalBagsLoader extends DataLoader {
 				
 				String actionTaken = cursor.getString(3);
 				String extraNotes = cursor.getString(4);
-				String wp = cursor.getString(5);
-				String imagePath = cursor.getString(6);
-				String dateCreated = cursor.getString(7);
+				String latitude = cursor.getString(5);
+				String longitude = cursor.getString(6);
+				String imagePath = cursor.getString(7);
+				String dateCreated = cursor.getString(8);
 				
 				CharcoalBagModel  model = new CharcoalBagModel();
 				model.setId(id);
@@ -53,7 +55,8 @@ public class CharcoalBagsLoader extends DataLoader {
 				
 				model.setActionTaken(actionTaken);
 				model.setExtraNotes(extraNotes);
-				model.setWp(wp);
+				model.setLatitude(latitude);
+				model.setLongitude(longitude);
 				model.setImagePath(imagePath);
 				model.setDateCreated(dateCreated);
 				

@@ -75,6 +75,9 @@ public class SuspiciousActivitiesActivity extends CameraGPSActionBarActivity {
         	
         	if(!TextUtils.isEmpty(getIntent().getStringExtra("extraNotes")))
         		extraNotes.setText(getIntent().getStringExtra("extraNotes"));
+        	
+        	latView.setText(getIntent().getStringExtra("lat"));
+            longView.setText(getIntent().getStringExtra("lon"));
             
             if(mode == 2) {
             	saveBtn.setText(getString(R.string.edit));
@@ -93,7 +96,18 @@ public class SuspiciousActivitiesActivity extends CameraGPSActionBarActivity {
 		String action = actionTakenSpinner.getSelectedItemPosition() == 0 ? "" : actionTakenSpinner.getSelectedItem().toString();
 		
 		SuspiciousActivitiesService service = new SuspiciousActivitiesServiceImpl();
-		Map<String, Object> result = service.save(id, action, extraNotes.getText().toString(), imagePath, getWP());
+		Map<String, Object> result = service.save(id, action, extraNotes.getText().toString(), imagePath, latView.getText().toString(), longView.getText().toString());
+		
+		if(mode == 2) {
+			Intent data = new Intent();
+			
+			data.putExtra("id", id);
+			data.putExtra("actionTaken", action);
+			data.putExtra("extraNotes", extraNotes.getText().toString());
+			
+			setResult(RESULT_OK, data);
+		}
+		
 		showSaveResult(result);
 	}
 }

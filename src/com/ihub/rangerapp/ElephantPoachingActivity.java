@@ -141,6 +141,9 @@ public class ElephantPoachingActivity extends CameraGPSActionBarActivity {
         	
         	if(!TextUtils.isEmpty(getIntent().getStringExtra("extraNotes")))
         		extraNotes.setText(getIntent().getStringExtra("extraNotes"));
+        	
+        	latView.setText(getIntent().getStringExtra("lat"));
+            longView.setText(getIntent().getStringExtra("lon"));
             
             if(mode == 2) {
             	saveBtn.setText(getString(R.string.edit));
@@ -178,7 +181,27 @@ public class ElephantPoachingActivity extends CameraGPSActionBarActivity {
 				ivoryPresenceSpinner.getSelectedItem().toString(), 
 				action, 
 				extraNotes.getText().toString(), 
-				imagePath, getWP());
+				imagePath,
+				latView.getText().toString(),
+				longView.getText().toString());
+		
+		if(mode == 2) {
+			Intent data = new Intent();
+			
+			data.putExtra("id", id);
+			data.putExtra("toolsUsed", toolUsed);
+			data.putExtra("noOfAnimals", noOfAnimals);
+			
+			data.putExtra("age", age);
+			data.putExtra("sex", sex);
+			data.putExtra("ivoryPresence", ivoryPresenceSpinner.getSelectedItem().toString());
+			
+			
+			data.putExtra("actionTaken", action);
+			data.putExtra("extraNotes", extraNotes.getText().toString());
+			
+			setResult(RESULT_OK, data);
+		}
 		
 		showSaveResult(result);
 	}
