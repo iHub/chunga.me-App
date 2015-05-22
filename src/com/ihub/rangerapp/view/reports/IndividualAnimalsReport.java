@@ -61,6 +61,7 @@ public class IndividualAnimalsReport extends ReportFragment {
 		int rID = data.getIntExtra("id", 0);
 				
 		for(int i = 0; i < adapter.getCount(); i++) {
+			
 			IndividualAnimalModel m = (IndividualAnimalModel) adapter.getItem(i);
 			
 			if(m.getId() == rID) {
