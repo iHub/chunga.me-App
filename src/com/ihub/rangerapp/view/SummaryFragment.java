@@ -6,7 +6,6 @@ import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.media.ThumbnailUtils;
 import android.os.Bundle;
-import android.os.Handler;
 import android.support.v4.app.ListFragment;
 import android.text.TextUtils;
 import android.view.LayoutInflater;
@@ -19,8 +18,6 @@ import android.widget.BaseAdapter;
 import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.TextView;
-import android.widget.Toast;
-
 import java.util.ArrayList;
 import java.util.List;
 import com.ihub.rangerapp.PhotoActivity;

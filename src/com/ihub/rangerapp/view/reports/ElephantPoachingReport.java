@@ -10,7 +10,6 @@ import com.ihub.rangerapp.adapter.ElephantPoachingReportAdapter;
 import com.ihub.rangerapp.entity.SummaryItem;
 import com.ihub.rangerapp.loader.ElephantPoachingLoader;
 import com.ihub.rangerapp.model.ElephantPoachingModel;
-import com.ihub.rangerapp.model.GameMeatModel;
 import com.ihub.rangerapp.model.Model;
 import com.ihub.rangerapp.util.DateUtil;
 import android.content.Context;
@@ -66,8 +65,9 @@ public class ElephantPoachingReport extends ReportFragment {
 		activity.addReviewItem(new SummaryItem("No of Animals", model.getNoOfAnimals() + "", "", 5));
 		activity.addReviewItem(new SummaryItem("Age", model.getAge(), "", 6));
 		activity.addReviewItem(new SummaryItem("Gender", model.getSex() , "", 7));
-		activity.addReviewItem(new SummaryItem("Action Taken", model.getActionTaken(), "", 8));
-		activity.addReviewItem(new SummaryItem("Extra Notes", model.getExtraNotes(), "", 9));
+		activity.addReviewItem(new SummaryItem("Tusks Present", model.getIvoryPresence(), "", 8));
+		activity.addReviewItem(new SummaryItem("Action Taken", model.getActionTaken(), "", 9));
+		activity.addReviewItem(new SummaryItem("Extra Notes", model.getExtraNotes(), "", 10));
 		
 		if(date != null)
 			activity.addReviewItem(new SummaryItem("Date Created", new SimpleDateFormat( "yyyy-MM-dd" ).format(date), "", 10));

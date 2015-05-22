@@ -117,16 +117,33 @@
 		    <TextView
 	            android:layout_width="match_parent"
 	            android:layout_height="wrap_content"
-	            android:text="@string/ivory_presence"
+	            android:text="@string/tusks_present"
 	            android:textSize="18sp"
 		        android:textColor="@color/bg"
 	            android:layout_marginBottom="5dp" />
-	        
-	        <Spinner
-	            android:id="@+id/ivoryPresenceSpinner"
-	            android:layout_width="match_parent"
-	            android:layout_height="wrap_content"
-	            android:layout_marginBottom="10dp" />
+		        
+		        <RadioGroup
+		            android:id="@+id/tusksFlagGroup"
+		            android:layout_width="wrap_content"
+		            android:layout_height="wrap_content"
+		            android:orientation="horizontal"
+		            android:layout_marginBottom="15dp" >
+		            
+		            <RadioButton 
+		                android:id="@+id/radio_yes"
+						android:layout_width="wrap_content"
+						android:layout_height="wrap_content"
+						android:text="@string/yes"
+						android:onClick="onTusksRadioButtonClicked"
+						android:layout_marginRight="25dp" />
+					
+					<RadioButton 
+					    android:id="@+id/radio_no"
+						android:layout_width="wrap_content"
+						android:layout_height="wrap_content"
+						android:text="@string/no"
+						android:onClick="onTusksRadioButtonClicked" />
+				</RadioGroup>
 		    
 		    
 		    <TextView

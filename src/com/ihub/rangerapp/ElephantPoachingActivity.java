@@ -13,6 +13,7 @@ import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.RadioButton;
 import android.widget.Spinner;
 
 public class ElephantPoachingActivity extends CameraGPSActionBarActivity {
@@ -21,10 +22,14 @@ public class ElephantPoachingActivity extends CameraGPSActionBarActivity {
 	EditText noOfAnimalsView;
 	Spinner ageSpinner;
 	Spinner sexSpinner;
-	Spinner ivoryPresenceSpinner;
 	Spinner actionTakenSpinner;
 	EditText extraNotes;
 	Button saveBtn;
+	
+	Boolean tusksPresent = false;
+	
+	RadioButton hasTusksYes;
+	RadioButton hasTusksNo;
 	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -53,10 +58,12 @@ public class ElephantPoachingActivity extends CameraGPSActionBarActivity {
         noOfAnimalsView = (EditText) findViewById(R.id.noOfAnimalsView);
         ageSpinner = (Spinner) findViewById(R.id.ageSpinner);
         sexSpinner = (Spinner) findViewById(R.id.sexSpinner);
-        ivoryPresenceSpinner = (Spinner) findViewById(R.id.ivoryPresenceSpinner);
         actionTakenSpinner = (Spinner) findViewById(R.id.actionTakenSpinner);
         extraNotes = (EditText) findViewById(R.id.extraNotes);
         saveBtn = (Button) findViewById(R.id.saveBtn);
+        
+        hasTusksYes = (RadioButton) findViewById(R.id.radio_yes);
+        hasTusksNo = (RadioButton) findViewById(R.id.radio_no);
         
         		
 		ArrayAdapter<CharSequence> toolsUsedAdapter = ArrayAdapter.createFromResource(this,
@@ -85,13 +92,6 @@ public class ElephantPoachingActivity extends CameraGPSActionBarActivity {
         actionTakenAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         
         actionTakenSpinner.setAdapter(actionTakenAdapter);
-        
-        
-        ArrayAdapter<CharSequence> ivoryPresenceAdapter = ArrayAdapter.createFromResource(this,
-                R.array.ivory_presence, android.R.layout.simple_spinner_item);
-        ivoryPresenceAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-        
-        ivoryPresenceSpinner.setAdapter(ivoryPresenceAdapter);
         
         saveBtn.setOnClickListener(new View.OnClickListener() {
         	
@@ -126,11 +126,13 @@ public class ElephantPoachingActivity extends CameraGPSActionBarActivity {
             	}
         	
         	
-        	if(!TextUtils.isEmpty(getIntent().getStringExtra("ivoryPresence")))
-            	for(int i = 0; i < ivoryPresenceAdapter.getCount(); i++) {
-            		if(ivoryPresenceSpinner.getItemAtPosition(i).toString().equals(getIntent().getStringExtra("ivoryPresence")))
-            			ivoryPresenceSpinner.setSelection(i);
-            	}
+        	if(!TextUtils.isEmpty(getIntent().getStringExtra("ivoryPresence"))) {
+        		
+        		if("Yes".equals(getIntent().getStringExtra("ivoryPresence")))
+        			hasTusksYes.setChecked(true);
+        		else
+        			hasTusksNo.setChecked(true);
+        	}
         	
         	if(!TextUtils.isEmpty(getIntent().getStringExtra("actionTaken")))
             	for(int i = 0; i < actionTakenAdapter.getCount(); i++) {
@@ -178,7 +180,7 @@ public class ElephantPoachingActivity extends CameraGPSActionBarActivity {
 				noOfAnimals, 
 				age, 
 				sex, 
-				ivoryPresenceSpinner.getSelectedItem().toString(), 
+				tusksPresent ? "Yes" : "No", 
 				action, 
 				extraNotes.getText().toString(), 
 				imagePath,
@@ -194,7 +196,7 @@ public class ElephantPoachingActivity extends CameraGPSActionBarActivity {
 			
 			data.putExtra("age", age);
 			data.putExtra("sex", sex);
-			data.putExtra("ivoryPresence", ivoryPresenceSpinner.getSelectedItem().toString());
+			data.putExtra("ivoryPresence", tusksPresent ? "Yes" : "No");
 			
 			
 			data.putExtra("actionTaken", action);
@@ -204,5 +206,19 @@ public class ElephantPoachingActivity extends CameraGPSActionBarActivity {
 		}
 		
 		showSaveResult(result);
+	}
+	
+	public void onTusksRadioButtonClicked(View view) {
+
+		switch (view.getId()) {
+		case R.id.radio_yes:
+			tusksPresent = true;
+			break;
+		case R.id.radio_no:
+			tusksPresent = false;
+			break;
+		default:
+			break;
+		}
 	}
 }
