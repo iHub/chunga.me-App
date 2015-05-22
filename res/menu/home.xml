@@ -4,9 +4,19 @@
     tools:context="com.movapay.mcement.HomeActivity" >
 
     <item
-        android:id="@+id/action_settings"
+        android:id="@+id/action_more"
         android:orderInCategory="100"
-        android:title="@string/action_settings"
-        app:showAsAction="never"/>
+        android:title="@string/action_more"
+        android:icon="@drawable/ic_action_overflow"
+        app:showAsAction="always">
+        
+        <menu>
+            <item android:id="@+id/action_logout"
+                  android:title="@string/logout" />
+            <item android:id="@+id/action_export"
+                  android:title="@string/export" />
+        </menu>
+        
+	</item>
 
 </menu>

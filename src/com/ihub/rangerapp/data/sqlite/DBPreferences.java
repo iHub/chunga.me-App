@@ -14,7 +14,7 @@ public class DBPreferences {
  	 	
  	public static String VERSION = "version";
  	
- 	public static String RANGER_NAME = "ranger_name";
+ 	//public static String RANGER_NAME = "ranger_name";
  	
  	public static String RANGER_ID = "ranger_id";
  	 	

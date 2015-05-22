@@ -5,6 +5,7 @@ import android.provider.BaseColumns;
 
 public class Schemas {
 	
+	public static String USERS_TABLE = "tbl_users";
 	public static String SHIFTS_TABLE = "tbl_shifts";
 	public static String GAME_MEAT_TABLE = "tbl_game_meat";
 	public static String CHARCOAL_KILN_TABLE = "tbl_charcoal_kilns";
@@ -16,6 +17,8 @@ public class Schemas {
 	public static String WATER_HOLES_TABLE = "tbl_waterhole";
 	
 	public static void initialize(SQLiteDatabase db) {
+		
+		createUsersTable(db);
 		createShiftTable(db);
 		createGameMeatTable(db);
 		createCharcoalKilnsTable(db);
@@ -184,6 +187,19 @@ public class Schemas {
 		
 		db.execSQL(sql);
 	}
+	
+	public static void createUsersTable(SQLiteDatabase db) {
+		
+		String sql = "create table " + USERS_TABLE + "(" + 
+			BaseColumns._ID + " integer primary key autoincrement," +
+			//User.RANGER_NAME + " text," +
+			User.RANGER_ID + " text," +
+			User.START_TIME + " DATE DEFAULT (datetime('now','localtime'))," +
+			User.END_TIME + " DATE" +
+		");";
+		
+		db.execSQL(sql);
+	}
 
 	public static void createShiftTable(SQLiteDatabase db) {
 		
@@ -275,6 +291,13 @@ public class Schemas {
 		public static String LON = "longitude";
 		public static String IMAGE_PATH = "image_path";
 		public static String DATE_CREATED = "date_created";
+	}
+	
+	public static class User {
+		//public static String RANGER_NAME = "ranger_name";
+		public static String RANGER_ID = "ranger_id";
+		public static String START_TIME = "start_time";
+		public static String END_TIME = "end_time";
 	}
 	
 	public static class Shift {

@@ -20,15 +20,15 @@ public class SplashActivity extends Activity {
 		
 		@Override
 		protected String doInBackground(Void... params) {
-			return DBPreferences.instance().getPreferenceValue(DBPreferences.RANGER_NAME);
+			return DBPreferences.instance().getPreferenceValue(DBPreferences.RANGER_ID);
 		}
 		
 		@Override
-		protected void onPostExecute(String rangerName) {
+		protected void onPostExecute(String rangerID) {
 			
 			Intent intent = null;
 			
-			if(TextUtils.isEmpty(rangerName))
+			if(TextUtils.isEmpty(rangerID))
 				intent = new Intent(SplashActivity.this, ProfileActivity.class);
 			else
 				intent = new Intent(SplashActivity.this, HomeActivity.class);

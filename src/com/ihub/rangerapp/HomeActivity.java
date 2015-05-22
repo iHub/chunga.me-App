@@ -7,6 +7,10 @@ import com.ihub.rangerapp.adapter.HomeMenuAdapter;
 import com.ihub.rangerapp.anim.CustomItemAnimator;
 import com.ihub.rangerapp.data.service.ShiftService;
 import com.ihub.rangerapp.data.service.ShiftServiceImpl;
+import com.ihub.rangerapp.data.service.UserService;
+import com.ihub.rangerapp.data.service.UserServiceImpl;
+import com.ihub.rangerapp.data.sqlite.DBPreferences;
+
 import android.support.v7.app.ActionBarActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
@@ -24,6 +28,8 @@ import android.os.Build;
 import android.os.Bundle;
 import android.os.Handler;
 import android.view.Gravity;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.Button;
@@ -36,7 +42,7 @@ public class HomeActivity extends ActionBarActivity implements OnClickListener {
 	
 	private HomeMenuAdapter mAdapter;
     private RecyclerView mRecyclerView;
-
+    
     private Button shiftBtn;
     private Button reportsBtn; 
     private View endShiftView;
@@ -311,14 +317,57 @@ public class HomeActivity extends ActionBarActivity implements OnClickListener {
 	
 	@Override
 	protected void onActivityResult(int requestCode, int resultCode, Intent data) {
-
 		super.onActivityResult(requestCode, resultCode, data);
 		
 		if (requestCode == 100) {
-
+			
 			if (resultCode == RESULT_OK) {
 				shiftBtn.setText(getString(R.string.end_shift));
 	        }
 	    }
+	}
+	
+	@Override
+	public boolean onCreateOptionsMenu(Menu menu) {
+		getMenuInflater().inflate(R.menu.home, menu);
+		return true;
+	}
+	
+	@Override
+	public boolean onOptionsItemSelected(MenuItem item) {
+		int id = item.getItemId();
+		if (id == R.id.action_logout) {
+			logout();
+		} else if(id == R.id.action_export) {
+			showExportView();
+		}
+		return super.onOptionsItemSelected(item);
+	}
+	
+	private void showExportView() {
+		Toast.makeText(this, "Export", Toast.LENGTH_LONG).show();
+	}
+	
+	private void logout() {
+		new LogoutTask().execute();
+	}
+	
+	class LogoutTask extends AsyncTask<Void, Void, Void> {
+
+		@Override
+		protected Void doInBackground(Void... params) {
+			UserService service = new UserServiceImpl();
+			service.logout();
+			return null;
+		}
+		
+		@Override
+		protected void onPostExecute(Void result) {
+			super.onPostExecute(result);
+			finish();
+			DBPreferences.instance().setPreferenceValue(DBPreferences.RANGER_ID, null);
+			Intent intent = new Intent(HomeActivity.this, ProfileActivity.class);
+			startActivity(intent);
+		}
 	}
 }

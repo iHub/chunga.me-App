@@ -77,7 +77,7 @@ public class IncidencesMenuAdapter extends RecyclerView.Adapter<IncidencesMenuAd
     public static class ViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
         public TextView name;
         public ImageView image;
-
+        
         IncidentsActivity hAct;
         
         public ViewHolder(View itemView, IncidentsActivity mAct) {
