@@ -95,7 +95,12 @@
     <string name="animal">Animal</string>
     <string name="gender">Gender</string>
     <string name="male">Male</string>
+    <string name="male_count">Male Count</string>
     <string name="female">Female</string>
+    <string name="female_count">Female Count</string>
+    <string name="adults">Adults</string>
+    <string name="semi_adults">Semi-Adults</string>
+    <string name="juveniles">Juveniles</string>
     <string name="validation_ranger_name">Ranger Name is required.</string>
     <string name="validation_ranger_id">Ranger ID is required.</string>
     <string name="station">Station</string>

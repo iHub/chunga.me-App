@@ -60,6 +60,152 @@
 		        android:inputType="number" />
 		    
 		    <LinearLayout
+				android:id="@+id/multiAnimalsView"
+				android:visibility="gone"
+				android:layout_width="match_parent"
+				android:layout_height="wrap_content"
+				android:orientation="vertical"
+				android:paddingRight="3dp" >
+		    
+				<LinearLayout
+					android:layout_width="match_parent"
+					android:layout_height="wrap_content"
+					android:orientation="horizontal"
+					android:paddingRight="3dp" >
+					
+				    <LinearLayout
+				        android:layout_width="match_parent"
+				        android:layout_height="wrap_content"
+				        android:orientation="vertical"
+				        android:layout_weight="1" >
+				        
+			            <TextView
+				            android:layout_width="match_parent"
+				            android:layout_height="wrap_content"
+				            android:text="@string/male_count"
+				            android:textSize="18sp"
+				            android:textColor="@color/bg"
+				            android:layout_marginBottom="5dp" />
+				        
+				        <EditText
+					        android:id="@+id/maleCountView"
+					        android:layout_width="match_parent"
+					        android:layout_height="wrap_content"
+					        android:layout_marginBottom="10dp"
+					        android:inputType="number" />
+			        
+					</LinearLayout>
+					
+				    <LinearLayout
+				        android:layout_width="match_parent"
+				        android:layout_height="wrap_content"
+				        android:orientation="vertical"
+				        android:layout_weight="1" >
+				        
+			            <TextView
+				            android:layout_width="match_parent"
+				            android:layout_height="wrap_content"
+				            android:text="@string/female_count"
+				            android:textSize="18sp"
+				            android:textColor="@color/bg"
+				            android:layout_marginBottom="5dp" />
+				        
+				        <EditText
+					        android:id="@+id/femaleCountView"
+					        android:layout_width="match_parent"
+					        android:layout_height="wrap_content"
+					        android:layout_marginBottom="10dp"
+					        android:inputType="number" />
+			        
+					</LinearLayout>
+				    
+				    
+				</LinearLayout>
+				
+				<LinearLayout
+					android:layout_width="match_parent"
+					android:layout_height="wrap_content"
+					android:orientation="horizontal"
+					android:paddingRight="3dp" >
+					
+				    <LinearLayout
+				        android:layout_width="wrap_content"
+				        android:layout_height="wrap_content"
+				        android:orientation="vertical"
+				        android:layout_weight="0" >
+				        
+			            <TextView
+				            android:layout_width="match_parent"
+				            android:layout_height="wrap_content"
+				            android:text="@string/adults"
+				            android:textSize="18sp"
+				            android:textColor="@color/bg"
+				            android:layout_marginBottom="5dp" />
+				        
+				        <EditText
+					        android:id="@+id/adultsCountView"
+					        android:layout_width="match_parent"
+					        android:layout_height="wrap_content"
+					        android:layout_marginBottom="10dp"
+					        android:inputType="number" />
+				        
+					</LinearLayout>
+					
+				    <LinearLayout
+				        android:layout_width="0dp"
+				        android:layout_height="wrap_content"
+				        android:orientation="vertical"
+				        android:layout_weight="1" >
+				        
+			            <TextView
+				            android:layout_width="match_parent"
+				            android:layout_height="wrap_content"
+				            android:text="@string/semi_adults"
+				            android:textSize="18sp"
+				            android:textColor="@color/bg"
+				            android:layout_marginBottom="5dp"
+				            android:gravity="center_horizontal" />
+				        
+				        <EditText
+					        android:id="@+id/semiAdultsCountView"
+					        android:layout_width="match_parent"
+					        android:layout_height="wrap_content"
+					        android:layout_marginBottom="10dp"
+					        android:inputType="number"
+					        android:gravity="center_horizontal" />
+			        
+					</LinearLayout>
+					
+				    <LinearLayout
+				        android:layout_width="wrap_content"
+				        android:layout_height="wrap_content"
+				        android:orientation="vertical"
+				        android:layout_weight="0" >
+				        
+			            <TextView
+				            android:layout_width="match_parent"
+				            android:layout_height="wrap_content"
+				            android:text="@string/juveniles"
+				            android:textSize="18sp"
+				            android:textColor="@color/bg"
+				            android:layout_marginBottom="5dp" />
+				        
+				        <EditText
+					        android:id="@+id/juvenilesCountView"
+					        android:layout_width="match_parent"
+					        android:layout_height="wrap_content"
+					        android:layout_marginBottom="10dp"
+					        android:inputType="number" />
+			        
+					</LinearLayout>
+					
+				</LinearLayout>
+				
+			</LinearLayout>
+		    
+			<LinearLayout
+		        android:id="@+id/singleAnimalView"
+		        android:visibility="gone"
 		        android:layout_width="match_parent"
 		        android:layout_height="wrap_content"
 		        android:orientation="horizontal"
@@ -77,7 +223,7 @@
 			            android:layout_height="wrap_content"
 			            android:text="@string/age"
 			            android:textSize="18sp"
-		        android:textColor="@color/bg"
+			            android:textColor="@color/bg"
 			            android:layout_marginBottom="5dp" />
 			        
 			        <Spinner
@@ -98,7 +244,7 @@
 		            <TextView
 			            android:layout_width="match_parent"
 			            android:layout_height="wrap_content"
-			            android:text="@string/sex"
+			            android:text="@string/gender"
 			            android:textSize="18sp"
 			            android:textColor="@color/bg"
 			            android:layout_marginBottom="5dp" />

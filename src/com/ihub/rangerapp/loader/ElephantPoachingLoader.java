@@ -8,6 +8,7 @@ import android.database.sqlite.SQLiteDatabase;
 import com.ihub.rangerapp.RangerApp;
 import com.ihub.rangerapp.data.sqlite.DB;
 import com.ihub.rangerapp.data.sqlite.Schemas;
+import com.ihub.rangerapp.data.sqlite.Schemas.ElephantPoaching;
 import com.ihub.rangerapp.model.ElephantPoachingModel;
 import com.ihub.rangerapp.model.Model;
 import com.ihub.rangerapp.util.PagingLoadConfig;
@@ -39,23 +40,31 @@ public class ElephantPoachingLoader extends DataLoader {
 				Integer id = cursor.getInt(0);
 				Integer noOfAnimals = cursor.getInt(1);
 				String toolsUsed = cursor.getString(2);
-				String age = cursor.getString(3);
-				String sex = cursor.getString(4);
-				String ivoryPresence = cursor.getString(5);
+				Integer maleCount = cursor.getInt(3);
+				Integer femaleCount = cursor.getInt(4);
+				Integer adultsCount = cursor.getInt(5);
+				Integer semiAdultsCount = cursor.getInt(6);
+				Integer juvenileCount = cursor.getInt(7);
+				String ivoryPresence = cursor.getString(8);
 				
-				String actionTaken = cursor.getString(6);
-				String extraNotes = cursor.getString(7);
-				String latitude = cursor.getString(8);
-				String longitude = cursor.getString(9);
-				String imagePath = cursor.getString(10);
-				String dateCreated = cursor.getString(11);
+				String actionTaken = cursor.getString(9);
+				String extraNotes = cursor.getString(10);
+				String latitude = cursor.getString(11);
+				String longitude = cursor.getString(12);
+				String imagePath = cursor.getString(13);
+				String dateCreated = cursor.getString(14);
+				
+				
 												
 				ElephantPoachingModel  model = new ElephantPoachingModel();
 				model.setId(id);
 				model.setNoOfAnimals(noOfAnimals);
 				model.setToolsUsed(toolsUsed);
-				model.setAge(age);
-				model.setSex(sex);
+				model.setMaleCount(maleCount);
+				model.setFemaleCount(femaleCount);
+				model.setAdultsCount(adultsCount);
+				model.setSemiAdultsCount(semiAdultsCount);
+				model.setJuvenileCount(juvenileCount);
 				model.setIvoryPresence(ivoryPresence);
 				model.setActionTaken(actionTaken);
 				

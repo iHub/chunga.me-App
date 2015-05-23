@@ -10,16 +10,13 @@ import android.support.v7.app.ActionBarActivity;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
-import android.app.AlertDialog;
-import android.content.DialogInterface;
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.AsyncTask;
 import android.os.Bundle;
 
 public class ProfileActivity extends ActionBarActivity {
-	
-//	@NotEmpty(messageId = R.string.validation_ranger_name, order = 1)
-//	EditText rangerName;
 	
 	@NotEmpty(messageId = R.string.validation_ranger_id, order = 1)
 	EditText rangerID;
@@ -30,8 +27,6 @@ public class ProfileActivity extends ActionBarActivity {
 		
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_profile);
-		
-//		rangerName = (EditText) findViewById(R.id.rangerName);
 		rangerID = (EditText) findViewById(R.id.rangerID);
 		
 		goBtn = (Button) findViewById(R.id.goBtn);
@@ -42,30 +37,30 @@ public class ProfileActivity extends ActionBarActivity {
 			public void onClick(View v) {
 				
 				if(FormValidator.validate(ProfileActivity.this, new SimpleErrorPopupCallback(ProfileActivity.this, true))) {			
-					new LoginTask().execute();
+					new LoginTask().execute(rangerID.getText().toString());
 				}
 			}
 		});
 	}
 	
-	class LoginTask extends AsyncTask<Void, Void, Void> {
-
+	class LoginTask extends AsyncTask<String, Void, String> {
+		
 		@Override
-		protected Void doInBackground(Void... params) {
-			
-			DBPreferences.instance().setPreferenceValue(DBPreferences.RANGER_ID, rangerID.getText().toString());
+		protected String doInBackground(String... params) {
 			
 			UserService service = new UserServiceImpl();
-			service.login(rangerID.getText().toString());
-			return null;
+			service.login(params[0]);
+			return params[0];
 		}
 		
 		@Override
-		protected void onPostExecute(Void result) {
+		protected void onPostExecute(String result) {
 			super.onPostExecute(result);
+			SharedPreferences prefs = ProfileActivity.this.getSharedPreferences(RangerApp.class.getName(), Context.MODE_PRIVATE);
+			prefs.edit().putString(DBPreferences.RANGER_ID, result).commit();
 			
 			Intent intent = new Intent(ProfileActivity.this, HomeActivity.class);
-			startActivity(intent);			
+			startActivity(intent);
 			finish();
 		}
 	}

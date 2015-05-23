@@ -20,6 +20,7 @@ import android.app.AlertDialog;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.location.Location;
 import android.location.LocationListener;
 import android.location.LocationManager;
@@ -365,7 +366,8 @@ public class HomeActivity extends ActionBarActivity implements OnClickListener {
 		protected void onPostExecute(Void result) {
 			super.onPostExecute(result);
 			finish();
-			DBPreferences.instance().setPreferenceValue(DBPreferences.RANGER_ID, null);
+			SharedPreferences prefs = HomeActivity.this.getSharedPreferences(RangerApp.class.getName(), Context.MODE_PRIVATE);
+			prefs.edit().clear().commit();
 			Intent intent = new Intent(HomeActivity.this, ProfileActivity.class);
 			startActivity(intent);
 		}

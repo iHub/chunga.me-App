@@ -14,6 +14,7 @@ import com.ihub.rangerapp.model.GameMeatModel;
 import com.ihub.rangerapp.model.Model;
 import com.ihub.rangerapp.util.DateUtil;
 
+import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.view.View;
@@ -58,22 +59,25 @@ public class CharcoalBurningKilnsReport extends ReportFragment {
 		
 		getActivity().onBackPressed();
 		
-		int rID = data.getIntExtra("id", 0);
+		if (resultCode == Activity.RESULT_OK) {
+		
+			int rID = data.getIntExtra("id", 0);
+					
+			for(int i = 0; i < adapter.getCount(); i++) {
+				CharcoalKilnModel m = (CharcoalKilnModel) adapter.getItem(i);
 				
-		for(int i = 0; i < adapter.getCount(); i++) {
-			CharcoalKilnModel m = (CharcoalKilnModel) adapter.getItem(i);
-			
-			if(m.getId() == rID) {
-				
-				m.setFreshnessLevels(data.getStringExtra("freshnessLevels"));
-				m.setNoOfKilns(data.getIntExtra("noOfKilns", 0));
-				m.setTreeUsed(data.getStringExtra("treeUsed"));
-				m.setActionTaken(data.getStringExtra("actionTaken"));
-				m.setExtraNotes(data.getStringExtra("extraNotes"));
-				
-				adapter.notifyDataSetChanged();
-				break;
-				
+				if(m.getId() == rID) {
+					
+					m.setFreshnessLevels(data.getStringExtra("freshnessLevels"));
+					m.setNoOfKilns(data.getIntExtra("noOfKilns", 0));
+					m.setTreeUsed(data.getStringExtra("treeUsed"));
+					m.setActionTaken(data.getStringExtra("actionTaken"));
+					m.setExtraNotes(data.getStringExtra("extraNotes"));
+					
+					adapter.notifyDataSetChanged();
+					break;
+					
+				}
 			}
 		}
 	}

@@ -5,17 +5,28 @@ import java.util.Map;
 import android.content.ContentValues;
 import android.database.sqlite.SQLiteDatabase;
 import android.provider.BaseColumns;
-
 import com.ihub.rangerapp.RangerApp;
 import com.ihub.rangerapp.data.sqlite.Schemas;
 
 public class ElephantServiceImpl extends DatabaseService implements ElephantService {
 	
 	@Override
-	public Map<String, Object> save(Integer id, String toolUsed, Integer noOfAnimals,
-			String age, String sex, String ivoryPresence, String actionTaken,
-			String extraNotes, String imagePath, String lat, String lon) {
-
+	public Map<String, Object> save(
+			Integer id,
+			String toolUsed,
+			Integer noOfAnimals,
+			Integer maleCount,
+			Integer femaleCount,
+			Integer adultsCount,
+			Integer semiAdultsCount,
+			Integer juvenileCount,
+			String ivoryPresence,
+			String actionTaken,
+			String extraNotes,
+			String imagePath,
+			String lat,
+			String lon) {
+		
 		Map<String, Object> result = new HashMap<String, Object>();
 		
 		SQLiteDatabase db = getWritableDatabase(RangerApp.get());
@@ -23,8 +34,13 @@ public class ElephantServiceImpl extends DatabaseService implements ElephantServ
  		ContentValues values = new ContentValues();
  		values.put(Schemas.ElephantPoaching.TOOLS_USED, toolUsed);
  		values.put(Schemas.ElephantPoaching.NO_OF_ANIMALS, noOfAnimals);
- 		values.put(Schemas.ElephantPoaching.AGE, age);
- 		values.put(Schemas.ElephantPoaching.SEX, sex);
+ 		values.put(Schemas.ElephantPoaching.MALE_COUNT, maleCount);
+ 		values.put(Schemas.ElephantPoaching.FEMALE_COUNT, femaleCount);
+ 		
+ 		values.put(Schemas.ElephantPoaching.ADULTS_COUNT, adultsCount);
+ 		values.put(Schemas.ElephantPoaching.SEMI_ADULTS_COUNT, semiAdultsCount);
+ 		values.put(Schemas.ElephantPoaching.JUVENILE_COUNT, juvenileCount);
+ 		
  		values.put(Schemas.ElephantPoaching.IVORY_PRESENCE, ivoryPresence);
  		values.put(Schemas.ElephantPoaching.ACTION_TAKEN, actionTaken);
  		values.put(Schemas.ElephantPoaching.EXTRA_NOTES, extraNotes);

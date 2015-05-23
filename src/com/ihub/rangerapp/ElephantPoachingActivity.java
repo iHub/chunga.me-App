@@ -6,15 +6,19 @@ import com.ihub.rangerapp.data.service.ElephantService;
 import com.ihub.rangerapp.data.service.ElephantServiceImpl;
 
 import android.support.v7.widget.Toolbar;
+import android.text.Editable;
 import android.text.TextUtils;
+import android.text.TextWatcher;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.LinearLayout;
 import android.widget.RadioButton;
 import android.widget.Spinner;
+import android.widget.Toast;
 
 public class ElephantPoachingActivity extends CameraGPSActionBarActivity {
 	
@@ -25,6 +29,15 @@ public class ElephantPoachingActivity extends CameraGPSActionBarActivity {
 	Spinner actionTakenSpinner;
 	EditText extraNotes;
 	Button saveBtn;
+	
+	EditText juvenilesCountView;
+	EditText semiAdultsCountView;
+	EditText adultsCountView;
+	EditText femaleCountView;
+	EditText maleCountView;
+	
+	LinearLayout multiAnimalsView;
+	LinearLayout singleAnimalView;
 	
 	Boolean tusksPresent = false;
 	
@@ -54,6 +67,15 @@ public class ElephantPoachingActivity extends CameraGPSActionBarActivity {
         
         initViews();
         
+        juvenilesCountView = (EditText) findViewById(R.id.juvenilesCountView);
+        semiAdultsCountView = (EditText) findViewById(R.id.semiAdultsCountView);
+        adultsCountView = (EditText) findViewById(R.id.adultsCountView);
+        femaleCountView = (EditText) findViewById(R.id.femaleCountView);
+        maleCountView = (EditText) findViewById(R.id.maleCountView);
+        
+        multiAnimalsView = (LinearLayout) findViewById(R.id.multiAnimalsView);
+        singleAnimalView = (LinearLayout) findViewById(R.id.singleAnimalView);
+        
         toolsUsedSpinner = (Spinner) findViewById(R.id.toolsUsedSpinner);
         noOfAnimalsView = (EditText) findViewById(R.id.noOfAnimalsView);
         ageSpinner = (Spinner) findViewById(R.id.ageSpinner);
@@ -65,27 +87,51 @@ public class ElephantPoachingActivity extends CameraGPSActionBarActivity {
         hasTusksYes = (RadioButton) findViewById(R.id.radio_yes);
         hasTusksNo = (RadioButton) findViewById(R.id.radio_no);
         
-        		
+        noOfAnimalsView.addTextChangedListener(new TextWatcher() {
+        	
+			@Override
+			public void onTextChanged(CharSequence s, int start, int before, int count) {
+				
+				try {
+					int noOfAnimals = Integer.valueOf(noOfAnimalsView.getText().toString());
+					
+					if(noOfAnimals > 0) {
+						singleAnimalView.setVisibility(noOfAnimals == 1 ? View.VISIBLE : View.GONE);
+						multiAnimalsView.setVisibility(noOfAnimals > 1 ? View.VISIBLE : View.GONE);
+					} else {
+						singleAnimalView.setVisibility(View.GONE);
+						multiAnimalsView.setVisibility(View.GONE);
+					}
+				} catch (Exception e) {
+					singleAnimalView.setVisibility(View.GONE);
+					multiAnimalsView.setVisibility(View.GONE);
+				}
+			}
+			
+			@Override
+			public void beforeTextChanged(CharSequence s, int start, int count, int after) {}
+			
+			@Override
+			public void afterTextChanged(Editable s) {}
+		});
+        
 		ArrayAdapter<CharSequence> toolsUsedAdapter = ArrayAdapter.createFromResource(this,
                 R.array.elephant_poaching_tools_used, android.R.layout.simple_spinner_item);
 		toolsUsedAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-        
+		
         toolsUsedSpinner.setAdapter(toolsUsedAdapter);
-        
         
         ArrayAdapter<CharSequence> ageAdapter = ArrayAdapter.createFromResource(this,
                 R.array.age_array, android.R.layout.simple_spinner_item);
 		ageAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-        
+		
         ageSpinner.setAdapter(ageAdapter);
-        
         
         ArrayAdapter<CharSequence> sexAdapter = ArrayAdapter.createFromResource(this,
                 R.array.sex_array, android.R.layout.simple_spinner_item);
         sexAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         
         sexSpinner.setAdapter(sexAdapter);
-        
         
         ArrayAdapter<CharSequence> actionTakenAdapter = ArrayAdapter.createFromResource(this,
                 R.array.elephant_poaching_action_taken, android.R.layout.simple_spinner_item);
@@ -107,24 +153,79 @@ public class ElephantPoachingActivity extends CameraGPSActionBarActivity {
         	if(data.hasExtra("noOfAnimals"))
             	noOfAnimalsView.setText(data.getIntExtra("noOfAnimals", 0) + "");
         	
+        	Integer noOfAnimals = 0;
+        	
+        	try {
+        		noOfAnimals = Integer.valueOf(data.getIntExtra("noOfAnimals", 0));
+        	} catch(Exception e) {}
+        	
         	if(!TextUtils.isEmpty(getIntent().getStringExtra("toolsUsed")))
             	for(int i = 0; i < toolsUsedAdapter.getCount(); i++) {
             		if(toolsUsedSpinner.getItemAtPosition(i).toString().equals(getIntent().getStringExtra("toolsUsed")))
             			toolsUsedSpinner.setSelection(i);
             	}
         	
+        	Integer maleCount = 0;
+    		Integer femaleCount = 0;
+    		Integer adultsCount = 0;
+    		Integer semiAdultsCount = 0;
+    		Integer juvenileCount= 0;
+    		
+    		try {
+				maleCount = getIntent().getIntExtra("maleCount", 0);
+			} catch (Exception e) {}
+			
+			try {
+				femaleCount = getIntent().getIntExtra("femaleCount", 0);
+			} catch (Exception e) {}
+			
+			try {
+				adultsCount = getIntent().getIntExtra("adultsCount", 0);
+			} catch (Exception e) {}
+			
+			try {
+				semiAdultsCount = getIntent().getIntExtra("semiAdultsCount", 0);
+			} catch (Exception e) {}
+			
+			try {
+				juvenileCount = getIntent().getIntExtra("juvenileCount", 0);
+			} catch (Exception e) {}
+        	
+        	if(noOfAnimals == 1) {
+        		
+        		if(maleCount == 1)
+        			sexSpinner.setSelection(1);
+        		else if(femaleCount == 1)
+        			sexSpinner.setSelection(2);
+        		
+        		if(adultsCount == 1)
+        			ageSpinner.setSelection(1);
+        		else if(semiAdultsCount == 1)
+        			ageSpinner.setSelection(2);
+        		else if(juvenileCount == 1)
+        			ageSpinner.setSelection(3);
+        			
+        	} else if(noOfAnimals > 1) {
+        		
+        		if(maleCount > 0)
+        			maleCountView.setText(maleCount + "");
+        		if(femaleCount > 0)
+        			femaleCountView.setText(femaleCount + "");
+        		
+        		if(adultsCount > 0)
+        			adultsCountView.setText(adultsCount + "");
+        		if(semiAdultsCount > 0)
+        			semiAdultsCountView.setText(semiAdultsCount + "");
+        		if(juvenileCount > 0)
+        			juvenilesCountView.setText(juvenileCount + "");
+        		
+        	}
+        	
         	if(!TextUtils.isEmpty(getIntent().getStringExtra("age")))
             	for(int i = 0; i < ageAdapter.getCount(); i++) {
             		if(ageSpinner.getItemAtPosition(i).toString().equals(getIntent().getStringExtra("age")))
             			ageSpinner.setSelection(i);
             	}
-        	
-        	if(!TextUtils.isEmpty(getIntent().getStringExtra("sex")))
-            	for(int i = 0; i < sexAdapter.getCount(); i++) {
-            		if(sexSpinner.getItemAtPosition(i).toString().equals(getIntent().getStringExtra("sex")))
-            			sexSpinner.setSelection(i);
-            	}
-        	
         	
         	if(!TextUtils.isEmpty(getIntent().getStringExtra("ivoryPresence"))) {
         		
@@ -169,6 +270,50 @@ public class ElephantPoachingActivity extends CameraGPSActionBarActivity {
 		if(mode == 2)
 			id = getIntent().getIntExtra("id", -1);
 		
+		Integer maleCount = 0;
+		Integer femaleCount = 0;
+		Integer adultsCount = 0;
+		Integer semiAdultsCount = 0;
+		Integer juvenileCount= 0;
+		
+		if(noOfAnimals == 1) {
+			
+			if(ageSpinner.getSelectedItemPosition() == 1)
+				adultsCount = 1;
+			else if(ageSpinner.getSelectedItemPosition() == 2)
+				semiAdultsCount = 1;
+			else if(ageSpinner.getSelectedItemPosition() == 3)
+				juvenileCount = 1;
+			
+			if(sexSpinner.getSelectedItemPosition() ==1)
+				maleCount = 1;
+			else if(sexSpinner.getSelectedItemPosition() == 2)
+				femaleCount = 1;
+			
+		} else if(noOfAnimals > 1) {
+			
+			try {
+				maleCount = Integer.valueOf(maleCountView.getText().toString());
+			} catch (Exception e) {}
+			
+			try {
+				femaleCount = Integer.valueOf(femaleCountView.getText().toString());
+			} catch (Exception e) {}
+			
+			try {
+				adultsCount = Integer.valueOf(adultsCountView.getText().toString());
+			} catch (Exception e) {}
+			
+			try {
+				semiAdultsCount = Integer.valueOf(semiAdultsCountView.getText().toString());
+			} catch (Exception e) {}
+			
+			try {
+				juvenileCount = Integer.valueOf(juvenilesCountView.getText().toString());
+			} catch (Exception e) {}
+			
+		}
+		
 		String toolUsed = toolsUsedSpinner.getSelectedItemPosition() == 0 ? "" : toolsUsedSpinner.getSelectedItem().toString();
 		String age = ageSpinner.getSelectedItemPosition() == 0 ? "" : ageSpinner.getSelectedItem().toString();
 		String sex = sexSpinner.getSelectedItemPosition() == 0 ? "" : sexSpinner.getSelectedItem().toString();
@@ -178,24 +323,31 @@ public class ElephantPoachingActivity extends CameraGPSActionBarActivity {
 				id,
 				toolUsed, 
 				noOfAnimals, 
-				age, 
-				sex, 
+				maleCount,
+				femaleCount,
+				adultsCount,
+				semiAdultsCount,
+				juvenileCount,
 				tusksPresent ? "Yes" : "No", 
-				action, 
+				action,
 				extraNotes.getText().toString(), 
 				imagePath,
 				latView.getText().toString(),
 				longView.getText().toString());
-		
+				
 		if(mode == 2) {
 			Intent data = new Intent();
+			Toast.makeText(this, id + "ss", 	Toast.LENGTH_LONG).show();
 			
 			data.putExtra("id", id);
 			data.putExtra("toolsUsed", toolUsed);
 			data.putExtra("noOfAnimals", noOfAnimals);
 			
-			data.putExtra("age", age);
-			data.putExtra("sex", sex);
+			data.putExtra("maleCount", maleCount);
+			data.putExtra("femaleCount", femaleCount);
+			data.putExtra("adultsCount", adultsCount);
+			data.putExtra("semiAdultsCount", semiAdultsCount);
+			data.putExtra("juvenileCount", juvenileCount);
 			data.putExtra("ivoryPresence", tusksPresent ? "Yes" : "No");
 			
 			

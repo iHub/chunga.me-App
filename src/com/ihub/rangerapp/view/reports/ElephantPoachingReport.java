@@ -12,6 +12,8 @@ import com.ihub.rangerapp.loader.ElephantPoachingLoader;
 import com.ihub.rangerapp.model.ElephantPoachingModel;
 import com.ihub.rangerapp.model.Model;
 import com.ihub.rangerapp.util.DateUtil;
+
+import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.view.View;
@@ -63,14 +65,28 @@ public class ElephantPoachingReport extends ReportFragment {
 		activity.addReviewItem(new SummaryItem("Longitude", model.getLongitude(), "", 3));
 		activity.addReviewItem(new SummaryItem("Tool Used", model.getToolsUsed(), "", 4));
 		activity.addReviewItem(new SummaryItem("No of Animals", model.getNoOfAnimals() + "", "", 5));
-		activity.addReviewItem(new SummaryItem("Age", model.getAge(), "", 6));
-		activity.addReviewItem(new SummaryItem("Gender", model.getSex() , "", 7));
-		activity.addReviewItem(new SummaryItem("Tusks Present", model.getIvoryPresence(), "", 8));
-		activity.addReviewItem(new SummaryItem("Action Taken", model.getActionTaken(), "", 9));
-		activity.addReviewItem(new SummaryItem("Extra Notes", model.getExtraNotes(), "", 10));
+		
+		Integer noOfAnimals = model.getNoOfAnimals();
+		
+		if(noOfAnimals == 1) {
+			
+			activity.addReviewItem(new SummaryItem("Age", model.getAdultsCount() == 1 ? "Adult" : (model.getSemiAdultsCount() == 1 ? "Semi-Adult" : (model.getJuvenileCount() == 1 ? "Juvenile" : "")), "", 6));
+			activity.addReviewItem(new SummaryItem("Gender", model.getMaleCount() == 1 ? "Male" : (model.getFemaleCount() == 1 ? "Female" : "") , "", 7));
+			
+		} else if(noOfAnimals > 0) {
+			activity.addReviewItem(new SummaryItem("Male Count", model.getMaleCount() + "", "", 6));
+			activity.addReviewItem(new SummaryItem("Female Count", model.getFemaleCount() + "", "", 7));
+			activity.addReviewItem(new SummaryItem("Adult Count", model.getAdultsCount() + "", "", 8));
+			activity.addReviewItem(new SummaryItem("Semi-Adults Count", model.getSemiAdultsCount() + "", "", 8));
+			activity.addReviewItem(new SummaryItem("Juvenile Count", model.getJuvenileCount() + "", "", 8));
+		}
+		
+		activity.addReviewItem(new SummaryItem("Tusks Present", model.getIvoryPresence(), "", 9));
+		activity.addReviewItem(new SummaryItem("Action Taken", model.getActionTaken(), "", 10));
+		activity.addReviewItem(new SummaryItem("Extra Notes", model.getExtraNotes(), "", 11));
 		
 		if(date != null)
-			activity.addReviewItem(new SummaryItem("Date Created", new SimpleDateFormat( "yyyy-MM-dd" ).format(date), "", 10));
+			activity.addReviewItem(new SummaryItem("Date Created", new SimpleDateFormat( "yyyy-MM-dd" ).format(date), "", 12));
 	}
 	
 	@Override
@@ -79,27 +95,35 @@ public class ElephantPoachingReport extends ReportFragment {
 		
 		getActivity().onBackPressed();
 		
-		int rID = data.getIntExtra("id", 0);
-				
-		for(int i = 0; i < adapter.getCount(); i++) {
-			ElephantPoachingModel m = (ElephantPoachingModel) adapter.getItem(i);
+		if (resultCode == Activity.RESULT_OK) {
 			
-			if(m.getId() == rID) {
+			int rID = data.getIntExtra("id", 0);
+			
+			for(int i = 0; i < adapter.getCount(); i++) {
+				ElephantPoachingModel m = (ElephantPoachingModel) adapter.getItem(i);
 				
-				m.setToolsUsed(data.getStringExtra("toolsUsed"));
-				m.setNoOfAnimals(data.getIntExtra("noOfAnimals", 0));
-				m.setActionTaken(data.getStringExtra("actionTaken"));
-				m.setExtraNotes(data.getStringExtra("extraNotes"));
-				
-				m.setAge(data.getStringExtra("age"));
-				m.setSex(data.getStringExtra("sex"));
-				m.setIvoryPresence(data.getStringExtra("ivoryPresence"));
-				
-				adapter.notifyDataSetChanged();
-				break;
-				
+				if(m.getId() == rID) {
+					
+					m.setToolsUsed(data.getStringExtra("toolsUsed"));
+					m.setNoOfAnimals(data.getIntExtra("noOfAnimals", 0));
+					m.setActionTaken(data.getStringExtra("actionTaken"));
+					m.setExtraNotes(data.getStringExtra("extraNotes"));
+					
+					m.setMaleCount(Integer.valueOf(data.getIntExtra("maleCount", 0)));
+					m.setFemaleCount(Integer.valueOf(data.getIntExtra("femaleCount", 0)));
+					m.setAdultsCount(Integer.valueOf(data.getIntExtra("adultsCount", 0)));
+					m.setSemiAdultsCount(Integer.valueOf(data.getIntExtra("semiAdultsCount", 0)));
+					m.setJuvenileCount(Integer.valueOf(data.getIntExtra("juvenileCount", 0)));
+					m.setIvoryPresence(data.getStringExtra("ivoryPresence"));				
+					
+					adapter.notifyDataSetChanged();
+					break;
+					
+				}
 			}
 		}
+		
+		
 	}
 	
 	@Override

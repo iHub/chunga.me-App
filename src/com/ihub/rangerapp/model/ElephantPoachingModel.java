@@ -6,8 +6,11 @@ public class ElephantPoachingModel extends Model {
 
 	String toolsUsed;
 	Integer noOfAnimals;
-	String age;
-	String sex;
+	Integer maleCount;
+	Integer femaleCount;
+	Integer adultsCount;
+	Integer semiAdultsCount;
+	Integer juvenileCount;
 	String ivoryPresence;
 	String actionTaken;
 	String extraNotes;
@@ -25,18 +28,6 @@ public class ElephantPoachingModel extends Model {
 	}
 	public void setNoOfAnimals(Integer noOfAnimals) {
 		this.noOfAnimals = noOfAnimals;
-	}
-	public String getAge() {
-		return age;
-	}
-	public void setAge(String age) {
-		this.age = age;
-	}
-	public String getSex() {
-		return sex;
-	}
-	public void setSex(String sex) {
-		this.sex = sex;
 	}
 	public String getIvoryPresence() {
 		return ivoryPresence;
@@ -68,6 +59,36 @@ public class ElephantPoachingModel extends Model {
 	public void setDateCreated(String dateCreated) {
 		this.dateCreated = dateCreated;
 	}
+	public Integer getMaleCount() {
+		return maleCount;
+	}
+	public void setMaleCount(Integer maleCount) {
+		this.maleCount = maleCount;
+	}
+	public Integer getFemaleCount() {
+		return femaleCount;
+	}
+	public void setFemaleCount(Integer femaleCount) {
+		this.femaleCount = femaleCount;
+	}
+	public Integer getAdultsCount() {
+		return adultsCount;
+	}
+	public void setAdultsCount(Integer adultsCount) {
+		this.adultsCount = adultsCount;
+	}
+	public Integer getSemiAdultsCount() {
+		return semiAdultsCount;
+	}
+	public void setSemiAdultsCount(Integer semiAdultsCount) {
+		this.semiAdultsCount = semiAdultsCount;
+	}
+	public Integer getJuvenileCount() {
+		return juvenileCount;
+	}
+	public void setJuvenileCount(Integer juvenileCount) {
+		this.juvenileCount = juvenileCount;
+	}
 	@Override
 	public Intent getExtras() {
 		
@@ -75,8 +96,11 @@ public class ElephantPoachingModel extends Model {
 		intent.putExtra("id", id);
 		intent.putExtra("toolsUsed", toolsUsed);
 		intent.putExtra("noOfAnimals", noOfAnimals);
-		intent.putExtra("age", age);
-		intent.putExtra("sex", sex);
+		intent.putExtra("maleCount", maleCount);
+		intent.putExtra("femaleCount", femaleCount);
+		intent.putExtra("adultsCount", adultsCount);
+		intent.putExtra("semiAdultsCount", semiAdultsCount);
+		intent.putExtra("juvenileCount", juvenileCount);
 		intent.putExtra("ivoryPresence", ivoryPresence);
 		intent.putExtra("actionTaken", actionTaken);
 		intent.putExtra("extraNotes", extraNotes);

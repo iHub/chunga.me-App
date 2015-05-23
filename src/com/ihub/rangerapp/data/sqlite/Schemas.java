@@ -125,8 +125,11 @@ public class Schemas {
 				BaseColumns._ID + " integer primary key autoincrement," +
 				ElephantPoaching.NO_OF_ANIMALS + " INTEGER, " +
 				ElephantPoaching.TOOLS_USED + " text, " +
-				ElephantPoaching.AGE + " text," +
-				ElephantPoaching.SEX + " text," +
+				ElephantPoaching.MALE_COUNT + " INTEGER," +
+				ElephantPoaching.FEMALE_COUNT + " INTEGER," +
+				ElephantPoaching.ADULTS_COUNT + " INTEGER," +
+				ElephantPoaching.SEMI_ADULTS_COUNT + " INTEGER," +
+				ElephantPoaching.JUVENILE_COUNT + " INTEGER," +
 				ElephantPoaching.IVORY_PRESENCE + " text," +
 				ElephantPoaching.ACTION_TAKEN + " text," +
 				ElephantPoaching.EXTRA_NOTES + " text," +
@@ -273,8 +276,11 @@ public class Schemas {
 	public static class ElephantPoaching {
 		public static String TOOLS_USED = "tools_used";
 		public static String NO_OF_ANIMALS = "no_of_animals";
-		public static String AGE = "age";
-		public static String SEX = "sex";
+		public static String MALE_COUNT = "male_count";
+		public static String FEMALE_COUNT = "female_count";
+		public static String ADULTS_COUNT = "adults_count";
+		public static String SEMI_ADULTS_COUNT = "semi_adults_count";
+		public static String JUVENILE_COUNT = "juvenile_count";
 		public static String IVORY_PRESENCE = "ivory_presence";
 		public static String ACTION_TAKEN = "action_taken";
 		public static String EXTRA_NOTES = "extra_notes";

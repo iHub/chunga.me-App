@@ -18,6 +18,7 @@ import com.ihub.rangerapp.model.SuspiciousActivityModel;
 import com.ihub.rangerapp.model.WaterholeModel;
 import com.ihub.rangerapp.util.DateUtil;
 
+import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.view.View;
@@ -62,21 +63,24 @@ public class WaterholesReport extends ReportFragment {
 		
 		getActivity().onBackPressed();
 		
-		int rID = data.getIntExtra("id", 0);
+		if (resultCode == Activity.RESULT_OK) {
+		
+			int rID = data.getIntExtra("id", 0);
+					
+			for(int i = 0; i < adapter.getCount(); i++) {
+				WaterholeModel m = (WaterholeModel) adapter.getItem(i);
 				
-		for(int i = 0; i < adapter.getCount(); i++) {
-			WaterholeModel m = (WaterholeModel) adapter.getItem(i);
-			
-			if(m.getId() == rID) {
-				
-				m.setName(data.getStringExtra("name"));
-				m.setNumberOfAnimals(data.getIntExtra("numberOfAnimals", 0));
-				m.setLevelOfWater(data.getStringExtra("levelOfWater"));
-				m.setExtraNotes(data.getStringExtra("extraNotes"));
-				
-				adapter.notifyDataSetChanged();
-				break;
-				
+				if(m.getId() == rID) {
+					
+					m.setName(data.getStringExtra("name"));
+					m.setNumberOfAnimals(data.getIntExtra("numberOfAnimals", 0));
+					m.setLevelOfWater(data.getStringExtra("levelOfWater"));
+					m.setExtraNotes(data.getStringExtra("extraNotes"));
+					
+					adapter.notifyDataSetChanged();
+					break;
+					
+				}
 			}
 		}
 	}

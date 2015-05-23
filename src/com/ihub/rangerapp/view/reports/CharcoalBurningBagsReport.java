@@ -18,6 +18,7 @@ import com.ihub.rangerapp.model.GameMeatModel;
 import com.ihub.rangerapp.model.Model;
 import com.ihub.rangerapp.util.DateUtil;
 
+import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.view.View;
@@ -62,21 +63,24 @@ public class CharcoalBurningBagsReport extends ReportFragment {
 		
 		getActivity().onBackPressed();
 		
-		int rID = data.getIntExtra("id", 0);
-				
-		for(int i = 0; i < adapter.getCount(); i++) {
-			CharcoalBagModel m = (CharcoalBagModel) adapter.getItem(i);
+		if (resultCode == Activity.RESULT_OK) {
 			
-			if(m.getId() == rID) {
+			int rID = data.getIntExtra("id", 0);
+			
+			for(int i = 0; i < adapter.getCount(); i++) {
+				CharcoalBagModel m = (CharcoalBagModel) adapter.getItem(i);
 				
-				m.setModeOfTransport(data.getStringExtra("modeOfTransport"));
-				m.setNoOfBags(data.getIntExtra("noOfBags", 0));
-				m.setActionTaken(data.getStringExtra("actionTaken"));
-				m.setExtraNotes(data.getStringExtra("extraNotes"));
-				
-				adapter.notifyDataSetChanged();
-				break;
-				
+				if(m.getId() == rID) {
+					
+					m.setModeOfTransport(data.getStringExtra("modeOfTransport"));
+					m.setNoOfBags(data.getIntExtra("noOfBags", 0));
+					m.setActionTaken(data.getStringExtra("actionTaken"));
+					m.setExtraNotes(data.getStringExtra("extraNotes"));
+					
+					adapter.notifyDataSetChanged();
+					break;
+					
+				}
 			}
 		}
 	}
