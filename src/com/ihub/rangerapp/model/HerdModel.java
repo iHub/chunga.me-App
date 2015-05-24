@@ -7,7 +7,9 @@ public class HerdModel extends Model {
 	String name;
 	String type;
 	Integer noOfAnimals;
-	String age;
+	Integer adultsCount;
+	Integer semiAdultsCount;
+	Integer juvenileCount;
 	Integer distanceSeen;
 	String extraNotes;
 	String imagePath;
@@ -37,12 +39,28 @@ public class HerdModel extends Model {
 		this.noOfAnimals = noOfAnimals;
 	}
 
-	public String getAge() {
-		return age;
+	public Integer getAdultsCount() {
+		return adultsCount;
 	}
 
-	public void setAge(String age) {
-		this.age = age;
+	public void setAdultsCount(Integer adultsCount) {
+		this.adultsCount = adultsCount;
+	}
+
+	public Integer getSemiAdultsCount() {
+		return semiAdultsCount;
+	}
+
+	public void setSemiAdultsCount(Integer semiAdultsCount) {
+		this.semiAdultsCount = semiAdultsCount;
+	}
+
+	public Integer getJuvenileCount() {
+		return juvenileCount;
+	}
+
+	public void setJuvenileCount(Integer juvenileCount) {
+		this.juvenileCount = juvenileCount;
 	}
 
 	public Integer getDistanceSeen() {
@@ -84,7 +102,9 @@ public class HerdModel extends Model {
 		intent.putExtra("name", name);
 		intent.putExtra("type", type);
 		intent.putExtra("noOfAnimals", noOfAnimals);
-		intent.putExtra("age", age);
+		intent.putExtra("adultsCount", adultsCount);
+		intent.putExtra("semiAdultsCount", semiAdultsCount);
+		intent.putExtra("juvenileCount", juvenileCount);
 		intent.putExtra("distanceSeen", distanceSeen);
 		intent.putExtra("extraNotes", extraNotes);
 		intent.putExtra("lat", latitude);

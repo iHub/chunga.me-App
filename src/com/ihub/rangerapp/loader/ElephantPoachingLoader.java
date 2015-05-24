@@ -8,7 +8,6 @@ import android.database.sqlite.SQLiteDatabase;
 import com.ihub.rangerapp.RangerApp;
 import com.ihub.rangerapp.data.sqlite.DB;
 import com.ihub.rangerapp.data.sqlite.Schemas;
-import com.ihub.rangerapp.data.sqlite.Schemas.ElephantPoaching;
 import com.ihub.rangerapp.model.ElephantPoachingModel;
 import com.ihub.rangerapp.model.Model;
 import com.ihub.rangerapp.util.PagingLoadConfig;

@@ -9,9 +9,7 @@ import com.ihub.rangerapp.adapter.AmazingAdapter;
 import com.ihub.rangerapp.adapter.HerdReportAdapter;
 import com.ihub.rangerapp.entity.SummaryItem;
 import com.ihub.rangerapp.loader.HerdsLoader;
-import com.ihub.rangerapp.model.GameMeatModel;
 import com.ihub.rangerapp.model.HerdModel;
-import com.ihub.rangerapp.model.IndividualAnimalModel;
 import com.ihub.rangerapp.model.Model;
 import com.ihub.rangerapp.util.DateUtil;
 
@@ -72,13 +70,14 @@ AmazingAdapter adapter;
 					m.setName(data.getStringExtra("name"));
 					m.setType(data.getStringExtra("type"));
 					m.setNoOfAnimals(data.getIntExtra("noOfAnimals", 0));
-					m.setAge(data.getStringExtra("age"));
+					m.setAdultsCount(Integer.valueOf(data.getIntExtra("adultsCount", 0)));
+					m.setSemiAdultsCount(Integer.valueOf(data.getIntExtra("semiAdultsCount", 0)));
+					m.setJuvenileCount(Integer.valueOf(data.getIntExtra("juvenileCount", 0)));
 					m.setDistanceSeen(data.getIntExtra("distanceSeen", 0));
 					m.setExtraNotes(data.getStringExtra("extraNotes"));
 					
 					adapter.notifyDataSetChanged();
 					break;
-					
 				}
 			}
 		}
@@ -97,9 +96,11 @@ AmazingAdapter adapter;
 		activity.addReviewItem(new SummaryItem("Name", model.getName(), "", 4));
 		activity.addReviewItem(new SummaryItem("Type", model.getType(), "", 5));
 		activity.addReviewItem(new SummaryItem("No of Animals", model.getNoOfAnimals() + "", "", 6));
-		activity.addReviewItem(new SummaryItem("Age", model.getAge(), "", 7));
-		activity.addReviewItem(new SummaryItem("Distance Seen (Mtrs)", model.getDistanceSeen() + "", "", 8));
-		activity.addReviewItem(new SummaryItem("Extra Notes", model.getExtraNotes(), "", 9));
+		activity.addReviewItem(new SummaryItem("Adult Count", model.getAdultsCount() + "", "", 7));
+		activity.addReviewItem(new SummaryItem("Semi-Adults Count", model.getSemiAdultsCount() + "", "", 8));
+		activity.addReviewItem(new SummaryItem("Juvenile Count", model.getJuvenileCount() + "", "", 9));
+		activity.addReviewItem(new SummaryItem("Distance Seen (Mtrs)", model.getDistanceSeen() + "", "", 10));
+		activity.addReviewItem(new SummaryItem("Extra Notes", model.getExtraNotes(), "", 11));
 		
 		if(date != null)
 			activity.addReviewItem(new SummaryItem("Date Created", new SimpleDateFormat( "yyyy-MM-dd" ).format(date), "", 10));

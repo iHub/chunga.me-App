@@ -2,17 +2,13 @@ package com.ihub.rangerapp.loader;
 
 import java.util.ArrayList;
 import java.util.List;
-
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
-import android.provider.BaseColumns;
-
 import com.ihub.rangerapp.RangerApp;
 import com.ihub.rangerapp.data.sqlite.DB;
 import com.ihub.rangerapp.data.sqlite.Schemas;
 import com.ihub.rangerapp.data.sqlite.Schemas.AnimalHerdSighting;
 import com.ihub.rangerapp.model.HerdModel;
-import com.ihub.rangerapp.model.IndividualAnimalModel;
 import com.ihub.rangerapp.model.Model;
 import com.ihub.rangerapp.util.PagingLoadConfig;
 
@@ -44,21 +40,30 @@ public class HerdsLoader extends DataLoader {
 				String name = cursor.getString(1);
 				String type = cursor.getString(2);
 				Integer noOfAnimals = cursor.getInt(3);
-				String age = cursor.getString(4);
-				Integer distanceSeen = cursor.getInt(5);
 				
-				String extraNotes = cursor.getString(6);
-				String latitude = cursor.getString(7);
-				String longitude = cursor.getString(8);
-				String imagePath = cursor.getString(9);
-				String dateCreated = cursor.getString(10);
+				Integer adultsCount = cursor.getInt(4);
+				Integer semiAdultsCount = cursor.getInt(5);
+				Integer juvenileCount = cursor.getInt(6);
+				
+				Integer distanceSeen = cursor.getInt(7);
+				
+				
+				
+				
+				String extraNotes = cursor.getString(8);
+				String latitude = cursor.getString(9);
+				String longitude = cursor.getString(10);
+				String imagePath = cursor.getString(11);
+				String dateCreated = cursor.getString(12);
 												
 				HerdModel  model = new HerdModel();
 				model.setId(id);
 				model.setName(name);
 				model.setType(type);
 				model.setNoOfAnimals(noOfAnimals);
-				model.setAge(age);
+				model.setAdultsCount(adultsCount);
+				model.setSemiAdultsCount(semiAdultsCount);
+				model.setJuvenileCount(juvenileCount);
 				model.setDistanceSeen(distanceSeen);
 				model.setExtraNotes(extraNotes);
 				model.setLatitude(latitude);

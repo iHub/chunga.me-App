@@ -32,8 +32,11 @@ public class AnimalsSightingsActivity extends CameraGPSActionBarActivity {
 	EditText herdNameView;
 	EditText typeSpeciesView;
 	EditText herdNoOfAnimalsView;
-	Spinner herdAgeSpinner;
 	EditText herdDistanceSeenView;
+	
+	EditText juvenilesCountView;
+	EditText semiAdultsCountView;
+	EditText adultsCountView;
 	
 	Boolean isMale = false;
 	Boolean isIndividualView = true;
@@ -95,14 +98,10 @@ public class AnimalsSightingsActivity extends CameraGPSActionBarActivity {
         herdNameView = (EditText) findViewById(R.id.herdNameView);
         typeSpeciesView = (EditText) findViewById(R.id.typeSpeciesView);
         herdNoOfAnimalsView = (EditText) findViewById(R.id.herdNoOfAnimalsView);
-        herdAgeSpinner = (Spinner) findViewById(R.id.herdAgeSpinner);
+        juvenilesCountView = (EditText) findViewById(R.id.juvenilesCountView);
+        semiAdultsCountView = (EditText) findViewById(R.id.semiAdultsCountView);
+        adultsCountView = (EditText) findViewById(R.id.adultsCountView);
         herdDistanceSeenView = (EditText) findViewById(R.id.herdDistanceSeenView);
-        
-        ArrayAdapter<CharSequence> herdAgeAdapter = ArrayAdapter.createFromResource(this,
-                R.array.age_array, android.R.layout.simple_spinner_item);
-        herdAgeAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-        
-		herdAgeSpinner.setAdapter(herdAgeAdapter);
 		
         saveBtn.setOnClickListener(new View.OnClickListener() {
         	
@@ -187,11 +186,28 @@ public class AnimalsSightingsActivity extends CameraGPSActionBarActivity {
     	if(getIntent().hasExtra("noOfAnimals"))
         	herdNoOfAnimalsView.setText(getIntent().getIntExtra("noOfAnimals", 0) + "");
     	
-    	if(!TextUtils.isEmpty(getIntent().getStringExtra("age")))
-        	for(int i = 0; i < herdAgeSpinner.getAdapter().getCount(); i++) {
-        		if(herdAgeSpinner.getItemAtPosition(i).toString().equals(getIntent().getStringExtra("age")))
-        			herdAgeSpinner.setSelection(i);
-        	}
+    	Integer adultsCount = 0;
+		Integer semiAdultsCount = 0;
+		Integer juvenileCount= 0;
+		
+		try {
+			adultsCount = getIntent().getIntExtra("adultsCount", 0);
+		} catch (Exception e) {}
+		
+		try {
+			semiAdultsCount = getIntent().getIntExtra("semiAdultsCount", 0);
+		} catch (Exception e) {}
+		
+		try {
+			juvenileCount = getIntent().getIntExtra("juvenileCount", 0);
+		} catch (Exception e) {}
+		
+		if(adultsCount > 0)
+			adultsCountView.setText(adultsCount + "");
+		if(semiAdultsCount > 0)
+			semiAdultsCountView.setText(semiAdultsCount + "");
+		if(juvenileCount > 0)
+			juvenilesCountView.setText(juvenileCount + "");
         
         if(getIntent().hasExtra("distanceSeen"))
         	herdDistanceSeenView.setText(getIntent().getIntExtra("distanceSeen", 0) + "");
@@ -261,18 +277,34 @@ public class AnimalsSightingsActivity extends CameraGPSActionBarActivity {
 			
 			AnimalSightingsService service = new AnimalSightingsServiceImpl();
 			
+			Integer adultsCount = 0;
+			Integer semiAdultsCount = 0;
+			Integer juvenileCount= 0;
+			
+			try {
+				adultsCount = Integer.valueOf(adultsCountView.getText().toString());
+			} catch (Exception e) {}
+			
+			try {
+				semiAdultsCount = Integer.valueOf(semiAdultsCountView.getText().toString());
+			} catch (Exception e) {}
+			
+			try {
+				juvenileCount = Integer.valueOf(juvenilesCountView.getText().toString());
+			} catch (Exception e) {}
+			
 			Integer id = -1;
 			if(mode == 2)
 				id = getIntent().getIntExtra("id", -1);
-			
-			String age = herdAgeSpinner.getSelectedItemPosition() == 0 ? "" : herdAgeSpinner.getSelectedItem().toString();
-			
+						
 			Map<String , Object> result = service.saveHerd(
 					id,
 					herdNameView.getText().toString(), 
 					typeSpeciesView.getText().toString(), 
 					noOfAnimals, 
-					age, 
+					adultsCount,
+					semiAdultsCount,
+					juvenileCount,
 					distanceSeen,
 					extraNotes.getText().toString(), 
 					imagePath, 
@@ -286,7 +318,9 @@ public class AnimalsSightingsActivity extends CameraGPSActionBarActivity {
 				data.putExtra("name", herdNameView.getText().toString());
 				data.putExtra("type", typeSpeciesView.getText().toString());
 				data.putExtra("noOfAnimals", noOfAnimals);
-				data.putExtra("age", age);
+				data.putExtra("adultsCount", adultsCount);
+				data.putExtra("semiAdultsCount", semiAdultsCount);
+				data.putExtra("juvenileCount", juvenileCount);
 				data.putExtra("distanceSeen", distanceSeen);
 				data.putExtra("extraNotes", extraNotes.getText().toString());
 				
@@ -296,9 +330,9 @@ public class AnimalsSightingsActivity extends CameraGPSActionBarActivity {
 			showSaveResult(result);
 		}
 	}
-
+	
 	public void onGenderRadioButtonClicked(View view) {
-
+		
 		switch (view.getId()) {
 		case R.id.radio_gender_male:
 			isMale = true;
@@ -312,7 +346,7 @@ public class AnimalsSightingsActivity extends CameraGPSActionBarActivity {
 	}
 	
 	public void onTypeRadioButtonClicked(View view) {
-			    
+		
 	    switch(view.getId()) {
 	        case R.id.radio_individual:
 	        	herdLayout.setVisibility(View.GONE);

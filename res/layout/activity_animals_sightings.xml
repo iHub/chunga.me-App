@@ -200,19 +200,87 @@
 			        android:layout_height="wrap_content"
 			        android:inputType="number" />
 		        
-		        <TextView
-		            android:layout_width="match_parent"
-		            android:layout_height="wrap_content"
-		            android:text="@string/age"
-		            android:textSize="18sp"
-		            android:textColor="@color/bg"
-		            android:layout_marginBottom="5dp" />
+		        <LinearLayout
+					android:layout_width="match_parent"
+					android:layout_height="wrap_content"
+					android:orientation="horizontal"
+					android:paddingRight="3dp" >
+					
+				    <LinearLayout
+				        android:layout_width="wrap_content"
+				        android:layout_height="wrap_content"
+				        android:orientation="vertical"
+				        android:layout_weight="0" >
+				        
+			            <TextView
+				            android:layout_width="match_parent"
+				            android:layout_height="wrap_content"
+				            android:text="@string/adults"
+				            android:textSize="18sp"
+				            android:textColor="@color/bg"
+				            android:layout_marginBottom="5dp" />
+				        
+				        <EditText
+					        android:id="@+id/adultsCountView"
+					        android:layout_width="match_parent"
+					        android:layout_height="wrap_content"
+					        android:layout_marginBottom="10dp"
+					        android:inputType="number" />
+				        
+					</LinearLayout>
+					
+				    <LinearLayout
+				        android:layout_width="0dp"
+				        android:layout_height="wrap_content"
+				        android:orientation="vertical"
+				        android:layout_weight="1" >
+				        
+			            <TextView
+				            android:layout_width="match_parent"
+				            android:layout_height="wrap_content"
+				            android:text="@string/semi_adults"
+				            android:textSize="18sp"
+				            android:textColor="@color/bg"
+				            android:layout_marginBottom="5dp"
+				            android:gravity="center_horizontal" />
+				        
+				        <EditText
+					        android:id="@+id/semiAdultsCountView"
+					        android:layout_width="match_parent"
+					        android:layout_height="wrap_content"
+					        android:layout_marginBottom="10dp"
+					        android:inputType="number"
+					        android:gravity="center_horizontal" />
+			        
+					</LinearLayout>
+					
+				    <LinearLayout
+				        android:layout_width="wrap_content"
+				        android:layout_height="wrap_content"
+				        android:orientation="vertical"
+				        android:layout_weight="0" >
+				        
+			            <TextView
+				            android:layout_width="match_parent"
+				            android:layout_height="wrap_content"
+				            android:text="@string/juveniles"
+				            android:textSize="18sp"
+				            android:textColor="@color/bg"
+				            android:layout_marginBottom="5dp" />
+				        
+				        <EditText
+					        android:id="@+id/juvenilesCountView"
+					        android:layout_width="match_parent"
+					        android:layout_height="wrap_content"
+					        android:layout_marginBottom="10dp"
+					        android:inputType="number" />
+			        
+					</LinearLayout>
+					
+				</LinearLayout>
+				
 		        
-		        <Spinner
-		            android:id="@+id/herdAgeSpinner"
-		            android:layout_width="match_parent"
-		            android:layout_height="wrap_content"
-		            android:layout_marginBottom="10dp" />
+		        
 		        
 		        <TextView
 		            android:layout_width="match_parent"

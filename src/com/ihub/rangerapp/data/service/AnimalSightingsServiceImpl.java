@@ -47,7 +47,7 @@ public class AnimalSightingsServiceImpl extends DatabaseService implements Anima
 	}
 
 	@Override
-	public Map<String, Object> saveHerd(Integer id, String name, String species, Integer noOfAnimals, String age, Integer distanceSeen, String extraNotes, String imagePath, String lat, String lon) {
+	public Map<String, Object> saveHerd(Integer id, String name, String species, Integer noOfAnimals, Integer adultsCount, Integer semiAdultsCount, Integer juvenileCount, Integer distanceSeen, String extraNotes, String imagePath, String lat, String lon) {
 
 		Map<String, Object> result = new HashMap<String, Object>();
 		
@@ -57,7 +57,11 @@ public class AnimalSightingsServiceImpl extends DatabaseService implements Anima
  		values.put(Schemas.AnimalHerdSighting.NAME, name);
  		values.put(Schemas.AnimalHerdSighting.TYPE, species);
  		values.put(Schemas.AnimalHerdSighting.NUMBER_OF_ANIMALS, noOfAnimals);
- 		values.put(Schemas.AnimalHerdSighting.AGE, age);
+ 		
+ 		values.put(Schemas.AnimalHerdSighting.ADULTS_COUNT, adultsCount);
+ 		values.put(Schemas.AnimalHerdSighting.SEMI_ADULTS_COUNT, semiAdultsCount);
+ 		values.put(Schemas.AnimalHerdSighting.JUVENILE_COUNT, juvenileCount);
+ 		
  		values.put(Schemas.AnimalHerdSighting.DISTANCE_SEEN, distanceSeen);
  		values.put(Schemas.AnimalHerdSighting.EXTRA_NOTES, extraNotes);
  		values.put(Schemas.AnimalHerdSighting.IMAGE_PATH, imagePath);

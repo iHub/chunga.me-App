@@ -36,7 +36,9 @@ public class Schemas {
 				AnimalHerdSighting.NAME + " text," +
 				AnimalHerdSighting.TYPE + " text," +
 				AnimalHerdSighting.NUMBER_OF_ANIMALS + " integer," +
-				AnimalHerdSighting.AGE + " text," +
+				AnimalHerdSighting.ADULTS_COUNT + " INTEGER," +
+				AnimalHerdSighting.SEMI_ADULTS_COUNT + " INTEGER," +
+				AnimalHerdSighting.JUVENILE_COUNT + " INTEGER," +
 				AnimalHerdSighting.DISTANCE_SEEN + " integer," +
 				AnimalHerdSighting.EXTRA_NOTES + " text," +
 				AnimalHerdSighting.LAT + " text," +
@@ -81,7 +83,9 @@ public class Schemas {
 		public static String NAME = "name";
 		public static String TYPE = "type";
 		public static String NUMBER_OF_ANIMALS = "no_of_animals";
-		public static String AGE = "age";
+		public static String ADULTS_COUNT = "adults_count";
+		public static String SEMI_ADULTS_COUNT = "semi_adults_count";
+		public static String JUVENILE_COUNT = "juvenile_count";
 		public static String DISTANCE_SEEN = "distance_seen";
 		public static String EXTRA_NOTES = "extra_notes";
 		public static String LAT = "latitude";
