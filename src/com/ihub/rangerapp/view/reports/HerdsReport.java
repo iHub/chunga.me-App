@@ -21,7 +21,7 @@ import android.widget.AdapterView;
 import android.widget.BaseAdapter;
 
 public class HerdsReport extends ReportFragment {
-
+	
 AmazingAdapter adapter;
 	
 	@Override

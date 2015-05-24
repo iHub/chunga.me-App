@@ -5,15 +5,22 @@ import java.util.Collections;
 import java.util.List;
 import com.ihub.rangerapp.adapter.SightingsMenuAdapter;
 import com.ihub.rangerapp.anim.CustomItemAnimator;
+import com.ihub.rangerapp.data.service.ShiftService;
+import com.ihub.rangerapp.data.service.ShiftServiceImpl;
 import android.support.v7.app.ActionBarActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
+import android.app.Activity;
+import android.app.AlertDialog;
+import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.DialogInterface.OnClickListener;
 import android.os.AsyncTask;
 import android.os.Build;
 import android.os.Bundle;
 import android.os.Handler;
+import android.util.Pair;
 import android.view.View;
 
 public class SightingsActivity extends ActionBarActivity {
@@ -22,6 +29,8 @@ private List<com.ihub.rangerapp.entity.MenuItem> itemsList = new ArrayList<com.i
 	
 	private SightingsMenuAdapter mAdapter;
     private RecyclerView mRecyclerView;
+    
+    Intent openIntent;
     
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -103,4 +112,57 @@ private List<com.ihub.rangerapp.entity.MenuItem> itemsList = new ArrayList<com.i
             super.onPostExecute(result);
         }
     }
+    
+    public void open(Intent intent) {
+		this.openIntent = intent;
+		new CheckHasOpenShiftApplicationTask().execute(intent);
+	}
+	
+	private class CheckHasOpenShiftApplicationTask extends AsyncTask<Intent, Void, Pair<Boolean, Intent>> {
+    	
+		@Override
+		protected Pair<Boolean, Intent> doInBackground(Intent... intents) {
+			ShiftService service = new ShiftServiceImpl();
+			
+			return new Pair<Boolean, Intent>(service.hasOpenShift(), intents[0]);
+		}
+		
+		@Override
+		protected void onPostExecute(Pair<Boolean, Intent> result) {
+			super.onPostExecute(result);
+			
+			if(result.first) {
+				startActivity(result.second);
+			} else {
+				
+				new AlertDialog.Builder(SightingsActivity.this)
+		          .setMessage("Please start a shift to continue.")
+		          .setCancelable(false)
+		          .setNegativeButton("Cancel", null)
+		          .setPositiveButton("Start Shift", new OnClickListener() {
+		              @Override
+		              public void onClick(DialogInterface dialog, int which) {
+		            	  Intent intent = new Intent(SightingsActivity.this, StartShiftActivity.class);
+		            	  startActivityForResult(intent, 10);
+		              }
+		              
+		          }).create().show();
+				
+			}
+		}
+    }
+	
+	@Override
+	public void onActivityResult(int requestCode, int resultCode, Intent data) {
+		super.onActivityResult(requestCode, resultCode, data);
+		
+		if (resultCode == Activity.RESULT_OK) {
+			
+			if(requestCode == 10) {
+				
+				if(openIntent != null)
+					startActivity(openIntent);
+			}
+		}
+	}
 }

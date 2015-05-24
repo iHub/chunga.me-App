@@ -93,10 +93,7 @@ public class SightingsMenuAdapter extends RecyclerView.Adapter<SightingsMenuAdap
 				}
 			
 			if(intent != null) {				
-				if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN) {
-					startActivity16(intent);
-				} else
-					hAct.startActivity(intent);
+				hAct.open(intent);
 			}
 		}
         

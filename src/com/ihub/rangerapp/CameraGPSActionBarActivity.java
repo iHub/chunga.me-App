@@ -25,6 +25,7 @@ import android.os.AsyncTask;
 import android.os.Bundle;
 import android.os.Environment;
 import android.provider.MediaStore;
+import android.provider.Settings;
 import android.support.v7.app.ActionBarActivity;
 import android.support.v7.widget.PopupMenu;
 import android.support.v7.widget.PopupMenu.OnMenuItemClickListener;
@@ -79,7 +80,14 @@ public class CameraGPSActionBarActivity extends ActionBarActivity {
 	private void initLocationManager() {
 		
 		locationManager = (LocationManager) this.getSystemService(Context.LOCATION_SERVICE);
-
+		
+		if ( !locationManager.isProviderEnabled( LocationManager.GPS_PROVIDER ) ) {
+	        buildAlertMessageNoGps();
+	    }
+	    startLocationListener();
+	}
+	
+	private void startLocationListener() {
 		locationListener = new LocationListener() {
 			public void onLocationChanged(Location location) {
 
@@ -103,14 +111,34 @@ public class CameraGPSActionBarActivity extends ActionBarActivity {
 
 		    public void onProviderDisabled(String provider) {}
 		};
+		locationManager.requestLocationUpdates(LocationManager.NETWORK_PROVIDER, 0, 0, locationListener);
+	}
 
-		  locationManager.requestLocationUpdates(LocationManager.NETWORK_PROVIDER, 0, 0, locationListener);
+
+
+	private void buildAlertMessageNoGps() {
+	    final AlertDialog.Builder builder = new AlertDialog.Builder(this);
+	    builder.setMessage("Your GPS seems to be disabled, do you want to enable it?")
+	           .setCancelable(false)
+	           .setPositiveButton("Yes", new DialogInterface.OnClickListener() {
+	               public void onClick(@SuppressWarnings("unused") final DialogInterface dialog, @SuppressWarnings("unused") final int id) {
+	                   startActivityForResult(new Intent(android.provider.Settings.ACTION_LOCATION_SOURCE_SETTINGS), 323);
+	               }
+	           })
+	           .setNegativeButton("No", new DialogInterface.OnClickListener() {
+	               public void onClick(final DialogInterface dialog, @SuppressWarnings("unused") final int id) {
+	                    dialog.cancel();
+	               }
+	           });
+	    final AlertDialog alert = builder.create();
+	    alert.show();
 	}
 	
 	@Override
 	protected void onPause() {
 		super.onPause();
-		locationManager.removeUpdates(locationListener);
+		if(locationListener != null)
+			locationManager.removeUpdates(locationListener);
 	}
 	//http://stackoverflow.com/questions/17519198/how-to-get-the-current-location-latitude-and-longitude-in-android
 	//TODO
@@ -122,7 +150,9 @@ public class CameraGPSActionBarActivity extends ActionBarActivity {
 		if(locationManager == null)
 			initLocationManager();
 		
-		locationManager.requestLocationUpdates(LocationManager.NETWORK_PROVIDER, 0, 0, locationListener);
+		if(locationListener != null)
+			locationManager.requestLocationUpdates(LocationManager.NETWORK_PROVIDER, 0, 0, locationListener);
+		
 		new CheckHasOpenShiftApplicationTask().execute();
 	}
 	
@@ -258,6 +288,10 @@ public class CameraGPSActionBarActivity extends ActionBarActivity {
 	            this.imagePath = filePath;
 	            
 	            showImage(imagePath);
+			} else if(requestCode == 323) {
+		            String provider = Settings.Secure.getString(getContentResolver(), Settings.Secure.LOCATION_PROVIDERS_ALLOWED);
+		            if(provider != null){
+		            }else{}
 			}
 		}
 	}

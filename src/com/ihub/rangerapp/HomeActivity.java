@@ -9,8 +9,6 @@ import com.ihub.rangerapp.data.service.ShiftService;
 import com.ihub.rangerapp.data.service.ShiftServiceImpl;
 import com.ihub.rangerapp.data.service.UserService;
 import com.ihub.rangerapp.data.service.UserServiceImpl;
-import com.ihub.rangerapp.data.sqlite.DBPreferences;
-
 import android.support.v7.app.ActionBarActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
@@ -93,6 +91,10 @@ public class HomeActivity extends ActionBarActivity implements OnClickListener {
 	private void initLocationManager() {
 		
 		locationManager = (LocationManager) this.getSystemService(Context.LOCATION_SERVICE);
+		
+		if ( !locationManager.isProviderEnabled( LocationManager.GPS_PROVIDER ) ) {
+	        buildAlertMessageNoGps();
+	    }
 
 		locationListener = new LocationListener() {
 			public void onLocationChanged(Location location) {
@@ -117,6 +119,24 @@ public class HomeActivity extends ActionBarActivity implements OnClickListener {
 		};
 
 		  locationManager.requestLocationUpdates(LocationManager.NETWORK_PROVIDER, 0, 0, locationListener);
+	}
+	
+	private void buildAlertMessageNoGps() {
+	    final AlertDialog.Builder builder = new AlertDialog.Builder(this);
+	    builder.setMessage("Your GPS seems to be disabled, do you want to enable it?")
+	           .setCancelable(false)
+	           .setPositiveButton("Yes", new DialogInterface.OnClickListener() {
+	               public void onClick(@SuppressWarnings("unused") final DialogInterface dialog, @SuppressWarnings("unused") final int id) {
+	                   startActivity(new Intent(android.provider.Settings.ACTION_LOCATION_SOURCE_SETTINGS));
+	               }
+	           })
+	           .setNegativeButton("No", new DialogInterface.OnClickListener() {
+	               public void onClick(final DialogInterface dialog, @SuppressWarnings("unused") final int id) {
+	                    dialog.cancel();
+	               }
+	           });
+	    final AlertDialog alert = builder.create();
+	    alert.show();
 	}
 	
 	@Override
@@ -241,6 +261,7 @@ public class HomeActivity extends ActionBarActivity implements OnClickListener {
 				Intent intent = new Intent(this, StartShiftActivity.class);
 				startActivityForResult(intent, 100);
 			} else {
+				
 				endCurrentShift();
 			}
 			

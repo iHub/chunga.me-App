@@ -111,10 +111,7 @@ public class IncidencesMenuAdapter extends RecyclerView.Adapter<IncidencesMenuAd
 				}
 			
 			if(intent != null) {				
-				if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN) {
-					startActivity16(intent);
-				} else
-					hAct.startActivity(intent);
+				hAct.open(intent);
 			}
 		}
         
