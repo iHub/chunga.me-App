@@ -143,12 +143,9 @@
     <string-array name="weather_conditions">
         <item>Select Weather Condition</item>
         <item>Clear Sky</item>
-        <item>Few Clouds</item>
         <item>Scattered Clouds</item>
-        <item>Broken Clouds</item>
-        <item>Shower Rain</item>
-        <item>Rain</item>
-        <item>Thunderstorm</item>
+        <item>Light Rain</item>
+        <item>Heavy Rain</item>
         <item>Mist</item>
     </string-array>
     <string-array name="transport_modes">
