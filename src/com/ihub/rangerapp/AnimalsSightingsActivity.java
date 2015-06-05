@@ -14,6 +14,9 @@ import android.widget.LinearLayout;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.Spinner;
+import android.widget.TextView;
+import android.app.AlertDialog;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 
@@ -111,10 +114,59 @@ public class AnimalsSightingsActivity extends CameraGPSActionBarActivity {
 				if(mode == 3) {
 					finish();
 				} else
-					if(isIndividualView)
-						saveIndividual();
-					else
-						saveHerd();
+					if(isIndividualView) {
+						
+						if(isValid()) {
+							
+							if(isValid()) {
+								View[] fields = new View[] {animalNameView, ageSpinner, distanceSeenView, extraNotes};
+								String fieldNames[] = {"Animal", "Age", "Distance Seen", "Extra Notes"};
+								
+								if(hasInvalidFields(fields)) {
+									
+									String msg = "The following fields have no values.\n\n" + getInvalidFields(fields, fieldNames) + "\nDo you wish to continue?";
+									new AlertDialog.Builder(AnimalsSightingsActivity.this)
+										.setMessage(msg)
+										.setCancelable(false)
+										.setPositiveButton(R.string.yes, new DialogInterface.OnClickListener() {
+											
+											public void onClick(DialogInterface dialog, int id) {
+												saveIndividual();
+											}
+										})
+										.setNegativeButton(R.string.no, null)
+										.show();
+									
+								} else {
+									saveIndividual();
+								}
+							}
+						}
+
+					} else
+						if(isValid()) {
+							View[] fields = new View[] {herdNameView, typeSpeciesView, herdNoOfAnimalsView, adultsCountView, semiAdultsCountView, juvenilesCountView, herdDistanceSeenView, extraNotes};
+							String fieldNames[] = {"Name / Identity of Herd", "Type / Species", "Number of Anumals", "Adults", "Semi-Adults", "Juveniles", "Distance Seen", "Extra Notes"};
+							
+							if(hasInvalidFields(fields)) {
+								
+								String msg = "The following fields have no values.\n\n" + getInvalidFields(fields, fieldNames) + "\nDo you wish to continue?";
+								new AlertDialog.Builder(AnimalsSightingsActivity.this)
+									.setMessage(msg)
+									.setCancelable(false)
+									.setPositiveButton(R.string.yes, new DialogInterface.OnClickListener() {
+										
+										public void onClick(DialogInterface dialog, int id) {
+											saveHerd();
+										}
+									})
+									.setNegativeButton(R.string.no, null)
+									.show();
+								
+							} else {
+								saveHerd();
+							}
+						}
 				
 				
 			}
@@ -142,6 +194,26 @@ public class AnimalsSightingsActivity extends CameraGPSActionBarActivity {
         }
 	}
 	
+	public String getInvalidFields(View[] views, String[] fieldNames) {
+			
+			String str = "";
+			
+			for(int i = 0; i < views.length; i++) {
+				if(views[i] instanceof TextView) {
+					if(((EditText)views[i]).getText().toString().trim().equals("")) {
+						str += fieldNames[i] + ".\n";
+					}
+				} else if(views[i] instanceof Spinner) {
+					if(((Spinner)views[i]).getSelectedItemPosition() == 0) {
+						str += fieldNames[i] + ".\n";
+					}
+				}
+			}
+			
+			
+			return str;
+		}
+
 	private void initIndividualData() {
 		herdLayout.setVisibility(View.GONE);
     	individualLayout.setVisibility(View.VISIBLE);

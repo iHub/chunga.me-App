@@ -6,6 +6,8 @@ import com.ihub.rangerapp.data.service.SuspiciousActivitiesService;
 import com.ihub.rangerapp.data.service.SuspiciousActivitiesServiceImpl;
 import android.support.v7.widget.Toolbar;
 import android.text.TextUtils;
+import android.app.AlertDialog;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
@@ -60,8 +62,29 @@ public class SuspiciousActivitiesActivity extends CameraGPSActionBarActivity {
 				if(mode == 3)
 					finish();
 				else
-					if(isValid())
-						save();
+					if(isValid()) {
+						
+						View[] fields = new View[] {actionTakenSpinner, extraNotes};
+						
+						if(hasInvalidFields(fields)) {
+							
+							String msg = "The following fields have no values.\n\n" + getInvalidFields(fields) + "\nDo you wish to continue?";
+							new AlertDialog.Builder(SuspiciousActivitiesActivity.this)
+								.setMessage(msg)
+								.setCancelable(false)
+								.setPositiveButton(R.string.yes, new DialogInterface.OnClickListener() {
+									
+									public void onClick(DialogInterface dialog, int id) {
+										save();
+									}
+								})
+								.setNegativeButton(R.string.no, null)
+								.show();
+							
+						} else {
+							save();
+						}
+					}
 			}
 		});
         
@@ -109,5 +132,9 @@ public class SuspiciousActivitiesActivity extends CameraGPSActionBarActivity {
 		}
 		
 		showSaveResult(result);
+	}
+	
+	public String[] getLabels() {
+		return new String[]{"Action Taken", "Extra Notes"};
 	}
 }

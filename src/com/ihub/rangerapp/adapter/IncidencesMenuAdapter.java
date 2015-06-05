@@ -59,13 +59,13 @@ public class IncidencesMenuAdapter extends RecyclerView.Adapter<IncidencesMenuAd
         viewHolder.name.setText(item.getName());
         
         if(mAct.getString(R.string.game_meat).equals(item.getName())) {
-        	viewHolder.image.setImageResource(R.drawable.antelope);
+        	viewHolder.image.setImageResource(R.drawable.game_meat);
         } else if(mAct.getString(R.string.charcoal_burning).equals(item.getName())) {
-        	viewHolder.image.setImageResource(R.drawable.sack);
+        	viewHolder.image.setImageResource(R.drawable.charcoal);
         } else if(mAct.getString(R.string.elephant_poaching).equals(item.getName())) {
-        	viewHolder.image.setImageResource(R.drawable.icon_elephant);
+        	viewHolder.image.setImageResource(R.drawable.elephant_poaching);
         } else if(mAct.getString(R.string.suspicious_activities).equals(item.getName())) {
-        	viewHolder.image.setImageResource(R.drawable.suspicious);
+        	viewHolder.image.setImageResource(R.drawable.suspicious_act);
         }
     }
     

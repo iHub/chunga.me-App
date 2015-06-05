@@ -38,6 +38,8 @@ import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.ProgressBar;
+import android.widget.Spinner;
+import android.widget.TextView;
 import android.widget.Toast;
 
 public class CameraGPSActionBarActivity extends ActionBarActivity {
@@ -49,7 +51,7 @@ public class CameraGPSActionBarActivity extends ActionBarActivity {
 	
 	@NotEmpty(messageId = R.string.validation_lat, order = 1)
 	EditText latView;
-	//
+	
 	@NotEmpty(messageId = R.string.validation_long, order = 2)
 	EditText longView;
 	
@@ -152,30 +154,7 @@ public class CameraGPSActionBarActivity extends ActionBarActivity {
 		
 		if(locationListener != null)
 			locationManager.requestLocationUpdates(LocationManager.NETWORK_PROVIDER, 0, 0, locationListener);
-		
-		new CheckHasOpenShiftApplicationTask().execute();
 	}
-	
-	private class CheckHasOpenShiftApplicationTask extends AsyncTask<Void, Void, Void> {
-    	
-		@Override
-		protected Void doInBackground(Void... params) {
-			ShiftService service = new ShiftServiceImpl();
-			
-			if(!service.hasOpenShift()) {
-				Intent intent = new Intent(CameraGPSActionBarActivity.this, StartShiftActivity.class);
-				startActivityForResult(intent, 10);
-			}
-				
-			
-			return null;
-		}
-		
-		@Override
-		protected void onPostExecute(Void result) {
-			super.onPostExecute(result);
-		}
-    }
 
 	protected void initViews() {
 		gpsBtn = (ImageButton) findViewById(R.id.gpsBtn);
@@ -414,6 +393,51 @@ public class CameraGPSActionBarActivity extends ActionBarActivity {
 		}
 		
 		return isValid;
+	}
+	
+	public String[] getLabels() {
+		return new String[]{};
+	}
+
+	public String getInvalidFields(View...views) {
+		
+		String str = "";
+		
+		for(int i = 0; i < views.length; i++) {
+			if(views[i] instanceof TextView) {
+				if(((EditText)views[i]).getText().toString().trim().equals("")) {
+					str += getLabels()[i] + ".\n";
+				}
+			} else if(views[i] instanceof Spinner) {
+				if(((Spinner)views[i]).getSelectedItemPosition() == 0) {
+					str += getLabels()[i] + ".\n";
+				}
+			}
+		}
+		
+		
+		return str;
+	}
+	
+	protected Boolean hasInvalidFields(View...views) {
+		
+		Boolean hasInvalidFields = false;
+		
+		for(int i = 0; i < views.length; i++) {
+			if(views[i] instanceof TextView) {
+				if(((EditText)views[i]).getText().toString().trim().equals("")) {
+					hasInvalidFields = true;
+					break;
+				}
+			} else if(views[i] instanceof Spinner) {
+				if(((Spinner)views[i]).getSelectedItemPosition() == 0) {
+					hasInvalidFields = true;
+					break;
+				}
+			}
+		}
+		
+		return hasInvalidFields;
 	}
 	
 	@Override

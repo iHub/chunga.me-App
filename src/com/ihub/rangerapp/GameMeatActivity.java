@@ -1,5 +1,6 @@
 package com.ihub.rangerapp;
 
+import java.lang.reflect.Field;
 import java.util.Map;
 import com.ihub.rangerapp.data.service.GameMeatService;
 import com.ihub.rangerapp.data.service.GameMeatServiceImpl;
@@ -11,6 +12,9 @@ import android.widget.AutoCompleteTextView;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Spinner;
+import android.widget.TextView;
+import android.app.AlertDialog;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 
@@ -72,8 +76,29 @@ public class GameMeatActivity extends CameraGPSActionBarActivity {
 				if(mode == 3) {
 					finish();
 				} else
-					if(isValid())
-						save();
+					if(isValid()) {
+						View[] fields = new View[] {animalView, noOfAnimalsView, actionTakenSpinner, extraNotes};
+						
+						if(hasInvalidFields(fields)) {
+							
+							String msg = "The following fields have no values.\n\n" + getInvalidFields(fields) + "\nDo you wish to continue?";
+							new AlertDialog.Builder(GameMeatActivity.this)
+								.setMessage(msg)
+								.setCancelable(false)
+								.setPositiveButton(R.string.yes, new DialogInterface.OnClickListener() {
+									
+									public void onClick(DialogInterface dialog, int id) {
+										save();
+									}
+								})
+								.setNegativeButton(R.string.no, null)
+								.show();
+							
+						} else {
+							save();
+						}
+					}
+				//TODO show error msgs at this point
 			}
 		});
         
@@ -152,6 +177,10 @@ public class GameMeatActivity extends CameraGPSActionBarActivity {
 		}
 		
 		showSaveResult(result);
+	}
+	
+	public String[] getLabels() {
+		return new String[]{"Animal", "Number of Animals", "Action Taken", "Extra Notes"};
 	}
 	
 	@Override

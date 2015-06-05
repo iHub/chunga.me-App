@@ -55,6 +55,12 @@ public class SightingsMenuAdapter extends RecyclerView.Adapter<SightingsMenuAdap
     public void onBindViewHolder(final ViewHolder viewHolder, int i) {
         final MenuItem item = menuItems.get(i);
         viewHolder.name.setText(item.getName());
+        
+        if(mAct.getString(R.string.animals).equals(item.getName())) {
+        	viewHolder.image.setImageResource(R.drawable.lion);
+        } else if(mAct.getString(R.string.waterholes).equals(item.getName())) {
+        	viewHolder.image.setImageResource(R.drawable.bucket);
+        }
     }
     
     @Override
@@ -71,7 +77,7 @@ public class SightingsMenuAdapter extends RecyclerView.Adapter<SightingsMenuAdap
         public ViewHolder(View itemView, SightingsActivity mAct) {
             super(itemView);
             name = (TextView) itemView.findViewById(R.id.countryName);
-            //image = (ImageView) itemView.findViewById(R.id.countryImage);
+            image = (ImageView) itemView.findViewById(R.id.imageView);
             hAct = mAct;
             name.setOnClickListener(this);
         }

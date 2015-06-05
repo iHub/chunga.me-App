@@ -3,6 +3,9 @@ package com.ihub.rangerapp;
 import java.util.Map;
 import com.ihub.rangerapp.data.service.WaterholeService;
 import com.ihub.rangerapp.data.service.WaterholeServiceImpl;
+
+import android.app.AlertDialog;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
@@ -73,8 +76,28 @@ public class WaterholesActivity extends CameraGPSActionBarActivity {
 				if(mode == 3)
 					finish();
 				else
-					if(isValid())
-						save();
+					if(isValid()) {
+						View[] fields = new View[] {waterholeName, levelOfWaterSpinner, noOfAnimalsSeenView, extraNotes};
+						
+						if(hasInvalidFields(fields)) {
+							
+							String msg = "The following fields have no values.\n\n" + getInvalidFields(fields) + "\nDo you wish to continue?";
+							new AlertDialog.Builder(WaterholesActivity.this)
+								.setMessage(msg)
+								.setCancelable(false)
+								.setPositiveButton(R.string.yes, new DialogInterface.OnClickListener() {
+									
+									public void onClick(DialogInterface dialog, int id) {
+										save();
+									}
+								})
+								.setNegativeButton(R.string.no, null)
+								.show();
+							
+						} else {
+							save();
+						}
+					}
 			}
 		});
         
@@ -146,5 +169,10 @@ public class WaterholesActivity extends CameraGPSActionBarActivity {
 		}
 		
 		showSaveResult(result);
+	}
+	
+	@Override
+	public String[] getLabels() {
+		return new String[] {"Name of Waterhole", "Level of Water", "No of Animals Seen", "Extra Notes"};
 	}
 }
