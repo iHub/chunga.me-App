@@ -9,6 +9,8 @@ import android.support.v7.widget.Toolbar;
 import android.text.Editable;
 import android.text.TextUtils;
 import android.text.TextWatcher;
+import android.app.AlertDialog;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
@@ -143,8 +145,31 @@ public class ElephantPoachingActivity extends CameraGPSActionBarActivity {
         	
 			@Override
 			public void onClick(View v) {
-				if(isValid())
-					save();
+				if(isValid()) {
+					//save();
+					//return new String[]{"Animal", "Number of Animals", "Action Taken", "Extra Notes"};
+					
+					View[] fields = new View[] {toolsUsedSpinner, noOfAnimalsView, actionTakenSpinner, extraNotes};
+					
+					if(hasInvalidFields(fields)) {
+						
+						String msg = "The following fields have no values.\n\n" + getInvalidFields(fields) + "\nDo you wish to continue?";
+						new AlertDialog.Builder(ElephantPoachingActivity.this)
+							.setMessage(msg)
+							.setCancelable(false)
+							.setPositiveButton(R.string.yes, new DialogInterface.OnClickListener() {
+								
+								public void onClick(DialogInterface dialog, int id) {
+									save();
+								}
+							})
+							.setNegativeButton(R.string.no, null)
+							.show();
+						
+					} else {
+						save();
+					}
+				}
 			}
 		});
         
@@ -372,5 +397,68 @@ public class ElephantPoachingActivity extends CameraGPSActionBarActivity {
 		default:
 			break;
 		}
+	}
+	
+	@Override
+	public String[] getLabels() {
+		return new String[] {"Tool Used", "Number of Animals", "Action Taken", "Extra Notes"};
+	}
+	
+	@Override
+	protected Boolean isValid() {
+		Boolean isValid =  super.isValid();
+		
+
+		if(isValid) {
+			Integer noOfAnimals = 0;
+			
+			try {
+	    		noOfAnimals = Integer.valueOf(noOfAnimalsView.getText().toString().trim());
+	    	} catch(Exception e) {}
+	    	
+	    	if(noOfAnimals > 1) {
+	    		Integer maleCount = 0;
+	    		Integer femaleCount = 0;
+	    		Integer adultsCount = 0;
+	    		Integer semiAdultsCount = 0;
+	    		Integer juvenileCount= 0;
+	    		
+	    		try {
+					maleCount = Integer.valueOf(maleCountView.getText().toString());
+				} catch (Exception e) {}
+				
+				try {
+					femaleCount = Integer.valueOf(femaleCountView.getText().toString());
+				} catch (Exception e) {}
+				
+				try {
+					adultsCount = Integer.valueOf(adultsCountView.getText().toString());
+				} catch (Exception e) {}
+				
+				try {
+					semiAdultsCount = Integer.valueOf(semiAdultsCountView.getText().toString());
+				} catch (Exception e) {}
+				
+				try {
+					juvenileCount = Integer.valueOf(juvenilesCountView.getText().toString());
+				} catch (Exception e) {}
+	    		
+	    		if((maleCount + femaleCount) != noOfAnimals) {
+	    			isValid = false;
+	    			femaleCountView.setError("Male and Female counts is not equal to the no of animals count.");
+	    			femaleCountView.requestFocus();
+	    		}
+	    		
+	    		if(isValid) {
+	    			if((adultsCount + semiAdultsCount + juvenileCount) != noOfAnimals) {
+		    			isValid = false;
+		    			juvenilesCountView.setError("Adults, Semi-adults and Juvenile counts is not equal to the no of animals count.");
+		    			juvenilesCountView.requestFocus();
+		    		}
+	    		}
+	    	}
+		}
+		
+		return isValid;
 	}
 }
