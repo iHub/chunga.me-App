@@ -4,8 +4,6 @@ import java.io.File;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.Map;
-import com.ihub.rangerapp.data.service.ShiftService;
-import com.ihub.rangerapp.data.service.ShiftServiceImpl;
 import com.ihub.rangerapp.location.Coordinate;
 import eu.inmite.android.lib.validations.form.annotations.NotEmpty;
 import android.app.Activity;

@@ -53,7 +53,7 @@ public class ReportsActivity extends ActionBarActivity {
         	mRecyclerView.setItemAnimator(new CustomItemAnimator());
 		}	
         
-		adapter = new ReportsAdapter(new ArrayList<com.ihub.rangerapp.entity.MenuItem>(), R.layout.row_application, this);
+		adapter = new ReportsAdapter(new ArrayList<com.ihub.rangerapp.entity.MenuItem>(), R.layout.row_reports, this);
         mRecyclerView.setAdapter(adapter);
         
         new Handler().postDelayed(new Runnable() {

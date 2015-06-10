@@ -62,7 +62,7 @@ public class ReportsAdapter extends RecyclerView.Adapter<ReportsAdapter.ViewHold
         public ViewHolder(View itemView, Activity activity) {
             super(itemView);
             name = (TextView) itemView.findViewById(R.id.countryName);
-            //image = (ImageView) itemView.findViewById(R.id.countryImage);
+            image = (ImageView) itemView.findViewById(R.id.imageView);
             this.activity = activity;
             name.setOnClickListener(this);
         }
@@ -143,6 +143,29 @@ public class ReportsAdapter extends RecyclerView.Adapter<ReportsAdapter.ViewHold
     public void onBindViewHolder(final ViewHolder viewHolder, int i) {
         final MenuItem item = menuItems.get(i);
         viewHolder.name.setText(item.getName());
+        
+        switch (i) {
+		case 0:
+			viewHolder.image.setImageResource(R.drawable.game_meat);
+			break;
+		case 1:
+			viewHolder.image.setImageResource(R.drawable.charcoal);
+			break;
+		case 2:
+			viewHolder.image.setImageResource(R.drawable.elephant_poaching);
+			break;
+		case 3:
+			viewHolder.image.setImageResource(R.drawable.suspicious_act);
+			break;
+		case 4:
+			viewHolder.image.setImageResource(R.drawable.lion);
+			break;
+		case 5:
+			viewHolder.image.setImageResource(R.drawable.bucket);
+			break;
+		default:
+			break;
+		}
     }
     
     @Override
