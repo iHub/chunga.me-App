@@ -442,7 +442,7 @@ public class ElephantPoachingActivity extends CameraGPSActionBarActivity {
 				try {
 					juvenileCount = Integer.valueOf(juvenilesCountView.getText().toString());
 				} catch (Exception e) {}
-	    		
+	    		//
 	    		if((maleCount + femaleCount) != noOfAnimals) {
 	    			isValid = false;
 	    			femaleCountView.setError("Male and Female counts is not equal to the no of animals count.");

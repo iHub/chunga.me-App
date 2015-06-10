@@ -10,7 +10,9 @@ import android.support.v7.app.ActionBarActivity;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.app.AlertDialog;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.AsyncTask;
@@ -59,9 +61,29 @@ public class ProfileActivity extends ActionBarActivity {
 			SharedPreferences prefs = ProfileActivity.this.getSharedPreferences(RangerApp.class.getName(), Context.MODE_PRIVATE);
 			prefs.edit().putString(DBPreferences.RANGER_ID, result).commit();
 			
-			Intent intent = new Intent(ProfileActivity.this, HomeActivity.class);
-			startActivity(intent);
-			finish();
+			new AlertDialog.Builder(ProfileActivity.this)
+			.setMessage("Do you want to sign in for a shift?")
+			.setCancelable(false)
+			.setPositiveButton(R.string.yes, new DialogInterface.OnClickListener() {
+				
+				public void onClick(DialogInterface dialog, int id) {
+					
+					Intent intent = new Intent(ProfileActivity.this, StartShiftActivity.class);
+					intent.putExtra("OPEN_HOME", true);
+					
+					startActivity(intent);
+					finish();
+				}
+			})
+			.setNegativeButton(R.string.no, new DialogInterface.OnClickListener() {
+				
+				public void onClick(DialogInterface dialog, int id) {
+					Intent intent = new Intent(ProfileActivity.this, HomeActivity.class);
+					startActivity(intent);
+					finish();
+				}
+			})
+			.show();
 		}
 	}
 }

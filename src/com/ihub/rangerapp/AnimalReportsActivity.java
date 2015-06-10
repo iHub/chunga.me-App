@@ -2,11 +2,8 @@ package com.ihub.rangerapp;
 
 import java.util.ArrayList;
 import java.util.List;
-
 import com.ihub.rangerapp.adapter.AnimalReportsAdapter;
-import com.ihub.rangerapp.adapter.CharcoalBurningReportAdapter;
 import com.ihub.rangerapp.anim.CustomItemAnimator;
-
 import android.support.v7.app.ActionBarActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
@@ -16,14 +13,12 @@ import android.os.AsyncTask;
 import android.os.Build;
 import android.os.Bundle;
 import android.os.Handler;
-import android.view.Menu;
-import android.view.MenuItem;
 import android.view.View;
 
 public class AnimalReportsActivity extends ActionBarActivity {
-
-private List<com.ihub.rangerapp.entity.MenuItem> itemsList = new ArrayList<com.ihub.rangerapp.entity.MenuItem>();
 	
+private List<com.ihub.rangerapp.entity.MenuItem> itemsList = new ArrayList<com.ihub.rangerapp.entity.MenuItem>();
+
 	private AnimalReportsAdapter mAdapter;
     private RecyclerView mRecyclerView;
     
