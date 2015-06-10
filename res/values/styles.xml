@@ -1,17 +1,24 @@
 <resources xmlns:tools="http://schemas.android.com/tools" xmlns:android="http://schemas.android.com/apk/res/android">
     
-    <style name="AppBaseTheme" parent="Theme.AppCompat.Light"></style>
+    <style name="AppBaseTheme" parent="Theme.AppCompat.Light">
+        <item name="colorControlActivated">#E54F25</item>
+        <item name="colorControlHighlight">#E54F25</item>
+    </style>
     
     <style name="NoActionBar" parent="Theme.AppCompat.Light.NoActionBar">
         <item name="actionMenuTextColor">@android:color/white</item>
         <item name="actionBarStyle">@style/MyActionBar</item>
-        <item name="android:spinnerStyle">@style/AppSpinner</item>      
+        <item name="android:spinnerStyle">@style/AppSpinner</item>
+        <item name="colorControlActivated">#E54F25</item>
+        <item name="colorControlHighlight">#E54F25</item>
 	</style>
 	
     <style name="AppTheme" parent="AppBaseTheme"></style>
     
 	<style name="MyActionBar" parent="@style/Widget.AppCompat.ActionBar">
         <item name="titleTextStyle">@style/MyActionBarTitleText</item>
+        <item name="colorControlActivated">#E54F25</item>
+        <item name="colorControlHighlight">#E54F25</item>
     </style>
     
     <style name="MyActionBarTitleText" parent="@style/TextAppearance.AppCompat.Widget.ActionBar.Title">
