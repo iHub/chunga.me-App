@@ -38,7 +38,7 @@
 		        android:maxLines="1"
 		        android:singleLine="true"
 				android:ellipsize="marquee"
-				android:textColor="@android:color/black"
+				android:textColor="#E54F25"
 				android:textSize="18sp" />
             
             <TextView
@@ -47,6 +47,7 @@
 	            android:layout_height="wrap_content"
 	            android:textSize="12sp"
 	            android:layout_marginLeft="5dp"
+	            android:textColor="#E54F25"
 	            android:textAppearance="?android:attr/textAppearanceSmall" />
             
         </LinearLayout>
@@ -60,7 +61,7 @@
 	        android:paddingLeft="10dp"
 	        android:paddingRight="10dp"
 	        android:textSize="13sp"
-	        android:textColor="#000000"
+	        android:textColor="#E54F25"
 	        android:lineSpacingExtra="5dp"
 	        android:ellipsize="end"
 	        android:maxLines="2"

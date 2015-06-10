@@ -2,7 +2,6 @@ package com.ihub.rangerapp.view.reports;
 
 import java.text.SimpleDateFormat;
 import java.util.Date;
-
 import com.ihub.rangerapp.GameMeatActivity;
 import com.ihub.rangerapp.ReportViewerActivity;
 import com.ihub.rangerapp.adapter.AmazingAdapter;
@@ -12,15 +11,12 @@ import com.ihub.rangerapp.loader.GameMeatLoader;
 import com.ihub.rangerapp.model.GameMeatModel;
 import com.ihub.rangerapp.model.Model;
 import com.ihub.rangerapp.util.DateUtil;
-
 import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
-import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.BaseAdapter;
-import android.widget.Toast;
 
 public class GameMeatReport extends ReportFragment {
 	
