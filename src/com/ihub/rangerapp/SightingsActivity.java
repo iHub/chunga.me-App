@@ -35,7 +35,7 @@ private List<com.ihub.rangerapp.entity.MenuItem> itemsList = new ArrayList<com.i
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
-		setContentView(R.layout.activity_menu);
+		setContentView(R.layout.activity_sightings);
 		
 		Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
