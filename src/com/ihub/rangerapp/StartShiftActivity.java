@@ -144,7 +144,7 @@ public class StartShiftActivity extends ActionBarActivity {
 		    public void onStatusChanged(String provider, int status, Bundle extras) {}
 
 		    public void onProviderEnabled(String provider) {}
-
+		    
 		    public void onProviderDisabled(String provider) {}
 		};
 
@@ -226,6 +226,18 @@ public class StartShiftActivity extends ActionBarActivity {
 		return false;
 	}
 	
+	@Override
+	public void onBackPressed() {
+		if(getIntent().hasExtra("OPEN_HOME")) {
+			
+			Intent intent = new Intent(StartShiftActivity.this, HomeActivity.class);
+			startActivity(intent);
+			finish();
+		} else {
+			finish();
+		}
+	}
+	
 	class StartShiftTask extends AsyncTask<String , String, Map<String, Object>> {
 		
 		@Override
@@ -249,7 +261,16 @@ public class StartShiftActivity extends ActionBarActivity {
 				Toast.makeText(StartShiftActivity.this, getString(R.string.start_shift_successful), Toast.LENGTH_LONG).show();
 				
 				setResult(RESULT_OK, new Intent());
-				finish();
+				
+				if(getIntent().hasExtra("OPEN_HOME")) {
+					
+					Intent intent = new Intent(StartShiftActivity.this, HomeActivity.class);
+					startActivity(intent);
+					finish();
+					
+				} else {
+					finish();
+				}
 			}
 		}
 	}

@@ -371,15 +371,31 @@ public class HomeActivity extends ActionBarActivity implements OnClickListener {
 	}
 	
 	private void logout() {
-		new LogoutTask().execute();
+		
+		String endLat = "-";
+		String endLon = "-";
+		if(lastLocation != null) {
+			endLat = lastLocation.getLatitude() + "";
+			endLon = lastLocation.getLongitude() + "";
+		}        	
+	                	
+		new LogoutTask().execute(endLat, endLon);
 	}
 	
-	class LogoutTask extends AsyncTask<Void, Void, Void> {
+	class LogoutTask extends AsyncTask<String, Void, Void> {
 
 		@Override
-		protected Void doInBackground(Void... params) {
+		protected Void doInBackground(String... params) {
+			String lat = params[0];
+			String lon = params[1];
+			
+			ShiftService shiftService = new ShiftServiceImpl();
+			shiftService.endCurrentShift(lat, lon);
+			
 			UserService service = new UserServiceImpl();
 			service.logout();
+			
+			
 			return null;
 		}
 		
