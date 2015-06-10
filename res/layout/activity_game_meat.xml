@@ -94,7 +94,8 @@
 		        android:text="@string/save"
 		        android:background="@color/bg"
 		        android:textColor="@android:color/white"
-		        android:layout_marginStart="5dp" />
+		        android:layout_marginLeft="5dp"
+		        android:layout_marginRight="5dp" />
 		    
 	    </LinearLayout>
 	</ScrollView>
