@@ -379,15 +379,15 @@ public class CameraGPSActionBarActivity extends ActionBarActivity {
 			}
 		}
 						
-		if(isValid) {
-			
-			if(TextUtils.isEmpty(imagePath)) {
-				isValid = false;
-				Toast toast = Toast.makeText(this, getString(R.string.validation_photo), Toast.LENGTH_LONG);
-				toast.setGravity(Gravity.TOP, 0, 0);
-				toast.show();
-			}
-		}
+//		if(isValid) {
+//			
+//			if(TextUtils.isEmpty(imagePath)) {
+//				isValid = false;
+//				Toast toast = Toast.makeText(this, getString(R.string.validation_photo), Toast.LENGTH_LONG);
+//				toast.setGravity(Gravity.TOP, 0, 0);
+//				toast.show();
+//			}
+//		}
 		
 		return isValid;
 	}

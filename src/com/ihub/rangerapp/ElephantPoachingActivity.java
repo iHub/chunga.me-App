@@ -408,55 +408,62 @@ public class ElephantPoachingActivity extends CameraGPSActionBarActivity {
 	protected Boolean isValid() {
 		Boolean isValid =  super.isValid();
 		
-
-		if(isValid) {
-			Integer noOfAnimals = 0;
+		Boolean focusLat = isValid ? false : true;
+		
+		Integer noOfAnimals = 0;
+		
+		try {
+    		noOfAnimals = Integer.valueOf(noOfAnimalsView.getText().toString().trim());
+    	} catch(Exception e) {}
+    	
+    	if(noOfAnimals > 1) {
+    		Integer maleCount = 0;
+    		Integer femaleCount = 0;
+    		Integer adultsCount = 0;
+    		Integer semiAdultsCount = 0;
+    		Integer juvenileCount= 0;
+    		
+    		try {
+				maleCount = Integer.valueOf(maleCountView.getText().toString());
+			} catch (Exception e) {}
 			
 			try {
-	    		noOfAnimals = Integer.valueOf(noOfAnimalsView.getText().toString().trim());
-	    	} catch(Exception e) {}
-	    	
-	    	if(noOfAnimals > 1) {
-	    		Integer maleCount = 0;
-	    		Integer femaleCount = 0;
-	    		Integer adultsCount = 0;
-	    		Integer semiAdultsCount = 0;
-	    		Integer juvenileCount= 0;
-	    		
-	    		try {
-					maleCount = Integer.valueOf(maleCountView.getText().toString());
-				} catch (Exception e) {}
-				
-				try {
-					femaleCount = Integer.valueOf(femaleCountView.getText().toString());
-				} catch (Exception e) {}
-				
-				try {
-					adultsCount = Integer.valueOf(adultsCountView.getText().toString());
-				} catch (Exception e) {}
-				
-				try {
-					semiAdultsCount = Integer.valueOf(semiAdultsCountView.getText().toString());
-				} catch (Exception e) {}
-				
-				try {
-					juvenileCount = Integer.valueOf(juvenilesCountView.getText().toString());
-				} catch (Exception e) {}
-	    		//
-	    		if((maleCount + femaleCount) != noOfAnimals) {
+				femaleCount = Integer.valueOf(femaleCountView.getText().toString());
+			} catch (Exception e) {}
+			
+			try {
+				adultsCount = Integer.valueOf(adultsCountView.getText().toString());
+			} catch (Exception e) {}
+			
+			try {
+				semiAdultsCount = Integer.valueOf(semiAdultsCountView.getText().toString());
+			} catch (Exception e) {}
+			
+			try {
+				juvenileCount = Integer.valueOf(juvenilesCountView.getText().toString());
+			} catch (Exception e) {}
+			
+    		if((maleCount + femaleCount) != noOfAnimals) {
+    			isValid = false;
+    			femaleCountView.setError("Male and Female counts is not equal to the no of animals count.");
+    			
+    			if((adultsCount + semiAdultsCount + juvenileCount) != noOfAnimals) {
 	    			isValid = false;
-	    			femaleCountView.setError("Male and Female counts is not equal to the no of animals count.");
-	    			femaleCountView.requestFocus();
+	    			juvenilesCountView.setError("Adults, Semi-adults and Juvenile counts is not equal to the no of animals count.");
 	    		}
-	    		
-	    		if(isValid) {
-	    			if((adultsCount + semiAdultsCount + juvenileCount) != noOfAnimals) {
-		    			isValid = false;
-		    			juvenilesCountView.setError("Adults, Semi-adults and Juvenile counts is not equal to the no of animals count.");
-		    			juvenilesCountView.requestFocus();
-		    		}
+    			
+    			if(!focusLat)
+    				femaleCountView.requestFocus();
+    		}
+    		
+    		if(isValid) {
+    			if((adultsCount + semiAdultsCount + juvenileCount) != noOfAnimals) {
+	    			isValid = false;
+	    			juvenilesCountView.setError("Adults, Semi-adults and Juvenile counts is not equal to the no of animals count.");
+	    			if(!focusLat)
+	    				juvenilesCountView.requestFocus();
 	    		}
-	    	}
+    		}
 		}
 		
 		return isValid;
