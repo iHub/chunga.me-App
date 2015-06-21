@@ -254,6 +254,7 @@ public class CharcoalBurningActivity extends CameraGPSActionBarActivity {
 			if(mode == 2) {
 				Intent data = new Intent();
 				
+				data.putExtra("imagePath", imagePath);
 				data.putExtra("id", id);
 				data.putExtra("noOfKilns", noOfKilns);
 				data.putExtra("freshnessLevels", freshnessLevel);
@@ -299,6 +300,7 @@ public class CharcoalBurningActivity extends CameraGPSActionBarActivity {
 			if(mode == 2) {
 				Intent data = new Intent();
 				
+				data.putExtra("imagePath", imagePath);
 				data.putExtra("id", id);
 				data.putExtra("noOfBags", noOfBags);
 				data.putExtra("modeOfTransport", modeOfTransport);

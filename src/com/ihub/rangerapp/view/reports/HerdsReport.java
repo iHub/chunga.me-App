@@ -22,7 +22,7 @@ import android.widget.BaseAdapter;
 
 public class HerdsReport extends ReportFragment {
 	
-AmazingAdapter adapter;
+	AmazingAdapter adapter;
 	
 	@Override
 	public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
@@ -66,7 +66,7 @@ AmazingAdapter adapter;
 				HerdModel m = (HerdModel) adapter.getItem(i);
 				
 				if(m.getId() == rID) {
-					
+					m.setImagePath(data.getStringExtra("imagePath"));
 					m.setName(data.getStringExtra("name"));
 					m.setType(data.getStringExtra("type"));
 					m.setNoOfAnimals(data.getIntExtra("noOfAnimals", 0));

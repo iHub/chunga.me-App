@@ -71,7 +71,7 @@ public class WaterholesReport extends ReportFragment {
 				WaterholeModel m = (WaterholeModel) adapter.getItem(i);
 				
 				if(m.getId() == rID) {
-					
+					m.setImagePath(data.getStringExtra("imagePath"));
 					m.setName(data.getStringExtra("name"));
 					m.setNumberOfAnimals(data.getIntExtra("numberOfAnimals", 0));
 					m.setLevelOfWater(data.getStringExtra("levelOfWater"));

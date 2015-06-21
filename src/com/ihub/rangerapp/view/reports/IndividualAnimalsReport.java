@@ -69,7 +69,7 @@ public class IndividualAnimalsReport extends ReportFragment {
 				IndividualAnimalModel m = (IndividualAnimalModel) adapter.getItem(i);
 				
 				if(m.getId() == rID) {
-					
+					m.setImagePath(data.getStringExtra("imagePath"));
 					m.setAnimal(data.getStringExtra("animal"));
 					m.setGender(data.getStringExtra("gender"));
 					m.setAge(data.getStringExtra("age"));

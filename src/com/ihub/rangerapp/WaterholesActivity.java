@@ -159,6 +159,7 @@ public class WaterholesActivity extends CameraGPSActionBarActivity {
 		if(mode == 2) {
 			Intent data = new Intent();
 			
+			data.putExtra("imagePath", imagePath);
 			data.putExtra("id", id);
 			data.putExtra("name", waterholeName.getText().toString());
 			data.putExtra("numberOfAnimals", noOfAnimals);

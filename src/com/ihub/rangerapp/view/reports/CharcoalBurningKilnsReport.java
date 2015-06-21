@@ -67,7 +67,7 @@ public class CharcoalBurningKilnsReport extends ReportFragment {
 				CharcoalKilnModel m = (CharcoalKilnModel) adapter.getItem(i);
 				
 				if(m.getId() == rID) {
-					
+					m.setImagePath(data.getStringExtra("imagePath"));
 					m.setFreshnessLevels(data.getStringExtra("freshnessLevels"));
 					m.setNoOfKilns(data.getIntExtra("noOfKilns", 0));
 					m.setTreeUsed(data.getStringExtra("treeUsed"));

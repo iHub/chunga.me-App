@@ -319,6 +319,7 @@ public class AnimalsSightingsActivity extends CameraGPSActionBarActivity {
 			if(mode == 2) {
 				Intent data = new Intent();
 				
+				data.putExtra("imagePath", imagePath);
 				data.putExtra("id", id);
 				data.putExtra("animal", animalNameView.getText().toString());
 				data.putExtra("gender", isMale ? "M" : "F");
@@ -386,6 +387,7 @@ public class AnimalsSightingsActivity extends CameraGPSActionBarActivity {
 			if(mode == 2) {
 				Intent data = new Intent();
 				
+				data.putExtra("imagePath", imagePath);
 				data.putExtra("id", id);
 				data.putExtra("name", herdNameView.getText().toString());
 				data.putExtra("type", typeSpeciesView.getText().toString());

@@ -364,6 +364,7 @@ public class ElephantPoachingActivity extends CameraGPSActionBarActivity {
 			Intent data = new Intent();
 			Toast.makeText(this, id + "ss", 	Toast.LENGTH_LONG).show();
 			
+			data.putExtra("imagePath", imagePath);
 			data.putExtra("id", id);
 			data.putExtra("toolsUsed", toolUsed);
 			data.putExtra("noOfAnimals", noOfAnimals);

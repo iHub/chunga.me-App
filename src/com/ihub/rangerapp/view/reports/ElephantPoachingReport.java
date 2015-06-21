@@ -104,6 +104,7 @@ public class ElephantPoachingReport extends ReportFragment {
 				
 				if(m.getId() == rID) {
 					
+					m.setImagePath(data.getStringExtra("imagePath"));
 					m.setToolsUsed(data.getStringExtra("toolsUsed"));
 					m.setNoOfAnimals(data.getIntExtra("noOfAnimals", 0));
 					m.setActionTaken(data.getStringExtra("actionTaken"));

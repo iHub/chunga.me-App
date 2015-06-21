@@ -67,7 +67,7 @@ AmazingAdapter adapter;
 				SuspiciousActivityModel m = (SuspiciousActivityModel) adapter.getItem(i);
 				
 				if(m.getId() == rID) {
-					
+					m.setImagePath(data.getStringExtra("imagePath"));
 					m.setActionTaken(data.getStringExtra("actionTaken"));
 					m.setExtraNotes(data.getStringExtra("extraNotes"));
 					

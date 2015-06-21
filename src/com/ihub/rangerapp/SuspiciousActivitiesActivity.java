@@ -124,6 +124,7 @@ public class SuspiciousActivitiesActivity extends CameraGPSActionBarActivity {
 		if(mode == 2) {
 			Intent data = new Intent();
 			
+			data.putExtra("imagePath", imagePath);
 			data.putExtra("id", id);
 			data.putExtra("actionTaken", action);
 			data.putExtra("extraNotes", extraNotes.getText().toString());

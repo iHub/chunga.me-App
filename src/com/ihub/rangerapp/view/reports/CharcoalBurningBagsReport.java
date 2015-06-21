@@ -71,7 +71,7 @@ public class CharcoalBurningBagsReport extends ReportFragment {
 				CharcoalBagModel m = (CharcoalBagModel) adapter.getItem(i);
 				
 				if(m.getId() == rID) {
-					
+					m.setImagePath(data.getStringExtra("imagePath"));
 					m.setModeOfTransport(data.getStringExtra("modeOfTransport"));
 					m.setNoOfBags(data.getIntExtra("noOfBags", 0));
 					m.setActionTaken(data.getStringExtra("actionTaken"));

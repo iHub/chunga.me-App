@@ -165,6 +165,7 @@ public class GameMeatActivity extends CameraGPSActionBarActivity {
 		if(mode == 2) {
 			Intent data = new Intent();
 			
+			data.putExtra("imagePath", imagePath);
 			data.putExtra("id", id);
 			data.putExtra("animal", animalView.getText().toString());
 			data.putExtra("noOfAnimals", noOfAnimals);

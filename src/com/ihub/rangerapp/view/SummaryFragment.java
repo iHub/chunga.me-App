@@ -20,6 +20,8 @@ import android.widget.ListView;
 import android.widget.TextView;
 import java.util.ArrayList;
 import java.util.List;
+
+import com.ihub.rangerapp.CameraGPSActionBarActivity;
 import com.ihub.rangerapp.PhotoActivity;
 import com.ihub.rangerapp.R;
 import com.ihub.rangerapp.ReportViewerActivity;
@@ -137,9 +139,14 @@ public class SummaryFragment extends ListFragment {
 					
 					@Override
 					public void onClick(View v) {
-						Intent intent = new Intent(getActivity(), PhotoActivity.class);
-						intent.putExtra("path", reviewItem.getDisplayValue());
-						startActivity(intent);
+						
+						if(reviewItem.getDisplayValue() != null) {
+							if(!TextUtils.isEmpty(reviewItem.getDisplayValue())) {
+								Intent intent = new Intent(getActivity(), PhotoActivity.class);
+								intent.putExtra("path", reviewItem.getDisplayValue());
+								startActivity(intent);
+							}
+						}
 					}
 				});
             	

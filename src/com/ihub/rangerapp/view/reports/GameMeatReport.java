@@ -83,7 +83,7 @@ public class GameMeatReport extends ReportFragment {
 				GameMeatModel m = (GameMeatModel) adapter.getItem(i);
 				
 				if(m.getId() == rID) {
-					
+					m.setImagePath(data.getStringExtra("imagePath"));
 					m.setAnimal(data.getStringExtra("animal"));
 					m.setNoOfAnimals(data.getIntExtra("noOfAnimals", 0));
 					m.setActionTaken(data.getStringExtra("actionTaken"));

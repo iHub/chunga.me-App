@@ -182,9 +182,9 @@ public class CameraGPSActionBarActivity extends ActionBarActivity {
 		});
 		
 		if(mode != 1) {
-			cameraBtn.setEnabled(false);
+			//cameraBtn.setEnabled(false);
 			
-			if(getIntent().hasExtra("imagePath")) {
+			if(getIntent().hasExtra("imagePath") && !TextUtils.isEmpty(getIntent().getStringExtra("imagePath"))) {
 				try {
 					imagePath = getIntent().getStringExtra("imagePath");
 					showImage(imagePath);
@@ -218,12 +218,14 @@ public class CameraGPSActionBarActivity extends ActionBarActivity {
 	}
 	
 	protected void zoom() {
-
-		if(!TextUtils.isEmpty(CameraGPSActionBarActivity.this.imagePath)) {
-			
-			Intent intent = new Intent(CameraGPSActionBarActivity.this, PhotoActivity.class);
-			intent.putExtra("path", imagePath);
-			startActivity(intent);
+		
+		if(CameraGPSActionBarActivity.this.imagePath != null) {
+			if(!TextUtils.isEmpty(CameraGPSActionBarActivity.this.imagePath)) {
+				
+				Intent intent = new Intent(CameraGPSActionBarActivity.this, PhotoActivity.class);
+				intent.putExtra("path", imagePath);
+				startActivity(intent);
+			}
 		}
 	}
 	
