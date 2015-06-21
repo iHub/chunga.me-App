@@ -97,13 +97,15 @@ public class ShiftServiceImpl extends DatabaseService implements ShiftService {
 		
 		SQLiteDatabase db = getWritableDatabase(RangerApp.get());
 		
-		Long currentShiftID = getCurrentShiftID();
-		
-		ContentValues args = new ContentValues();
-	    args.put(Schemas.Shift.END_TIME, new Date().getTime());
-	    args.put(Schemas.Shift.END_LAT, lat);
-	    args.put(Schemas.Shift.END_LON, lon);
-	    db.update(Schemas.SHIFTS_TABLE, args, BaseColumns._ID + "=" + currentShiftID, null);
+		try {
+			Long currentShiftID = getCurrentShiftID();
+			
+			ContentValues args = new ContentValues();
+		    args.put(Schemas.Shift.END_TIME, new Date().getTime());
+		    args.put(Schemas.Shift.END_LAT, lat);
+		    args.put(Schemas.Shift.END_LON, lon);
+		    db.update(Schemas.SHIFTS_TABLE, args, BaseColumns._ID + "=" + currentShiftID, null);
+		} catch (Exception e) {}
 	}
 
 	@Override
