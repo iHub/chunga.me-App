@@ -70,8 +70,7 @@ public class HomeMenuAdapter extends RecyclerView.Adapter<HomeMenuAdapter.ViewHo
         
         public ViewHolder(View itemView, HomeActivity mAct) {
             super(itemView);
-            name = (TextView) itemView.findViewById(R.id.countryName);
-            //image = (ImageView) itemView.findViewById(R.id.countryImage);
+            name = (TextView) itemView.findViewById(R.id.name);
             hAct = mAct;
             name.setOnClickListener(this);
         }

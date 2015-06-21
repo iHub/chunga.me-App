@@ -24,8 +24,8 @@ import android.util.Pair;
 import android.view.View;
 
 public class SightingsActivity extends ActionBarActivity {
-
-private List<com.ihub.rangerapp.entity.MenuItem> itemsList = new ArrayList<com.ihub.rangerapp.entity.MenuItem>();
+	
+	private List<com.ihub.rangerapp.entity.MenuItem> itemsList = new ArrayList<com.ihub.rangerapp.entity.MenuItem>();
 	
 	private SightingsMenuAdapter mAdapter;
     private RecyclerView mRecyclerView;
@@ -34,7 +34,9 @@ private List<com.ihub.rangerapp.entity.MenuItem> itemsList = new ArrayList<com.i
     
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
+		
 		super.onCreate(savedInstanceState);
+		
 		setContentView(R.layout.activity_sightings);
 		
 		Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);

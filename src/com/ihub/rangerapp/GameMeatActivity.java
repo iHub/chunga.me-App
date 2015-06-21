@@ -1,6 +1,5 @@
 package com.ihub.rangerapp;
 
-import java.lang.reflect.Field;
 import java.util.Map;
 import com.ihub.rangerapp.data.service.GameMeatService;
 import com.ihub.rangerapp.data.service.GameMeatServiceImpl;
@@ -12,7 +11,6 @@ import android.widget.AutoCompleteTextView;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Spinner;
-import android.widget.TextView;
 import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
@@ -27,8 +25,8 @@ public class GameMeatActivity extends CameraGPSActionBarActivity {
 	EditText extraNotes;
 	Button saveBtn;
 	
-	String animals[] = {"Antelope", "Buffalo", "Gorilla", "Rabbit", "Warthog"};
-		
+	String animals[] = {"Antelope", "Buffalo", "Bush Pig", "Crested Guineafowl", "Giragge", "Impala", "Kudu", "Porcupine", "Ostrich", "Rabbit", "Thomson's Gazelle", "Warthog", "Zebra"};
+	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);

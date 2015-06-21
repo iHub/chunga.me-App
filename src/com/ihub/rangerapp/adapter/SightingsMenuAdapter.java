@@ -57,9 +57,9 @@ public class SightingsMenuAdapter extends RecyclerView.Adapter<SightingsMenuAdap
         viewHolder.name.setText(item.getName());
         
         if(mAct.getString(R.string.animals).equals(item.getName())) {
-        	viewHolder.image.setImageResource(R.drawable.lion);
+        	viewHolder.image.setImageResource(R.drawable.lion_big);
         } else if(mAct.getString(R.string.waterholes).equals(item.getName())) {
-        	viewHolder.image.setImageResource(R.drawable.bucket);
+        	viewHolder.image.setImageResource(R.drawable.bucket_big);
         }
     }
     
