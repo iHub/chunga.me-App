@@ -19,7 +19,6 @@ import android.location.LocationListener;
 import android.location.LocationManager;
 import android.media.ThumbnailUtils;
 import android.net.Uri;
-import android.os.AsyncTask;
 import android.os.Bundle;
 import android.os.Environment;
 import android.provider.MediaStore;
@@ -327,9 +326,9 @@ public class CameraGPSActionBarActivity extends ActionBarActivity {
             		Intent intent = new Intent();
             	    intent.setType("image/*");
             	    intent.setAction(Intent.ACTION_GET_CONTENT);
-
-            	    startActivityForResult(Intent.createChooser(intent,
-            	            getString(R.string.open_gallery)), 200);
+            	    
+            	    Intent i = new Intent(Intent.ACTION_PICK,android.provider.MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
+            	    startActivityForResult(i, 200);
             	    
             	}
             	
