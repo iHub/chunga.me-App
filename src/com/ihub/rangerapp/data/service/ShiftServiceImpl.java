@@ -107,7 +107,7 @@ public class ShiftServiceImpl extends DatabaseService implements ShiftService {
 		    db.update(Schemas.SHIFTS_TABLE, args, BaseColumns._ID + "=" + currentShiftID, null);
 		} catch (Exception e) {}
 	}
-
+	
 	@Override
 	public Long getCurrentShiftID() {
 		
