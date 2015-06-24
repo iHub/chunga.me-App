@@ -414,6 +414,9 @@ public class CameraGPSActionBarActivity extends ActionBarActivity {
 			}
 		}
 		
+		if(TextUtils.isEmpty(imagePath))
+			str += "\nYou have not attached a photo" + ".\n";
+		
 		
 		return str;
 	}

@@ -217,6 +217,8 @@ public class AnimalsSightingsActivity extends CameraGPSActionBarActivity {
 				}
 			}
 			
+			if(TextUtils.isEmpty(imagePath))
+				str += "\nYou have not attached a photo" + ".\n";
 			
 			return str;
 		}

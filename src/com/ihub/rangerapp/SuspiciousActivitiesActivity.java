@@ -40,9 +40,7 @@ public class SuspiciousActivitiesActivity extends CameraGPSActionBarActivity {
                 SuspiciousActivitiesActivity.this.onBackPressed();
             }
         });
-        
-        Intent data = getIntent();
-        
+                
         initViews();
         
         actionTakenSpinner = (Spinner) findViewById(R.id.actionTakenSpinner);

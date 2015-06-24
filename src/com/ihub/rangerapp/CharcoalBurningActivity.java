@@ -15,7 +15,6 @@ import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.Spinner;
 import android.widget.TextView;
-import android.widget.Toast;
 import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
@@ -400,6 +399,8 @@ public class CharcoalBurningActivity extends CameraGPSActionBarActivity {
 			}
 		}
 		
+		if(TextUtils.isEmpty(imagePath))
+			str += "\nYou have not attached a photo" + ".\n";
 		
 		return str;
 	}
