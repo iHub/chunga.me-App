@@ -55,7 +55,7 @@ public class WaterholesActivity extends CameraGPSActionBarActivity {
         ArrayAdapter<String> waterholeAdapter = new ArrayAdapter<String>(this,
                 android.R.layout.simple_dropdown_item_1line, waterholes);
         waterholeName.setAdapter(waterholeAdapter);
-        waterholeName.setThreshold(2);
+        waterholeName.setThreshold(1);
         
         levelOfWaterSpinner = (Spinner) findViewById(R.id.levelOfWaterSpinner);
         noOfAnimalsSeenView = (EditText) findViewById(R.id.noOfAnimalsSeenView);
