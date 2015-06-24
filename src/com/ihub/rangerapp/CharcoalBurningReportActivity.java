@@ -48,7 +48,7 @@ public class CharcoalBurningReportActivity extends ActionBarActivity {
         	mRecyclerView.setItemAnimator(new CustomItemAnimator());
 		}
         
-        mAdapter = new CharcoalBurningReportAdapter(new ArrayList<com.ihub.rangerapp.entity.MenuItem>(), R.layout.row_application, CharcoalBurningReportActivity.this);
+        mAdapter = new CharcoalBurningReportAdapter(new ArrayList<com.ihub.rangerapp.entity.MenuItem>(), R.layout.row_default, CharcoalBurningReportActivity.this);
         mRecyclerView.setAdapter(mAdapter);
         
         new Handler().postDelayed(new Runnable() {

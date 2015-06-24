@@ -48,7 +48,7 @@ private List<com.ihub.rangerapp.entity.MenuItem> itemsList = new ArrayList<com.i
         	mRecyclerView.setItemAnimator(new CustomItemAnimator());
 		}
         
-        mAdapter = new AnimalReportsAdapter(new ArrayList<com.ihub.rangerapp.entity.MenuItem>(), R.layout.row_application, AnimalReportsActivity.this);
+        mAdapter = new AnimalReportsAdapter(new ArrayList<com.ihub.rangerapp.entity.MenuItem>(), R.layout.row_default, AnimalReportsActivity.this);
         mRecyclerView.setAdapter(mAdapter);
         
         new Handler().postDelayed(new Runnable() {

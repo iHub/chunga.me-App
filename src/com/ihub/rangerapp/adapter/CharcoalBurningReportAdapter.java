@@ -70,7 +70,7 @@ public class CharcoalBurningReportAdapter extends RecyclerView.Adapter<CharcoalB
         
         public ViewHolder(View itemView, CharcoalBurningReportActivity mAct) {
             super(itemView);
-            name = (TextView) itemView.findViewById(R.id.countryName);
+            name = (TextView) itemView.findViewById(R.id.name);
             hAct = mAct;
             name.setOnClickListener(this);
         }

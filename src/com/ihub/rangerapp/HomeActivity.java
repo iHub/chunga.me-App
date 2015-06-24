@@ -67,7 +67,7 @@ public class HomeActivity extends ActionBarActivity implements OnClickListener {
         	mRecyclerView.setItemAnimator(new CustomItemAnimator());
 		}
         
-        mAdapter = new HomeMenuAdapter(new ArrayList<com.ihub.rangerapp.entity.MenuItem>(), R.layout.row_home, HomeActivity.this);
+        mAdapter = new HomeMenuAdapter(new ArrayList<com.ihub.rangerapp.entity.MenuItem>(), R.layout.row_default, HomeActivity.this);
         mRecyclerView.setAdapter(mAdapter);
         
         shiftBtn = (Button) findViewById(R.id.shiftBtn);

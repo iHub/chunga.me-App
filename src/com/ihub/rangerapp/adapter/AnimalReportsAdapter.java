@@ -71,7 +71,7 @@ public class AnimalReportsAdapter extends RecyclerView.Adapter<AnimalReportsAdap
         
         public ViewHolder(View itemView, AnimalReportsActivity mAct) {
             super(itemView);
-            name = (TextView) itemView.findViewById(R.id.countryName);
+            name = (TextView) itemView.findViewById(R.id.name);
             hAct = mAct;
             name.setOnClickListener(this);
         }
