@@ -33,7 +33,7 @@ public class AnimalsSightingsActivity extends CameraGPSActionBarActivity {
 	Button saveBtn;
 	
 	EditText herdNameView;
-	EditText typeSpeciesView;
+	AutoCompleteTextView typeSpeciesView;
 	EditText herdNoOfAnimalsView;
 	EditText herdDistanceSeenView;
 	
@@ -92,14 +92,21 @@ public class AnimalsSightingsActivity extends CameraGPSActionBarActivity {
         ArrayAdapter<String> animalsAdapter = new ArrayAdapter<String>(this,
                 android.R.layout.simple_dropdown_item_1line, animals);
         animalNameView.setAdapter(animalsAdapter);
-        animalNameView.setThreshold(2);
+        animalNameView.setThreshold(1);
         
         distanceSeenView = (EditText) findViewById(R.id.distanceSeenView);
         extraNotes = (EditText) findViewById(R.id.extraNotes);
         saveBtn = (Button) findViewById(R.id.saveBtn);
         
         herdNameView = (EditText) findViewById(R.id.herdNameView);
-        typeSpeciesView = (EditText) findViewById(R.id.typeSpeciesView);
+        typeSpeciesView = (AutoCompleteTextView) findViewById(R.id.typeSpeciesView);
+        
+        ArrayAdapter<String> herdSpeciesAdapter = new ArrayAdapter<String>(this,
+                android.R.layout.simple_dropdown_item_1line, animals);
+        typeSpeciesView.setAdapter(herdSpeciesAdapter);
+        typeSpeciesView.setThreshold(1);
+        
+        
         herdNoOfAnimalsView = (EditText) findViewById(R.id.herdNoOfAnimalsView);
         juvenilesCountView = (EditText) findViewById(R.id.juvenilesCountView);
         semiAdultsCountView = (EditText) findViewById(R.id.semiAdultsCountView);
