@@ -16,6 +16,9 @@ public class Schemas {
 	public static String ANIMAL_HERD_SIGHTING_TABLE = "tbl_animal_herd_sighting";
 	public static String WATER_HOLES_TABLE = "tbl_waterhole";
 	
+	public static String SHIFT_ID = "shift_id";
+	public static String RANGER_ID = "ranger_id";
+	
 	public static void initialize(SQLiteDatabase db) {
 		
 		createUsersTable(db);
@@ -33,6 +36,7 @@ public class Schemas {
 	private static void createAnimalHerdSightingsTable(SQLiteDatabase db) {
 		String sql = "create table " + ANIMAL_HERD_SIGHTING_TABLE + "(" +
 				BaseColumns._ID + " integer primary key autoincrement," +
+				SHIFT_ID + " INTEGER," +
 				AnimalHerdSighting.NAME + " text," +
 				AnimalHerdSighting.TYPE + " text," +
 				AnimalHerdSighting.NUMBER_OF_ANIMALS + " integer," +
@@ -53,6 +57,7 @@ public class Schemas {
 	private static void createIndividualAnimalSightingsTable(SQLiteDatabase db) {
 		String sql = "create table " + INDIVIDUAL_ANIMAL_SIGHTING_TABLE + "(" +
 			BaseColumns._ID + " integer primary key autoincrement," +
+			SHIFT_ID + " INTEGER," +
 			IndividualAnimalSighting.ANIMAL + " text," +
 			IndividualAnimalSighting.GENDER + " text," +
 			IndividualAnimalSighting.AGE + " text," +
@@ -97,6 +102,7 @@ public class Schemas {
 	private static void createWaterholesTable(SQLiteDatabase db) {
 		String sql = "create table " + WATER_HOLES_TABLE + "(" +
 				BaseColumns._ID + " integer primary key autoincrement," +
+				SHIFT_ID + " INTEGER," +
 				Waterhole.NAME + " text," +
 				Waterhole.LEVEL_OF_WATER + " text," +
 				Waterhole.NUMBER_OF_ANIMALS + " integer," +
@@ -113,6 +119,7 @@ public class Schemas {
 	private static void createSuspiciousActivitiesTable(SQLiteDatabase db) {
 		String sql = "create table " + SUSPICIOUS_ACTIVITIES_TABLE + "(" +
 				BaseColumns._ID + " integer primary key autoincrement," +
+				SHIFT_ID + " INTEGER," +
 				SuspiciousActivities.ACTION_TAKEN + " text," +
 				SuspiciousActivities.EXTRA_NOTES + " text," +
 				SuspiciousActivities.LAT + " text," +
@@ -127,6 +134,7 @@ public class Schemas {
 	public static void createElephantPoachingTable(SQLiteDatabase db) {
 		String sql = "create table " + ELEPHANT_POACHING_TABLE + "(" +
 				BaseColumns._ID + " integer primary key autoincrement," +
+				SHIFT_ID + " INTEGER," +
 				ElephantPoaching.NO_OF_ANIMALS + " INTEGER, " +
 				ElephantPoaching.TOOLS_USED + " text, " +
 				ElephantPoaching.MALE_COUNT + " INTEGER," +
@@ -149,6 +157,7 @@ public class Schemas {
 	private static void createCharcoalBagsTable(SQLiteDatabase db) {
 		String sql = "create table " + CHARCOAL_BAGS_TABLE + "(" +
 				BaseColumns._ID + " integer primary key autoincrement," +
+				SHIFT_ID + " INTEGER," +
 				CharcoalBags.NO_OF_BAGS + " INTEGER, " +
 				CharcoalBags.MODE_OF_TRANSPORT + " text, " +
 				CharcoalBags.ACTION_TAKEN + " text," +
@@ -165,6 +174,7 @@ public class Schemas {
 	private static void createGameMeatTable(SQLiteDatabase db) {
 		String sql = "create table " + GAME_MEAT_TABLE + "(" +
 			BaseColumns._ID + " integer primary key autoincrement," +
+			SHIFT_ID + " INTEGER," +
 			GameMeat.ANIMAL + " text," +
 			GameMeat.NO_OF_ANIMALS + " INTEGER, " +
 			GameMeat.ACTION_TAKEN + " text," +
@@ -181,6 +191,7 @@ public class Schemas {
 	private static void createCharcoalKilnsTable(SQLiteDatabase db) {
 		String sql = "create table " + CHARCOAL_KILN_TABLE + "(" +
 			BaseColumns._ID + " integer primary key autoincrement," +
+			SHIFT_ID + " INTEGER," +
 			CharcoalKilns.NO_OF_KILNS + " INTEGER, " +
 			CharcoalKilns.FRESHNESS_LEVELS + " text," +
 			CharcoalKilns.TREE_USED + " text," +
@@ -199,7 +210,6 @@ public class Schemas {
 		
 		String sql = "create table " + USERS_TABLE + "(" + 
 			BaseColumns._ID + " integer primary key autoincrement," +
-			//User.RANGER_NAME + " text," +
 			User.RANGER_ID + " text," +
 			User.START_TIME + " DATE DEFAULT (datetime('now','localtime'))," +
 			User.END_TIME + " DATE" +
@@ -212,6 +222,7 @@ public class Schemas {
 		
 		String sql = "create table " + SHIFTS_TABLE + "(" + 
 				BaseColumns._ID + " integer primary key autoincrement," +
+				RANGER_ID + " INTEGER," +
 				Shift.STATION + " text," + 
 				Shift.RANCH + " text," + 
 				Shift.LEADER + " text," +
