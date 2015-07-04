@@ -40,7 +40,11 @@ public class ShiftServiceImpl extends DatabaseService implements ShiftService {
 		
 		SQLiteDatabase db = getWritableDatabase(RangerApp.get());
 		
+		UserService userService = new UserServiceImpl();
+		Long userID = userService.getCurrentUserID();
+		
  		ContentValues values = new ContentValues();
+ 		values.put(Schemas.RANGER_ID, userID);
  		values.put(Schemas.Shift.STATION, station);
  		values.put(Schemas.Shift.RANCH, ranch);
  		values.put(Schemas.Shift.LEADER, leader);

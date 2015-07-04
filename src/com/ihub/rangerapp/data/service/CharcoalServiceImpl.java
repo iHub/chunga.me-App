@@ -19,7 +19,13 @@ public class CharcoalServiceImpl extends DatabaseService implements CharcoalServ
 		
 		SQLiteDatabase db = getWritableDatabase(RangerApp.get());
 		
+		ShiftService service = new ShiftServiceImpl();
+		Long shiftID = service.getCurrentShiftID();
+		
  		ContentValues values = new ContentValues();
+ 		if(id == -1)
+ 			values.put(Schemas.SHIFT_ID, shiftID);
+ 		
  		values.put(Schemas.CharcoalBags.NO_OF_BAGS, noOfBags);
  		values.put(Schemas.CharcoalBags.MODE_OF_TRANSPORT, mode);
  		values.put(Schemas.CharcoalBags.ACTION_TAKEN, actionTaken);
@@ -55,7 +61,13 @@ public class CharcoalServiceImpl extends DatabaseService implements CharcoalServ
 		
 		SQLiteDatabase db = getWritableDatabase(RangerApp.get());
 		
+		ShiftService service = new ShiftServiceImpl();
+		Long shiftID = service.getCurrentShiftID();
+		
  		ContentValues values = new ContentValues();
+ 		if(id == -1)
+ 			values.put(Schemas.SHIFT_ID, shiftID);
+ 		
  		values.put(Schemas.CharcoalKilns.NO_OF_KILNS, noOfKilns);
  		values.put(Schemas.CharcoalKilns.FRESHNESS_LEVELS, freshnessLevels);
  		values.put(Schemas.CharcoalKilns.TREE_USED, treeUsed);

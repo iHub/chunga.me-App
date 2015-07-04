@@ -18,7 +18,13 @@ public class AnimalSightingsServiceImpl extends DatabaseService implements Anima
 		
 		SQLiteDatabase db = getWritableDatabase(RangerApp.get());
 		
+		ShiftService service = new ShiftServiceImpl();
+		Long shiftID = service.getCurrentShiftID();
+		
  		ContentValues values = new ContentValues();
+ 		if(id == -1)
+ 			values.put(Schemas.SHIFT_ID, shiftID);
+ 		
  		values.put(Schemas.IndividualAnimalSighting.ANIMAL, name);
  		values.put(Schemas.IndividualAnimalSighting.GENDER, gender);
  		values.put(Schemas.IndividualAnimalSighting.AGE, age);
@@ -53,7 +59,13 @@ public class AnimalSightingsServiceImpl extends DatabaseService implements Anima
 		
 		SQLiteDatabase db = getWritableDatabase(RangerApp.get());
 		
+		ShiftService service = new ShiftServiceImpl();
+		Long shiftID = service.getCurrentShiftID();
+		
  		ContentValues values = new ContentValues();
+ 		if(id == -1)
+ 			values.put(Schemas.SHIFT_ID, shiftID);
+ 		
  		values.put(Schemas.AnimalHerdSighting.NAME, name);
  		values.put(Schemas.AnimalHerdSighting.TYPE, species);
  		values.put(Schemas.AnimalHerdSighting.NUMBER_OF_ANIMALS, noOfAnimals);

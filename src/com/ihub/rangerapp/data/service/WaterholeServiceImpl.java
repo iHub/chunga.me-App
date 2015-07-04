@@ -19,7 +19,13 @@ public class WaterholeServiceImpl extends DatabaseService implements WaterholeSe
 		
 		SQLiteDatabase db = getWritableDatabase(RangerApp.get());
 		
-		ContentValues values = new ContentValues();
+		ShiftService service = new ShiftServiceImpl();
+		Long shiftID = service.getCurrentShiftID();
+		
+ 		ContentValues values = new ContentValues();
+ 		if(id == -1)
+ 			values.put(Schemas.SHIFT_ID, shiftID);
+ 		
 		values.put(Schemas.Waterhole.NAME, name);
 		values.put(Schemas.Waterhole.LEVEL_OF_WATER, level);
 		values.put(Schemas.Waterhole.NUMBER_OF_ANIMALS, noOfAnimalsSeen);

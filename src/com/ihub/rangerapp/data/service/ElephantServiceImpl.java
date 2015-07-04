@@ -31,7 +31,13 @@ public class ElephantServiceImpl extends DatabaseService implements ElephantServ
 		
 		SQLiteDatabase db = getWritableDatabase(RangerApp.get());
 		
+		ShiftService service = new ShiftServiceImpl();
+		Long shiftID = service.getCurrentShiftID();
+		
  		ContentValues values = new ContentValues();
+ 		if(id == -1)
+ 			values.put(Schemas.SHIFT_ID, shiftID);
+ 		
  		values.put(Schemas.ElephantPoaching.TOOLS_USED, toolUsed);
  		values.put(Schemas.ElephantPoaching.NO_OF_ANIMALS, noOfAnimals);
  		values.put(Schemas.ElephantPoaching.MALE_COUNT, maleCount);

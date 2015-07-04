@@ -18,7 +18,13 @@ public class GameMeatServiceImpl extends DatabaseService implements GameMeatServ
 		
 		SQLiteDatabase db = getWritableDatabase(RangerApp.get());
 		
+		ShiftService service = new ShiftServiceImpl();
+		Long shiftID = service.getCurrentShiftID();
+		
  		ContentValues values = new ContentValues();
+ 		if(id == -1)
+ 			values.put(Schemas.SHIFT_ID, shiftID);
+ 		
  		values.put(Schemas.GameMeat.ANIMAL, animal);
  		values.put(Schemas.GameMeat.NO_OF_ANIMALS, noOfAnimals);
  		values.put(Schemas.GameMeat.ACTION_TAKEN, actionTaken);

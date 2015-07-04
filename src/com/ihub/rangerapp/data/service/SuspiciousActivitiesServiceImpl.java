@@ -19,7 +19,13 @@ public class SuspiciousActivitiesServiceImpl extends DatabaseService implements 
 	
 		SQLiteDatabase db = getWritableDatabase(RangerApp.get());
 		
-		ContentValues values = new ContentValues();
+		ShiftService service = new ShiftServiceImpl();
+		Long shiftID = service.getCurrentShiftID();
+		
+ 		ContentValues values = new ContentValues();
+ 		if(id == -1)
+ 			values.put(Schemas.SHIFT_ID, shiftID);
+ 		
 		values.put(Schemas.SuspiciousActivities.ACTION_TAKEN, actionTaken);
 		values.put(Schemas.SuspiciousActivities.EXTRA_NOTES, extraNotes);
 		values.put(Schemas.SuspiciousActivities.IMAGE_PATH, imagePath);
