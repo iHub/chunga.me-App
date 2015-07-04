@@ -94,7 +94,8 @@
 		        android:id="@+id/routeView"
 		        android:layout_width="match_parent"
 		        android:layout_height="wrap_content"
-		        android:layout_marginBottom="10dp" />
+		        android:layout_marginBottom="10dp"
+		        android:inputType="textCapSentences" />
 	        
 	        <TextView
 	            android:layout_width="match_parent"
@@ -184,7 +185,8 @@
 		        android:id="@+id/purposeView"
 		        android:layout_width="match_parent"
 		        android:layout_height="wrap_content"
-		        android:layout_marginBottom="10dp" />
+		        android:layout_marginBottom="10dp"
+		        android:inputType="textCapSentences" />
 	        
 			<Button
 		        android:id="@+id/startShiftBtn"
