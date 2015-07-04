@@ -18,6 +18,9 @@ public class Schemas {
 	
 	public static String SHIFT_ID = "shift_id";
 	public static String RANGER_ID = "ranger_id";
+	public static String SYNC_ID = "last_sync_id";
+	public static String LAST_SYNC_DATE = "last_sync_date";
+	public static String REQUIRES_SYNC = "requires_sync";
 	
 	public static void initialize(SQLiteDatabase db) {
 		
@@ -37,6 +40,9 @@ public class Schemas {
 		String sql = "create table " + ANIMAL_HERD_SIGHTING_TABLE + "(" +
 				BaseColumns._ID + " integer primary key autoincrement," +
 				SHIFT_ID + " INTEGER," +
+				SYNC_ID + " INTEGER," +
+				LAST_SYNC_DATE + " INTEGER," +
+				REQUIRES_SYNC + " INTEGER," +
 				AnimalHerdSighting.NAME + " text," +
 				AnimalHerdSighting.TYPE + " text," +
 				AnimalHerdSighting.NUMBER_OF_ANIMALS + " integer," +
@@ -58,6 +64,9 @@ public class Schemas {
 		String sql = "create table " + INDIVIDUAL_ANIMAL_SIGHTING_TABLE + "(" +
 			BaseColumns._ID + " integer primary key autoincrement," +
 			SHIFT_ID + " INTEGER," +
+			SYNC_ID + " INTEGER," +
+			LAST_SYNC_DATE + " INTEGER," +
+			REQUIRES_SYNC + " INTEGER," +
 			IndividualAnimalSighting.ANIMAL + " text," +
 			IndividualAnimalSighting.GENDER + " text," +
 			IndividualAnimalSighting.AGE + " text," +
@@ -103,6 +112,9 @@ public class Schemas {
 		String sql = "create table " + WATER_HOLES_TABLE + "(" +
 				BaseColumns._ID + " integer primary key autoincrement," +
 				SHIFT_ID + " INTEGER," +
+				SYNC_ID + " INTEGER," +
+				LAST_SYNC_DATE + " INTEGER," +
+				REQUIRES_SYNC + " INTEGER," +
 				Waterhole.NAME + " text," +
 				Waterhole.LEVEL_OF_WATER + " text," +
 				Waterhole.NUMBER_OF_ANIMALS + " integer," +
@@ -120,6 +132,9 @@ public class Schemas {
 		String sql = "create table " + SUSPICIOUS_ACTIVITIES_TABLE + "(" +
 				BaseColumns._ID + " integer primary key autoincrement," +
 				SHIFT_ID + " INTEGER," +
+				SYNC_ID + " INTEGER," +
+				LAST_SYNC_DATE + " INTEGER," +
+				REQUIRES_SYNC + " INTEGER," +
 				SuspiciousActivities.ACTION_TAKEN + " text," +
 				SuspiciousActivities.EXTRA_NOTES + " text," +
 				SuspiciousActivities.LAT + " text," +
@@ -135,6 +150,9 @@ public class Schemas {
 		String sql = "create table " + ELEPHANT_POACHING_TABLE + "(" +
 				BaseColumns._ID + " integer primary key autoincrement," +
 				SHIFT_ID + " INTEGER," +
+				SYNC_ID + " INTEGER," +
+				LAST_SYNC_DATE + " INTEGER," +
+				REQUIRES_SYNC + " INTEGER," +
 				ElephantPoaching.NO_OF_ANIMALS + " INTEGER, " +
 				ElephantPoaching.TOOLS_USED + " text, " +
 				ElephantPoaching.MALE_COUNT + " INTEGER," +
@@ -158,6 +176,9 @@ public class Schemas {
 		String sql = "create table " + CHARCOAL_BAGS_TABLE + "(" +
 				BaseColumns._ID + " integer primary key autoincrement," +
 				SHIFT_ID + " INTEGER," +
+				SYNC_ID + " INTEGER," +
+				LAST_SYNC_DATE + " INTEGER," +
+				REQUIRES_SYNC + " INTEGER," +
 				CharcoalBags.NO_OF_BAGS + " INTEGER, " +
 				CharcoalBags.MODE_OF_TRANSPORT + " text, " +
 				CharcoalBags.ACTION_TAKEN + " text," +
@@ -175,6 +196,9 @@ public class Schemas {
 		String sql = "create table " + GAME_MEAT_TABLE + "(" +
 			BaseColumns._ID + " integer primary key autoincrement," +
 			SHIFT_ID + " INTEGER," +
+			SYNC_ID + " INTEGER," +
+			LAST_SYNC_DATE + " INTEGER," +
+			REQUIRES_SYNC + " INTEGER," +
 			GameMeat.ANIMAL + " text," +
 			GameMeat.NO_OF_ANIMALS + " INTEGER, " +
 			GameMeat.ACTION_TAKEN + " text," +
@@ -192,6 +216,9 @@ public class Schemas {
 		String sql = "create table " + CHARCOAL_KILN_TABLE + "(" +
 			BaseColumns._ID + " integer primary key autoincrement," +
 			SHIFT_ID + " INTEGER," +
+			SYNC_ID + " INTEGER," +
+			LAST_SYNC_DATE + " INTEGER," +
+			REQUIRES_SYNC + " INTEGER," +
 			CharcoalKilns.NO_OF_KILNS + " INTEGER, " +
 			CharcoalKilns.FRESHNESS_LEVELS + " text," +
 			CharcoalKilns.TREE_USED + " text," +
@@ -211,6 +238,9 @@ public class Schemas {
 		String sql = "create table " + USERS_TABLE + "(" + 
 			BaseColumns._ID + " integer primary key autoincrement," +
 			User.RANGER_ID + " text," +
+			SYNC_ID + " INTEGER," +
+			LAST_SYNC_DATE + " INTEGER," +
+			REQUIRES_SYNC + " INTEGER," +
 			User.START_TIME + " DATE DEFAULT (datetime('now','localtime'))," +
 			User.END_TIME + " DATE" +
 		");";
@@ -223,6 +253,9 @@ public class Schemas {
 		String sql = "create table " + SHIFTS_TABLE + "(" + 
 				BaseColumns._ID + " integer primary key autoincrement," +
 				RANGER_ID + " INTEGER," +
+				SYNC_ID + " INTEGER," +
+				LAST_SYNC_DATE + " INTEGER," +
+				REQUIRES_SYNC + " INTEGER," +
 				Shift.STATION + " text," + 
 				Shift.RANCH + " text," + 
 				Shift.LEADER + " text," +
