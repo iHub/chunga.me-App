@@ -346,17 +346,30 @@ public class CameraGPSActionBarActivity extends ActionBarActivity {
 		
 		if("success".equals(status)) {
 			
-			Toast toast = Toast.makeText(this, mode == 1 ? R.string.record_save_success_msg : R.string.record_update_success_msg, Toast.LENGTH_LONG);
-			toast.setGravity(Gravity.TOP, 0, 0);
-			toast.show();
 			
-			finish();
+			AlertDialog.Builder builder = new AlertDialog.Builder(this);
+			builder.setMessage(mode == 1 ? R.string.record_save_success_msg : R.string.record_update_success_msg)
+			       .setCancelable(false)
+			       .setPositiveButton("OK", new DialogInterface.OnClickListener() {
+			           public void onClick(DialogInterface dialog, int id) {
+			        	   finish();
+			           }
+			       });
+			AlertDialog alert = builder.create();
+			alert.show();
 			
 		} else {
 			
-			Toast toast = Toast.makeText(this, result.get("message").toString(), Toast.LENGTH_LONG);
-			toast.setGravity(Gravity.TOP, 0, 0);
-			toast.show();
+			AlertDialog.Builder builder = new AlertDialog.Builder(this);
+			builder.setMessage(result.get("message").toString())
+			       .setCancelable(false)
+			       .setPositiveButton("OK", new DialogInterface.OnClickListener() {
+			           public void onClick(DialogInterface dialog, int id) {
+			                //do things
+			           }
+			       });
+			AlertDialog alert = builder.create();
+			alert.show();
 			
 		}
 	}
