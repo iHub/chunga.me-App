@@ -146,6 +146,11 @@
             android:label="@string/title_activity_animal_reports"
             android:theme="@style/NoActionBar" >
         </activity>
+        <activity
+            android:name=".SyncActivity"
+            android:label="@string/title_activity_sync"
+            android:theme="@style/NoActionBar" >
+        </activity>
     </application>
 
 </manifest>

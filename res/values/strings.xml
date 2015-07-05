@@ -329,5 +329,6 @@
     <string name="title_activity_photo">Photo</string>
     <string name="title_activity_charcoal_burning_report">Charcoal Burning</string>
     <string name="title_activity_animal_reports">Animal Reports</string>
+    <string name="title_activity_sync">Sync</string>
 
 </resources>

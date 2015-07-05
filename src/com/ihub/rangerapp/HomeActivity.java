@@ -326,9 +326,6 @@ public class HomeActivity extends ActionBarActivity implements OnClickListener {
 	                	
 	                	if(isValid)
 	                		new EndShiftTask().execute(endLat, endLon);
-
-	                    //Dismiss once everything is OK.
-	                    //d.dismiss();
 	                }
 	            });
 	        }
@@ -361,13 +358,14 @@ public class HomeActivity extends ActionBarActivity implements OnClickListener {
 		if (id == R.id.action_logout) {
 			logout();
 		} else if(id == R.id.action_export) {
-			showExportView();
+			showSyncView();
 		}
 		return super.onOptionsItemSelected(item);
 	}
 	
-	private void showExportView() {
-		Toast.makeText(this, "Export", Toast.LENGTH_LONG).show();
+	private void showSyncView() {
+		Intent intent = new Intent(HomeActivity.this, SyncActivity.class);
+		startActivity(intent);
 	}
 	
 	private void logout() {
@@ -383,7 +381,7 @@ public class HomeActivity extends ActionBarActivity implements OnClickListener {
 	}
 	
 	class LogoutTask extends AsyncTask<String, Void, Void> {
-
+		
 		@Override
 		protected Void doInBackground(String... params) {
 			String lat = params[0];
@@ -394,7 +392,6 @@ public class HomeActivity extends ActionBarActivity implements OnClickListener {
 			
 			UserService service = new UserServiceImpl();
 			service.logout();
-			
 			
 			return null;
 		}
