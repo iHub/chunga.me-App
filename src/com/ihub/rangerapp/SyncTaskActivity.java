@@ -8,6 +8,8 @@ import com.ihub.rangerapp.data.service.GameMeatService;
 import com.ihub.rangerapp.data.service.GameMeatServiceImpl;
 import com.ihub.rangerapp.data.service.ShiftService;
 import com.ihub.rangerapp.data.service.ShiftServiceImpl;
+import com.ihub.rangerapp.data.service.SuspiciousActivitiesService;
+import com.ihub.rangerapp.data.service.SuspiciousActivitiesServiceImpl;
 import com.ihub.rangerapp.data.service.SyncService;
 import com.ihub.rangerapp.data.service.SyncServiceImpl;
 import com.loopj.android.http.AsyncHttpResponseHandler;
@@ -45,7 +47,7 @@ public class SyncTaskActivity extends ActionBarActivity {
         
         //game meat
         
-        GameMeatService service = new GameMeatServiceImpl();
+        SuspiciousActivitiesService service = new SuspiciousActivitiesServiceImpl();
         service.sync(1, new JsonHttpResponseHandler() {
         	
         	@Override
