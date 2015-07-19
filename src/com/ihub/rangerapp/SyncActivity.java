@@ -16,6 +16,7 @@ import com.ihub.rangerapp.entity.SyncModel;
 import android.support.v7.app.ActionBarActivity;
 import android.support.v7.widget.Toolbar;
 import android.content.Context;
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.AsyncTask;
 import android.os.Bundle;
@@ -24,7 +25,6 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.ListView;
 import android.widget.TextView;
-import android.widget.Toast;
 
 public class SyncActivity extends ActionBarActivity {
 	
@@ -33,6 +33,9 @@ public class SyncActivity extends ActionBarActivity {
 	SyncAdapter adapter;
 	
 	TextView titleView;
+	
+	Boolean hasSync = false;
+	
 	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -110,8 +113,11 @@ public class SyncActivity extends ActionBarActivity {
         		
         		Integer count = rows.get(s);
         		
-        		if(count > 0)
+        		if(count > 0) {
+        			hasSync = true;
+        			supportInvalidateOptionsMenu();
         			adapter.add(new SyncModel(s, count));
+        		}
         	}
 
 			super.onPostExecute(result);
@@ -121,17 +127,23 @@ public class SyncActivity extends ActionBarActivity {
 	@Override
 	public boolean onCreateOptionsMenu(Menu menu) {
 		getMenuInflater().inflate(R.menu.sync, menu);
+		
+		MenuItem sync = menu.findItem(R.id.action_sync);		
+		sync.setVisible(hasSync);
 		return true;
 	}
 	
 	@Override
 	public boolean onOptionsItemSelected(MenuItem item) {
 		int id = item.getItemId();
-//		if (id == R.id.action_logout) {
-//			logout();
-//		} else if(id == R.id.action_export) {
-//			showSyncView();
-//		}
+		if (id == R.id.action_sync) {
+			sync();
+		}
 		return super.onOptionsItemSelected(item);
+	}
+
+	private void sync() {
+		Intent intent = new Intent(SyncActivity.this, SyncTaskActivity.class);
+		startActivity(intent);
 	}
 }

@@ -2,12 +2,11 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     tools:context="com.movapay.mcement.HomeActivity" >
-
+    
     <item
         android:id="@+id/action_sync"
-        android:title="@string/sync_all"
-        app:showAsAction="always">
-        
+        android:title="@string/start_sync"
+        app:showAsAction="always"
+        android:visible="false" >
 	</item>
-
 </menu>

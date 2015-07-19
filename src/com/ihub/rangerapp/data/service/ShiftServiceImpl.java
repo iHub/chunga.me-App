@@ -4,6 +4,7 @@ import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
 import android.content.ContentValues;
+import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteStatement;
 import android.provider.BaseColumns;
@@ -11,6 +12,10 @@ import android.provider.BaseColumns;
 import com.ihub.rangerapp.RangerApp;
 import com.ihub.rangerapp.data.sqlite.Schemas;
 import com.ihub.rangerapp.data.sqlite.Schemas.Shift;
+import com.ihub.rangerapp.util.DateUtil;
+import com.loopj.android.http.AsyncHttpClient;
+import com.loopj.android.http.AsyncHttpResponseHandler;
+import com.loopj.android.http.RequestParams;
 
 public class ShiftServiceImpl extends DatabaseService implements ShiftService {
 	
@@ -122,5 +127,70 @@ public class ShiftServiceImpl extends DatabaseService implements ShiftService {
 		SQLiteStatement s = db.compileStatement( sql );
 		
 		return s.simpleQueryForLong();
+	}
+
+	@Override
+	public void syncShift(Integer shiftID, AsyncHttpResponseHandler handler) {
+		
+		String url = UrlUtils.SHIFTS_URL;
+		
+		Cursor cursor = null;
+		
+		RequestParams params = new RequestParams();
+
+		try{
+        	
+        	SQLiteDatabase db = getWritableDatabase(RangerApp.get());
+//
+            cursor = db.rawQuery("SELECT * FROM " + Schemas.SHIFTS_TABLE +" WHERE " + BaseColumns._ID +"=?", new String[] {shiftID + ""});
+
+            if(cursor.getCount() > 0) {
+                cursor.moveToFirst();
+                
+                params.put("device_record_id", cursor.getInt(0));
+                params.put("station", cursor.getString(1));
+                params.put("ranch", cursor.getString(2));
+                params.put("leader", cursor.getString(3));
+                params.put("no_of_members", cursor.getInt(4));
+                params.put("route", cursor.getString(5));
+                params.put("mode", cursor.getString(6));
+                params.put("weather", cursor.getString(7));
+                params.put("purpose", cursor.getString(8));
+                
+                String startTime = cursor.getString(9);
+                
+                try {
+        			params.put("start_time", DateUtil.parse(startTime).getTime() + "");
+        		} catch (Exception e) {}
+                
+                
+                String endTime = cursor.getString(10);
+                
+                try {
+        			params.put("end_time", DateUtil.parse(endTime).getTime() + "");
+        		} catch (Exception e) {}
+                
+                String dateCreated = cursor.getString(11);
+                
+                try {
+        			params.put("record_date_created", DateUtil.parse(dateCreated).getTime() + "");
+        			params.put("unique_record_id", RangerApp.getUniqueDeviceID() + "-" + DateUtil.parse(dateCreated).getTime());
+        		} catch (Exception e) {
+        			e.printStackTrace();
+        		}  
+                
+                params.put("start_lat", cursor.getString(12));
+                params.put("start_lon", cursor.getString(13));
+                params.put("end_lat", cursor.getString(14));
+                params.put("end_lon", cursor.getString(15));
+                params.put("ranger_id", cursor.getString(16));
+            }
+        }finally {
+            cursor.close();
+        }
+		
+		AsyncHttpClient client = new AsyncHttpClient();
+		
+		client.post(url, params, handler);
 	}	
 }

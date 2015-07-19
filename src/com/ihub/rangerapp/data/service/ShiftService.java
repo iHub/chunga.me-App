@@ -3,6 +3,7 @@ package com.ihub.rangerapp.data.service;
 import java.util.Map;
 
 import com.ihub.rangerapp.data.sqlite.Schemas.Shift;
+import com.loopj.android.http.AsyncHttpResponseHandler;
 
 public interface ShiftService {
 
@@ -25,4 +26,6 @@ public interface ShiftService {
 	public void endCurrentShift(String lat, String lon);
 	
 	public Long getCurrentShiftID();
+	
+	public void syncShift(Integer shiftID, AsyncHttpResponseHandler handler);
 }
