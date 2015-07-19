@@ -15,7 +15,8 @@ public class Schemas {
 	public static String INDIVIDUAL_ANIMAL_SIGHTING_TABLE = "tbl_individual_animal_sighting";
 	public static String ANIMAL_HERD_SIGHTING_TABLE = "tbl_animal_herd_sighting";
 	public static String WATER_HOLES_TABLE = "tbl_waterhole";
-	
+	public static String EXPORTS_TABLE = "tbl_exports";
+	public static String EXPORT_ITEMS_TABLE = "tbl_export_items";
 	public static String SHIFT_ID = "shift_id";
 	public static String RANGER_ID = "ranger_id";
 	public static String SYNC_ID = "last_sync_id";
@@ -34,8 +35,47 @@ public class Schemas {
 		createWaterholesTable(db);
 		createIndividualAnimalSightingsTable(db);
 		createAnimalHerdSightingsTable(db);
+		createExportsTable(db);
+		createExportItemsTable(db);
 	}
 	
+	public static class ExportItemsTable {
+		public static String NAME = "name";
+		public static String EXPORT_ID = "export_id";
+		public static String RECORD_ID = "record_id";
+		public static String DATE_CREATED = "date_created";
+	}
+	
+	private static void createExportItemsTable(SQLiteDatabase db) {
+		
+		String sql = "create table " + EXPORT_ITEMS_TABLE + "(" +
+				BaseColumns._ID + " integer primary key autoincrement," +
+				ExportItemsTable.EXPORT_ID + " INTEGER," +
+				ExportItemsTable.RECORD_ID + " INTEGER," +
+				ExportItemsTable.DATE_CREATED + " DATE DEFAULT (datetime('now','localtime'))" +
+			");";
+			
+			db.execSQL(sql);
+	}
+	
+	public static class ExportsTable {
+		public static String START_TIME = "start_time";
+		public static String END_TIME = "end_time";
+		public static String DATE_CREATED = "date_created";
+	}
+
+	private static void createExportsTable(SQLiteDatabase db) {
+		
+		String sql = "create table " + EXPORTS_TABLE + "(" +
+				BaseColumns._ID + " integer primary key autoincrement," +
+				RANGER_ID + " INTEGER," +
+				ExportsTable.START_TIME + " INTEGER," +
+				ExportsTable.END_TIME + " INTEGER" +
+			");";
+			
+			db.execSQL(sql);
+	}
+
 	private static void createAnimalHerdSightingsTable(SQLiteDatabase db) {
 		String sql = "create table " + ANIMAL_HERD_SIGHTING_TABLE + "(" +
 				BaseColumns._ID + " integer primary key autoincrement," +
