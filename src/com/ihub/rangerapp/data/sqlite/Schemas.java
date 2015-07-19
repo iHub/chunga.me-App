@@ -78,10 +78,6 @@ public class Schemas {
 	private static void createAnimalHerdSightingsTable(SQLiteDatabase db) {
 		String sql = "create table " + ANIMAL_HERD_SIGHTING_TABLE + "(" +
 				BaseColumns._ID + " integer primary key autoincrement," +
-				SHIFT_ID + " INTEGER," +
-				SYNC_ID + " INTEGER," +
-				LAST_SYNC_DATE + " INTEGER," +
-				REQUIRES_SYNC + " INTEGER DEFAULT 1," +
 				AnimalHerdSighting.NAME + " text," +
 				AnimalHerdSighting.TYPE + " text," +
 				AnimalHerdSighting.NUMBER_OF_ANIMALS + " integer," +
@@ -93,7 +89,11 @@ public class Schemas {
 				AnimalHerdSighting.LAT + " text," +
 				AnimalHerdSighting.LON + " text," +
 				AnimalHerdSighting.IMAGE_PATH + " text," +
-				AnimalHerdSighting.DATE_CREATED + " DATE DEFAULT (datetime('now','localtime'))" +
+				AnimalHerdSighting.DATE_CREATED + " DATE DEFAULT (datetime('now','localtime'))," +
+				SHIFT_ID + " INTEGER," +
+				SYNC_ID + " INTEGER," +
+				LAST_SYNC_DATE + " INTEGER," +
+				REQUIRES_SYNC + " INTEGER DEFAULT 1" +
 			");";
 		
 			db.execSQL(sql);
@@ -102,10 +102,6 @@ public class Schemas {
 	private static void createIndividualAnimalSightingsTable(SQLiteDatabase db) {
 		String sql = "create table " + INDIVIDUAL_ANIMAL_SIGHTING_TABLE + "(" +
 			BaseColumns._ID + " integer primary key autoincrement," +
-			SHIFT_ID + " INTEGER," +
-			SYNC_ID + " INTEGER," +
-			LAST_SYNC_DATE + " INTEGER," +
-			REQUIRES_SYNC + " INTEGER DEFAULT 1," +
 			IndividualAnimalSighting.ANIMAL + " text," +
 			IndividualAnimalSighting.GENDER + " text," +
 			IndividualAnimalSighting.AGE + " text," +
@@ -114,7 +110,11 @@ public class Schemas {
 			IndividualAnimalSighting.LAT + " text," +
 			IndividualAnimalSighting.LON + " text," +
 			IndividualAnimalSighting.IMAGE_PATH + " text," +
-			IndividualAnimalSighting.DATE_CREATED + " DATE DEFAULT (datetime('now','localtime'))" +
+			IndividualAnimalSighting.DATE_CREATED + " DATE DEFAULT (datetime('now','localtime'))," +
+			SHIFT_ID + " INTEGER," +
+			SYNC_ID + " INTEGER," +
+			LAST_SYNC_DATE + " INTEGER," +
+			REQUIRES_SYNC + " INTEGER DEFAULT 1" +
 		");";
 		db.execSQL(sql);
 	}
@@ -149,10 +149,6 @@ public class Schemas {
 	private static void createWaterholesTable(SQLiteDatabase db) {
 		String sql = "create table " + WATER_HOLES_TABLE + "(" +
 				BaseColumns._ID + " integer primary key autoincrement," +
-				SHIFT_ID + " INTEGER," +
-				SYNC_ID + " INTEGER," +
-				LAST_SYNC_DATE + " INTEGER," +
-				REQUIRES_SYNC + " INTEGER DEFAULT 1," +
 				Waterhole.NAME + " text," +
 				Waterhole.LEVEL_OF_WATER + " text," +
 				Waterhole.NUMBER_OF_ANIMALS + " integer," +
@@ -160,25 +156,29 @@ public class Schemas {
 				Waterhole.LAT + " text," +
 				Waterhole.LON + " text," +
 				Waterhole.IMAGE_PATH + " text," +
-				Waterhole.DATE_CREATED + " DATE DEFAULT (datetime('now','localtime'))" +
+				Waterhole.DATE_CREATED + " DATE DEFAULT (datetime('now','localtime'))," +
+				SHIFT_ID + " INTEGER," +
+				SYNC_ID + " INTEGER," +
+				LAST_SYNC_DATE + " INTEGER," +
+				REQUIRES_SYNC + " INTEGER DEFAULT 1" +
 			");";
-			
+		
 			db.execSQL(sql);
 	}
 	
 	private static void createSuspiciousActivitiesTable(SQLiteDatabase db) {
 		String sql = "create table " + SUSPICIOUS_ACTIVITIES_TABLE + "(" +
 				BaseColumns._ID + " integer primary key autoincrement," +
-				SHIFT_ID + " INTEGER," +
-				SYNC_ID + " INTEGER," +
-				LAST_SYNC_DATE + " INTEGER," +
-				REQUIRES_SYNC + " INTEGER DEFAULT 1," +
 				SuspiciousActivities.ACTION_TAKEN + " text," +
 				SuspiciousActivities.EXTRA_NOTES + " text," +
 				SuspiciousActivities.LAT + " text," +
 				SuspiciousActivities.LON + " text," +
 				SuspiciousActivities.IMAGE_PATH + " text," +
-				SuspiciousActivities.DATE_CREATED + " DATE DEFAULT (datetime('now','localtime'))" +
+				SuspiciousActivities.DATE_CREATED + " DATE DEFAULT (datetime('now','localtime'))," +
+				SHIFT_ID + " INTEGER," +
+				SYNC_ID + " INTEGER," +
+				LAST_SYNC_DATE + " INTEGER," +
+				REQUIRES_SYNC + " INTEGER DEFAULT 1" +
 			");";
 		
 			db.execSQL(sql);
@@ -187,10 +187,6 @@ public class Schemas {
 	public static void createElephantPoachingTable(SQLiteDatabase db) {
 		String sql = "create table " + ELEPHANT_POACHING_TABLE + "(" +
 				BaseColumns._ID + " integer primary key autoincrement," +
-				SHIFT_ID + " INTEGER," +
-				SYNC_ID + " INTEGER," +
-				LAST_SYNC_DATE + " INTEGER," +
-				REQUIRES_SYNC + " INTEGER DEFAULT 1," +
 				ElephantPoaching.NO_OF_ANIMALS + " INTEGER, " +
 				ElephantPoaching.TOOLS_USED + " text, " +
 				ElephantPoaching.MALE_COUNT + " INTEGER," +
@@ -204,7 +200,11 @@ public class Schemas {
 				ElephantPoaching.LAT + " text," +
 				ElephantPoaching.LON + " text," +
 				ElephantPoaching.IMAGE_PATH + " text," +
-				ElephantPoaching.DATE_CREATED + " DATE DEFAULT (datetime('now','localtime'))" +
+				ElephantPoaching.DATE_CREATED + " DATE DEFAULT (datetime('now','localtime'))," +
+				SHIFT_ID + " INTEGER," +
+				SYNC_ID + " INTEGER," +
+				LAST_SYNC_DATE + " INTEGER," +
+				REQUIRES_SYNC + " INTEGER DEFAULT 1" +
 			");";
 		
 			db.execSQL(sql);
@@ -213,10 +213,6 @@ public class Schemas {
 	private static void createCharcoalBagsTable(SQLiteDatabase db) {
 		String sql = "create table " + CHARCOAL_BAGS_TABLE + "(" +
 				BaseColumns._ID + " integer primary key autoincrement," +
-				SHIFT_ID + " INTEGER," +
-				SYNC_ID + " INTEGER," +
-				LAST_SYNC_DATE + " INTEGER," +
-				REQUIRES_SYNC + " INTEGER DEFAULT 1," +
 				CharcoalBags.NO_OF_BAGS + " INTEGER, " +
 				CharcoalBags.MODE_OF_TRANSPORT + " text, " +
 				CharcoalBags.ACTION_TAKEN + " text," +
@@ -224,7 +220,11 @@ public class Schemas {
 				CharcoalBags.LAT + " text," +
 				CharcoalBags.LON + " text," +
 				CharcoalBags.IMAGE_PATH + " text," +
-				CharcoalBags.DATE_CREATED + " DATE DEFAULT (datetime('now','localtime'))" +
+				CharcoalBags.DATE_CREATED + " DATE DEFAULT (datetime('now','localtime'))," +
+				SHIFT_ID + " INTEGER," +
+				SYNC_ID + " INTEGER," +
+				LAST_SYNC_DATE + " INTEGER," +
+				REQUIRES_SYNC + " INTEGER DEFAULT 1" +
 			");";
 		
 			db.execSQL(sql);
@@ -233,10 +233,6 @@ public class Schemas {
 	private static void createGameMeatTable(SQLiteDatabase db) {
 		String sql = "create table " + GAME_MEAT_TABLE + "(" +
 			BaseColumns._ID + " integer primary key autoincrement," +
-			SHIFT_ID + " INTEGER," +
-			SYNC_ID + " INTEGER," +
-			LAST_SYNC_DATE + " INTEGER," +
-			REQUIRES_SYNC + " INTEGER DEFAULT 1," +
 			GameMeat.ANIMAL + " text," +
 			GameMeat.NO_OF_ANIMALS + " INTEGER, " +
 			GameMeat.ACTION_TAKEN + " text," +
@@ -244,7 +240,11 @@ public class Schemas {
 			GameMeat.LAT + " text," +
 			GameMeat.LON + " text," +
 			GameMeat.IMAGE_PATH + " text," +
-			GameMeat.DATE_CREATED + " DATE DEFAULT (datetime('now','localtime'))" +
+			GameMeat.DATE_CREATED + " DATE DEFAULT (datetime('now','localtime'))," +
+			SHIFT_ID + " INTEGER," +
+			SYNC_ID + " INTEGER," +
+			LAST_SYNC_DATE + " INTEGER," +
+			REQUIRES_SYNC + " INTEGER DEFAULT 1" +
 		");";
 		
 		db.execSQL(sql);
@@ -253,10 +253,6 @@ public class Schemas {
 	private static void createCharcoalKilnsTable(SQLiteDatabase db) {
 		String sql = "create table " + CHARCOAL_KILN_TABLE + "(" +
 			BaseColumns._ID + " integer primary key autoincrement," +
-			SHIFT_ID + " INTEGER," +
-			SYNC_ID + " INTEGER," +
-			LAST_SYNC_DATE + " INTEGER," +
-			REQUIRES_SYNC + " INTEGER DEFAULT 1," +
 			CharcoalKilns.NO_OF_KILNS + " INTEGER, " +
 			CharcoalKilns.FRESHNESS_LEVELS + " text," +
 			CharcoalKilns.TREE_USED + " text," +
@@ -265,7 +261,11 @@ public class Schemas {
 			CharcoalKilns.LAT + " text," +
 			CharcoalKilns.LON + " text," +
 			CharcoalKilns.IMAGE_PATH + " text," +
-			CharcoalKilns.DATE_CREATED + " DATE DEFAULT (datetime('now','localtime'))" +
+			CharcoalKilns.DATE_CREATED + " DATE DEFAULT (datetime('now','localtime'))," +
+			SHIFT_ID + " INTEGER," +
+			SYNC_ID + " INTEGER," +
+			LAST_SYNC_DATE + " INTEGER," +
+			REQUIRES_SYNC + " INTEGER DEFAULT 1" +
 		");";
 		db.execSQL(sql);
 	}
@@ -289,10 +289,6 @@ public class Schemas {
 		
 		String sql = "create table " + SHIFTS_TABLE + "(" + 
 				BaseColumns._ID + " integer primary key autoincrement," +
-				RANGER_ID + " INTEGER," +
-				SYNC_ID + " INTEGER," +
-				LAST_SYNC_DATE + " INTEGER," +
-				REQUIRES_SYNC + " INTEGER DEFAULT 1," +
 				Shift.STATION + " text," + 
 				Shift.RANCH + " text," + 
 				Shift.LEADER + " text," +
@@ -307,7 +303,11 @@ public class Schemas {
 				Shift.START_LAT + " TEXT," +
 				Shift.START_LON + " TEXT," +
 				Shift.END_LAT + " TEXT," +
-				Shift.END_LON + " TEXT" +
+				Shift.END_LON + " TEXT," +
+				RANGER_ID + " INTEGER," +
+				SYNC_ID + " INTEGER," +
+				LAST_SYNC_DATE + " INTEGER," +
+				REQUIRES_SYNC + " INTEGER DEFAULT 1" +
 		");";
 		
 		db.execSQL(sql);
