@@ -4,6 +4,8 @@ import org.apache.http.Header;
 import org.json.JSONArray;
 import org.json.JSONObject;
 
+import com.ihub.rangerapp.data.service.GameMeatService;
+import com.ihub.rangerapp.data.service.GameMeatServiceImpl;
 import com.ihub.rangerapp.data.service.ShiftService;
 import com.ihub.rangerapp.data.service.ShiftServiceImpl;
 import com.ihub.rangerapp.data.service.SyncService;
@@ -37,26 +39,30 @@ public class SyncTaskActivity extends ActionBarActivity {
             }
         });
         
-        ShiftService service = new ShiftServiceImpl();
-        Long sID = service.getCurrentShiftID();
+//        ShiftService service = new ShiftServiceImpl();
+//        Long sID = service.getCurrentShiftID();
+//        
         
-        service.syncShift(sID.intValue(), new JsonHttpResponseHandler() {
+        //game meat
+        
+        GameMeatService service = new GameMeatServiceImpl();
+        service.sync(1, new JsonHttpResponseHandler() {
         	
         	@Override
         	public void onSuccess(int statusCode, Header[] headers,JSONObject response) {
         		super.onSuccess(statusCode, headers, response);
         		Toast.makeText(getApplicationContext(), response.toString(), Toast.LENGTH_LONG).show();
         	}
-        	
+		});
+        
+        
+//        service.syncShift(sID.intValue(), new JsonHttpResponseHandler() {
+//        	
 //        	@Override
-//        	public void onSuccess(int statusCode, Header[] headers, byte[] response) {
+//        	public void onSuccess(int statusCode, Header[] headers,JSONObject response) {
+//        		super.onSuccess(statusCode, headers, response);
 //        		Toast.makeText(getApplicationContext(), response.toString(), Toast.LENGTH_LONG).show();
 //        	}
-//        	
-//			@Override
-//			public void onFailure(int arg0, Header[] arg1, byte[] arg2, Throwable arg3) {
-//				Toast.makeText(getApplicationContext(), "FAIL" +arg3.getMessage(), Toast.LENGTH_LONG).show();
-//			}
-		});
+//		});
 	}
 }

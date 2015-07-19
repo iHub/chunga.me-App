@@ -28,4 +28,6 @@ public interface ShiftService {
 	public Long getCurrentShiftID();
 	
 	public void syncShift(Integer shiftID, AsyncHttpResponseHandler handler);
+	
+	public String getShiftUniqueRecordID(Integer shiftID);
 }

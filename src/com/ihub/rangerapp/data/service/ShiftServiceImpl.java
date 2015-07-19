@@ -128,6 +128,33 @@ public class ShiftServiceImpl extends DatabaseService implements ShiftService {
 		
 		return s.simpleQueryForLong();
 	}
+	
+	public String getShiftUniqueRecordID(Integer shiftID) {
+		
+		Cursor cursor = null;
+		
+		try {
+			
+        	SQLiteDatabase db = getWritableDatabase(RangerApp.get());
+            cursor = db.rawQuery("SELECT * FROM " + Schemas.SHIFTS_TABLE +" WHERE " + BaseColumns._ID +"=?", new String[] {shiftID + ""});
+            
+            if(cursor.getCount() > 0) {
+                cursor.moveToFirst();
+                
+                String dateCreated = cursor.getString(11);
+                
+                try {
+        			return RangerApp.getUniqueDeviceID() + "-" + DateUtil.parse(dateCreated).getTime();
+        		} catch (Exception e) {
+        			e.printStackTrace();
+        		}  
+            }
+        }finally {
+            cursor.close();
+        }
+		
+		return RangerApp.getUniqueDeviceID();
+	}
 
 	@Override
 	public void syncShift(Integer shiftID, AsyncHttpResponseHandler handler) {
