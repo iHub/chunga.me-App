@@ -14,6 +14,8 @@ import com.ihub.rangerapp.data.service.SuspiciousActivitiesService;
 import com.ihub.rangerapp.data.service.SuspiciousActivitiesServiceImpl;
 import com.ihub.rangerapp.data.service.SyncService;
 import com.ihub.rangerapp.data.service.SyncServiceImpl;
+import com.ihub.rangerapp.data.service.WaterholeService;
+import com.ihub.rangerapp.data.service.WaterholeServiceImpl;
 import com.loopj.android.http.AsyncHttpResponseHandler;
 import com.loopj.android.http.JsonHttpResponseHandler;
 
@@ -49,7 +51,7 @@ public class SyncTaskActivity extends ActionBarActivity {
         
         //game meat
         
-        ElephantService service = new ElephantServiceImpl();
+        WaterholeService service = new WaterholeServiceImpl();
         service.sync(1, new JsonHttpResponseHandler() {
         	
         	@Override
