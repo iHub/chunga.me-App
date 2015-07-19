@@ -1,12 +1,19 @@
 package com.ihub.rangerapp.data.service;
 
+import java.io.File;
+import java.io.FileNotFoundException;
 import java.util.HashMap;
 import java.util.Map;
 import android.content.ContentValues;
+import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.provider.BaseColumns;
 import com.ihub.rangerapp.RangerApp;
 import com.ihub.rangerapp.data.sqlite.Schemas;
+import com.ihub.rangerapp.util.DateUtil;
+import com.loopj.android.http.AsyncHttpClient;
+import com.loopj.android.http.AsyncHttpResponseHandler;
+import com.loopj.android.http.RequestParams;
 
 public class ElephantServiceImpl extends DatabaseService implements ElephantService {
 	
@@ -70,5 +77,81 @@ public class ElephantServiceImpl extends DatabaseService implements ElephantServ
  		}
  		
 		return result;
+	}
+	
+	@Override
+	public void sync(Integer id, AsyncHttpResponseHandler handler) {
+
+		String url = UrlUtils.ELEPHANT_POACHING_URL;
+		
+		Cursor cursor = null;
+		
+		RequestParams params = new RequestParams();
+
+		try{
+        	
+        	SQLiteDatabase db = getWritableDatabase(RangerApp.get());
+            cursor = db.rawQuery("SELECT * FROM " + Schemas.ELEPHANT_POACHING_TABLE +" WHERE " + BaseColumns._ID +"=?", new String[] {id + ""});
+            
+            if(cursor.getCount() > 0) {
+                cursor.moveToFirst();
+
+                
+                params.put("device_record_id", cursor.getInt(0));
+                Integer noOfAnimals = cursor.getInt(1);
+				String toolsUsed = cursor.getString(2);
+				Integer maleCount = cursor.getInt(3);
+				Integer femaleCount = cursor.getInt(4);
+				Integer adultsCount = cursor.getInt(5);
+				Integer semiAdultsCount = cursor.getInt(6);
+				Integer juvenileCount = cursor.getInt(7);
+				String ivoryPresence = cursor.getString(8);
+				
+				String actionTaken = cursor.getString(9);
+				String extraNotes = cursor.getString(10);
+				String latitude = cursor.getString(11);
+				String longitude = cursor.getString(12);
+				String imagePath = cursor.getString(13);
+				String dateCreated = cursor.getString(14);
+				Integer shiftID = cursor.getInt(15);
+				
+				params.put("no_of_animals", noOfAnimals);
+				params.put("tools_used", toolsUsed);
+				params.put("adults_count", adultsCount);
+				params.put("semi_adults_count", semiAdultsCount);
+				params.put("juvenile_count", juvenileCount);
+				params.put("male_count", maleCount);
+				params.put("female_count", femaleCount);
+				params.put("ivory_presence", ivoryPresence);
+				
+				params.put("lat", latitude);
+				params.put("lon", longitude);
+				params.put("action_taken", actionTaken);
+				params.put("extra_notes", extraNotes);
+				
+				try {
+					File myFile = new File(imagePath);
+				    params.put("image", myFile);
+				    
+				} catch(FileNotFoundException e) {}
+				
+				                
+				ShiftService service = new ShiftServiceImpl();
+				params.put("shift_unique_record_id", service.getShiftUniqueRecordID(shiftID));
+				
+				try {
+        			params.put("record_date_created", DateUtil.parse(dateCreated).getTime() + "");
+        			params.put("unique_record_id", RangerApp.getUniqueDeviceID() + "-" + DateUtil.parse(dateCreated).getTime());
+        		} catch (Exception e) {
+        			e.printStackTrace();
+        		}
+            }
+        }finally {
+            cursor.close();
+        }
+		
+		AsyncHttpClient client = new AsyncHttpClient();
+		
+		client.post(url, params, handler);
 	}
 }

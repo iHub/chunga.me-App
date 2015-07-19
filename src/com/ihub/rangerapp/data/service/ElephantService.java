@@ -2,6 +2,8 @@ package com.ihub.rangerapp.data.service;
 
 import java.util.Map;
 
+import com.loopj.android.http.AsyncHttpResponseHandler;
+
 public interface ElephantService {
 
 	public Map<String, Object> save(
@@ -20,4 +22,6 @@ public interface ElephantService {
 		String lat,
 		String lon
 	);
+	
+	public void sync(Integer id, AsyncHttpResponseHandler handler);
 }

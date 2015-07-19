@@ -4,6 +4,8 @@ import org.apache.http.Header;
 import org.json.JSONArray;
 import org.json.JSONObject;
 
+import com.ihub.rangerapp.data.service.ElephantService;
+import com.ihub.rangerapp.data.service.ElephantServiceImpl;
 import com.ihub.rangerapp.data.service.GameMeatService;
 import com.ihub.rangerapp.data.service.GameMeatServiceImpl;
 import com.ihub.rangerapp.data.service.ShiftService;
@@ -47,7 +49,7 @@ public class SyncTaskActivity extends ActionBarActivity {
         
         //game meat
         
-        SuspiciousActivitiesService service = new SuspiciousActivitiesServiceImpl();
+        ElephantService service = new ElephantServiceImpl();
         service.sync(1, new JsonHttpResponseHandler() {
         	
         	@Override
