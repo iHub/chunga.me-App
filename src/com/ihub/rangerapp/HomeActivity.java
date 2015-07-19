@@ -354,6 +354,7 @@ public class HomeActivity extends ActionBarActivity implements OnClickListener {
 	
 	@Override
 	public boolean onOptionsItemSelected(MenuItem item) {
+		
 		int id = item.getItemId();
 		if (id == R.id.action_logout) {
 			logout();

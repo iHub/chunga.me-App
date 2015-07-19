@@ -50,10 +50,10 @@
 	            android:id="@+id/rangerID"
 	            android:layout_width="match_parent"
 	            android:layout_height="wrap_content"
-	            android:inputType="text"
+	            android:inputType="number"
 	            android:hint="@string/ranger_id"
 	            android:layout_marginBottom="20dp" />
-	       
+	        
 	        <Button
 	            android:id="@+id/goBtn"
 	            android:layout_width="match_parent"

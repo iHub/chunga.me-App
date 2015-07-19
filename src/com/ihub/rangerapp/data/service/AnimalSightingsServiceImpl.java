@@ -51,10 +51,10 @@ public class AnimalSightingsServiceImpl extends DatabaseService implements Anima
  		
 		return result;
 	}
-
+	
 	@Override
 	public Map<String, Object> saveHerd(Integer id, String name, String species, Integer noOfAnimals, Integer adultsCount, Integer semiAdultsCount, Integer juvenileCount, Integer distanceSeen, String extraNotes, String imagePath, String lat, String lon) {
-
+		
 		Map<String, Object> result = new HashMap<String, Object>();
 		
 		SQLiteDatabase db = getWritableDatabase(RangerApp.get());

@@ -20,8 +20,6 @@ import android.widget.ListView;
 import android.widget.TextView;
 import java.util.ArrayList;
 import java.util.List;
-
-import com.ihub.rangerapp.CameraGPSActionBarActivity;
 import com.ihub.rangerapp.PhotoActivity;
 import com.ihub.rangerapp.R;
 import com.ihub.rangerapp.ReportViewerActivity;

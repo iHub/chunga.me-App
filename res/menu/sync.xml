@@ -1,0 +1,13 @@
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:context="com.movapay.mcement.HomeActivity" >
+
+    <item
+        android:id="@+id/action_sync"
+        android:title="@string/sync_all"
+        app:showAsAction="always">
+        
+	</item>
+
+</menu>

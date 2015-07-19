@@ -10,6 +10,8 @@
     <string name="next">Next</string>
     <string name="prev">Previous</string>
     <string name="finish">Submit order</string>
+    <string name="record_s">Record(s)</string>
+    <string name="sync_str">Last Sync on {date}</string>
     <string name="incident_photo">Incident Photo</string>
     <string name="label_your_name">Name</string>
     <string name="label_your_email">Email</string>
@@ -31,6 +33,7 @@
     <string name="ranger_id">Ranger ID</string>
     <string name="help">Help</string>
     <string name="export">Export</string>
+    <string name="sync_all">Sync All</string>
     <string name="title_activity_ivory">Ivory</string>
     <string name="title_activity_game_meat">Game Meat</string>
     <string name="title_activity_charcoal">Charcoal</string>

@@ -54,16 +54,15 @@ public class Schemas {
 				ExportItemsTable.RECORD_ID + " INTEGER," +
 				ExportItemsTable.DATE_CREATED + " DATE DEFAULT (datetime('now','localtime'))" +
 			");";
-			
+		
 			db.execSQL(sql);
 	}
 	
 	public static class ExportsTable {
 		public static String START_TIME = "start_time";
 		public static String END_TIME = "end_time";
-		public static String DATE_CREATED = "date_created";
 	}
-
+	
 	private static void createExportsTable(SQLiteDatabase db) {
 		
 		String sql = "create table " + EXPORTS_TABLE + "(" +
@@ -75,14 +74,14 @@ public class Schemas {
 			
 			db.execSQL(sql);
 	}
-
+	
 	private static void createAnimalHerdSightingsTable(SQLiteDatabase db) {
 		String sql = "create table " + ANIMAL_HERD_SIGHTING_TABLE + "(" +
 				BaseColumns._ID + " integer primary key autoincrement," +
 				SHIFT_ID + " INTEGER," +
 				SYNC_ID + " INTEGER," +
 				LAST_SYNC_DATE + " INTEGER," +
-				REQUIRES_SYNC + " INTEGER," +
+				REQUIRES_SYNC + " INTEGER DEFAULT 1," +
 				AnimalHerdSighting.NAME + " text," +
 				AnimalHerdSighting.TYPE + " text," +
 				AnimalHerdSighting.NUMBER_OF_ANIMALS + " integer," +
@@ -99,14 +98,14 @@ public class Schemas {
 		
 			db.execSQL(sql);
 	}
-
+	
 	private static void createIndividualAnimalSightingsTable(SQLiteDatabase db) {
 		String sql = "create table " + INDIVIDUAL_ANIMAL_SIGHTING_TABLE + "(" +
 			BaseColumns._ID + " integer primary key autoincrement," +
 			SHIFT_ID + " INTEGER," +
 			SYNC_ID + " INTEGER," +
 			LAST_SYNC_DATE + " INTEGER," +
-			REQUIRES_SYNC + " INTEGER," +
+			REQUIRES_SYNC + " INTEGER DEFAULT 1," +
 			IndividualAnimalSighting.ANIMAL + " text," +
 			IndividualAnimalSighting.GENDER + " text," +
 			IndividualAnimalSighting.AGE + " text," +
@@ -117,7 +116,6 @@ public class Schemas {
 			IndividualAnimalSighting.IMAGE_PATH + " text," +
 			IndividualAnimalSighting.DATE_CREATED + " DATE DEFAULT (datetime('now','localtime'))" +
 		");";
-		
 		db.execSQL(sql);
 	}
 	
@@ -147,14 +145,14 @@ public class Schemas {
 		public static String IMAGE_PATH = "image_path";
 		public static String DATE_CREATED = "date_created";
 	}
-
+	
 	private static void createWaterholesTable(SQLiteDatabase db) {
 		String sql = "create table " + WATER_HOLES_TABLE + "(" +
 				BaseColumns._ID + " integer primary key autoincrement," +
 				SHIFT_ID + " INTEGER," +
 				SYNC_ID + " INTEGER," +
 				LAST_SYNC_DATE + " INTEGER," +
-				REQUIRES_SYNC + " INTEGER," +
+				REQUIRES_SYNC + " INTEGER DEFAULT 1," +
 				Waterhole.NAME + " text," +
 				Waterhole.LEVEL_OF_WATER + " text," +
 				Waterhole.NUMBER_OF_ANIMALS + " integer," +
@@ -167,14 +165,14 @@ public class Schemas {
 			
 			db.execSQL(sql);
 	}
-
+	
 	private static void createSuspiciousActivitiesTable(SQLiteDatabase db) {
 		String sql = "create table " + SUSPICIOUS_ACTIVITIES_TABLE + "(" +
 				BaseColumns._ID + " integer primary key autoincrement," +
 				SHIFT_ID + " INTEGER," +
 				SYNC_ID + " INTEGER," +
 				LAST_SYNC_DATE + " INTEGER," +
-				REQUIRES_SYNC + " INTEGER," +
+				REQUIRES_SYNC + " INTEGER DEFAULT 1," +
 				SuspiciousActivities.ACTION_TAKEN + " text," +
 				SuspiciousActivities.EXTRA_NOTES + " text," +
 				SuspiciousActivities.LAT + " text," +
@@ -182,7 +180,7 @@ public class Schemas {
 				SuspiciousActivities.IMAGE_PATH + " text," +
 				SuspiciousActivities.DATE_CREATED + " DATE DEFAULT (datetime('now','localtime'))" +
 			");";
-			
+		
 			db.execSQL(sql);
 	}
 	
@@ -192,7 +190,7 @@ public class Schemas {
 				SHIFT_ID + " INTEGER," +
 				SYNC_ID + " INTEGER," +
 				LAST_SYNC_DATE + " INTEGER," +
-				REQUIRES_SYNC + " INTEGER," +
+				REQUIRES_SYNC + " INTEGER DEFAULT 1," +
 				ElephantPoaching.NO_OF_ANIMALS + " INTEGER, " +
 				ElephantPoaching.TOOLS_USED + " text, " +
 				ElephantPoaching.MALE_COUNT + " INTEGER," +
@@ -218,7 +216,7 @@ public class Schemas {
 				SHIFT_ID + " INTEGER," +
 				SYNC_ID + " INTEGER," +
 				LAST_SYNC_DATE + " INTEGER," +
-				REQUIRES_SYNC + " INTEGER," +
+				REQUIRES_SYNC + " INTEGER DEFAULT 1," +
 				CharcoalBags.NO_OF_BAGS + " INTEGER, " +
 				CharcoalBags.MODE_OF_TRANSPORT + " text, " +
 				CharcoalBags.ACTION_TAKEN + " text," +
@@ -238,7 +236,7 @@ public class Schemas {
 			SHIFT_ID + " INTEGER," +
 			SYNC_ID + " INTEGER," +
 			LAST_SYNC_DATE + " INTEGER," +
-			REQUIRES_SYNC + " INTEGER," +
+			REQUIRES_SYNC + " INTEGER DEFAULT 1," +
 			GameMeat.ANIMAL + " text," +
 			GameMeat.NO_OF_ANIMALS + " INTEGER, " +
 			GameMeat.ACTION_TAKEN + " text," +
@@ -258,7 +256,7 @@ public class Schemas {
 			SHIFT_ID + " INTEGER," +
 			SYNC_ID + " INTEGER," +
 			LAST_SYNC_DATE + " INTEGER," +
-			REQUIRES_SYNC + " INTEGER," +
+			REQUIRES_SYNC + " INTEGER DEFAULT 1," +
 			CharcoalKilns.NO_OF_KILNS + " INTEGER, " +
 			CharcoalKilns.FRESHNESS_LEVELS + " text," +
 			CharcoalKilns.TREE_USED + " text," +
@@ -269,7 +267,6 @@ public class Schemas {
 			CharcoalKilns.IMAGE_PATH + " text," +
 			CharcoalKilns.DATE_CREATED + " DATE DEFAULT (datetime('now','localtime'))" +
 		");";
-		
 		db.execSQL(sql);
 	}
 	
@@ -280,14 +277,14 @@ public class Schemas {
 			User.RANGER_ID + " text," +
 			SYNC_ID + " INTEGER," +
 			LAST_SYNC_DATE + " INTEGER," +
-			REQUIRES_SYNC + " INTEGER," +
+			REQUIRES_SYNC + " INTEGER DEFAULT 1," +
 			User.START_TIME + " DATE DEFAULT (datetime('now','localtime'))," +
 			User.END_TIME + " DATE" +
 		");";
 		
 		db.execSQL(sql);
 	}
-
+	
 	public static void createShiftTable(SQLiteDatabase db) {
 		
 		String sql = "create table " + SHIFTS_TABLE + "(" + 
@@ -295,7 +292,7 @@ public class Schemas {
 				RANGER_ID + " INTEGER," +
 				SYNC_ID + " INTEGER," +
 				LAST_SYNC_DATE + " INTEGER," +
-				REQUIRES_SYNC + " INTEGER," +
+				REQUIRES_SYNC + " INTEGER DEFAULT 1," +
 				Shift.STATION + " text," + 
 				Shift.RANCH + " text," + 
 				Shift.LEADER + " text," +
