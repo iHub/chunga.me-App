@@ -168,10 +168,11 @@ public class ShiftServiceImpl extends DatabaseService implements ShiftService {
 		try{
         	
         	SQLiteDatabase db = getWritableDatabase(RangerApp.get());
-//
+        	
             cursor = db.rawQuery("SELECT * FROM " + Schemas.SHIFTS_TABLE +" WHERE " + BaseColumns._ID +"=?", new String[] {shiftID + ""});
 
             if(cursor.getCount() > 0) {
+            	
                 cursor.moveToFirst();
                 
                 params.put("device_record_id", cursor.getInt(0));

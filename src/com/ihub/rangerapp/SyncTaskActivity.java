@@ -4,6 +4,8 @@ import org.apache.http.Header;
 import org.json.JSONArray;
 import org.json.JSONObject;
 
+import com.ihub.rangerapp.data.service.CharcoalService;
+import com.ihub.rangerapp.data.service.CharcoalServiceImpl;
 import com.ihub.rangerapp.data.service.ElephantService;
 import com.ihub.rangerapp.data.service.ElephantServiceImpl;
 import com.ihub.rangerapp.data.service.GameMeatService;
@@ -51,8 +53,8 @@ public class SyncTaskActivity extends ActionBarActivity {
         
         //game meat
         
-        WaterholeService service = new WaterholeServiceImpl();
-        service.sync(1, new JsonHttpResponseHandler() {
+        CharcoalService service = new CharcoalServiceImpl();
+        service.syncKilns(1, new JsonHttpResponseHandler() {
         	
         	@Override
         	public void onSuccess(int statusCode, Header[] headers,JSONObject response) {

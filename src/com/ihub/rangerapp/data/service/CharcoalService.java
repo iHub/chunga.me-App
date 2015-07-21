@@ -2,6 +2,8 @@ package com.ihub.rangerapp.data.service;
 
 import java.util.Map;
 
+import com.loopj.android.http.AsyncHttpResponseHandler;
+
 public interface CharcoalService {
 
 	public Map<String, Object> saveBagsData(
@@ -15,6 +17,8 @@ public interface CharcoalService {
 		String lon
 	);
 	
+	public void syncBags(Integer id, AsyncHttpResponseHandler handler);
+	
 	public Map<String, Object> saveKilns(
 		Integer id,
 		Integer noOfKilns,
@@ -26,4 +30,6 @@ public interface CharcoalService {
 		String lat,
 		String lon
 	);
+	
+	public void syncKilns(Integer id, AsyncHttpResponseHandler handler);
 }
