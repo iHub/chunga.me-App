@@ -46,10 +46,6 @@ public class HerdsLoader extends DataLoader {
 				Integer juvenileCount = cursor.getInt(6);
 				
 				Integer distanceSeen = cursor.getInt(7);
-				
-				
-				
-				
 				String extraNotes = cursor.getString(8);
 				String latitude = cursor.getString(9);
 				String longitude = cursor.getString(10);

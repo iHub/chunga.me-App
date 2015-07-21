@@ -4,6 +4,8 @@ import org.apache.http.Header;
 import org.json.JSONArray;
 import org.json.JSONObject;
 
+import com.ihub.rangerapp.data.service.AnimalSightingsService;
+import com.ihub.rangerapp.data.service.AnimalSightingsServiceImpl;
 import com.ihub.rangerapp.data.service.CharcoalService;
 import com.ihub.rangerapp.data.service.CharcoalServiceImpl;
 import com.ihub.rangerapp.data.service.ElephantService;
@@ -53,8 +55,8 @@ public class SyncTaskActivity extends ActionBarActivity {
         
         //game meat
         
-        CharcoalService service = new CharcoalServiceImpl();
-        service.syncKilns(1, new JsonHttpResponseHandler() {
+        AnimalSightingsService service = new AnimalSightingsServiceImpl();
+        service.syncIndividual(1, new JsonHttpResponseHandler() {
         	
         	@Override
         	public void onSuccess(int statusCode, Header[] headers,JSONObject response) {
@@ -63,6 +65,14 @@ public class SyncTaskActivity extends ActionBarActivity {
         	}
 		});
         
+//        service.syncHerd(1, new JsonHttpResponseHandler() {
+//        	
+//        	@Override
+//        	public void onSuccess(int statusCode, Header[] headers,JSONObject response) {
+//        		super.onSuccess(statusCode, headers, response);
+//        		Toast.makeText(getApplicationContext(), response.toString(), Toast.LENGTH_LONG).show();
+//        	}
+//		});
         
 //        service.syncShift(sID.intValue(), new JsonHttpResponseHandler() {
 //        	
