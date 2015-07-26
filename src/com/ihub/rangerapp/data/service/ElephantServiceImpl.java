@@ -8,6 +8,8 @@ import android.content.ContentValues;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.provider.BaseColumns;
+import android.text.TextUtils;
+
 import com.ihub.rangerapp.RangerApp;
 import com.ihub.rangerapp.data.sqlite.Schemas;
 import com.ihub.rangerapp.util.DateUtil;
@@ -60,6 +62,27 @@ public class ElephantServiceImpl extends DatabaseService implements ElephantServ
  		values.put(Schemas.ElephantPoaching.IMAGE_PATH, imagePath);
  		values.put(Schemas.ElephantPoaching.LAT, lat);
  		values.put(Schemas.ElephantPoaching.LON, lon);
+ 		
+ 		Boolean isValid = true;
+ 		
+ 		if(TextUtils.isEmpty(toolUsed))
+ 			isValid = false;
+ 		
+ 		if(noOfAnimals == null)
+ 			isValid = false;
+ 		
+ 		if(noOfAnimals != null && noOfAnimals <=0)
+ 			isValid = false;
+ 		
+ 		if(TextUtils.isEmpty(lat))
+ 			isValid = false;
+ 		
+ 		if(TextUtils.isEmpty(lon))
+ 			isValid = false;
+ 		
+ 		
+ 		values.put(Schemas.REQUIRES_SYNC, isValid ? 1 : 0); //TODO check data changes
+		values.put(Schemas.CAN_SYNC, isValid ? 1 : 0);
  		
  		try {
  			
@@ -133,7 +156,7 @@ public class ElephantServiceImpl extends DatabaseService implements ElephantServ
 					File myFile = new File(imagePath);
 				    params.put("image", myFile);
 				    
-				} catch(FileNotFoundException e) {}
+				} catch(Exception e) {}
 				
 				                
 				ShiftService service = new ShiftServiceImpl();

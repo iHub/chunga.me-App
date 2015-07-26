@@ -18,6 +18,7 @@ public class Schemas {
 	public static String EXPORTS_TABLE = "tbl_exports";
 	public static String EXPORT_ITEMS_TABLE = "tbl_export_items";
 	public static String SHIFT_ID = "shift_id";
+	public static String CAN_SYNC = "can_sync";
 	public static String RANGER_ID = "ranger_id";
 	public static String SYNC_ID = "last_sync_id";
 	public static String LAST_SYNC_DATE = "last_sync_date";
@@ -67,9 +68,9 @@ public class Schemas {
 		
 		String sql = "create table " + EXPORTS_TABLE + "(" +
 				BaseColumns._ID + " integer primary key autoincrement," +
-				RANGER_ID + " INTEGER," +
-				ExportsTable.START_TIME + " INTEGER," +
-				ExportsTable.END_TIME + " INTEGER" +
+				RANGER_ID + " TEXT," +
+				ExportsTable.START_TIME + " TEXT," +
+				ExportsTable.END_TIME + " TEXT" +
 			");";
 			
 			db.execSQL(sql);
@@ -93,7 +94,8 @@ public class Schemas {
 				SHIFT_ID + " INTEGER," +
 				SYNC_ID + " INTEGER," +
 				LAST_SYNC_DATE + " INTEGER," +
-				REQUIRES_SYNC + " INTEGER DEFAULT 1" +
+				REQUIRES_SYNC + " INTEGER DEFAULT 1," +
+				CAN_SYNC + " INTEGER DEFAULT 1" +
 			");";
 		
 			db.execSQL(sql);
@@ -114,7 +116,8 @@ public class Schemas {
 			SHIFT_ID + " INTEGER," +
 			SYNC_ID + " INTEGER," +
 			LAST_SYNC_DATE + " INTEGER," +
-			REQUIRES_SYNC + " INTEGER DEFAULT 1" +
+			REQUIRES_SYNC + " INTEGER DEFAULT 1," +
+			CAN_SYNC + " INTEGER DEFAULT 1" +
 		");";
 		db.execSQL(sql);
 	}
@@ -160,7 +163,8 @@ public class Schemas {
 				SHIFT_ID + " INTEGER," +
 				SYNC_ID + " INTEGER," +
 				LAST_SYNC_DATE + " INTEGER," +
-				REQUIRES_SYNC + " INTEGER DEFAULT 1" +
+				REQUIRES_SYNC + " INTEGER DEFAULT 1," +
+				CAN_SYNC + " INTEGER DEFAULT 1" +
 			");";
 		
 			db.execSQL(sql);
@@ -178,7 +182,8 @@ public class Schemas {
 				SHIFT_ID + " INTEGER," +
 				SYNC_ID + " INTEGER," +
 				LAST_SYNC_DATE + " INTEGER," +
-				REQUIRES_SYNC + " INTEGER DEFAULT 1" +
+				REQUIRES_SYNC + " INTEGER DEFAULT 1," +
+				CAN_SYNC + " INTEGER DEFAULT 1" +
 			");";
 		
 			db.execSQL(sql);
@@ -204,7 +209,8 @@ public class Schemas {
 				SHIFT_ID + " INTEGER," +
 				SYNC_ID + " INTEGER," +
 				LAST_SYNC_DATE + " INTEGER," +
-				REQUIRES_SYNC + " INTEGER DEFAULT 1" +
+				REQUIRES_SYNC + " INTEGER DEFAULT 1," +
+				CAN_SYNC + " INTEGER DEFAULT 1" +
 			");";
 		
 			db.execSQL(sql);
@@ -224,7 +230,8 @@ public class Schemas {
 				SHIFT_ID + " INTEGER," +
 				SYNC_ID + " INTEGER," +
 				LAST_SYNC_DATE + " INTEGER," +
-				REQUIRES_SYNC + " INTEGER DEFAULT 1" +
+				REQUIRES_SYNC + " INTEGER DEFAULT 1," +
+				CAN_SYNC + " INTEGER DEFAULT 1" +
 			");";
 		
 			db.execSQL(sql);
@@ -244,7 +251,8 @@ public class Schemas {
 			SHIFT_ID + " INTEGER," +
 			SYNC_ID + " INTEGER," +
 			LAST_SYNC_DATE + " INTEGER," +
-			REQUIRES_SYNC + " INTEGER DEFAULT 1" +
+			REQUIRES_SYNC + " INTEGER DEFAULT 1," +
+			CAN_SYNC + " INTEGER DEFAULT 1" +
 		");";
 		
 		db.execSQL(sql);
@@ -265,7 +273,8 @@ public class Schemas {
 			SHIFT_ID + " INTEGER," +
 			SYNC_ID + " INTEGER," +
 			LAST_SYNC_DATE + " INTEGER," +
-			REQUIRES_SYNC + " INTEGER DEFAULT 1" +
+			REQUIRES_SYNC + " INTEGER DEFAULT 1," +
+			CAN_SYNC + " INTEGER DEFAULT 1" +
 		");";
 		db.execSQL(sql);
 	}
@@ -304,10 +313,11 @@ public class Schemas {
 				Shift.START_LON + " TEXT," +
 				Shift.END_LAT + " TEXT," +
 				Shift.END_LON + " TEXT," +
-				RANGER_ID + " INTEGER," +
+				RANGER_ID + " TEXT," +
 				SYNC_ID + " INTEGER," +
 				LAST_SYNC_DATE + " INTEGER," +
-				REQUIRES_SYNC + " INTEGER DEFAULT 1" +
+				REQUIRES_SYNC + " INTEGER DEFAULT 1," +
+				CAN_SYNC + " INTEGER DEFAULT 1" +
 		");";
 		
 		db.execSQL(sql);

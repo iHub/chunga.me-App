@@ -8,6 +8,7 @@ import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteStatement;
 import android.provider.BaseColumns;
+import android.text.TextUtils;
 
 import com.ihub.rangerapp.RangerApp;
 import com.ihub.rangerapp.data.sqlite.Schemas;
@@ -61,6 +62,19 @@ public class ShiftServiceImpl extends DatabaseService implements ShiftService {
  		values.put(Schemas.Shift.START_LON, lon);
  		values.put(Schemas.Shift.PURPOSE, purpose);
  		
+
+ 		Boolean isValid = true;
+ 		
+ 		if(TextUtils.isEmpty(lat))
+ 			isValid = false;
+ 		
+ 		if(TextUtils.isEmpty(lon))
+ 			isValid = false;
+ 		
+ 		
+ 		values.put(Schemas.REQUIRES_SYNC, isValid ? 1 : 0); //TODO check data changes
+		values.put(Schemas.CAN_SYNC, isValid ? 1 : 0);
+ 		
  		try {
  			
  			db.insert(Schemas.SHIFTS_TABLE, null, values);
@@ -113,6 +127,10 @@ public class ShiftServiceImpl extends DatabaseService implements ShiftService {
 		    args.put(Schemas.Shift.END_TIME, new Date().getTime());
 		    args.put(Schemas.Shift.END_LAT, lat);
 		    args.put(Schemas.Shift.END_LON, lon);
+		    
+	 		args.put(Schemas.REQUIRES_SYNC, 1);
+			args.put(Schemas.CAN_SYNC, 1);
+		    
 		    db.update(Schemas.SHIFTS_TABLE, args, BaseColumns._ID + "=" + currentShiftID, null);
 		} catch (Exception e) {}
 	}

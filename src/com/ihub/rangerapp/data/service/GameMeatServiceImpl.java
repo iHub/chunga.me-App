@@ -8,6 +8,7 @@ import android.content.ContentValues;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.provider.BaseColumns;
+import android.text.TextUtils;
 
 import com.ihub.rangerapp.RangerApp;
 import com.ihub.rangerapp.data.sqlite.Schemas;
@@ -39,6 +40,23 @@ public class GameMeatServiceImpl extends DatabaseService implements GameMeatServ
  		values.put(Schemas.GameMeat.LAT, lat);
  		values.put(Schemas.GameMeat.LON, lon);
  		values.put(Schemas.GameMeat.IMAGE_PATH, imagePath);
+ 		
+ 		Boolean isValid = true;
+ 		
+ 		if(TextUtils.isEmpty(animal))
+ 			isValid = false;
+ 		
+ 		if(TextUtils.isEmpty(lat))
+ 			isValid = false;
+ 		
+ 		if(TextUtils.isEmpty(lon))
+ 			isValid = false;
+ 		
+ 		if(TextUtils.isEmpty(actionTaken))
+ 			isValid = false;
+ 		
+ 		values.put(Schemas.REQUIRES_SYNC, isValid ? 1 : 0); //TODO check data changes
+		values.put(Schemas.CAN_SYNC, isValid ? 1 : 0);
  		
  		try {
  			
@@ -104,7 +122,7 @@ public class GameMeatServiceImpl extends DatabaseService implements GameMeatServ
 					File myFile = new File(imagePath);
 				    params.put("image", myFile);
 				    
-				} catch(FileNotFoundException e) {}
+				} catch(Exception e) {}
 				
 				                
 				ShiftService service = new ShiftServiceImpl();

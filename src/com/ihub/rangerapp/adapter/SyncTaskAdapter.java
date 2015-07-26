@@ -2,26 +2,26 @@ package com.ihub.rangerapp.adapter;
 
 import java.util.List;
 
-import com.ihub.rangerapp.R;
-import com.ihub.rangerapp.entity.SyncModel;
-
 import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.TextView;
+import com.ihub.rangerapp.R;
+import com.ihub.rangerapp.entity.SyncModel;
+import com.ihub.rangerapp.entity.SyncTaskModel;
 
-public class SyncAdapter extends ArrayAdapter<SyncModel> {
+public class SyncTaskAdapter extends ArrayAdapter<SyncTaskModel> {
 	
-	public SyncAdapter(Context context, int resource, List<SyncModel> objects) {
+	public SyncTaskAdapter(Context context, int resource, List<SyncTaskModel> objects) {
 		super(context, resource, objects);
 	}
 	
 	@Override
     public View getView(int position, View convertView, ViewGroup parent) {
 		
-		SyncModel model = getItem(position);
+		SyncTaskModel model = getItem(position);
 		
 		View v = convertView;
 		
@@ -35,7 +35,7 @@ public class SyncAdapter extends ArrayAdapter<SyncModel> {
         nameView.setText(model.getName());
         
         TextView countView = (TextView) v.findViewById(R.id.countView);
-        countView.setText(model.getCount() + " " + getContext().getString(R.string.record_s));
+        countView.setText(model.getProgress());
         
         return v;
 	}

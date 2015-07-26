@@ -4,22 +4,28 @@ import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
-import java.util.Set;
+import java.util.TimeZone;
 
 import com.ihub.rangerapp.adapter.SyncAdapter;
 import com.ihub.rangerapp.data.service.SyncService;
 import com.ihub.rangerapp.data.service.SyncServiceImpl;
 import com.ihub.rangerapp.data.sqlite.DBPreferences;
 import com.ihub.rangerapp.entity.SyncModel;
-
 import android.support.v7.app.ActionBarActivity;
 import android.support.v7.widget.Toolbar;
+import android.app.AlertDialog;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.net.ConnectivityManager;
+import android.net.NetworkInfo;
 import android.os.AsyncTask;
 import android.os.Bundle;
+import android.util.Log;
+import android.util.Pair;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -36,6 +42,7 @@ public class SyncActivity extends ActionBarActivity {
 	
 	Boolean hasSync = false;
 	
+	List<Pair<String, Integer>> rows;
 	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -59,37 +66,31 @@ public class SyncActivity extends ActionBarActivity {
         
         list = (ListView) findViewById(android.R.id.list);
         adapter = new SyncAdapter(this, 0, new ArrayList<SyncModel>());
-                
+        
         list.setAdapter(adapter);
         
         //load last sync date
         //load sync counts
         
-        SharedPreferences prefs = getSharedPreferences(RangerApp.class.getName(), Context.MODE_PRIVATE);
-		String rangerID = prefs.getString(DBPreferences.RANGER_ID, "");
-		
-        new Task().execute(rangerID);
+        new Task().execute();
 	}
 	
 	class Task extends AsyncTask<String, Void, Map<String, Object>> {
-
+		
 		@Override
 		protected Map<String, Object> doInBackground(String... params) {
-
-			String rangerID = params[0];
 			
 			Map<String, Object> data = new HashMap<String, Object>();
 			
 			SyncService service = new SyncServiceImpl();
-	        Date lastSyncDate = service.loadLastSyncDate(Integer.valueOf(rangerID));
+	        Date lastSyncDate = service.loadLastSyncDate();
 	        
 	        if(lastSyncDate != null) {
 	        	data.put("lastSyncDate", lastSyncDate);
 	        }
 	        
-	        data.put("rows", service.loadCounts(Integer.valueOf(rangerID)));
+	        data.put("rows", service.loadCounts());
 	        
-			
 			return data;
 		}
 		
@@ -100,26 +101,29 @@ public class SyncActivity extends ActionBarActivity {
 				
 				Date lastSyncDate = (Date) result.get("lastSyncDate");
 				String syncStr = getString(R.string.sync_str);
-	        	syncStr = syncStr.replace("{date}", new SimpleDateFormat( "yyyy-MM-dd HH:MM" ).format(lastSyncDate));
+				
+				SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd HH:MM");
+				df.setTimeZone(TimeZone.getTimeZone("UTC"));
+				
+	        	syncStr = syncStr.replace("{date}", df.format(lastSyncDate));
 	        	
 	        	titleView.setText(syncStr);
 			}
 			
-			Map<String, Integer> rows = (Map<String, Integer>) result.get("rows");
+			rows = (List<Pair<String, Integer>>) result.get("rows");
         	
-        	Set<String> keys = rows.keySet();
-        	
-        	for(String s : keys) {
+        	for(Pair<String, Integer> row : rows) {
         		
-        		Integer count = rows.get(s);
+        		String value = row.first;
+        		Integer count = row.second;
         		
         		if(count > 0) {
         			hasSync = true;
         			supportInvalidateOptionsMenu();
-        			adapter.add(new SyncModel(s, count));
+        			adapter.add(new SyncModel(value, count));
         		}
         	}
-
+        	
 			super.onPostExecute(result);
 		}
 	}
@@ -137,13 +141,61 @@ public class SyncActivity extends ActionBarActivity {
 	public boolean onOptionsItemSelected(MenuItem item) {
 		int id = item.getItemId();
 		if (id == R.id.action_sync) {
-			sync();
+			if(isNetworkAvailable()) {
+				sync();
+			} else {
+				AlertDialog.Builder builder = new AlertDialog.Builder(this);
+				builder.setMessage("Please check your Internet connection")
+				       .setCancelable(false)
+				       .setPositiveButton("OK", new DialogInterface.OnClickListener() {
+				           public void onClick(DialogInterface dialog, int id) {
+				           }
+				       });
+				AlertDialog alert = builder.create();
+				alert.show();
+			}
 		}
 		return super.onOptionsItemSelected(item);
 	}
-
+	
 	private void sync() {
+		
 		Intent intent = new Intent(SyncActivity.this, SyncTaskActivity.class);
+		
+		if(rows != null) {
+			
+			String[] names = new String[rows.size()];
+			int[] values = new int[rows.size()];
+			
+			int total = 0;
+			
+			int i = 0;
+			
+			for(Pair<String, Integer> row : rows) {
+        		
+        		String name = row.first;
+        		Integer count = row.second;
+        		
+        		names[i] = name;
+				values[i] = count;
+				total += count;
+				
+				intent.putExtra("names", names);
+				intent.putExtra("values", values);
+				intent.putExtra("total", total);
+        		
+        		i++;
+        	}
+		}
+		
 		startActivity(intent);
+		finish();
+	}
+	
+	private boolean isNetworkAvailable() {
+	    ConnectivityManager connectivityManager 
+	          = (ConnectivityManager) getSystemService(Context.CONNECTIVITY_SERVICE);
+	    NetworkInfo activeNetworkInfo = connectivityManager.getActiveNetworkInfo();
+	    return activeNetworkInfo != null && activeNetworkInfo.isConnected();
 	}
 }

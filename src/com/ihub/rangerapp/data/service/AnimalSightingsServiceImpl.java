@@ -1,13 +1,13 @@
 package com.ihub.rangerapp.data.service;
 
 import java.io.File;
-import java.io.FileNotFoundException;
 import java.util.HashMap;
 import java.util.Map;
 import android.content.ContentValues;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.provider.BaseColumns;
+import android.text.TextUtils;
 
 import com.ihub.rangerapp.RangerApp;
 import com.ihub.rangerapp.data.sqlite.Schemas;
@@ -40,6 +40,21 @@ public class AnimalSightingsServiceImpl extends DatabaseService implements Anima
  		values.put(Schemas.IndividualAnimalSighting.IMAGE_PATH, imagePath);
  		values.put(Schemas.IndividualAnimalSighting.LAT, lat);
  		values.put(Schemas.IndividualAnimalSighting.LON, lon);
+ 		
+ 		Boolean isValid = true;
+ 		
+ 		if(TextUtils.isEmpty(name))
+ 			isValid = false;
+ 		
+ 		if(TextUtils.isEmpty(lat))
+ 			isValid = false;
+ 		
+ 		if(TextUtils.isEmpty(lon))
+ 			isValid = false;
+ 		
+ 		
+ 		values.put(Schemas.REQUIRES_SYNC, isValid ? 1 : 0); //TODO check data changes
+		values.put(Schemas.CAN_SYNC, isValid ? 1 : 0);
  		
  		try {
  			
@@ -87,6 +102,26 @@ public class AnimalSightingsServiceImpl extends DatabaseService implements Anima
  		values.put(Schemas.AnimalHerdSighting.LAT, lat);
  		values.put(Schemas.AnimalHerdSighting.LON, lon);
  		
+ 		Boolean isValid = true;
+ 		
+ 		if(TextUtils.isEmpty(name))
+ 			isValid = false;
+ 		
+ 		if(TextUtils.isEmpty(lat))
+ 			isValid = false;
+ 		
+ 		if(TextUtils.isEmpty(lon))
+ 			isValid = false;
+ 		
+ 		if(noOfAnimals == null)
+ 			isValid = false;
+ 		
+ 		if(noOfAnimals != null && noOfAnimals == 0)
+ 			isValid = false;
+ 		
+ 		values.put(Schemas.REQUIRES_SYNC, isValid ? 1 : 0); //TODO check data changes
+		values.put(Schemas.CAN_SYNC, isValid ? 1 : 0);
+ 		
  		try {
  			
  			if(id == -1) {
@@ -123,7 +158,7 @@ public class AnimalSightingsServiceImpl extends DatabaseService implements Anima
                 cursor.moveToFirst();
                 
                 params.put("device_record_id", cursor.getInt(0));
-				String animal = cursor.getString(1);
+                String animal = cursor.getString(1);
 				String gender = cursor.getString(2);
 				String age = cursor.getString(3);
 				Integer distanceSeen = cursor.getInt(4);
@@ -148,7 +183,7 @@ public class AnimalSightingsServiceImpl extends DatabaseService implements Anima
 					File myFile = new File(imagePath);
 				    params.put("image", myFile);
 				    
-				} catch(FileNotFoundException e) {}
+				} catch(Exception e) {}
 				
 				                
 				ShiftService service = new ShiftServiceImpl();
@@ -225,7 +260,7 @@ public class AnimalSightingsServiceImpl extends DatabaseService implements Anima
 					File myFile = new File(imagePath);
 				    params.put("image", myFile);
 				    
-				} catch(FileNotFoundException e) {}
+				} catch(Exception e) {}
 				
 				                
 				ShiftService service = new ShiftServiceImpl();

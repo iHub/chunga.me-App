@@ -1,7 +1,6 @@
 package com.ihub.rangerapp.data.service;
 
 import java.io.File;
-import java.io.FileNotFoundException;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -9,6 +8,7 @@ import android.content.ContentValues;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.provider.BaseColumns;
+import android.text.TextUtils;
 
 import com.ihub.rangerapp.RangerApp;
 import com.ihub.rangerapp.data.sqlite.Schemas;
@@ -38,6 +38,23 @@ public class SuspiciousActivitiesServiceImpl extends DatabaseService implements 
 		values.put(Schemas.SuspiciousActivities.IMAGE_PATH, imagePath);
 		values.put(Schemas.SuspiciousActivities.LAT, lat);
 		values.put(Schemas.SuspiciousActivities.LON, lon);
+		
+		Boolean isValid = true;
+ 		
+ 		if(TextUtils.isEmpty(actionTaken))
+ 			isValid = false;
+ 		
+ 		if(TextUtils.isEmpty(extraNotes))
+ 			isValid = false;
+ 		
+ 		if(TextUtils.isEmpty(lat))
+ 			isValid = false;
+ 		
+ 		if(TextUtils.isEmpty(lon))
+ 			isValid = false;
+ 		
+ 		values.put(Schemas.REQUIRES_SYNC, isValid ? 1 : 0); //TODO check data changes
+		values.put(Schemas.CAN_SYNC, isValid ? 1 : 0);
 		
 		try {
 			
@@ -94,7 +111,7 @@ public class SuspiciousActivitiesServiceImpl extends DatabaseService implements 
 					File myFile = new File(imagePath);
 				    params.put("image", myFile);
 				    
-				} catch(FileNotFoundException e) {}
+				} catch(Exception e) {}
 				
 				                
 				ShiftService service = new ShiftServiceImpl();

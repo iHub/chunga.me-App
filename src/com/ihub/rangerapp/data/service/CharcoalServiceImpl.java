@@ -1,13 +1,13 @@
 package com.ihub.rangerapp.data.service;
 
 import java.io.File;
-import java.io.FileNotFoundException;
 import java.util.HashMap;
 import java.util.Map;
 import android.content.ContentValues;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.provider.BaseColumns;
+import android.text.TextUtils;
 
 import com.ihub.rangerapp.RangerApp;
 import com.ihub.rangerapp.data.sqlite.Schemas;
@@ -41,6 +41,24 @@ public class CharcoalServiceImpl extends DatabaseService implements CharcoalServ
  		values.put(Schemas.CharcoalBags.IMAGE_PATH, imagePath);
  		values.put(Schemas.CharcoalBags.LAT, lat);
  		values.put(Schemas.CharcoalBags.LON, lon);
+ 		
+ 		Boolean isValid = true;
+ 		
+ 		if(noOfBags == null)
+ 			isValid = false;
+ 		
+ 		if(noOfBags != null && noOfBags <= 0)
+ 			isValid = false;
+ 		
+ 		if(TextUtils.isEmpty(lat))
+ 			isValid = false;
+ 		
+ 		if(TextUtils.isEmpty(lon))
+ 			isValid = false;
+ 		
+ 		
+ 		values.put(Schemas.REQUIRES_SYNC, isValid ? 1 : 0); //TODO check data changes
+		values.put(Schemas.CAN_SYNC, isValid ? 1 : 0);
  		
  		try {
  			
@@ -84,6 +102,24 @@ public class CharcoalServiceImpl extends DatabaseService implements CharcoalServ
  		values.put(Schemas.CharcoalKilns.IMAGE_PATH, imagePath);
  		values.put(Schemas.CharcoalKilns.LAT, lat);
  		values.put(Schemas.CharcoalKilns.LON, lon);
+ 		
+ 		Boolean isValid = true;
+ 		
+ 		if(noOfKilns == null)
+ 			isValid = false;
+ 		
+ 		if(noOfKilns != null && noOfKilns <= 0)
+ 			isValid = false;
+ 		
+ 		if(TextUtils.isEmpty(lat))
+ 			isValid = false;
+ 		
+ 		if(TextUtils.isEmpty(lon))
+ 			isValid = false;
+ 		
+ 		
+ 		values.put(Schemas.REQUIRES_SYNC, isValid ? 1 : 0); //TODO check data changes
+		values.put(Schemas.CAN_SYNC, isValid ? 1 : 0);
  		
  		try {
  			
@@ -144,7 +180,7 @@ public class CharcoalServiceImpl extends DatabaseService implements CharcoalServ
 					File myFile = new File(imagePath);
 				    params.put("image", myFile);
 				    
-				} catch(FileNotFoundException e) {}
+				} catch(Exception e) {}
 				
 				                
 				ShiftService service = new ShiftServiceImpl();
@@ -211,7 +247,7 @@ public class CharcoalServiceImpl extends DatabaseService implements CharcoalServ
 					File myFile = new File(imagePath);
 				    params.put("image", myFile);
 				    
-				} catch(FileNotFoundException e) {}
+				} catch(Exception e) {}
 				
 				                
 				ShiftService service = new ShiftServiceImpl();
