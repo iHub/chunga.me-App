@@ -23,6 +23,8 @@
     <string name="title_activity_incidences">Incidents</string>
     <string name="summary">Summary</string>
     <string name="go">Go</string>
+    <string name="sync_group_progress">Syncing group {from} of {to}</string>
+    <string name="sync_record_progress">Syncing record {from} of {to}</string>
     <string name="edit">Edit</string>
     <string name="close">Close</string>
     <string name="from_gallery">From Gallery</string>
