@@ -58,7 +58,7 @@ public class IncidencesMenuAdapter extends RecyclerView.Adapter<IncidencesMenuAd
         final MenuItem item = menuItems.get(i);
         viewHolder.name.setText(item.getName());
         
-        if(mAct.getString(R.string.game_meat).equals(item.getName())) {
+        if(mAct.getString(R.string.bush_meat).equals(item.getName())) {
         	viewHolder.image.setImageResource(R.drawable.game_meat);
         } else if(mAct.getString(R.string.charcoal_burning).equals(item.getName())) {
         	viewHolder.image.setImageResource(R.drawable.charcoal);

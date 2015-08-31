@@ -87,7 +87,7 @@ public class IncidentsActivity extends ActionBarActivity {
             mainIntent.addCategory(Intent.CATEGORY_LAUNCHER);
             
             String menuNames[] = new String[]{
-            	getString(R.string.game_meat),
+            	getString(R.string.bush_meat),
             	getString(R.string.charcoal_burning),
 	    		getString(R.string.elephant_poaching),
 	    		getString(R.string.suspicious_activities)
