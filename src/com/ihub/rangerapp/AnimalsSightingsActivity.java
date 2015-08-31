@@ -153,7 +153,7 @@ public class AnimalsSightingsActivity extends CameraGPSActionBarActivity {
 					} else
 						if(isValid()) {
 							View[] fields = new View[] {herdNameView, typeSpeciesView, herdNoOfAnimalsView, adultsCountView, semiAdultsCountView, juvenilesCountView, herdDistanceSeenView, extraNotes};
-							String fieldNames[] = {"Name / Identity of Herd", "Type / Species", "Number of Anumals", "Adults", "Semi-Adults", "Juveniles", "Distance Seen", "Extra Notes"};
+							String fieldNames[] = {"Name / Identity of Herd", "Type / Species", "Number of Anumals", "Adults", "Sub-Adults", "Juveniles", "Distance Seen", "Extra Notes"};
 							
 							if(hasInvalidFields(fields)) {
 								

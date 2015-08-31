@@ -97,7 +97,7 @@ public class HerdsReport extends ReportFragment {
 		activity.addReviewItem(new SummaryItem("Type", model.getType(), "", 5));
 		activity.addReviewItem(new SummaryItem("No of Animals", model.getNoOfAnimals() + "", "", 6));
 		activity.addReviewItem(new SummaryItem("Adult Count", model.getAdultsCount() + "", "", 7));
-		activity.addReviewItem(new SummaryItem("Semi-Adults Count", model.getSemiAdultsCount() + "", "", 8));
+		activity.addReviewItem(new SummaryItem("Sub-Adults Count", model.getSemiAdultsCount() + "", "", 8));
 		activity.addReviewItem(new SummaryItem("Juvenile Count", model.getJuvenileCount() + "", "", 9));
 		activity.addReviewItem(new SummaryItem("Distance Seen (Mtrs)", model.getDistanceSeen() + "", "", 10));
 		activity.addReviewItem(new SummaryItem("Extra Notes", model.getExtraNotes(), "", 11));

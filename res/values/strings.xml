@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-
     <string name="app_name">Chunga.me</string>
     <string name="hello_world">Hello</string>
     <string name="action_settings">Settings</string>
@@ -105,7 +104,7 @@
     <string name="female">Female</string>
     <string name="female_count">Female Count</string>
     <string name="adults">Adults</string>
-    <string name="semi_adults">Semi-Adults</string>
+    <string name="sub_adults">Sub-Adults</string>
     <string name="juveniles">Juveniles</string>
     <string name="validation_ranger_name">Ranger Name is required.</string>
     <string name="validation_ranger_id">Ranger ID is required.</string>
@@ -269,7 +268,7 @@
     <string-array name="age_array">
         <item>Select Age</item>
         <item>Adult</item>
-        <item>Semi-Adult</item>
+        <item>Sub-Adult</item>
         <item>Juvenile</item>
     </string-array>
     <string-array name="sex_array">
@@ -307,7 +306,6 @@
         <item>Muddy</item>
         <item>Dry</item>
     </string-array>
-
     <string name="title_activity_elephant_poaching">Elephant Poaching</string>
     <string name="title_activity_suspicious_activities">Suspicious Activity</string>
     <string name="no_of_bags">No of Bags</string>
@@ -336,5 +334,4 @@
     <string name="title_activity_animal_reports">Animal Reports</string>
     <string name="title_activity_sync">Sync</string>
     <string name="title_activity_sync_task">Sync Task</string>
-
 </resources>

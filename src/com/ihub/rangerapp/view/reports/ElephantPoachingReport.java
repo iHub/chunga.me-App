@@ -70,14 +70,14 @@ public class ElephantPoachingReport extends ReportFragment {
 		
 		if(noOfAnimals == 1) {
 			
-			activity.addReviewItem(new SummaryItem("Age", model.getAdultsCount() == 1 ? "Adult" : (model.getSemiAdultsCount() == 1 ? "Semi-Adult" : (model.getJuvenileCount() == 1 ? "Juvenile" : "")), "", 6));
+			activity.addReviewItem(new SummaryItem("Age", model.getAdultsCount() == 1 ? "Adult" : (model.getSemiAdultsCount() == 1 ? "Sub-Adult" : (model.getJuvenileCount() == 1 ? "Juvenile" : "")), "", 6));
 			activity.addReviewItem(new SummaryItem("Gender", model.getMaleCount() == 1 ? "Male" : (model.getFemaleCount() == 1 ? "Female" : "") , "", 7));
 			
 		} else if(noOfAnimals > 0) {
 			activity.addReviewItem(new SummaryItem("Male Count", model.getMaleCount() + "", "", 6));
 			activity.addReviewItem(new SummaryItem("Female Count", model.getFemaleCount() + "", "", 7));
 			activity.addReviewItem(new SummaryItem("Adult Count", model.getAdultsCount() + "", "", 8));
-			activity.addReviewItem(new SummaryItem("Semi-Adults Count", model.getSemiAdultsCount() + "", "", 8));
+			activity.addReviewItem(new SummaryItem("Sub-Adults Count", model.getSemiAdultsCount() + "", "", 8));
 			activity.addReviewItem(new SummaryItem("Juvenile Count", model.getJuvenileCount() + "", "", 8));
 		}
 		
