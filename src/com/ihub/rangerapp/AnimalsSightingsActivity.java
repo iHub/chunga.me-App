@@ -152,9 +152,9 @@ public class AnimalsSightingsActivity extends CameraGPSActionBarActivity {
 						}
 
 					} else
-						if(isValid()) {
+						if(isHerdValid()) {
 							View[] fields = new View[] {herdNameView, typeSpeciesView, herdNoOfAnimalsView, adultsCountView, semiAdultsCountView, juvenilesCountView, herdDistanceSeenView, extraNotes};
-							String fieldNames[] = {"Name / Identity of Herd", "Type / Species", "Number of Anumals", "Adults", "Sub-Adults", "Juveniles", "Distance Seen", "Extra Notes"};
+							String fieldNames[] = {"Name / Identity of Herd", "Species", "Number of Animals", "Adults", "Sub-Adults", "Juveniles", "Distance Seen", "Extra Notes"};
 							
 							if(hasInvalidFields(fields)) {
 								
@@ -341,10 +341,29 @@ public class AnimalsSightingsActivity extends CameraGPSActionBarActivity {
 			showSaveResult(result);
 		}
 	}
+	
+	protected boolean isHerdValid() {
+		
+		Boolean isValid = isValid();
+		
+		if(isValid && herdNoOfAnimalsView.getText().toString().length() == 0) {				
+			herdNoOfAnimalsView.setError(getString(R.string.validation_no_of_animals));
+			herdNoOfAnimalsView.requestFocus();
+			isValid = false;
+		}
+		
+		if(isValid && typeSpeciesView.getText().toString().length() == 0) {
+			typeSpeciesView.setError(getString(R.string.validation_species));
+			typeSpeciesView.requestFocus();
+			isValid = false;
+		}
+		
+		return isValid;
+	}
 
 	protected void saveHerd() {
 		
-		if(isValid()) {
+		if(isHerdValid()) {
 			Integer noOfAnimals = 0;
 			Integer distanceSeen = 0;
 			

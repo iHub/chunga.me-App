@@ -316,6 +316,8 @@
     <string name="validation_leader">Leader is required!</string>
     <string name="validation_min_member_count">Members must be more than 0</string>
     <string name="validation_waypoint">Waypoint is required!</string>
+    <string name="validation_no_of_animals">No of animals is required!</string>
+    <string name="validation_species">Species is required!</string>
     <string name="validation_purpose">Purpose is required!</string>
     <string name="validation_station">Station is required!</string>
     <string name="validation_transport_mode">Transport Mode is required!</string>
