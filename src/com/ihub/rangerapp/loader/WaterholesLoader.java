@@ -38,7 +38,6 @@ public class WaterholesLoader extends DataLoader {
 				Integer id = cursor.getInt(0);
 				String name = cursor.getString(1);
 				String levelOfWater = cursor.getString(2);
-				Integer noOfAnimals = cursor.getInt(3);
 				String extraNotes = cursor.getString(4);
 				String waypoint = cursor.getString(5);
 				String imagePath = cursor.getString(6);
@@ -48,7 +47,6 @@ public class WaterholesLoader extends DataLoader {
 				model.setId(id);
 				model.setName(name);
 				model.setLevelOfWater(levelOfWater);
-				model.setNumberOfAnimals(noOfAnimals);
 				model.setExtraNotes(extraNotes);
 				model.setWaypoint(waypoint);
 				model.setImagePath(imagePath);

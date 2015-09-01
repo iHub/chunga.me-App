@@ -73,7 +73,6 @@ public class WaterholesReport extends ReportFragment {
 				if(m.getId() == rID) {
 					m.setImagePath(data.getStringExtra("imagePath"));
 					m.setName(data.getStringExtra("name"));
-					m.setNumberOfAnimals(data.getIntExtra("numberOfAnimals", 0));
 					m.setLevelOfWater(data.getStringExtra("levelOfWater"));
 					m.setExtraNotes(data.getStringExtra("extraNotes"));
 					
@@ -96,7 +95,6 @@ public class WaterholesReport extends ReportFragment {
 		activity.addReviewItem(new SummaryItem("Waypoint", model.getWaypoint(), "", 2));
 		activity.addReviewItem(new SummaryItem("Name", model.getName(), "", 4));
 		activity.addReviewItem(new SummaryItem("Water Level", model.getLevelOfWater(), "", 5));
-		activity.addReviewItem(new SummaryItem("No of Animals", model.getNumberOfAnimals() + "", "", 6));
 		activity.addReviewItem(new SummaryItem("Extra Notes", model.getExtraNotes(), "", 7));
 		
 		if(date != null)

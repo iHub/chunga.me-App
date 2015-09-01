@@ -20,7 +20,7 @@ import com.loopj.android.http.RequestParams;
 public class WaterholeServiceImpl extends DatabaseService implements WaterholeService {
 
 	@Override
-	public Map<String, Object> save(Integer id, String name, String level, Integer noOfAnimalsSeen, String extraNotes, String imagePath, String waypoint) {
+	public Map<String, Object> save(Integer id, String name, String level, String extraNotes, String imagePath, String waypoint) {
 		
 		Map<String, Object> result = new HashMap<String, Object>();
 		
@@ -35,7 +35,6 @@ public class WaterholeServiceImpl extends DatabaseService implements WaterholeSe
  		
 		values.put(Schemas.Waterhole.NAME, name);
 		values.put(Schemas.Waterhole.LEVEL_OF_WATER, level);
-		values.put(Schemas.Waterhole.NUMBER_OF_ANIMALS, noOfAnimalsSeen);
 		values.put(Schemas.Waterhole.EXTRA_NOTES, extraNotes);
 		values.put(Schemas.Waterhole.IMAGE_PATH, imagePath);
 		values.put(Schemas.Waterhole.WAYPOINT, waypoint);
@@ -93,7 +92,6 @@ public class WaterholeServiceImpl extends DatabaseService implements WaterholeSe
                 params.put("device_record_id", cursor.getInt(0));
                 String name = cursor.getString(1);
 				String levelOfWater = cursor.getString(2);
-				Integer noOfAnimals = cursor.getInt(3);
 				String extraNotes = cursor.getString(4);
 				String waypoint = cursor.getString(5);
 				String imagePath = cursor.getString(6);
@@ -101,9 +99,7 @@ public class WaterholeServiceImpl extends DatabaseService implements WaterholeSe
 				Integer shiftID = cursor.getInt(8);
 				
 				params.put("name", name);
-				params.put("level_of_water", levelOfWater);
-				params.put("no_of_animals", noOfAnimals);
-				
+				params.put("level_of_water", levelOfWater);				
 				params.put("waypoint", waypoint);
 				params.put("extra_notes", extraNotes);
 				

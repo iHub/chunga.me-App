@@ -21,7 +21,6 @@ public class WaterholesActivity extends CameraGPSActionBarActivity {
 	
 	AutoCompleteTextView waterholeName;
 	Spinner levelOfWaterSpinner;
-	EditText noOfAnimalsSeenView;
 	EditText extraNotes;
 	Button saveBtn;
 	
@@ -58,7 +57,6 @@ public class WaterholesActivity extends CameraGPSActionBarActivity {
         waterholeName.setThreshold(1);
         
         levelOfWaterSpinner = (Spinner) findViewById(R.id.levelOfWaterSpinner);
-        noOfAnimalsSeenView = (EditText) findViewById(R.id.noOfAnimalsSeenView);
         extraNotes = (EditText) findViewById(R.id.extraNotes);
         saveBtn = (Button) findViewById(R.id.saveBtn);
         
@@ -77,7 +75,7 @@ public class WaterholesActivity extends CameraGPSActionBarActivity {
 					finish();
 				else
 					if(isValid()) {
-						View[] fields = new View[] {waterholeName, levelOfWaterSpinner, noOfAnimalsSeenView, extraNotes};
+						View[] fields = new View[] {waterholeName, levelOfWaterSpinner, extraNotes};
 						
 						if(hasInvalidFields(fields)) {
 							
@@ -114,9 +112,6 @@ public class WaterholesActivity extends CameraGPSActionBarActivity {
             			levelOfWaterSpinner.setSelection(i);
             	}
         	
-        	if(data.hasExtra("numberOfAnimals"))
-            	noOfAnimalsSeenView.setText(data.getIntExtra("numberOfAnimals", 0) + "");
-        	
         	if(!TextUtils.isEmpty(getIntent().getStringExtra("extraNotes")))
         		extraNotes.setText(getIntent().getStringExtra("extraNotes"));
         	
@@ -132,12 +127,6 @@ public class WaterholesActivity extends CameraGPSActionBarActivity {
 	
 	protected void save() {
 		
-		Integer noOfAnimals = 0;
-		
-		try {
-			noOfAnimals = Integer.valueOf(noOfAnimalsSeenView.getText().toString());
-		} catch (Exception e) {}
-		
 		Integer id = -1;
 		if(mode == 2)
 			id = getIntent().getIntExtra("id", -1);
@@ -149,7 +138,6 @@ public class WaterholesActivity extends CameraGPSActionBarActivity {
 			id,
 			waterholeName.getText().toString(), 
 			level, 
-			noOfAnimals, 
 			extraNotes.getText().toString(), 
 			imagePath, 
 			waypointView.getText().toString());
@@ -160,7 +148,6 @@ public class WaterholesActivity extends CameraGPSActionBarActivity {
 			data.putExtra("imagePath", imagePath);
 			data.putExtra("id", id);
 			data.putExtra("name", waterholeName.getText().toString());
-			data.putExtra("numberOfAnimals", noOfAnimals);
 			data.putExtra("levelOfWater", level);
 			data.putExtra("extraNotes", extraNotes.getText().toString());
 			
@@ -172,6 +159,6 @@ public class WaterholesActivity extends CameraGPSActionBarActivity {
 	
 	@Override
 	public String[] getLabels() {
-		return new String[] {"Name of Waterhole", "Level of Water", "No of Animals Seen", "Extra Notes"};
+		return new String[] {"Name of Waterhole", "Level of Water", "Extra Notes"};
 	}
 }

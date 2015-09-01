@@ -56,21 +56,7 @@
 	            android:id="@+id/levelOfWaterSpinner"
 	            android:layout_width="match_parent"
 	            android:layout_height="wrap_content"
-	            android:layout_marginBottom="10dp" />
-	        
-	        <TextView
-	            android:layout_width="match_parent"
-	            android:layout_height="wrap_content"
-	            android:text="@string/no_of_animals_seen"
-	            android:textSize="18sp"
-	            android:textColor="@color/bg" />
-		    
-		    <EditText
-		        android:id="@+id/noOfAnimalsSeenView"
-		        android:layout_width="match_parent"
-		        android:layout_height="wrap_content"
-		        android:layout_marginBottom="15dp"
-		        android:inputType="number" />
+	            android:layout_marginBottom="15dp" />
 			    
 		    <TextView
 		        android:layout_width="match_parent"

@@ -10,7 +10,6 @@ public interface WaterholeService {
 			Integer id,
 			String name,
 			String level,
-			Integer noOfAnimalsSeen,
 			String extraNotes,
 			String imagePath,
 			String waypoint);
