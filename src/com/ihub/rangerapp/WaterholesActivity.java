@@ -120,8 +120,7 @@ public class WaterholesActivity extends CameraGPSActionBarActivity {
         	if(!TextUtils.isEmpty(getIntent().getStringExtra("extraNotes")))
         		extraNotes.setText(getIntent().getStringExtra("extraNotes"));
         	
-        	latView.setText(getIntent().getStringExtra("lat"));
-            longView.setText(getIntent().getStringExtra("lon"));
+        	waypointView.setText(getIntent().getStringExtra("waypoint"));
             
             if(mode == 2) {
             	saveBtn.setText(getString(R.string.edit));
@@ -153,8 +152,7 @@ public class WaterholesActivity extends CameraGPSActionBarActivity {
 			noOfAnimals, 
 			extraNotes.getText().toString(), 
 			imagePath, 
-			latView.getText().toString(),
-			longView.getText().toString());
+			waypointView.getText().toString());
 		
 		if(mode == 2) {
 			Intent data = new Intent();

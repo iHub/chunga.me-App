@@ -117,10 +117,7 @@
     <string name="weather">Weather</string>
     <string name="purpose">Purpose</string>
     <string name="start_wp">Start WP</string>
-    <string name="lat">Lat</string>
-    <string name="lon">Long</string>
-    <string name="latitude">Latitude</string>
-    <string name="longitude">Longitude</string>
+    <string name="waypoint">Waypoint</string>
     <string name="end_wp">End WP</string>
     <string name="elephant_poaching">Elephant Poaching</string>
     <string name="bush_meat">Bush Meat</string>
@@ -319,8 +316,7 @@
     <string name="tusks_present">Tusks Present</string>
     <string name="validation_leader">Leader is required!</string>
     <string name="validation_min_member_count">Members must be more than 0</string>
-    <string name="validation_lat">Latitude is required!</string>
-    <string name="validation_long">Longitude is required!</string>
+    <string name="validation_waypoint">Waypoint is required!</string>
     <string name="validation_purpose">Purpose is required!</string>
     <string name="validation_station">Station is required!</string>
     <string name="validation_transport_mode">Transport Mode is required!</string>

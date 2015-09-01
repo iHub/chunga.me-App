@@ -20,7 +20,7 @@ import com.loopj.android.http.RequestParams;
 public class WaterholeServiceImpl extends DatabaseService implements WaterholeService {
 
 	@Override
-	public Map<String, Object> save(Integer id, String name, String level, Integer noOfAnimalsSeen, String extraNotes, String imagePath, String lat, String lon) {
+	public Map<String, Object> save(Integer id, String name, String level, Integer noOfAnimalsSeen, String extraNotes, String imagePath, String waypoint) {
 		
 		Map<String, Object> result = new HashMap<String, Object>();
 		
@@ -38,8 +38,7 @@ public class WaterholeServiceImpl extends DatabaseService implements WaterholeSe
 		values.put(Schemas.Waterhole.NUMBER_OF_ANIMALS, noOfAnimalsSeen);
 		values.put(Schemas.Waterhole.EXTRA_NOTES, extraNotes);
 		values.put(Schemas.Waterhole.IMAGE_PATH, imagePath);
-		values.put(Schemas.Waterhole.LAT, lat);
-		values.put(Schemas.Waterhole.LON, lon);
+		values.put(Schemas.Waterhole.WAYPOINT, waypoint);
 		
 		Boolean isValid = true;
  		
@@ -49,12 +48,8 @@ public class WaterholeServiceImpl extends DatabaseService implements WaterholeSe
  		if(TextUtils.isEmpty(level))
  			isValid = false;
  		
- 		if(TextUtils.isEmpty(lat))
- 			isValid = false;
- 		
- 		if(TextUtils.isEmpty(lon))
- 			isValid = false;
- 		
+ 		if(TextUtils.isEmpty(waypoint))
+ 			isValid = false; 		
  		
  		values.put(Schemas.REQUIRES_SYNC, isValid ? 1 : 0); //TODO check data changes
 		values.put(Schemas.CAN_SYNC, isValid ? 1 : 0);
@@ -100,18 +95,16 @@ public class WaterholeServiceImpl extends DatabaseService implements WaterholeSe
 				String levelOfWater = cursor.getString(2);
 				Integer noOfAnimals = cursor.getInt(3);
 				String extraNotes = cursor.getString(4);
-				String latitude = cursor.getString(5);
-				String longitude = cursor.getString(6);
-				String imagePath = cursor.getString(7);
-				String dateCreated = cursor.getString(8);
-				Integer shiftID = cursor.getInt(9);
+				String waypoint = cursor.getString(5);
+				String imagePath = cursor.getString(6);
+				String dateCreated = cursor.getString(7);
+				Integer shiftID = cursor.getInt(8);
 				
 				params.put("name", name);
 				params.put("level_of_water", levelOfWater);
 				params.put("no_of_animals", noOfAnimals);
 				
-				params.put("lat", latitude);
-				params.put("lon", longitude);
+				params.put("waypoint", waypoint);
 				params.put("extra_notes", extraNotes);
 				
 				try {

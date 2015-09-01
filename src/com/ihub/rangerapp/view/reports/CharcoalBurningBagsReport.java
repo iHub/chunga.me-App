@@ -93,12 +93,11 @@ public class CharcoalBurningBagsReport extends ReportFragment {
 		
 		activity.clearReviewItems();
 		activity.addReviewItem(new SummaryItem("Image", model.getImagePath(), "", 1));
-		activity.addReviewItem(new SummaryItem("Latitude", model.getLatitude(), "", 2));
-		activity.addReviewItem(new SummaryItem("Longitude", model.getLongitude(), "", 3));
-		activity.addReviewItem(new SummaryItem("No of Bags", model.getNoOfBags() + "", "", 4));
-		activity.addReviewItem(new SummaryItem("Mode of Transport", model.getModeOfTransport(), "", 5));
-		activity.addReviewItem(new SummaryItem("Action Taken", model.getActionTaken(), "", 6));
-		activity.addReviewItem(new SummaryItem("Extra Notes", model.getExtraNotes(), "", 7));
+		activity.addReviewItem(new SummaryItem("Waypoint", model.getWaypoint(), "", 2));
+		activity.addReviewItem(new SummaryItem("No of Bags", model.getNoOfBags() + "", "", 3));
+		activity.addReviewItem(new SummaryItem("Mode of Transport", model.getModeOfTransport(), "", 4));
+		activity.addReviewItem(new SummaryItem("Action Taken", model.getActionTaken(), "", 5));
+		activity.addReviewItem(new SummaryItem("Extra Notes", model.getExtraNotes(), "", 6));
 		
 		if(date != null)
 			activity.addReviewItem(new SummaryItem("Date Created", new SimpleDateFormat( "yyyy-MM-dd" ).format(date), "", 9));

@@ -4,19 +4,15 @@ import java.io.File;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.Map;
-import com.ihub.rangerapp.location.Coordinate;
 import eu.inmite.android.lib.validations.form.annotations.NotEmpty;
 import android.app.Activity;
 import android.app.AlertDialog;
-import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.database.Cursor;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.location.Location;
-import android.location.LocationListener;
-import android.location.LocationManager;
 import android.media.ThumbnailUtils;
 import android.net.Uri;
 import android.os.Bundle;
@@ -28,7 +24,6 @@ import android.support.v7.widget.PopupMenu;
 import android.support.v7.widget.PopupMenu.OnMenuItemClickListener;
 import android.text.TextUtils;
 import android.util.Log;
-import android.view.Gravity;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.EditText;
@@ -37,7 +32,6 @@ import android.widget.ImageView;
 import android.widget.ProgressBar;
 import android.widget.Spinner;
 import android.widget.TextView;
-import android.widget.Toast;
 
 public class CameraGPSActionBarActivity extends ActionBarActivity {
 	
@@ -46,18 +40,10 @@ public class CameraGPSActionBarActivity extends ActionBarActivity {
 	
 	ProgressBar progressBar;
 	
-	@NotEmpty(messageId = R.string.validation_lat, order = 1)
-	EditText latView;
-	
-	@NotEmpty(messageId = R.string.validation_long, order = 2)
-	EditText longView;
+	@NotEmpty(messageId = R.string.validation_waypoint, order = 1)
+	EditText waypointView;
 	
 	ImageView imageView;
-	
-	LocationManager locationManager;
-	LocationListener locationListener;
-	
-	Location lastLocation;
 	
 	String cameraNewImageUrl = "";
 	String imagePath;
@@ -71,99 +57,27 @@ public class CameraGPSActionBarActivity extends ActionBarActivity {
 		Intent data = getIntent();
         mode = data.getIntExtra("mode", 1);
         
-		initLocationManager();
-	}
-	
-	
-	
-	private void initLocationManager() {
-		
-		locationManager = (LocationManager) this.getSystemService(Context.LOCATION_SERVICE);
-		
-		if ( !locationManager.isProviderEnabled( LocationManager.GPS_PROVIDER ) ) {
-	        buildAlertMessageNoGps();
-	    }
-	    startLocationListener();
-	}
-	
-	private void startLocationListener() {
-		locationListener = new LocationListener() {
-			public void onLocationChanged(Location location) {
-
-				lastLocation = location;
-				
-				if(mode == 1) {
-					
-					if(latView != null) {
-						latView.setText(String.valueOf(location.getLatitude()));
-						longView.setText(String.valueOf(location.getLongitude()));
-					}
-					
-					if(progressBar != null)
-						progressBar.setIndeterminate(false);
-				}
-		    }
-
-		    public void onStatusChanged(String provider, int status, Bundle extras) {}
-
-		    public void onProviderEnabled(String provider) {}
-
-		    public void onProviderDisabled(String provider) {}
-		};
-		locationManager.requestLocationUpdates(LocationManager.NETWORK_PROVIDER, 0, 0, locationListener);
-	}
-
-
-
-	private void buildAlertMessageNoGps() {
-	    final AlertDialog.Builder builder = new AlertDialog.Builder(this);
-	    builder.setMessage("Your GPS seems to be disabled, do you want to enable it?")
-	           .setCancelable(false)
-	           .setPositiveButton("Yes", new DialogInterface.OnClickListener() {
-	               public void onClick(@SuppressWarnings("unused") final DialogInterface dialog, @SuppressWarnings("unused") final int id) {
-	                   startActivityForResult(new Intent(android.provider.Settings.ACTION_LOCATION_SOURCE_SETTINGS), 323);
-	               }
-	           })
-	           .setNegativeButton("No", new DialogInterface.OnClickListener() {
-	               public void onClick(final DialogInterface dialog, @SuppressWarnings("unused") final int id) {
-	                    dialog.cancel();
-	               }
-	           });
-	    final AlertDialog alert = builder.create();
-	    alert.show();
 	}
 	
 	@Override
 	protected void onPause() {
 		super.onPause();
-		if(locationListener != null)
-			locationManager.removeUpdates(locationListener);
 	}
-	//http://stackoverflow.com/questions/17519198/how-to-get-the-current-location-latitude-and-longitude-in-android
-	//TODO
 	
 	@Override
 	protected void onResume() {
 		super.onResume();
-		
-		if(locationManager == null)
-			initLocationManager();
-		
-		if(locationListener != null)
-			locationManager.requestLocationUpdates(LocationManager.NETWORK_PROVIDER, 0, 0, locationListener);
 	}
 
 	protected void initViews() {
 		gpsBtn = (ImageButton) findViewById(R.id.gpsBtn);
 		cameraBtn = (ImageButton) findViewById(R.id.cameraBtn);
 		
-		latView = (EditText) findViewById(R.id.latView);
-		longView = (EditText) findViewById(R.id.longView);
+		waypointView = (EditText) findViewById(R.id.waypointView);
 		
 		imageView = (ImageView) findViewById(R.id.imageView);
 		
 		progressBar = (ProgressBar) findViewById(R.id.progressBar);
-		progressBar.setIndeterminate(mode == 1);
 		
 		cameraBtn.setOnClickListener(new View.OnClickListener() {
 			
@@ -193,28 +107,7 @@ public class CameraGPSActionBarActivity extends ActionBarActivity {
 			
 			if(getIntent().hasExtra("wp") && !TextUtils.isEmpty(getIntent().getStringExtra("wp"))) {
 			}
-		}
-		
-		if(mode != 1) {
-			
-			gpsBtn.setOnClickListener(new View.OnClickListener() {
-				@Override
-				public void onClick(View v) {
-					String l = "";
-					if(lastLocation != null)
-						l = lastLocation.getLatitude() + "     " + lastLocation.getLatitude();
-					
-					Location lc  = locationManager.getLastKnownLocation(LocationManager.NETWORK_PROVIDER);
-					
-					if(lc != null) {
-						latView.setText(String.valueOf(lc.getLatitude()));
-						longView.setText(String.valueOf(lc.getLongitude()));
-					}
-				}
-			});
-		}
-		
-		
+		}		
 	}
 	
 	protected void zoom() {
@@ -227,11 +120,6 @@ public class CameraGPSActionBarActivity extends ActionBarActivity {
 				startActivity(intent);
 			}
 		}
-	}
-	
-	public String locationToString(Location location) {
-		Coordinate c = new Coordinate(location.getLatitude(), location.getLongitude());
-		return c.toString();
 	}
 	
 	private Uri getOutputMediaFileUri(){
@@ -378,20 +266,11 @@ public class CameraGPSActionBarActivity extends ActionBarActivity {
 					
 		Boolean isValid = true;
 		
-		if(latView.getText().toString().length() == 0) {
+		if(waypointView.getText().toString().length() == 0) {
 			
-			latView.setError(getString(R.string.validation_lat));
-			latView.requestFocus();
+			waypointView.setError(getString(R.string.validation_waypoint));
+			waypointView.requestFocus();
 			isValid = false;
-		}
-		
-		if(isValid) {
-			if(longView.getText().toString().length() == 0) {
-				
-				longView.setError(getString(R.string.validation_long));
-				longView.requestFocus();
-				isValid = false;
-			}
 		}
 						
 //		if(isValid) {

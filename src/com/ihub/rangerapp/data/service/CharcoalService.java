@@ -13,8 +13,7 @@ public interface CharcoalService {
 		String actionTaken,
 		String extraNotes,
 		String imagePath,
-		String lat,
-		String lon
+		String waypoint
 	);
 	
 	public void syncBags(Integer id, AsyncHttpResponseHandler handler);
@@ -27,8 +26,7 @@ public interface CharcoalService {
 		String actionTaken,
 		String extraNotes,
 		String imagePath,
-		String lat,
-		String lon
+		String waypoint
 	);
 	
 	public void syncKilns(Integer id, AsyncHttpResponseHandler handler);

@@ -19,7 +19,7 @@ import com.loopj.android.http.RequestParams;
 public class AnimalSightingsServiceImpl extends DatabaseService implements AnimalSightingsService {
 
 	@Override
-	public Map<String, Object> saveIndividualAnimal(Integer id, String name, String gender, String age, Integer distanceSeen, String extraNotes, String imagePath, String lat, String lon) {
+	public Map<String, Object> saveIndividualAnimal(Integer id, String name, String gender, String age, Integer distanceSeen, String extraNotes, String imagePath, String waypoint) {
 		
 		Map<String, Object> result = new HashMap<String, Object>();
 		
@@ -38,20 +38,15 @@ public class AnimalSightingsServiceImpl extends DatabaseService implements Anima
  		values.put(Schemas.IndividualAnimalSighting.DISTANCE_SEEN, distanceSeen);
  		values.put(Schemas.IndividualAnimalSighting.EXTRA_NOTES, extraNotes);
  		values.put(Schemas.IndividualAnimalSighting.IMAGE_PATH, imagePath);
- 		values.put(Schemas.IndividualAnimalSighting.LAT, lat);
- 		values.put(Schemas.IndividualAnimalSighting.LON, lon);
+ 		values.put(Schemas.IndividualAnimalSighting.WAYPOINT, waypoint);
  		
  		Boolean isValid = true;
  		
  		if(TextUtils.isEmpty(name))
  			isValid = false;
  		
- 		if(TextUtils.isEmpty(lat))
- 			isValid = false;
- 		
- 		if(TextUtils.isEmpty(lon))
- 			isValid = false;
- 		
+ 		if(TextUtils.isEmpty(waypoint))
+ 			isValid = false; 		
  		
  		values.put(Schemas.REQUIRES_SYNC, isValid ? 1 : 0); //TODO check data changes
 		values.put(Schemas.CAN_SYNC, isValid ? 1 : 0);
@@ -75,7 +70,7 @@ public class AnimalSightingsServiceImpl extends DatabaseService implements Anima
 	}
 	
 	@Override
-	public Map<String, Object> saveHerd(Integer id, String name, String species, Integer noOfAnimals, Integer adultsCount, Integer semiAdultsCount, Integer juvenileCount, Integer distanceSeen, String extraNotes, String imagePath, String lat, String lon) {
+	public Map<String, Object> saveHerd(Integer id, String name, String species, Integer noOfAnimals, Integer adultsCount, Integer semiAdultsCount, Integer juvenileCount, Integer distanceSeen, String extraNotes, String imagePath, String waypoint) {
 		
 		Map<String, Object> result = new HashMap<String, Object>();
 		
@@ -99,18 +94,14 @@ public class AnimalSightingsServiceImpl extends DatabaseService implements Anima
  		values.put(Schemas.AnimalHerdSighting.DISTANCE_SEEN, distanceSeen);
  		values.put(Schemas.AnimalHerdSighting.EXTRA_NOTES, extraNotes);
  		values.put(Schemas.AnimalHerdSighting.IMAGE_PATH, imagePath);
- 		values.put(Schemas.AnimalHerdSighting.LAT, lat);
- 		values.put(Schemas.AnimalHerdSighting.LON, lon);
+ 		values.put(Schemas.AnimalHerdSighting.WAYPOINT, waypoint);
  		
  		Boolean isValid = true;
  		
  		if(TextUtils.isEmpty(name))
  			isValid = false;
  		
- 		if(TextUtils.isEmpty(lat))
- 			isValid = false;
- 		
- 		if(TextUtils.isEmpty(lon))
+ 		if(TextUtils.isEmpty(waypoint))
  			isValid = false;
  		
  		if(noOfAnimals == null)
@@ -164,19 +155,17 @@ public class AnimalSightingsServiceImpl extends DatabaseService implements Anima
 				Integer distanceSeen = cursor.getInt(4);
 				
 				String extraNotes = cursor.getString(5);
-				String latitude = cursor.getString(6);
-				String longitude = cursor.getString(7);
-				String imagePath = cursor.getString(8);
-				String dateCreated = cursor.getString(9);
-				Integer shiftID = cursor.getInt(10);
+				String waypoint = cursor.getString(6);
+				String imagePath = cursor.getString(7);
+				String dateCreated = cursor.getString(8);
+				Integer shiftID = cursor.getInt(9);
 				
 				params.put("gender", gender);
 				params.put("age", age);
 				params.put("distance_seen", distanceSeen);
 				
 				params.put("animal", animal);
-				params.put("lat", latitude);
-				params.put("lon", longitude);
+				params.put("waypoint", waypoint);
 				params.put("extra_notes", extraNotes);
 				
 				try {
@@ -245,15 +234,13 @@ public class AnimalSightingsServiceImpl extends DatabaseService implements Anima
 				params.put("distance_seen", distanceSeen + "");
 				
 				String extraNotes = cursor.getString(8);
-				String latitude = cursor.getString(9);
-				String longitude = cursor.getString(10);
-				String imagePath = cursor.getString(11);
-				String dateCreated = cursor.getString(12);
-				Integer shiftID = cursor.getInt(13);
+				String waypoint = cursor.getString(9);
+				String imagePath = cursor.getString(10);
+				String dateCreated = cursor.getString(11);
+				Integer shiftID = cursor.getInt(12);
 				
 				
-				params.put("lat", latitude);
-				params.put("lon", longitude);
+				params.put("waypoint", waypoint);
 				params.put("extra_notes", extraNotes);
 				
 				try {

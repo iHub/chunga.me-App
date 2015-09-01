@@ -150,8 +150,7 @@ public class CharcoalBurningActivity extends CameraGPSActionBarActivity {
         if(mode != 1) {
         	radioGroup.setVisibility(View.GONE);
         	
-        	latView.setText(getIntent().getStringExtra("lat"));
-            longView.setText(getIntent().getStringExtra("lon"));
+        	waypointView.setText(getIntent().getStringExtra("waypoint"));
         	
         	if(mode == 2) {
             	saveBtn.setText(getString(R.string.edit));
@@ -247,8 +246,7 @@ public class CharcoalBurningActivity extends CameraGPSActionBarActivity {
 					kilnActionTaken, 
 					extraNotes.getText().toString(), 
 					imagePath, 
-					latView.getText().toString(),
-					longView.getText().toString());
+					waypointView.getText().toString());
 			
 			if(mode == 2) {
 				Intent data = new Intent();
@@ -293,8 +291,7 @@ public class CharcoalBurningActivity extends CameraGPSActionBarActivity {
 					bagsActionTaken, 
 					extraNotes.getText().toString(), 
 					imagePath,
-					latView.getText().toString(),
-					longView.getText().toString());
+					waypointView.getText().toString());
 			
 			if(mode == 2) {
 				Intent data = new Intent();

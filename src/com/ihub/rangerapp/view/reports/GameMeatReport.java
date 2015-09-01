@@ -58,8 +58,7 @@ public class GameMeatReport extends ReportFragment {
 		
 		activity.clearReviewItems();
 		activity.addReviewItem(new SummaryItem("Image", model.getImagePath(), "", 1));
-		activity.addReviewItem(new SummaryItem("Latitude", model.getLatitude(), "", 1));
-		activity.addReviewItem(new SummaryItem("Longitude", model.getLongitude(), "", 2));
+		activity.addReviewItem(new SummaryItem("Waypoint", model.getWaypoint(), "", 1));
 		activity.addReviewItem(new SummaryItem("Animal", model.getAnimal(), "", 3));
 		activity.addReviewItem(new SummaryItem("No of Animals", model.getNoOfAnimals() + "", "", 4));
 		activity.addReviewItem(new SummaryItem("Action Taken", model.getActionTaken(), "", 5));

@@ -42,17 +42,15 @@ public class SuspiciousActivitiesLoader extends DataLoader {
 				Integer id = cursor.getInt(0);
 				String actionTaken = cursor.getString(1);
 				String extraNotes = cursor.getString(2);
-				String latitude = cursor.getString(3);
-				String longitude = cursor.getString(4);
-				String imagePath = cursor.getString(5);
-				String dateCreated = cursor.getString(6);
-												
+				String waypoint = cursor.getString(3);
+				String imagePath = cursor.getString(4);
+				String dateCreated = cursor.getString(5);
+				
 				SuspiciousActivityModel  model = new SuspiciousActivityModel();
 				model.setId(id);
 				model.setActionTaken(actionTaken);
 				model.setExtraNotes(extraNotes);
-				model.setLatitude(latitude);
-				model.setLongitude(longitude);
+				model.setWaypoint(waypoint);
 				model.setImagePath(imagePath);
 				model.setDateCreated(dateCreated);
 				

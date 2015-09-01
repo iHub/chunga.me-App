@@ -31,8 +31,7 @@ public class ShiftServiceImpl extends DatabaseService implements ShiftService {
 			String route, 
 			String mode, 
 			String weather, 
-			String lat, 
-			String lon, 
+			String waypoint,
 			String purpose) {
 		
 		Map<String, Object> result = new HashMap<String, Object>();
@@ -58,17 +57,13 @@ public class ShiftServiceImpl extends DatabaseService implements ShiftService {
  		values.put(Schemas.Shift.ROUTE, route);
  		values.put(Schemas.Shift.MODE, mode);
  		values.put(Schemas.Shift.WEATHER, weather);
- 		values.put(Schemas.Shift.START_LAT, lat);
- 		values.put(Schemas.Shift.START_LON, lon);
+ 		values.put(Schemas.Shift.WAYPOINT, waypoint);
  		values.put(Schemas.Shift.PURPOSE, purpose);
  		
 
  		Boolean isValid = true;
  		
- 		if(TextUtils.isEmpty(lat))
- 			isValid = false;
- 		
- 		if(TextUtils.isEmpty(lon))
+ 		if(TextUtils.isEmpty(waypoint))
  			isValid = false;
  		
  		
@@ -116,7 +111,7 @@ public class ShiftServiceImpl extends DatabaseService implements ShiftService {
 	}
 
 	@Override
-	public void endCurrentShift(String lat, String lon) {
+	public void endCurrentShift(String waypoint) {
 		
 		SQLiteDatabase db = getWritableDatabase(RangerApp.get());
 		
@@ -125,8 +120,7 @@ public class ShiftServiceImpl extends DatabaseService implements ShiftService {
 			
 			ContentValues args = new ContentValues();
 		    args.put(Schemas.Shift.END_TIME, new Date().getTime());
-		    args.put(Schemas.Shift.END_LAT, lat);
-		    args.put(Schemas.Shift.END_LON, lon);
+		    args.put(Schemas.Shift.END_WAYPOINT, waypoint);
 		    
 	 		args.put(Schemas.REQUIRES_SYNC, 1);
 			args.put(Schemas.CAN_SYNC, 1);
@@ -225,11 +219,9 @@ public class ShiftServiceImpl extends DatabaseService implements ShiftService {
         			e.printStackTrace();
         		}  
                 
-                params.put("start_lat", cursor.getString(12));
-                params.put("start_lon", cursor.getString(13));
-                params.put("end_lat", cursor.getString(14));
-                params.put("end_lon", cursor.getString(15));
-                params.put("ranger_id", cursor.getString(16));
+                params.put("start_waypoint", cursor.getString(12));
+                params.put("end_waypoint", cursor.getString(13));
+                params.put("ranger_id", cursor.getString(14));
             }
         }finally {
             cursor.close();

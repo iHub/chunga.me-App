@@ -47,10 +47,9 @@ public class IndividualAnimalsLoader extends DataLoader {
 				Integer distanceSeen = cursor.getInt(4);
 				
 				String extraNotes = cursor.getString(5);
-				String latitude = cursor.getString(6);
-				String longitude = cursor.getString(7);
-				String imagePath = cursor.getString(8);
-				String dateCreated = cursor.getString(9);
+				String waypoint = cursor.getString(6);
+				String imagePath = cursor.getString(7);
+				String dateCreated = cursor.getString(8);
 												
 				IndividualAnimalModel  model = new IndividualAnimalModel();
 				model.setId(id);
@@ -59,8 +58,7 @@ public class IndividualAnimalsLoader extends DataLoader {
 				model.setAge(age);
 				model.setDistanceSeen(distanceSeen);
 				model.setExtraNotes(extraNotes);
-				model.setLatitude(latitude);
-				model.setLongitude(longitude);
+				model.setWaypoint(waypoint);
 				model.setImagePath(imagePath);
 				model.setDateCreated(dateCreated);
 				

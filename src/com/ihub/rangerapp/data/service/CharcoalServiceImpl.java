@@ -20,7 +20,7 @@ public class CharcoalServiceImpl extends DatabaseService implements CharcoalServ
 
 	@Override
 	public Map<String, Object> saveBagsData(Integer id, Integer noOfBags, String mode,
-		String actionTaken, String extraNotes, String imagePath, String lat, String lon) {
+		String actionTaken, String extraNotes, String imagePath, String waypoint) {
 		
 		Map<String, Object> result = new HashMap<String, Object>();
 		
@@ -39,8 +39,7 @@ public class CharcoalServiceImpl extends DatabaseService implements CharcoalServ
  		values.put(Schemas.CharcoalBags.ACTION_TAKEN, actionTaken);
  		values.put(Schemas.CharcoalBags.EXTRA_NOTES, extraNotes);
  		values.put(Schemas.CharcoalBags.IMAGE_PATH, imagePath);
- 		values.put(Schemas.CharcoalBags.LAT, lat);
- 		values.put(Schemas.CharcoalBags.LON, lon);
+ 		values.put(Schemas.CharcoalBags.WAYPOINT, waypoint);
  		
  		Boolean isValid = true;
  		
@@ -50,12 +49,8 @@ public class CharcoalServiceImpl extends DatabaseService implements CharcoalServ
  		if(noOfBags != null && noOfBags <= 0)
  			isValid = false;
  		
- 		if(TextUtils.isEmpty(lat))
- 			isValid = false;
- 		
- 		if(TextUtils.isEmpty(lon))
- 			isValid = false;
- 		
+ 		if(TextUtils.isEmpty(waypoint))
+ 			isValid = false; 		
  		
  		values.put(Schemas.REQUIRES_SYNC, isValid ? 1 : 0); //TODO check data changes
 		values.put(Schemas.CAN_SYNC, isValid ? 1 : 0);
@@ -81,7 +76,7 @@ public class CharcoalServiceImpl extends DatabaseService implements CharcoalServ
 	@Override
 	public Map<String, Object> saveKilns(Integer id, Integer noOfKilns,
 		String freshnessLevels, String treeUsed, String actionTaken,
-		String extraNotes, String imagePath, String lat, String lon) {
+		String extraNotes, String imagePath, String waypoint) {
 		
 		Map<String, Object> result = new HashMap<String, Object>();
 		
@@ -100,8 +95,7 @@ public class CharcoalServiceImpl extends DatabaseService implements CharcoalServ
  		values.put(Schemas.CharcoalKilns.ACTION_TAKEN, actionTaken);
  		values.put(Schemas.CharcoalKilns.EXTRA_NOTES, extraNotes);
  		values.put(Schemas.CharcoalKilns.IMAGE_PATH, imagePath);
- 		values.put(Schemas.CharcoalKilns.LAT, lat);
- 		values.put(Schemas.CharcoalKilns.LON, lon);
+ 		values.put(Schemas.CharcoalKilns.WAYPOINT, waypoint);
  		
  		Boolean isValid = true;
  		
@@ -111,12 +105,8 @@ public class CharcoalServiceImpl extends DatabaseService implements CharcoalServ
  		if(noOfKilns != null && noOfKilns <= 0)
  			isValid = false;
  		
- 		if(TextUtils.isEmpty(lat))
+ 		if(TextUtils.isEmpty(waypoint))
  			isValid = false;
- 		
- 		if(TextUtils.isEmpty(lon))
- 			isValid = false;
- 		
  		
  		values.put(Schemas.REQUIRES_SYNC, isValid ? 1 : 0); //TODO check data changes
 		values.put(Schemas.CAN_SYNC, isValid ? 1 : 0);
@@ -163,16 +153,14 @@ public class CharcoalServiceImpl extends DatabaseService implements CharcoalServ
 				
 				String actionTaken = cursor.getString(3);
 				String extraNotes = cursor.getString(4);
-				String latitude = cursor.getString(5);
-				String longitude = cursor.getString(6);
-				String imagePath = cursor.getString(7);
-				String dateCreated = cursor.getString(8);
-				Integer shiftID = cursor.getInt(9);
+				String waypoint = cursor.getString(5);
+				String imagePath = cursor.getString(6);
+				String dateCreated = cursor.getString(7);
+				Integer shiftID = cursor.getInt(8);
 				
 				params.put("mode_of_transport", modeOfTransport);
 				params.put("no_of_bags", noOfBags + "");
-				params.put("lat", latitude);
-				params.put("lon", longitude);
+				params.put("waypoint", waypoint);
 				params.put("action_taken", actionTaken);
 				params.put("extra_notes", extraNotes);
 				
@@ -227,19 +215,17 @@ public class CharcoalServiceImpl extends DatabaseService implements CharcoalServ
 				
 				String actionTaken = cursor.getString(4);
 				String extraNotes = cursor.getString(5);
-				String latitude = cursor.getString(6);
-				String longitude = cursor.getString(7);
-				String imagePath = cursor.getString(8);
-				String dateCreated = cursor.getString(9);
-				Integer shiftID = cursor.getInt(10);
+				String waypoint = cursor.getString(6);
+				String imagePath = cursor.getString(7);
+				String dateCreated = cursor.getString(8);
+				Integer shiftID = cursor.getInt(9);
 				
 				
 				params.put("no_of_kilns", noOfKilns + "");
 				params.put("freshness_levels", freshnessLevels);
 				params.put("tree_used", treeUsed);
 				
-				params.put("lat", latitude);
-				params.put("lon", longitude);
+				params.put("waypoint", waypoint);
 				params.put("action_taken", actionTaken);
 				params.put("extra_notes", extraNotes);
 				

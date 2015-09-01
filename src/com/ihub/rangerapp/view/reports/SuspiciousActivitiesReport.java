@@ -87,8 +87,7 @@ AmazingAdapter adapter;
 		
 		activity.clearReviewItems();
 		activity.addReviewItem(new SummaryItem("Image", model.getImagePath(), "", 1));
-		activity.addReviewItem(new SummaryItem("Latitude", model.getLatitude(), "", 2));
-		activity.addReviewItem(new SummaryItem("Longitude", model.getLongitude(), "", 3));
+		activity.addReviewItem(new SummaryItem("Waypoint", model.getWaypoint(), "", 2));
 		activity.addReviewItem(new SummaryItem("Action Taken", model.getActionTaken(), "", 4));
 		activity.addReviewItem(new SummaryItem("Extra Notes", model.getExtraNotes(), "", 5));
 		

@@ -92,8 +92,7 @@ public class IndividualAnimalsReport extends ReportFragment {
 		
 		activity.clearReviewItems();
 		activity.addReviewItem(new SummaryItem("Image", model.getImagePath(), "", 1));
-		activity.addReviewItem(new SummaryItem("Latitude", model.getLatitude(), "", 2));
-		activity.addReviewItem(new SummaryItem("Longitude", model.getLongitude(), "", 3));
+		activity.addReviewItem(new SummaryItem("Waypoint", model.getWaypoint(), "", 2));
 		activity.addReviewItem(new SummaryItem("Animal", model.getAnimal(), "", 4));
 		activity.addReviewItem(new SummaryItem("Gender", model.getGender(), "", 5));
 		activity.addReviewItem(new SummaryItem("Age", model.getAge(), "", 6));

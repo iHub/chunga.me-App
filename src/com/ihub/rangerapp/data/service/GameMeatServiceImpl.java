@@ -1,7 +1,6 @@
 package com.ihub.rangerapp.data.service;
 
 import java.io.File;
-import java.io.FileNotFoundException;
 import java.util.HashMap;
 import java.util.Map;
 import android.content.ContentValues;
@@ -20,7 +19,7 @@ import com.loopj.android.http.RequestParams;
 public class GameMeatServiceImpl extends DatabaseService implements GameMeatService {
 	
 	@Override
-	public Map<String, Object> save(Integer id, String animal, Integer noOfAnimals, String actionTaken, String extraNotes, String imagePath, String lat, String lon) {
+	public Map<String, Object> save(Integer id, String animal, Integer noOfAnimals, String actionTaken, String extraNotes, String imagePath, String waypoint) {
 		
 		Map<String, Object> result = new HashMap<String, Object>();
 		
@@ -37,8 +36,7 @@ public class GameMeatServiceImpl extends DatabaseService implements GameMeatServ
  		values.put(Schemas.GameMeat.NO_OF_ANIMALS, noOfAnimals);
  		values.put(Schemas.GameMeat.ACTION_TAKEN, actionTaken);
  		values.put(Schemas.GameMeat.EXTRA_NOTES, extraNotes);
- 		values.put(Schemas.GameMeat.LAT, lat);
- 		values.put(Schemas.GameMeat.LON, lon);
+ 		values.put(Schemas.GameMeat.WAYPOINT, waypoint);
  		values.put(Schemas.GameMeat.IMAGE_PATH, imagePath);
  		
  		Boolean isValid = true;
@@ -46,10 +44,7 @@ public class GameMeatServiceImpl extends DatabaseService implements GameMeatServ
  		if(TextUtils.isEmpty(animal))
  			isValid = false;
  		
- 		if(TextUtils.isEmpty(lat))
- 			isValid = false;
- 		
- 		if(TextUtils.isEmpty(lon))
+ 		if(TextUtils.isEmpty(waypoint))
  			isValid = false;
  		
  		if(TextUtils.isEmpty(actionTaken))
@@ -77,7 +72,7 @@ public class GameMeatServiceImpl extends DatabaseService implements GameMeatServ
 	}
 	
 	@Override
-	public Map<String, Object> edit(Integer id, String animal, Integer noOfAnimals, String actionTaken, String extraNotes, String imagePath, String lat, String lon) {
+	public Map<String, Object> edit(Integer id, String animal, Integer noOfAnimals, String actionTaken, String extraNotes, String imagePath, String waypoint) {
 		
 		return null;
 	}
@@ -105,14 +100,12 @@ public class GameMeatServiceImpl extends DatabaseService implements GameMeatServ
 				Integer noOfAnimals = cursor.getInt(2);
 				String actionTaken = cursor.getString(3);
 				String extraNotes = cursor.getString(4);
-				String latitude = cursor.getString(5);
-				String longitude = cursor.getString(6);
-				String imagePath = cursor.getString(7);
-				String dateCreated = cursor.getString(8);
-				Integer shiftID = cursor.getInt(9);
+				String waypoint = cursor.getString(5);
+				String imagePath = cursor.getString(6);
+				String dateCreated = cursor.getString(7);
+				Integer shiftID = cursor.getInt(8);
 				
-				params.put("lat", latitude);
-				params.put("lon", longitude);
+				params.put("waypoint", waypoint);
 				params.put("animal", animal);
 				params.put("no_of_animals", noOfAnimals);
 				params.put("action_taken", actionTaken);

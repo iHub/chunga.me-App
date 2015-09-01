@@ -182,8 +182,7 @@ public class AnimalsSightingsActivity extends CameraGPSActionBarActivity {
         if(mode != 1) {
         	radioGroup.setVisibility(View.GONE);
         	
-        	latView.setText(getIntent().getStringExtra("lat"));
-            longView.setText(getIntent().getStringExtra("lon"));
+        	waypointView.setText(getIntent().getStringExtra("waypoint"));
         	
         	if(mode == 2) {
             	saveBtn.setText(getString(R.string.edit));
@@ -322,8 +321,7 @@ public class AnimalsSightingsActivity extends CameraGPSActionBarActivity {
 					distanceSeen, 
 					extraNotes.getText().toString(), 
 					imagePath, 
-					latView.getText().toString(),
-					longView.getText().toString());
+					waypointView.getText().toString());
 			
 			if(mode == 2) {
 				Intent data = new Intent();
@@ -390,8 +388,7 @@ public class AnimalsSightingsActivity extends CameraGPSActionBarActivity {
 					distanceSeen,
 					extraNotes.getText().toString(), 
 					imagePath, 
-					latView.getText().toString(),
-					longView.getText().toString());
+					waypointView.getText().toString());
 			
 			if(mode == 2) {
 				Intent data = new Intent();

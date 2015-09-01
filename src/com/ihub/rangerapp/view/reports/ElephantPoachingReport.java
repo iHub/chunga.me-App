@@ -61,22 +61,21 @@ public class ElephantPoachingReport extends ReportFragment {
 		activity.clearReviewItems();
 		
 		activity.addReviewItem(new SummaryItem("Image", model.getImagePath(), "", 1));
-		activity.addReviewItem(new SummaryItem("Latitude", model.getLatitude(), "", 2));
-		activity.addReviewItem(new SummaryItem("Longitude", model.getLongitude(), "", 3));
-		activity.addReviewItem(new SummaryItem("Tool Used", model.getToolsUsed(), "", 4));
-		activity.addReviewItem(new SummaryItem("No of Animals", model.getNoOfAnimals() + "", "", 5));
+		activity.addReviewItem(new SummaryItem("Waypoint", model.getWaypoint(), "", 2));
+		activity.addReviewItem(new SummaryItem("Tool Used", model.getToolsUsed(), "", 3));
+		activity.addReviewItem(new SummaryItem("No of Animals", model.getNoOfAnimals() + "", "", 4));
 		
 		Integer noOfAnimals = model.getNoOfAnimals();
 		
 		if(noOfAnimals == 1) {
 			
-			activity.addReviewItem(new SummaryItem("Age", model.getAdultsCount() == 1 ? "Adult" : (model.getSemiAdultsCount() == 1 ? "Sub-Adult" : (model.getJuvenileCount() == 1 ? "Juvenile" : "")), "", 6));
-			activity.addReviewItem(new SummaryItem("Gender", model.getMaleCount() == 1 ? "Male" : (model.getFemaleCount() == 1 ? "Female" : "") , "", 7));
+			activity.addReviewItem(new SummaryItem("Age", model.getAdultsCount() == 1 ? "Adult" : (model.getSemiAdultsCount() == 1 ? "Sub-Adult" : (model.getJuvenileCount() == 1 ? "Juvenile" : "")), "", 5));
+			activity.addReviewItem(new SummaryItem("Gender", model.getMaleCount() == 1 ? "Male" : (model.getFemaleCount() == 1 ? "Female" : "") , "", 6));
 			
 		} else if(noOfAnimals > 0) {
-			activity.addReviewItem(new SummaryItem("Male Count", model.getMaleCount() + "", "", 6));
-			activity.addReviewItem(new SummaryItem("Female Count", model.getFemaleCount() + "", "", 7));
-			activity.addReviewItem(new SummaryItem("Adult Count", model.getAdultsCount() + "", "", 8));
+			activity.addReviewItem(new SummaryItem("Male Count", model.getMaleCount() + "", "", 5));
+			activity.addReviewItem(new SummaryItem("Female Count", model.getFemaleCount() + "", "", 6));
+			activity.addReviewItem(new SummaryItem("Adult Count", model.getAdultsCount() + "", "", 7));
 			activity.addReviewItem(new SummaryItem("Sub-Adults Count", model.getSemiAdultsCount() + "", "", 8));
 			activity.addReviewItem(new SummaryItem("Juvenile Count", model.getJuvenileCount() + "", "", 8));
 		}

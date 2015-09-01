@@ -19,8 +19,7 @@ public interface ElephantService {
 		String actionTaken,
 		String extraNotes,
 		String imagePath,
-		String lat,
-		String lon
+		String waypoint
 	);
 	
 	public void sync(Integer id, AsyncHttpResponseHandler handler);

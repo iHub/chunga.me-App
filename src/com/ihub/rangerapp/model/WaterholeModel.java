@@ -68,8 +68,7 @@ public class WaterholeModel extends Model {
 		intent.putExtra("levelOfWater", levelOfWater);
 		intent.putExtra("numberOfAnimals", numberOfAnimals);
 		intent.putExtra("extraNotes", extraNotes);
-		intent.putExtra("lat", latitude);
-		intent.putExtra("lon", longitude);
+		intent.putExtra("waypoint", waypoint);
 		intent.putExtra("imagePath", imagePath);
 		intent.putExtra("dateCreated", dateCreated);
 		return intent;

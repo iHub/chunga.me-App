@@ -1,7 +1,6 @@
 package com.ihub.rangerapp.data.service;
 
 import java.io.File;
-import java.io.FileNotFoundException;
 import java.util.HashMap;
 import java.util.Map;
 import android.content.ContentValues;
@@ -33,8 +32,7 @@ public class ElephantServiceImpl extends DatabaseService implements ElephantServ
 			String actionTaken,
 			String extraNotes,
 			String imagePath,
-			String lat,
-			String lon) {
+			String waypoint) {
 		
 		Map<String, Object> result = new HashMap<String, Object>();
 		
@@ -60,8 +58,7 @@ public class ElephantServiceImpl extends DatabaseService implements ElephantServ
  		values.put(Schemas.ElephantPoaching.ACTION_TAKEN, actionTaken);
  		values.put(Schemas.ElephantPoaching.EXTRA_NOTES, extraNotes);
  		values.put(Schemas.ElephantPoaching.IMAGE_PATH, imagePath);
- 		values.put(Schemas.ElephantPoaching.LAT, lat);
- 		values.put(Schemas.ElephantPoaching.LON, lon);
+ 		values.put(Schemas.ElephantPoaching.WAYPOINT, waypoint);
  		
  		Boolean isValid = true;
  		
@@ -74,12 +71,8 @@ public class ElephantServiceImpl extends DatabaseService implements ElephantServ
  		if(noOfAnimals != null && noOfAnimals <=0)
  			isValid = false;
  		
- 		if(TextUtils.isEmpty(lat))
+ 		if(TextUtils.isEmpty(waypoint))
  			isValid = false;
- 		
- 		if(TextUtils.isEmpty(lon))
- 			isValid = false;
- 		
  		
  		values.put(Schemas.REQUIRES_SYNC, isValid ? 1 : 0); //TODO check data changes
 		values.put(Schemas.CAN_SYNC, isValid ? 1 : 0);
@@ -132,11 +125,10 @@ public class ElephantServiceImpl extends DatabaseService implements ElephantServ
 				
 				String actionTaken = cursor.getString(9);
 				String extraNotes = cursor.getString(10);
-				String latitude = cursor.getString(11);
-				String longitude = cursor.getString(12);
-				String imagePath = cursor.getString(13);
-				String dateCreated = cursor.getString(14);
-				Integer shiftID = cursor.getInt(15);
+				String waypoint = cursor.getString(11);
+				String imagePath = cursor.getString(12);
+				String dateCreated = cursor.getString(13);
+				Integer shiftID = cursor.getInt(14);
 				
 				params.put("no_of_animals", noOfAnimals);
 				params.put("tools_used", toolsUsed);
@@ -147,8 +139,7 @@ public class ElephantServiceImpl extends DatabaseService implements ElephantServ
 				params.put("female_count", femaleCount);
 				params.put("ivory_presence", ivoryPresence);
 				
-				params.put("lat", latitude);
-				params.put("lon", longitude);
+				params.put("waypoint", waypoint);
 				params.put("action_taken", actionTaken);
 				params.put("extra_notes", extraNotes);
 				

@@ -20,7 +20,7 @@ import com.loopj.android.http.RequestParams;
 public class SuspiciousActivitiesServiceImpl extends DatabaseService implements SuspiciousActivitiesService {
 
 	@Override
-	public Map<String, Object> save(Integer id, String actionTaken, String extraNotes, String imagePath, String lat, String lon) {
+	public Map<String, Object> save(Integer id, String actionTaken, String extraNotes, String imagePath, String waypoint) {
 		
 		Map<String, Object> result = new HashMap<String, Object>();
 	
@@ -36,8 +36,7 @@ public class SuspiciousActivitiesServiceImpl extends DatabaseService implements 
 		values.put(Schemas.SuspiciousActivities.ACTION_TAKEN, actionTaken);
 		values.put(Schemas.SuspiciousActivities.EXTRA_NOTES, extraNotes);
 		values.put(Schemas.SuspiciousActivities.IMAGE_PATH, imagePath);
-		values.put(Schemas.SuspiciousActivities.LAT, lat);
-		values.put(Schemas.SuspiciousActivities.LON, lon);
+		values.put(Schemas.SuspiciousActivities.WAYPOINT, waypoint);
 		
 		Boolean isValid = true;
  		
@@ -47,10 +46,7 @@ public class SuspiciousActivitiesServiceImpl extends DatabaseService implements 
  		if(TextUtils.isEmpty(extraNotes))
  			isValid = false;
  		
- 		if(TextUtils.isEmpty(lat))
- 			isValid = false;
- 		
- 		if(TextUtils.isEmpty(lon))
+ 		if(TextUtils.isEmpty(waypoint))
  			isValid = false;
  		
  		values.put(Schemas.REQUIRES_SYNC, isValid ? 1 : 0); //TODO check data changes
@@ -95,15 +91,13 @@ public class SuspiciousActivitiesServiceImpl extends DatabaseService implements 
                 params.put("device_record_id", cursor.getInt(0));
 				String actionTaken = cursor.getString(1);
 				String extraNotes = cursor.getString(2);
-				String latitude = cursor.getString(3);
-				String longitude = cursor.getString(4);
-				String imagePath = cursor.getString(5);
-				String dateCreated = cursor.getString(6);
-				Integer shiftID = cursor.getInt(7);
+				String waypoint = cursor.getString(3);
+				String imagePath = cursor.getString(4);
+				String dateCreated = cursor.getString(5);
+				Integer shiftID = cursor.getInt(6);
 				
 				
-				params.put("lat", latitude);
-				params.put("lon", longitude);
+				params.put("waypoint", waypoint);
 				params.put("action_taken", actionTaken);
 				params.put("extra_notes", extraNotes);
 				

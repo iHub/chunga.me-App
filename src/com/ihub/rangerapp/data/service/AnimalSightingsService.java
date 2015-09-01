@@ -14,8 +14,7 @@ public interface AnimalSightingsService {
 			Integer distanceSeen,
 			String extraNotes,
 			String imagePath,
-			String lat,
-			String lon);
+			String waypoint);
 	
 	public void syncIndividual(Integer id, AsyncHttpResponseHandler handler);
 	
@@ -30,8 +29,7 @@ public interface AnimalSightingsService {
 			Integer distanceSeen,
 			String extraNotes,
 			String imagePath,
-			String lat,
-			String lon);
+			String waypoint);
 	
 	public void syncHerd(Integer id, AsyncHttpResponseHandler handler);
 }

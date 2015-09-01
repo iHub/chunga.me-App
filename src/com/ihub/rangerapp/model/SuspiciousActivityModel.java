@@ -40,8 +40,7 @@ public class SuspiciousActivityModel extends Model {
 		intent.putExtra("id", id);
 		intent.putExtra("actionTaken", actionTaken);
 		intent.putExtra("extraNotes", extraNotes);
-		intent.putExtra("lat", latitude);
-		intent.putExtra("lon", longitude);
+		intent.putExtra("waypoint", waypoint);
 		intent.putExtra("imagePath", imagePath);
 		intent.putExtra("dateCreated", dateCreated);
 

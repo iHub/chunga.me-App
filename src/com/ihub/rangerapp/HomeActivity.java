@@ -19,9 +19,6 @@ import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
-import android.location.Location;
-import android.location.LocationListener;
-import android.location.LocationManager;
 import android.os.AsyncTask;
 import android.os.Build;
 import android.os.Bundle;
@@ -46,11 +43,6 @@ public class HomeActivity extends ActionBarActivity implements OnClickListener {
     private Button reportsBtn; 
     private View endShiftView;
     private AlertDialog endDialog;
-    
-    LocationManager locationManager;
-	LocationListener locationListener;
-	
-	Location lastLocation;
     
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -85,74 +77,16 @@ public class HomeActivity extends ActionBarActivity implements OnClickListener {
         
         checkHasOpenShift();
         
-        initLocationManager();
-	}
-	
-	private void initLocationManager() {
-		
-		locationManager = (LocationManager) this.getSystemService(Context.LOCATION_SERVICE);
-		
-		if ( !locationManager.isProviderEnabled( LocationManager.GPS_PROVIDER ) ) {
-	        buildAlertMessageNoGps();
-	    }
-
-		locationListener = new LocationListener() {
-			public void onLocationChanged(Location location) {
-				lastLocation = location;
-				
-				if(endDialog != null && endDialog.isShowing()) {
-					if(endShiftView != null) {
-						EditText endLat = (EditText) endDialog.findViewById(R.id.latitudeView);
-						EditText endLon = (EditText) endDialog.findViewById(R.id.longitudeView);
-						
-						endLat.setText(String.valueOf(location.getLatitude()));
-						endLon.setText(String.valueOf(location.getLongitude()));
-					}
-				}
-		    }
-
-		    public void onStatusChanged(String provider, int status, Bundle extras) {}
-
-		    public void onProviderEnabled(String provider) {}
-
-		    public void onProviderDisabled(String provider) {}
-		};
-
-		  locationManager.requestLocationUpdates(LocationManager.NETWORK_PROVIDER, 0, 0, locationListener);
-	}
-	
-	private void buildAlertMessageNoGps() {
-	    final AlertDialog.Builder builder = new AlertDialog.Builder(this);
-	    builder.setMessage("Your GPS seems to be disabled, do you want to enable it?")
-	           .setCancelable(false)
-	           .setPositiveButton("Yes", new DialogInterface.OnClickListener() {
-	               public void onClick(@SuppressWarnings("unused") final DialogInterface dialog, @SuppressWarnings("unused") final int id) {
-	                   startActivity(new Intent(android.provider.Settings.ACTION_LOCATION_SOURCE_SETTINGS));
-	               }
-	           })
-	           .setNegativeButton("No", new DialogInterface.OnClickListener() {
-	               public void onClick(final DialogInterface dialog, @SuppressWarnings("unused") final int id) {
-	                    dialog.cancel();
-	               }
-	           });
-	    final AlertDialog alert = builder.create();
-	    alert.show();
 	}
 	
 	@Override
 	protected void onPause() {
 		super.onPause();
-		locationManager.removeUpdates(locationListener);
 	}
 	
 	@Override
 	protected void onResume() {
 		super.onResume();
-		
-		if(locationManager == null)
-			initLocationManager();
-		
-		locationManager.requestLocationUpdates(LocationManager.NETWORK_PROVIDER, 0, 0, locationListener);
 	}
 	
 	private void checkHasOpenShift() {
@@ -186,11 +120,10 @@ public class HomeActivity extends ActionBarActivity implements OnClickListener {
 		@Override
 		protected Void doInBackground(String... params) {
 			
-			String lat = params[0];
-			String lon = params[1];
+			String waypoint = params[0];
 			
 			ShiftService service = new ShiftServiceImpl();
-			service.endCurrentShift(lat, lon);
+			service.endCurrentShift(waypoint);
 			
 			return null;
 		}
@@ -277,13 +210,7 @@ public class HomeActivity extends ActionBarActivity implements OnClickListener {
 		
 		endShiftView = getLayoutInflater().inflate(R.layout.end_shift_view, null, false);
 		
-		final EditText endLatView = (EditText) endShiftView.findViewById(R.id.latitudeView);
-		final EditText endLonView = (EditText) endShiftView.findViewById(R.id.longitudeView);
-		
-		if(lastLocation != null) {
-			endLatView.setText(String.valueOf(lastLocation.getLatitude()));
-			endLonView.setText(String.valueOf(lastLocation.getLongitude()));
-		}
+		final EditText waypointView = (EditText) endShiftView.findViewById(R.id.waypointView);
 		
 		alert.setView(endShiftView);
 	    alert.setPositiveButton("Ok", null);
@@ -306,26 +233,17 @@ public class HomeActivity extends ActionBarActivity implements OnClickListener {
 	                	
 	                	Boolean isValid = true;
 	                	
-	                	String endLat = endLatView.getText().toString().trim();
-	                	String endLon = endLonView.getText().toString().trim();
+	                	String waypoint = waypointView.getText().toString().trim();
 	                	
-	                	if(TextUtils.isEmpty(endLat)) {
-	                		endLatView.setError(getString(R.string.validation_lat));
+	                	if(TextUtils.isEmpty(waypoint)) {
+	                		waypointView.setError(getString(R.string.validation_waypoint));
 	                		
-	                		endLatView.requestFocus();
+	                		waypointView.requestFocus();
 	                		isValid = false;
 	                	}
 	                	
-	                	if(isValid) {
-	                		if(TextUtils.isEmpty(endLon)) {
-	                			endLonView.setError(getString(R.string.validation_long));
-		                		isValid = false;
-		                		endLonView.requestFocus();
-		                	}
-	                	}
-	                	
 	                	if(isValid)
-	                		new EndShiftTask().execute(endLat, endLon);
+	                		new EndShiftTask().execute(waypoint);
 	                }
 	            });
 	        }
@@ -370,26 +288,17 @@ public class HomeActivity extends ActionBarActivity implements OnClickListener {
 	}
 	
 	private void logout() {
-		
-		String endLat = "-";
-		String endLon = "-";
-		if(lastLocation != null) {
-			endLat = lastLocation.getLatitude() + "";
-			endLon = lastLocation.getLongitude() + "";
-		}        	
-	                	
-		new LogoutTask().execute(endLat, endLon);
+		new LogoutTask().execute("-");
 	}
 	
 	class LogoutTask extends AsyncTask<String, Void, Void> {
 		
 		@Override
 		protected Void doInBackground(String... params) {
-			String lat = params[0];
-			String lon = params[1];
+			String waypoint = params[0];
 			
 			ShiftService shiftService = new ShiftServiceImpl();
-			shiftService.endCurrentShift(lat, lon);
+			shiftService.endCurrentShift(waypoint);
 			
 			UserService service = new UserServiceImpl();
 			service.logout();

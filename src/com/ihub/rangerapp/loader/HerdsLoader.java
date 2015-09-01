@@ -47,10 +47,9 @@ public class HerdsLoader extends DataLoader {
 				
 				Integer distanceSeen = cursor.getInt(7);
 				String extraNotes = cursor.getString(8);
-				String latitude = cursor.getString(9);
-				String longitude = cursor.getString(10);
-				String imagePath = cursor.getString(11);
-				String dateCreated = cursor.getString(12);
+				String waypoint = cursor.getString(9);
+				String imagePath = cursor.getString(10);
+				String dateCreated = cursor.getString(11);
 												
 				HerdModel  model = new HerdModel();
 				model.setId(id);
@@ -62,8 +61,7 @@ public class HerdsLoader extends DataLoader {
 				model.setJuvenileCount(juvenileCount);
 				model.setDistanceSeen(distanceSeen);
 				model.setExtraNotes(extraNotes);
-				model.setLatitude(latitude);
-				model.setLongitude(longitude);
+				model.setWaypoint(waypoint);
 				model.setImagePath(imagePath);
 				model.setDateCreated(dateCreated);
 				

@@ -126,51 +126,21 @@
 	        <LinearLayout
 	            android:layout_width="match_parent"
 	            android:layout_height="wrap_content"
-	            android:orientation="horizontal" >
-	            
-	            <LinearLayout
-	                android:layout_width="0dp"
-	                android:layout_height="wrap_content"
-	                android:layout_weight="1"
-	                android:orientation="vertical" >
+	            android:orientation="vertical" >
 	                
-	                <TextView
-			            android:layout_width="match_parent"
-			            android:layout_height="wrap_content"
-			            android:text="@string/lat"
-			            android:textSize="18sp"
-			            android:textColor="@color/bg" />
-	                
-	                <EditText
-				        android:id="@+id/latView"
-				        android:layout_width="match_parent"
-				        android:layout_height="wrap_content"
-				        android:layout_marginBottom="2dp"
-				        android:inputType="numberDecimal|numberSigned" />
-	                
-	            </LinearLayout>
-	            
-	            <LinearLayout
-	                android:layout_width="0dp"
-	                android:layout_height="wrap_content"
-	                android:layout_weight="1"
-	                android:orientation="vertical" >
-	                
-	                <TextView
-			            android:layout_width="match_parent"
-			            android:layout_height="wrap_content"
-			            android:text="@string/lon"
-			            android:textSize="18sp"
-			            android:textColor="@color/bg" />
-	                
-	                <EditText
-				        android:id="@+id/longView"
-				        android:layout_width="match_parent"
-				        android:layout_height="wrap_content"
-				        android:layout_marginBottom="2dp"
-				        android:inputType="numberDecimal|numberSigned" />
-	                
-	            </LinearLayout>
+                <TextView
+		            android:layout_width="match_parent"
+		            android:layout_height="wrap_content"
+		            android:text="@string/waypoint"
+		            android:textSize="18sp"
+		            android:textColor="@color/bg" />
+                
+                <EditText
+			        android:id="@+id/waypointView"
+			        android:layout_width="match_parent"
+			        android:layout_height="wrap_content"
+			        android:layout_marginBottom="2dp"
+			        android:inputType="numberDecimal|numberSigned" />
 	        
 	        </LinearLayout>
 	        

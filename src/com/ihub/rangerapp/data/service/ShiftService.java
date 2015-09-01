@@ -15,15 +15,14 @@ public interface ShiftService {
 			String route,
 			String mode,
 			String weather,
-			String lat,
-			String lon,
+			String waypoint,
 			String purpose);
 	
 	public Boolean hasOpenShift();
 	
 	public Shift getOpenShift();
 	
-	public void endCurrentShift(String lat, String lon);
+	public void endCurrentShift(String waypoint);
 	
 	public Long getCurrentShiftID();
 	

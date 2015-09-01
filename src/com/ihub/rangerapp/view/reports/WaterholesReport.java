@@ -93,8 +93,7 @@ public class WaterholesReport extends ReportFragment {
 		
 		activity.clearReviewItems();
 		activity.addReviewItem(new SummaryItem("Image", model.getImagePath(), "", 1));
-		activity.addReviewItem(new SummaryItem("Latitude", model.getLatitude(), "", 2));
-		activity.addReviewItem(new SummaryItem("Longitude", model.getLongitude(), "", 3));
+		activity.addReviewItem(new SummaryItem("Waypoint", model.getWaypoint(), "", 2));
 		activity.addReviewItem(new SummaryItem("Name", model.getName(), "", 4));
 		activity.addReviewItem(new SummaryItem("Water Level", model.getLevelOfWater(), "", 5));
 		activity.addReviewItem(new SummaryItem("No of Animals", model.getNumberOfAnimals() + "", "", 6));

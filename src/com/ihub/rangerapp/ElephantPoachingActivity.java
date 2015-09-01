@@ -270,9 +270,8 @@ public class ElephantPoachingActivity extends CameraGPSActionBarActivity {
         	if(!TextUtils.isEmpty(getIntent().getStringExtra("extraNotes")))
         		extraNotes.setText(getIntent().getStringExtra("extraNotes"));
         	
-        	latView.setText(getIntent().getStringExtra("lat"));
-            longView.setText(getIntent().getStringExtra("lon"));
-            
+        	waypointView.setText(getIntent().getStringExtra("waypoint"));
+        	
             if(mode == 2) {
             	saveBtn.setText(getString(R.string.edit));
             } else {
@@ -357,8 +356,7 @@ public class ElephantPoachingActivity extends CameraGPSActionBarActivity {
 				action,
 				extraNotes.getText().toString(), 
 				imagePath,
-				latView.getText().toString(),
-				longView.getText().toString());
+				waypointView.getText().toString());
 				
 		if(mode == 2) {
 			Intent data = new Intent();
@@ -409,7 +407,7 @@ public class ElephantPoachingActivity extends CameraGPSActionBarActivity {
 	protected Boolean isValid() {
 		Boolean isValid =  super.isValid();
 		
-		Boolean focusLat = isValid ? false : true;
+		Boolean focus = isValid ? false : true;
 		
 		Integer noOfAnimals = 0;
 		
@@ -453,7 +451,7 @@ public class ElephantPoachingActivity extends CameraGPSActionBarActivity {
 	    			juvenilesCountView.setError("Adults, Semi-adults and Juvenile counts is not equal to the no of animals count.");
 	    		}
     			
-    			if(!focusLat)
+    			if(!focus)
     				femaleCountView.requestFocus();
     		}
     		
@@ -461,7 +459,7 @@ public class ElephantPoachingActivity extends CameraGPSActionBarActivity {
     			if((adultsCount + semiAdultsCount + juvenileCount) != noOfAnimals) {
 	    			isValid = false;
 	    			juvenilesCountView.setError("Adults, Semi-adults and Juvenile counts is not equal to the no of animals count.");
-	    			if(!focusLat)
+	    			if(!focus)
 	    				juvenilesCountView.requestFocus();
 	    		}
     		}

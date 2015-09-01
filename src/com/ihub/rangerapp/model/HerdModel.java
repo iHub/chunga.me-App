@@ -107,8 +107,7 @@ public class HerdModel extends Model {
 		intent.putExtra("juvenileCount", juvenileCount);
 		intent.putExtra("distanceSeen", distanceSeen);
 		intent.putExtra("extraNotes", extraNotes);
-		intent.putExtra("lat", latitude);
-		intent.putExtra("lon", longitude);
+		intent.putExtra("waypoint", waypoint);
 		intent.putExtra("imagePath", imagePath);
 		intent.putExtra("dateCreated", dateCreated);
 		return intent;

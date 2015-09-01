@@ -7,9 +7,7 @@ public abstract class Model implements Serializable {
 	
 	Integer id;
 	
-	String latitude = "";
-	
-	String longitude = "";
+	String waypoint = "";
 
 	public Model() {
 	}
@@ -24,19 +22,11 @@ public abstract class Model implements Serializable {
 	
 	public abstract Intent getExtras();
 
-	public String getLatitude() {
-		return latitude;
+	public String getWaypoint() {
+		return waypoint;
 	}
-
-	public void setLatitude(String latitude) {
-		this.latitude = latitude;
-	}
-
-	public String getLongitude() {
-		return longitude;
-	}
-
-	public void setLongitude(String longitude) {
-		this.longitude = longitude;
+	
+	public void setWaypoint(String waypoint) {
+		this.waypoint = waypoint;
 	}
 }

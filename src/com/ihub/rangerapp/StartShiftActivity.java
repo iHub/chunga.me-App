@@ -32,11 +32,8 @@ public class StartShiftActivity extends ActionBarActivity {
 	@MinNumberValue(value= "1", messageId = R.string.validation_min_member_count, order = 3)
 	EditText noOfMembersView;
 	
-	@NotEmpty(messageId = R.string.validation_lat, order = 4)
-	EditText latView;
-	
-	@NotEmpty(messageId = R.string.validation_long, order = 5)
-	EditText longView;
+	@NotEmpty(messageId = R.string.validation_waypoint, order = 4)
+	EditText wayPointView;
 	
 	@NotEmpty(messageId = R.string.validation_purpose, order = 6)
 	EditText purposeView;
@@ -49,11 +46,6 @@ public class StartShiftActivity extends ActionBarActivity {
 	EditText routeView;
 	Spinner modeSpinner;
 	Spinner weatherSpinner;
-	
-	LocationManager locationManager;
-	LocationListener locationListener;
-	
-	Location lastLocation;
 	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -75,8 +67,7 @@ public class StartShiftActivity extends ActionBarActivity {
         
         leaderView = (EditText) findViewById(R.id.leaderView);
         noOfMembersView = (EditText) findViewById(R.id.noOfMembersView);
-        latView = (EditText) findViewById(R.id.latView);
-        longView = (EditText) findViewById(R.id.longView);
+        wayPointView = (EditText) findViewById(R.id.waypointView);
         purposeView = (EditText) findViewById(R.id.purposeView);
         
         startShiftBtn = (Button) findViewById(R.id.startShiftBtn);
@@ -122,49 +113,16 @@ public class StartShiftActivity extends ActionBarActivity {
         weatherAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         
         weatherSpinner.setAdapter(weatherAdapter);
-        
-        initLocationManager();
-	}
-	
-	private void initLocationManager() {
-		
-		locationManager = (LocationManager) this.getSystemService(Context.LOCATION_SERVICE);
-
-		locationListener = new LocationListener() {
-			public void onLocationChanged(Location location) {
-
-				lastLocation = location;
-				
-				if(latView != null) {
-					latView.setText(String.valueOf(location.getLatitude()));
-					longView.setText(String.valueOf(location.getLongitude()));
-				}
-		    }
-
-		    public void onStatusChanged(String provider, int status, Bundle extras) {}
-
-		    public void onProviderEnabled(String provider) {}
-		    
-		    public void onProviderDisabled(String provider) {}
-		};
-
-		  locationManager.requestLocationUpdates(LocationManager.NETWORK_PROVIDER, 0, 0, locationListener);
 	}
 	
 	@Override
 	protected void onPause() {
 		super.onPause();
-		locationManager.removeUpdates(locationListener);
 	}
 	
 	@Override
 	protected void onResume() {
 		super.onResume();
-		
-		if(locationManager == null)
-			initLocationManager();
-		
-		locationManager.requestLocationUpdates(LocationManager.NETWORK_PROVIDER, 0, 0, locationListener);
 	}
 	
 	private Boolean isValid() {
@@ -217,8 +175,7 @@ public class StartShiftActivity extends ActionBarActivity {
 			routeView.getText().toString(),
 			modeSpinner.getSelectedItem().toString(),
 			weatherSpinner.getSelectedItem().toString(),
-			latView.getText().toString(),
-			longView.getText().toString(),
+			wayPointView.getText().toString(),
 			purposeView.getText().toString());
 	}
 	
@@ -244,7 +201,7 @@ public class StartShiftActivity extends ActionBarActivity {
 		protected Map<String, Object> doInBackground(String... params) {
 			
 			ShiftService service = new ShiftServiceImpl();
-			return service.startShift(params[0], params[1], params[2], params[3], params[4], params[5], params[6], params[7], params[8], params[9]);
+			return service.startShift(params[0], params[1], params[2], params[3], params[4], params[5], params[6], params[7], params[8]);
 		}
 		
 		@Override

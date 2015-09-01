@@ -43,10 +43,9 @@ public class CharcoalBagsLoader extends DataLoader {
 				
 				String actionTaken = cursor.getString(3);
 				String extraNotes = cursor.getString(4);
-				String latitude = cursor.getString(5);
-				String longitude = cursor.getString(6);
-				String imagePath = cursor.getString(7);
-				String dateCreated = cursor.getString(8);
+				String waypoint = cursor.getString(5);
+				String imagePath = cursor.getString(6);
+				String dateCreated = cursor.getString(7);
 				
 				CharcoalBagModel  model = new CharcoalBagModel();
 				model.setId(id);
@@ -55,8 +54,7 @@ public class CharcoalBagsLoader extends DataLoader {
 				
 				model.setActionTaken(actionTaken);
 				model.setExtraNotes(extraNotes);
-				model.setLatitude(latitude);
-				model.setLongitude(longitude);
+				model.setWaypoint(waypoint);
 				model.setImagePath(imagePath);
 				model.setDateCreated(dateCreated);
 				

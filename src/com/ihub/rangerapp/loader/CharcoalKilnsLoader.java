@@ -47,10 +47,9 @@ public class CharcoalKilnsLoader extends DataLoader {
 				
 				String actionTaken = cursor.getString(4);
 				String extraNotes = cursor.getString(5);
-				String latitude = cursor.getString(6);
-				String longitude = cursor.getString(7);
-				String imagePath = cursor.getString(8);
-				String dateCreated = cursor.getString(9);
+				String waypoint = cursor.getString(6);
+				String imagePath = cursor.getString(7);
+				String dateCreated = cursor.getString(8);
 												
 				CharcoalKilnModel  model = new CharcoalKilnModel();
 				model.setId(id);
@@ -61,8 +60,7 @@ public class CharcoalKilnsLoader extends DataLoader {
 				model.setActionTaken(actionTaken);
 				
 				model.setExtraNotes(extraNotes);
-				model.setLatitude(latitude);
-				model.setLongitude(longitude);
+				model.setWaypoint(waypoint);
 				model.setImagePath(imagePath);
 				model.setDateCreated(dateCreated);
 				
