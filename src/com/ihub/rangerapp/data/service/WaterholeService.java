@@ -11,8 +11,7 @@ public interface WaterholeService {
 			String name,
 			String level,
 			String extraNotes,
-			String imagePath,
-			String waypoint);
+			String imagePath);
 	
 	public void sync(Integer id, AsyncHttpResponseHandler handler);
 }

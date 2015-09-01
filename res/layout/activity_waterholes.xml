@@ -29,7 +29,7 @@
 			android:orientation="vertical"
 			android:padding="16dp" >
 			
-		    <include layout="@layout/camera_location"/>	
+		    <include layout="@layout/camera_location"/>
 		    
 		    <TextView
 	            android:layout_width="match_parent"

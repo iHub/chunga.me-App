@@ -47,6 +47,7 @@ public class WaterholesActivity extends CameraGPSActionBarActivity {
         
         Intent data = getIntent();
         
+        hideWaypointView = true;
         initViews();
         
         waterholeName = (AutoCompleteTextView) findViewById(R.id.waterholeName);
@@ -115,7 +116,7 @@ public class WaterholesActivity extends CameraGPSActionBarActivity {
         	if(!TextUtils.isEmpty(getIntent().getStringExtra("extraNotes")))
         		extraNotes.setText(getIntent().getStringExtra("extraNotes"));
         	
-        	waypointView.setText(getIntent().getStringExtra("waypoint"));
+        	//waypointView.setText(getIntent().getStringExtra("waypoint"));
             
             if(mode == 2) {
             	saveBtn.setText(getString(R.string.edit));
@@ -139,8 +140,7 @@ public class WaterholesActivity extends CameraGPSActionBarActivity {
 			waterholeName.getText().toString(), 
 			level, 
 			extraNotes.getText().toString(), 
-			imagePath, 
-			waypointView.getText().toString());
+			imagePath);
 		
 		if(mode == 2) {
 			Intent data = new Intent();

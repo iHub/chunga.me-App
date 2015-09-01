@@ -20,7 +20,7 @@ import com.loopj.android.http.RequestParams;
 public class WaterholeServiceImpl extends DatabaseService implements WaterholeService {
 
 	@Override
-	public Map<String, Object> save(Integer id, String name, String level, String extraNotes, String imagePath, String waypoint) {
+	public Map<String, Object> save(Integer id, String name, String level, String extraNotes, String imagePath) {
 		
 		Map<String, Object> result = new HashMap<String, Object>();
 		
@@ -37,7 +37,6 @@ public class WaterholeServiceImpl extends DatabaseService implements WaterholeSe
 		values.put(Schemas.Waterhole.LEVEL_OF_WATER, level);
 		values.put(Schemas.Waterhole.EXTRA_NOTES, extraNotes);
 		values.put(Schemas.Waterhole.IMAGE_PATH, imagePath);
-		values.put(Schemas.Waterhole.WAYPOINT, waypoint);
 		
 		Boolean isValid = true;
  		
@@ -45,10 +44,7 @@ public class WaterholeServiceImpl extends DatabaseService implements WaterholeSe
  			isValid = false;
  		
  		if(TextUtils.isEmpty(level))
- 			isValid = false;
- 		
- 		if(TextUtils.isEmpty(waypoint))
- 			isValid = false; 		
+ 			isValid = false;		
  		
  		values.put(Schemas.REQUIRES_SYNC, isValid ? 1 : 0); //TODO check data changes
 		values.put(Schemas.CAN_SYNC, isValid ? 1 : 0);

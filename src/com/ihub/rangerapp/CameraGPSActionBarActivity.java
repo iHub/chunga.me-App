@@ -12,7 +12,6 @@ import android.content.Intent;
 import android.database.Cursor;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
-import android.location.Location;
 import android.media.ThumbnailUtils;
 import android.net.Uri;
 import android.os.Bundle;
@@ -29,6 +28,7 @@ import android.view.View;
 import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.ProgressBar;
 import android.widget.Spinner;
 import android.widget.TextView;
@@ -39,6 +39,10 @@ public class CameraGPSActionBarActivity extends ActionBarActivity {
 	ImageButton cameraBtn;
 	
 	ProgressBar progressBar;
+	
+	LinearLayout waypointLayout;
+	
+	Boolean hideWaypointView = false;
 	
 	@NotEmpty(messageId = R.string.validation_waypoint, order = 1)
 	EditText waypointView;
@@ -78,6 +82,11 @@ public class CameraGPSActionBarActivity extends ActionBarActivity {
 		imageView = (ImageView) findViewById(R.id.imageView);
 		
 		progressBar = (ProgressBar) findViewById(R.id.progressBar);
+		
+		if(hideWaypointView) {
+			waypointLayout = (LinearLayout) findViewById(R.id.waypointLayout);
+			waypointLayout.setVisibility(View.GONE);
+		}
 		
 		cameraBtn.setOnClickListener(new View.OnClickListener() {
 			
@@ -266,7 +275,7 @@ public class CameraGPSActionBarActivity extends ActionBarActivity {
 					
 		Boolean isValid = true;
 		
-		if(waypointView.getText().toString().length() == 0) {
+		if(!hideWaypointView && waypointView != null && waypointView.getText().toString().length() == 0) {
 			
 			waypointView.setError(getString(R.string.validation_waypoint));
 			waypointView.requestFocus();

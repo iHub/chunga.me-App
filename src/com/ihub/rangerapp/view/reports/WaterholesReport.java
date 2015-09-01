@@ -2,22 +2,15 @@ package com.ihub.rangerapp.view.reports;
 
 import java.text.SimpleDateFormat;
 import java.util.Date;
-
-import com.ihub.rangerapp.GameMeatActivity;
 import com.ihub.rangerapp.ReportViewerActivity;
 import com.ihub.rangerapp.WaterholesActivity;
 import com.ihub.rangerapp.adapter.AmazingAdapter;
-import com.ihub.rangerapp.adapter.GameMeatReportAdapter;
 import com.ihub.rangerapp.adapter.WaterholesReportAdapter;
 import com.ihub.rangerapp.entity.SummaryItem;
-import com.ihub.rangerapp.loader.GameMeatLoader;
 import com.ihub.rangerapp.loader.WaterholesLoader;
-import com.ihub.rangerapp.model.GameMeatModel;
 import com.ihub.rangerapp.model.Model;
-import com.ihub.rangerapp.model.SuspiciousActivityModel;
 import com.ihub.rangerapp.model.WaterholeModel;
 import com.ihub.rangerapp.util.DateUtil;
-
 import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
@@ -92,7 +85,6 @@ public class WaterholesReport extends ReportFragment {
 		
 		activity.clearReviewItems();
 		activity.addReviewItem(new SummaryItem("Image", model.getImagePath(), "", 1));
-		activity.addReviewItem(new SummaryItem("Waypoint", model.getWaypoint(), "", 2));
 		activity.addReviewItem(new SummaryItem("Name", model.getName(), "", 4));
 		activity.addReviewItem(new SummaryItem("Water Level", model.getLevelOfWater(), "", 5));
 		activity.addReviewItem(new SummaryItem("Extra Notes", model.getExtraNotes(), "", 7));
