@@ -85,7 +85,6 @@
     <string name="individual">Individual</string>
     <string name="herd">Herd</string>
     <string name="herd_identity">Name / Identity of Herd</string>
-    <string name="type_species">Type / species</string>
     <string name="no_of_animals">Number of Animals</string>
     <string name="herd_name_label">Name / Identity of Herd</string>
     <string name="property_damage">Property Damage</string>
