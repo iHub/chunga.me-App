@@ -9,6 +9,7 @@ public class Schemas {
 	public static String SHIFTS_TABLE = "tbl_shifts";
 	public static String GAME_MEAT_TABLE = "tbl_game_meat";
 	public static String CHARCOAL_KILN_TABLE = "tbl_charcoal_kilns";
+	public static String CHARCOAL_LOGS_TABLE = "tbl_charcoal_logs";
 	public static String CHARCOAL_BAGS_TABLE = "tbl_charcoal_bags";
 	public static String ELEPHANT_POACHING_TABLE = "tbl_elephant_poaching";
 	public static String SUSPICIOUS_ACTIVITIES_TABLE = "tbl_suspicious_activities";
@@ -23,6 +24,7 @@ public class Schemas {
 	public static String SYNC_ID = "last_sync_id";
 	public static String LAST_SYNC_DATE = "last_sync_date";
 	public static String REQUIRES_SYNC = "requires_sync";
+	public static String RANCH = "ranch";
 	
 	public static void initialize(SQLiteDatabase db) {
 		
@@ -30,6 +32,7 @@ public class Schemas {
 		createShiftTable(db);
 		createGameMeatTable(db);
 		createCharcoalKilnsTable(db);
+		createCharcoalLogsTable(db);
 		createCharcoalBagsTable(db);
 		createElephantPoachingTable(db);
 		createSuspiciousActivitiesTable(db);
@@ -94,7 +97,10 @@ public class Schemas {
 				SYNC_ID + " INTEGER," +
 				LAST_SYNC_DATE + " INTEGER," +
 				REQUIRES_SYNC + " INTEGER DEFAULT 1," +
-				CAN_SYNC + " INTEGER DEFAULT 1" +
+				CAN_SYNC + " INTEGER DEFAULT 1," +
+				RANCH + " text," + 
+				AnimalHerdSighting.MALE_COUNT + " INTEGER," +
+				AnimalHerdSighting.FEMALE_COUNT + " INTEGER" +
 			");";
 		
 			db.execSQL(sql);
@@ -115,7 +121,8 @@ public class Schemas {
 			SYNC_ID + " INTEGER," +
 			LAST_SYNC_DATE + " INTEGER," +
 			REQUIRES_SYNC + " INTEGER DEFAULT 1," +
-			CAN_SYNC + " INTEGER DEFAULT 1" +
+			CAN_SYNC + " INTEGER DEFAULT 1," +
+			RANCH + " text" + 
 		");";
 		db.execSQL(sql);
 	}
@@ -138,6 +145,8 @@ public class Schemas {
 		public static String ADULTS_COUNT = "adults_count";
 		public static String SEMI_ADULTS_COUNT = "semi_adults_count";
 		public static String JUVENILE_COUNT = "juvenile_count";
+		public static String MALE_COUNT = "male_count";
+		public static String FEMALE_COUNT = "female_count";
 		public static String DISTANCE_SEEN = "distance_seen";
 		public static String EXTRA_NOTES = "extra_notes";
 		public static String WAYPOINT = "waypoint";
@@ -159,7 +168,8 @@ public class Schemas {
 				SYNC_ID + " INTEGER," +
 				LAST_SYNC_DATE + " INTEGER," +
 				REQUIRES_SYNC + " INTEGER DEFAULT 1," +
-				CAN_SYNC + " INTEGER DEFAULT 1" +
+				CAN_SYNC + " INTEGER DEFAULT 1," +
+				RANCH + " text" + 
 			");";
 		
 			db.execSQL(sql);
@@ -177,7 +187,9 @@ public class Schemas {
 				SYNC_ID + " INTEGER," +
 				LAST_SYNC_DATE + " INTEGER," +
 				REQUIRES_SYNC + " INTEGER DEFAULT 1," +
-				CAN_SYNC + " INTEGER DEFAULT 1" +
+				CAN_SYNC + " INTEGER DEFAULT 1," +
+				RANCH + " text," + 
+				SuspiciousActivities.ACTIVITY + " text" + 
 			");";
 		
 			db.execSQL(sql);
@@ -203,7 +215,11 @@ public class Schemas {
 				SYNC_ID + " INTEGER," +
 				LAST_SYNC_DATE + " INTEGER," +
 				REQUIRES_SYNC + " INTEGER DEFAULT 1," +
-				CAN_SYNC + " INTEGER DEFAULT 1" +
+				CAN_SYNC + " INTEGER DEFAULT 1," +
+				RANCH + " text," + 
+				ElephantPoaching.TUSKS_FOUND + " INTEGER," +
+				ElephantPoaching.LEFT_TUSK_WEIGHT + " INTEGER," +
+				ElephantPoaching.RIGHT_TUSK_WEIGHT + " INTEGER" +
 			");";
 		
 			db.execSQL(sql);
@@ -223,7 +239,8 @@ public class Schemas {
 				SYNC_ID + " INTEGER," +
 				LAST_SYNC_DATE + " INTEGER," +
 				REQUIRES_SYNC + " INTEGER DEFAULT 1," +
-				CAN_SYNC + " INTEGER DEFAULT 1" +
+				CAN_SYNC + " INTEGER DEFAULT 1," +
+				RANCH + " text" + 
 			");";
 		
 			db.execSQL(sql);
@@ -243,7 +260,8 @@ public class Schemas {
 			SYNC_ID + " INTEGER," +
 			LAST_SYNC_DATE + " INTEGER," +
 			REQUIRES_SYNC + " INTEGER DEFAULT 1," +
-			CAN_SYNC + " INTEGER DEFAULT 1" +
+			CAN_SYNC + " INTEGER DEFAULT 1," +
+			RANCH + " text" + 
 		");";
 		
 		db.execSQL(sql);
@@ -264,7 +282,28 @@ public class Schemas {
 			SYNC_ID + " INTEGER," +
 			LAST_SYNC_DATE + " INTEGER," +
 			REQUIRES_SYNC + " INTEGER DEFAULT 1," +
-			CAN_SYNC + " INTEGER DEFAULT 1" +
+			CAN_SYNC + " INTEGER DEFAULT 1," +
+			RANCH + " text" + 
+		");";
+		db.execSQL(sql);
+	}
+	
+	private static void createCharcoalLogsTable(SQLiteDatabase db) {
+		String sql = "create table " + CHARCOAL_KILN_TABLE + "(" +
+			BaseColumns._ID + " integer primary key autoincrement," +
+			CharcoalLogs.NO_OF_LOGS + " INTEGER, " +
+			CharcoalLogs.TREE + " text," +
+			CharcoalLogs.ACTION_TAKEN + " text," +
+			CharcoalLogs.EXTRA_NOTES + " text," +
+			CharcoalLogs.WAYPOINT + " text," +
+			CharcoalLogs.IMAGE_PATH + " text," +
+			CharcoalLogs.DATE_CREATED + " DATE DEFAULT (datetime('now','localtime'))," +
+			SHIFT_ID + " INTEGER," +
+			SYNC_ID + " INTEGER," +
+			LAST_SYNC_DATE + " INTEGER," +
+			REQUIRES_SYNC + " INTEGER DEFAULT 1," +
+			CAN_SYNC + " INTEGER DEFAULT 1," +
+			RANCH + " text" + 
 		");";
 		db.execSQL(sql);
 	}
@@ -342,6 +381,16 @@ public class Schemas {
 		public static String DATE_CREATED = "date_created";
 	}
 	
+	public static class CharcoalLogs {
+		public static String NO_OF_LOGS = "no_of_logs";
+		public static String TREE = "tree";
+		public static String ACTION_TAKEN = "action_taken";
+		public static String EXTRA_NOTES = "extra_notes";
+		public static String WAYPOINT = "waypoint";
+		public static String IMAGE_PATH = "image_path";
+		public static String DATE_CREATED = "date_created";
+	}
+	
 	public static class CharcoalBags {
 		public static String NO_OF_BAGS = "no_of_bags";
 		public static String MODE_OF_TRANSPORT = "mode_of_transport";
@@ -366,9 +415,13 @@ public class Schemas {
 		public static String WAYPOINT = "waypoint";
 		public static String IMAGE_PATH = "image_path";
 		public static String DATE_CREATED = "date_created";
+		public static String TUSKS_FOUND = "tusks_found";
+		public static String LEFT_TUSK_WEIGHT = "left_tusk_weight";
+		public static String RIGHT_TUSK_WEIGHT = "right_tusk_weight";
 	}
 	
 	public static class SuspiciousActivities {
+		public static String ACTIVITY = "activity";
 		public static String ACTION_TAKEN = "action_taken";
 		public static String EXTRA_NOTES = "extra_notes";
 		public static String WAYPOINT = "waypoint";
@@ -399,5 +452,19 @@ public class Schemas {
 		public static String END_WAYPOINT = "end_waypoint";
 	}
 	
-	public static void onUpgrage(SQLiteDatabase db, int oldVersion, int newVersion) {}
+	public static void onUpgrage(SQLiteDatabase db, int oldVersion, int newVersion) {
+		
+		db.execSQL("DROP TABLE IF EXISTS " + SHIFTS_TABLE);
+		db.execSQL("DROP TABLE IF EXISTS " + GAME_MEAT_TABLE);
+		db.execSQL("DROP TABLE IF EXISTS " + CHARCOAL_KILN_TABLE);
+		db.execSQL("DROP TABLE IF EXISTS " + CHARCOAL_LOGS_TABLE);
+		db.execSQL("DROP TABLE IF EXISTS " + CHARCOAL_BAGS_TABLE);
+		db.execSQL("DROP TABLE IF EXISTS " + ELEPHANT_POACHING_TABLE);
+		db.execSQL("DROP TABLE IF EXISTS " + SUSPICIOUS_ACTIVITIES_TABLE);
+		db.execSQL("DROP TABLE IF EXISTS " + INDIVIDUAL_ANIMAL_SIGHTING_TABLE);
+		db.execSQL("DROP TABLE IF EXISTS " + ANIMAL_HERD_SIGHTING_TABLE);
+		db.execSQL("DROP TABLE IF EXISTS " + WATER_HOLES_TABLE);
+		db.execSQL("DROP TABLE IF EXISTS " + EXPORTS_TABLE);
+		db.execSQL("DROP TABLE IF EXISTS " + EXPORT_ITEMS_TABLE);
+	}
 }
