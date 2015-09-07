@@ -70,7 +70,7 @@ public class ElephantPoachingReport extends ReportFragment {
 		if(noOfAnimals == 1) {
 			
 			activity.addReviewItem(new SummaryItem("Age", model.getAdultsCount() == 1 ? "Adult" : (model.getSemiAdultsCount() == 1 ? "Sub-Adult" : (model.getJuvenileCount() == 1 ? "Juvenile" : "")), "", 5));
-			activity.addReviewItem(new SummaryItem("Gender", model.getMaleCount() == 1 ? "Male" : (model.getFemaleCount() == 1 ? "Female" : "") , "", 6));
+			activity.addReviewItem(new SummaryItem("Sex", model.getMaleCount() == 1 ? "Male" : (model.getFemaleCount() == 1 ? "Female" : "") , "", 6));
 			
 		} else if(noOfAnimals > 0) {
 			activity.addReviewItem(new SummaryItem("Male Count", model.getMaleCount() + "", "", 5));
