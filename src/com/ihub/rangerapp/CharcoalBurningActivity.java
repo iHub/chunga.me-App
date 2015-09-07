@@ -97,7 +97,7 @@ public class CharcoalBurningActivity extends CameraGPSActionBarActivity {
 							
 							if(isValid()) {
 								View[] fields = new View[] {noOfKilnsView, freshnessLevelSpinner, treeUsedView, kilnActionTakenSpinner, extraNotes};
-								String fieldNames[] = {"No of Kilns", "Freshness Level", "Tree Used", "Action Taken", "Extra Notes"};
+								String fieldNames[] = {"No of Kilns", "Kiln State", "Tree Used", "Action Taken", "Extra Notes"};
 								
 								if(hasInvalidFields(fields)) {
 									

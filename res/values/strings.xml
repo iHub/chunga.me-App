@@ -329,7 +329,7 @@
     <string name="no_of_bags">No of Bags</string>
     <string name="no_of_kilns">No of Kilns</string>
     <string name="mode_of_transport">Mode of Transport</string>
-    <string name="freshness_level">Freshness Level</string>
+    <string name="kiln_state">Kiln State</string>
     <string name="tree_used">Tree Used</string>
     <string name="age">Age</string>
     <string name="sex">Sex</string>

@@ -93,7 +93,7 @@ public class CharcoalBurningKilnsReport extends ReportFragment {
 		activity.addReviewItem(new SummaryItem("Waypoint", model.getWaypoint(), "", 2));
 		activity.addReviewItem(new SummaryItem("Tree Used", model.getTreeUsed() + "", "", 3));
 		activity.addReviewItem(new SummaryItem("No of Kilns", model.getNoOfKilns() + "", "", 4));
-		activity.addReviewItem(new SummaryItem("Freshness Level", model.getFreshnessLevels(), "", 5));
+		activity.addReviewItem(new SummaryItem("Kiln State", model.getFreshnessLevels(), "", 5));
 		activity.addReviewItem(new SummaryItem("Action Taken", model.getActionTaken(), "", 6));
 		activity.addReviewItem(new SummaryItem("Extra Notes", model.getExtraNotes(), "", 7));
 		
