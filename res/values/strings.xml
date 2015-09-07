@@ -87,6 +87,7 @@
     <string name="herd">Herd</string>
     <string name="herd_identity">Name / Identity of Herd</string>
     <string name="no_of_animals">Number of Animals</string>
+    <string name="no_of_individuals">No of Individuals</string>
     <string name="herd_name_label">Name / Identity of Herd</string>
     <string name="property_damage">Property Damage</string>
     <string name="damage_to_humans">Damage to Humans</string>
