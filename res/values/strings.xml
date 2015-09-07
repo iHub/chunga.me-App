@@ -21,6 +21,7 @@
     <string name="title_activity_intro">Intro</string>
     <string name="title_activity_incidences">Incidents</string>
     <string name="summary">Summary</string>
+    <string name="activity">Activity</string>
     <string name="go">Go</string>
     <string name="sync_group_progress">Syncing group {from} of {to}</string>
     <string name="sync_record_progress">Syncing record {from} of {to}</string>
@@ -290,6 +291,18 @@
         <item>Select Gender</item>
         <item>Male</item>
         <item>Female</item>
+    </string-array>
+    <string-array name="suspicious_activities_activities">
+        <item>Footprints</item>
+        <item>Habitat Destruction (trees)</item>
+        <item>Mining Prospects</item>
+        <item>Snares</item>
+        <item>Dog(s) Sighting</item>
+        <item>Poachers Platforms</item>
+        <item>Hideouts</item>
+        <item>Camps</item>
+        <item>Blood Stains</item>
+        <item>Other</item>
     </string-array>
     <string-array name="suspicious_activities_actions_taken">
         <item>Select Action</item>
