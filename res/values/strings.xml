@@ -98,7 +98,7 @@
     <string name="start_shift">Start Shift</string>
     <string name="end_shift">End Shift</string>
     <string name="animal">Animal</string>
-    <string name="gender">Gender</string>
+    <string name="gender">Sex</string>
     <string name="male">Male</string>
     <string name="male_count">Male Count</string>
     <string name="female">Female</string>
