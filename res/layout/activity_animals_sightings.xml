@@ -159,20 +159,6 @@
 				android:paddingTop="16dp"
 				android:visibility="gone" >
 		        
-			    <TextView
-		            android:layout_width="match_parent"
-		            android:layout_height="wrap_content"
-		            android:text="@string/herd_name_label"
-		            android:textSize="18sp"
-		            android:textColor="@color/bg" />
-		        
-		        <EditText
-			        android:id="@+id/herdNameView"
-			        android:layout_width="match_parent"
-			        android:layout_height="wrap_content"
-			        android:layout_marginBottom="15dp"
-			        android:inputType="textCapSentences" />
-		        
 		        <TextView
 		            android:layout_width="match_parent"
 		            android:layout_height="wrap_content"
@@ -279,9 +265,6 @@
 					
 				</LinearLayout>
 				
-		        
-		        
-		        
 		        <TextView
 		            android:layout_width="match_parent"
 		            android:layout_height="wrap_content"
@@ -293,7 +276,22 @@
 			        android:id="@+id/herdDistanceSeenView"
 			        android:layout_width="match_parent"
 			        android:layout_height="wrap_content"
-			        android:inputType="numberDecimal" />
+			        android:inputType="numberDecimal"
+			        android:layout_marginBottom="10dp" />
+		        
+		        <TextView
+		            android:layout_width="match_parent"
+		            android:layout_height="wrap_content"
+		            android:text="@string/herd_name_label"
+		            android:textSize="18sp"
+		            android:textColor="@color/bg" />
+		        
+		        <EditText
+			        android:id="@+id/herdNameView"
+			        android:layout_width="match_parent"
+			        android:layout_height="wrap_content"
+			        android:layout_marginBottom="15dp"
+			        android:inputType="textCapSentences" />
 		        
 			</LinearLayout>
 			
