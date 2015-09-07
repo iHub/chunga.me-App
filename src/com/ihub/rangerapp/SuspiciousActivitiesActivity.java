@@ -19,6 +19,7 @@ import android.widget.Spinner;
 public class SuspiciousActivitiesActivity extends CameraGPSActionBarActivity {
 	
 	Spinner actionTakenSpinner;
+	Spinner activitySpinner;
 	EditText extraNotes;
 	Button saveBtn;
 	
@@ -40,8 +41,16 @@ public class SuspiciousActivitiesActivity extends CameraGPSActionBarActivity {
                 SuspiciousActivitiesActivity.this.onBackPressed();
             }
         });
-                
+        
         initViews();
+        
+        activitySpinner = (Spinner) findViewById(R.id.activitySpinner);
+        
+        ArrayAdapter<CharSequence> activityAdapter = ArrayAdapter.createFromResource(this,
+                R.array.suspicious_activities_activities, android.R.layout.simple_spinner_item);
+        activityAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        
+        activitySpinner.setAdapter(activityAdapter);
         
         actionTakenSpinner = (Spinner) findViewById(R.id.actionTakenSpinner);
         extraNotes = (EditText) findViewById(R.id.extraNotes);
