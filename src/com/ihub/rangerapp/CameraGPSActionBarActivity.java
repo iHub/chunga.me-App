@@ -128,6 +128,8 @@ public class CameraGPSActionBarActivity extends ActionBarActivity {
 				intent.putExtra("path", imagePath);
 				startActivity(intent);
 			}
+		} else {
+			showUploadPopup(cameraBtn);
 		}
 	}
 	
