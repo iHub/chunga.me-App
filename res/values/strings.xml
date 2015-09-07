@@ -258,6 +258,9 @@
         <item>Snare</item>
         <item>Poisoned Spike</item>
         <item>Poisoned Watermelon</item>
+        <item>Hunting Dogs</item>
+        <item>Spears</item>
+        <item>Others</item>
     </string-array>
     <string-array name="elephant_poaching_action_taken">
         <item>Select Action</item>
