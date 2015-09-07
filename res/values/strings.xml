@@ -162,7 +162,7 @@
         <item>Hactares</item>
     </string-array>
     <string-array name="gender_array">
-        <item>Select Gender</item>
+        <item>Select Sex</item>
         <item>@string/male</item>
         <item>@string/female</item>
     </string-array>
@@ -247,9 +247,10 @@
         <item>Taken to Kishushe Police Station</item>
     </string-array>
     <string-array name="kiln_freshness_levels">
-        <item>Select Level</item>
-        <item>Active</item>
-        <item>Fresh</item>
+        <item>Select State</item>
+        <item>In Progress</item>
+        <item>New</item>
+        <item>Harvested</item>
     </string-array>
     <string-array name="elephant_poaching_tools_used">
         <item>Select Tool</item>
