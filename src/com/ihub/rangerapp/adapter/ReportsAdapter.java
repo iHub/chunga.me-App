@@ -28,6 +28,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
 public class ReportsAdapter extends RecyclerView.Adapter<ReportsAdapter.ViewHolder> {
@@ -64,7 +65,9 @@ public class ReportsAdapter extends RecyclerView.Adapter<ReportsAdapter.ViewHold
             name = (TextView) itemView.findViewById(R.id.countryName);
             image = (ImageView) itemView.findViewById(R.id.imageView);
             this.activity = activity;
-            name.setOnClickListener(this);
+            
+            LinearLayout r = (LinearLayout) ((ViewGroup) name.getParent());
+            r.setOnClickListener(this);
         }
         
         @Override

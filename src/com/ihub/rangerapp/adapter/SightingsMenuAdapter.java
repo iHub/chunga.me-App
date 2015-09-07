@@ -9,6 +9,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 import java.util.List;
 import com.ihub.rangerapp.AnimalsSightingsActivity;
@@ -71,7 +72,7 @@ public class SightingsMenuAdapter extends RecyclerView.Adapter<SightingsMenuAdap
     public static class ViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
         public TextView name;
         public ImageView image;
-
+        
         SightingsActivity hAct;
         
         public ViewHolder(View itemView, SightingsActivity mAct) {
@@ -79,7 +80,9 @@ public class SightingsMenuAdapter extends RecyclerView.Adapter<SightingsMenuAdap
             name = (TextView) itemView.findViewById(R.id.countryName);
             image = (ImageView) itemView.findViewById(R.id.imageView);
             hAct = mAct;
-            name.setOnClickListener(this);
+            
+            LinearLayout r = (LinearLayout) ((ViewGroup) name.getParent());
+            r.setOnClickListener(this);
         }
         
         @Override
