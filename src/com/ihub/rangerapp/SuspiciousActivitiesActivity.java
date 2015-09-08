@@ -21,6 +21,7 @@ public class SuspiciousActivitiesActivity extends CameraGPSActionBarActivity {
 	Spinner actionTakenSpinner;
 	Spinner activitySpinner;
 	EditText extraNotes;
+	Spinner ranchSpinner;
 	Button saveBtn;
 	
 	@Override
@@ -53,6 +54,13 @@ public class SuspiciousActivitiesActivity extends CameraGPSActionBarActivity {
         activitySpinner.setAdapter(activityAdapter);
         
         actionTakenSpinner = (Spinner) findViewById(R.id.actionTakenSpinner);
+        
+        ranchSpinner = (Spinner) findViewById(R.id.ranchSpinner);
+        ArrayAdapter<CharSequence> ranchesAdapter = ArrayAdapter.createFromResource(this,
+                R.array.ranches, android.R.layout.simple_spinner_item);
+        ranchesAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        ranchSpinner.setAdapter(ranchesAdapter);
+        
         extraNotes = (EditText) findViewById(R.id.extraNotes);
         saveBtn = (Button) findViewById(R.id.saveBtn);
         

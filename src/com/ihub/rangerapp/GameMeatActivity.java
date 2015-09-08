@@ -21,6 +21,7 @@ public class GameMeatActivity extends CameraGPSActionBarActivity {
 	AutoCompleteTextView animalView;
 	EditText noOfAnimalsView;
 	Spinner actionTakenSpinner;
+	Spinner ranchSpinner;
 	
 	EditText extraNotes;
 	Button saveBtn;
@@ -55,6 +56,12 @@ public class GameMeatActivity extends CameraGPSActionBarActivity {
         actionTakenSpinner = (Spinner) findViewById(R.id.actionTakenSpinner);
         extraNotes = (EditText) findViewById(R.id.extraNotes);
         saveBtn = (Button) findViewById(R.id.saveBtn);
+        
+        ranchSpinner = (Spinner) findViewById(R.id.ranchSpinner);
+        ArrayAdapter<CharSequence> ranchesAdapter = ArrayAdapter.createFromResource(this,
+                R.array.ranches, android.R.layout.simple_spinner_item);
+        ranchesAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        ranchSpinner.setAdapter(ranchesAdapter);
         
         ArrayAdapter<CharSequence> actionTakenAdapter = ArrayAdapter.createFromResource(this,
                 R.array.game_meat_actions_taken, android.R.layout.simple_spinner_item);

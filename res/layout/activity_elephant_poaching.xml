@@ -321,6 +321,19 @@
 		        android:inputType="textCapSentences"
 		        android:minLines="2" />
 	        
+	        <TextView
+	            android:layout_width="match_parent"
+	            android:layout_height="wrap_content"
+	            android:text="@string/ranch"
+	            android:textSize="18sp"
+	            android:textColor="@color/bg" />
+	        
+	        <Spinner
+		        android:id="@+id/ranchSpinner"
+		        android:layout_width="match_parent"
+		        android:layout_height="wrap_content"
+		        android:layout_marginBottom="10dp" />
+	        
 		    <Button
 		        android:id="@+id/saveBtn"
 		        android:layout_width="match_parent"

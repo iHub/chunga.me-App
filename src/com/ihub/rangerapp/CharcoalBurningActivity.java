@@ -44,6 +44,7 @@ public class CharcoalBurningActivity extends CameraGPSActionBarActivity {
 	
 	Boolean isKilnsView = true;
 	
+	Spinner ranchSpinner;
 	EditText extraNotes;
 	Button saveBtn;
 	
@@ -79,6 +80,12 @@ public class CharcoalBurningActivity extends CameraGPSActionBarActivity {
         
         initBagsView();
         initKilnsView();
+        
+        ranchSpinner = (Spinner) findViewById(R.id.ranchSpinner);
+        ArrayAdapter<CharSequence> ranchesAdapter = ArrayAdapter.createFromResource(this,
+                R.array.ranches, android.R.layout.simple_spinner_item);
+        ranchesAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        ranchSpinner.setAdapter(ranchesAdapter);
         
         extraNotes = (EditText) findViewById(R.id.extraNotes);
         saveBtn = (Button) findViewById(R.id.saveBtn);

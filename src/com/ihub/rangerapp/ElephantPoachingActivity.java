@@ -46,6 +46,8 @@ public class ElephantPoachingActivity extends CameraGPSActionBarActivity {
 	RadioButton hasTusksYes;
 	RadioButton hasTusksNo;
 	
+	Spinner ranchSpinner;
+	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
@@ -140,6 +142,12 @@ public class ElephantPoachingActivity extends CameraGPSActionBarActivity {
         actionTakenAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         
         actionTakenSpinner.setAdapter(actionTakenAdapter);
+        
+        ranchSpinner = (Spinner) findViewById(R.id.ranchSpinner);
+        ArrayAdapter<CharSequence> ranchesAdapter = ArrayAdapter.createFromResource(this,
+                R.array.ranches, android.R.layout.simple_spinner_item);
+        ranchesAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        ranchSpinner.setAdapter(ranchesAdapter);
         
         saveBtn.setOnClickListener(new View.OnClickListener() {
         	

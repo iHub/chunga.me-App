@@ -29,6 +29,7 @@ public class AnimalsSightingsActivity extends CameraGPSActionBarActivity {
 	RadioGroup genderGroup;
 	Spinner ageSpinner;
 	EditText distanceSeenView;
+	Spinner ranchSpinner;
 	EditText extraNotes;
 	Button saveBtn;
 	
@@ -97,6 +98,13 @@ public class AnimalsSightingsActivity extends CameraGPSActionBarActivity {
         
         distanceSeenView = (EditText) findViewById(R.id.distanceSeenView);
         extraNotes = (EditText) findViewById(R.id.extraNotes);
+        
+        ranchSpinner = (Spinner) findViewById(R.id.ranchSpinner);
+        ArrayAdapter<CharSequence> ranchesAdapter = ArrayAdapter.createFromResource(this,
+                R.array.ranches, android.R.layout.simple_spinner_item);
+        ranchesAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        ranchSpinner.setAdapter(ranchesAdapter);
+        
         saveBtn = (Button) findViewById(R.id.saveBtn);
         
         herdNameView = (EditText) findViewById(R.id.herdNameView);
