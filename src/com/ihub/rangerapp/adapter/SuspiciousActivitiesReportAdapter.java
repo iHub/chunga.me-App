@@ -72,9 +72,11 @@ public class SuspiciousActivitiesReportAdapter extends AmazingAdapter {
     	
 		TextView nameView = (TextView) convertView.findViewById(R.id.nameView);
 
-		if(!TextUtils.isEmpty(model.getActionTaken()))
+		if(!TextUtils.isEmpty(model.getActivity()))
+			nameView.setText(model.getActivity());
+		else if (!TextUtils.isEmpty(model.getActionTaken())) {
 			nameView.setText(model.getActionTaken());
-		else
+		} else
 			nameView.setText("( Undefined )");
 		
 		TextView dateView = (TextView) convertView.findViewById(R.id.dateView);

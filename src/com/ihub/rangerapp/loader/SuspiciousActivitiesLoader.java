@@ -4,8 +4,6 @@ import java.util.ArrayList;
 import java.util.List;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
-import android.util.Log;
-
 import com.ihub.rangerapp.RangerApp;
 import com.ihub.rangerapp.data.sqlite.DB;
 import com.ihub.rangerapp.data.sqlite.Schemas;
@@ -44,16 +42,12 @@ public class SuspiciousActivitiesLoader extends DataLoader {
 				String waypoint = cursor.getString(3);
 				String imagePath = cursor.getString(4);
 				String dateCreated = cursor.getString(5);
-				String ranch = "";
-				
-				for (String c : cursor.getColumnNames()) {
-					Log.v(c, c);
-					if(Schemas.RANCH.equals(c))
-						ranch = cursor.getString(cursor.getColumnIndex(c));
-				}
+				String ranch = cursor.getString(11);
+				String activity = cursor.getString(12);
 				
 				SuspiciousActivityModel  model = new SuspiciousActivityModel();
 				model.setId(id);
+				model.setActivity(activity);
 				model.setActionTaken(actionTaken);
 				model.setExtraNotes(extraNotes);
 				model.setWaypoint(waypoint);

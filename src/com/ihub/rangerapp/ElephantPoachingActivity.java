@@ -356,6 +356,7 @@ public class ElephantPoachingActivity extends CameraGPSActionBarActivity {
 		String age = ageSpinner.getSelectedItemPosition() == 0 ? "" : ageSpinner.getSelectedItem().toString();
 		String sex = sexSpinner.getSelectedItemPosition() == 0 ? "" : sexSpinner.getSelectedItem().toString();
 		String action = actionTakenSpinner.getSelectedItemPosition() == 0 ? "" : actionTakenSpinner.getSelectedItem().toString();
+		String ranch = ranchSpinner.getSelectedItemPosition() == 0 ? "" : ranchSpinner.getSelectedItem().toString();
 		
 		Map<String, Object> result = service.save(
 				id,
@@ -371,7 +372,7 @@ public class ElephantPoachingActivity extends CameraGPSActionBarActivity {
 				extraNotes.getText().toString(), 
 				imagePath,
 				waypointView.getText().toString(),
-				ranchSpinner.getSelectedItem().toString());
+				ranch);
 				
 		if(mode == 2) {
 			Intent data = new Intent();
@@ -388,7 +389,7 @@ public class ElephantPoachingActivity extends CameraGPSActionBarActivity {
 			data.putExtra("semiAdultsCount", semiAdultsCount);
 			data.putExtra("juvenileCount", juvenileCount);
 			data.putExtra("ivoryPresence", tusksPresent ? "Yes" : "No");
-			data.putExtra("ranch", ranchSpinner.getSelectedItem().toString());
+			data.putExtra("ranch", ranch);
 			
 			
 			data.putExtra("actionTaken", action);

@@ -249,6 +249,7 @@ public class CharcoalBurningActivity extends CameraGPSActionBarActivity {
 			
 			String freshnessLevel = freshnessLevelSpinner.getSelectedItemPosition() == 0 ? "" : freshnessLevelSpinner.getSelectedItem().toString();
 			String kilnActionTaken = kilnActionTakenSpinner.getSelectedItemPosition() == 0 ? "" : kilnActionTakenSpinner.getSelectedItem().toString();
+			String ranch = ranchSpinner.getSelectedItemPosition() == 0 ? "" : ranchSpinner.getSelectedItem().toString();
 			
 			CharcoalService service = new CharcoalServiceImpl();
 			Map<String, Object> result = service.saveKilns(
@@ -260,7 +261,7 @@ public class CharcoalBurningActivity extends CameraGPSActionBarActivity {
 					extraNotes.getText().toString(), 
 					imagePath, 
 					waypointView.getText().toString(), 
-					ranchSpinner.getSelectedItem().toString());
+					ranch);
 			
 			if(mode == 2) {
 				Intent data = new Intent();
@@ -272,7 +273,7 @@ public class CharcoalBurningActivity extends CameraGPSActionBarActivity {
 				data.putExtra("treeUsed", treeUsedView.getText().toString());
 				data.putExtra("actionTaken", kilnActionTaken);
 				data.putExtra("extraNotes", extraNotes.getText().toString());
-				data.putExtra("ranch", ranchSpinner.getSelectedItem().toString());
+				data.putExtra("ranch", ranch);
 				
 				setResult(RESULT_OK, data);
 			}
@@ -297,6 +298,7 @@ public class CharcoalBurningActivity extends CameraGPSActionBarActivity {
 			
 			String modeOfTransport = modeOfTransportSpinner.getSelectedItemPosition() == 0 ? "" : modeOfTransportSpinner.getSelectedItem().toString();
 			String bagsActionTaken = bagsActionTakenSpinner.getSelectedItemPosition() == 0 ? "" : bagsActionTakenSpinner.getSelectedItem().toString();
+			String ranch = ranchSpinner.getSelectedItemPosition() == 0 ? "" : ranchSpinner.getSelectedItem().toString();
 			
 			CharcoalService service = new CharcoalServiceImpl();
 			Map<String, Object> result = service.saveBagsData(
@@ -307,7 +309,7 @@ public class CharcoalBurningActivity extends CameraGPSActionBarActivity {
 					extraNotes.getText().toString(), 
 					imagePath,
 					waypointView.getText().toString(),
-					ranchSpinner.getSelectedItem().toString());
+					ranch);
 			
 			if(mode == 2) {
 				Intent data = new Intent();
@@ -318,7 +320,7 @@ public class CharcoalBurningActivity extends CameraGPSActionBarActivity {
 				data.putExtra("modeOfTransport", modeOfTransport);
 				data.putExtra("actionTaken", bagsActionTaken);
 				data.putExtra("extraNotes", extraNotes.getText().toString());
-				data.putExtra("ranch", ranchSpinner.getSelectedItem().toString());
+				data.putExtra("ranch", ranch);
 				
 				setResult(RESULT_OK, data);
 			}

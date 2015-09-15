@@ -143,25 +143,27 @@ public class SuspiciousActivitiesActivity extends CameraGPSActionBarActivity {
 			id = getIntent().getIntExtra("id", -1);
 		
 		String action = actionTakenSpinner.getSelectedItemPosition() == 0 ? "" : actionTakenSpinner.getSelectedItem().toString();
+		String activity = activitySpinner.getSelectedItemPosition() == 0 ? "" : activitySpinner.getSelectedItem().toString();
+		String ranch = ranchSpinner.getSelectedItemPosition() == 0 ? "" : ranchSpinner.getSelectedItem().toString();
 		
 		SuspiciousActivitiesService service = new SuspiciousActivitiesServiceImpl();
 		Map<String, Object> result = service.save(
 				id, 
-				activitySpinner.getSelectedItem().toString(),
+				activity,
 				action, 
 				extraNotes.getText().toString(), 
 				imagePath, waypointView.getText().toString(), 
-				ranchSpinner.getSelectedItem().toString());
+				ranch);
 		
 		if(mode == 2) {
 			Intent data = new Intent();
 			
 			data.putExtra("imagePath", imagePath);
-			data.putExtra("activity", activitySpinner.getSelectedItem().toString());
+			data.putExtra("activity", activity);
 			data.putExtra("id", id);
 			data.putExtra("actionTaken", action);
 			data.putExtra("extraNotes", extraNotes.getText().toString());
-			data.putExtra("ranch", ranchSpinner.getSelectedItem().toString());
+			data.putExtra("ranch", ranch);
 			
 			setResult(RESULT_OK, data);
 		}

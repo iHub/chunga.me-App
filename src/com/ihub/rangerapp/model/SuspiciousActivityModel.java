@@ -4,11 +4,18 @@ import android.content.Intent;
 
 public class SuspiciousActivityModel extends Model {
 
+	String activity;
 	String actionTaken;
 	String extraNotes;
 	String imagePath;
 	String dateCreated;
 	
+	public String getActivity() {
+		return activity;
+	}
+	public void setActivity(String activity) {
+		this.activity = activity;
+	}
 	public String getActionTaken() {
 		return actionTaken;
 	}
@@ -38,6 +45,7 @@ public class SuspiciousActivityModel extends Model {
 		
 		Intent intent = new Intent();
 		intent.putExtra("id", id);
+		intent.putExtra("activity", activity);
 		intent.putExtra("actionTaken", actionTaken);
 		intent.putExtra("extraNotes", extraNotes);
 		intent.putExtra("waypoint", waypoint);

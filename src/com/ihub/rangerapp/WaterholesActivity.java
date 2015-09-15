@@ -146,6 +146,7 @@ public class WaterholesActivity extends CameraGPSActionBarActivity {
 			id = getIntent().getIntExtra("id", -1);
 		
 		String level = levelOfWaterSpinner.getSelectedItemPosition() == 0 ? "" : levelOfWaterSpinner.getSelectedItem().toString();
+		String ranch = ranchSpinner.getSelectedItemPosition() == 0 ? "" : ranchSpinner.getSelectedItem().toString();
 		
 		WaterholeService service = new WaterholeServiceImpl();
 		Map<String, Object> result = service.save(
@@ -154,7 +155,7 @@ public class WaterholesActivity extends CameraGPSActionBarActivity {
 			level, 
 			extraNotes.getText().toString(), 
 			imagePath,
-			ranchSpinner.getSelectedItem().toString());
+			ranch);
 		
 		if(mode == 2) {
 			Intent data = new Intent();
@@ -164,7 +165,7 @@ public class WaterholesActivity extends CameraGPSActionBarActivity {
 			data.putExtra("name", waterholeName.getText().toString());
 			data.putExtra("levelOfWater", level);
 			data.putExtra("extraNotes", extraNotes.getText().toString());
-			data.putExtra("ranch", ranchSpinner.getSelectedItem().toString());
+			data.putExtra("ranch", ranch);
 			
 			setResult(RESULT_OK, data);
 		}

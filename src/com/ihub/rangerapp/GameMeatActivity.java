@@ -164,6 +164,7 @@ public class GameMeatActivity extends CameraGPSActionBarActivity {
 			id = getIntent().getIntExtra("id", -1);
 		
 		String actionTaken = actionTakenSpinner.getSelectedItemPosition() == 0 ? "" : actionTakenSpinner.getSelectedItem().toString();
+		String ranch = ranchSpinner.getSelectedItemPosition() == 0 ? "" : ranchSpinner.getSelectedItem().toString();
 		
 		Map<String, Object> result = service.save(
 				id,
@@ -173,7 +174,7 @@ public class GameMeatActivity extends CameraGPSActionBarActivity {
 				extraNotes.getText().toString(), 
 				imagePath, 
 				waypointView.getText().toString(),
-				ranchSpinner.getSelectedItem().toString());
+				ranch);
 		
 		if(mode == 2) {
 			Intent data = new Intent();
@@ -184,7 +185,7 @@ public class GameMeatActivity extends CameraGPSActionBarActivity {
 			data.putExtra("noOfAnimals", noOfAnimals);
 			data.putExtra("actionTaken", actionTaken);
 			data.putExtra("extraNotes", extraNotes.getText().toString());
-			data.putExtra("ranch", ranchSpinner.getSelectedItem().toString());
+			data.putExtra("ranch", ranch);
 			
 			setResult(RESULT_OK, data);
 		}
