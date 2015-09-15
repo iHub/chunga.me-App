@@ -83,9 +83,10 @@ public class ElephantPoachingReport extends ReportFragment {
 		activity.addReviewItem(new SummaryItem("Tusks Present", model.getIvoryPresence(), "", 9));
 		activity.addReviewItem(new SummaryItem("Action Taken", model.getActionTaken(), "", 10));
 		activity.addReviewItem(new SummaryItem("Extra Notes", model.getExtraNotes(), "", 11));
+		activity.addReviewItem(new SummaryItem("Ranch", model.getRanch(), "", 12));
 		
 		if(date != null)
-			activity.addReviewItem(new SummaryItem("Date Created", new SimpleDateFormat( "yyyy-MM-dd" ).format(date), "", 12));
+			activity.addReviewItem(new SummaryItem("Date Created", new SimpleDateFormat( "yyyy-MM-dd" ).format(date), "", 13));
 	}
 	
 	@Override
@@ -114,7 +115,8 @@ public class ElephantPoachingReport extends ReportFragment {
 					m.setAdultsCount(Integer.valueOf(data.getIntExtra("adultsCount", 0)));
 					m.setSemiAdultsCount(Integer.valueOf(data.getIntExtra("semiAdultsCount", 0)));
 					m.setJuvenileCount(Integer.valueOf(data.getIntExtra("juvenileCount", 0)));
-					m.setIvoryPresence(data.getStringExtra("ivoryPresence"));				
+					m.setIvoryPresence(data.getStringExtra("ivoryPresence"));
+					m.setRanch(data.getStringExtra("ranch"));
 					
 					adapter.notifyDataSetChanged();
 					break;

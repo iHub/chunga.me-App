@@ -50,6 +50,7 @@ public class CharcoalKilnsLoader extends DataLoader {
 				String waypoint = cursor.getString(6);
 				String imagePath = cursor.getString(7);
 				String dateCreated = cursor.getString(8);
+				String ranch = cursor.getString(14);
 												
 				CharcoalKilnModel  model = new CharcoalKilnModel();
 				model.setId(id);
@@ -63,6 +64,7 @@ public class CharcoalKilnsLoader extends DataLoader {
 				model.setWaypoint(waypoint);
 				model.setImagePath(imagePath);
 				model.setDateCreated(dateCreated);
+				model.setRanch(ranch);
 				
 				data.add(model);
 				

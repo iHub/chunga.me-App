@@ -183,6 +183,12 @@ public class ElephantPoachingActivity extends CameraGPSActionBarActivity {
         
         if(mode != 1) {
         	
+        	if(!TextUtils.isEmpty(getIntent().getStringExtra("ranch")))
+            	for(int i = 0; i < ranchesAdapter.getCount(); i++) {
+            		if(ranchSpinner.getItemAtPosition(i).toString().equals(getIntent().getStringExtra("ranch")))
+            			ranchSpinner.setSelection(i);
+            	}
+        	
         	if(data.hasExtra("noOfAnimals"))
             	noOfAnimalsView.setText(data.getIntExtra("noOfAnimals", 0) + "");
         	
@@ -364,7 +370,8 @@ public class ElephantPoachingActivity extends CameraGPSActionBarActivity {
 				action,
 				extraNotes.getText().toString(), 
 				imagePath,
-				waypointView.getText().toString());
+				waypointView.getText().toString(),
+				ranchSpinner.getSelectedItem().toString());
 				
 		if(mode == 2) {
 			Intent data = new Intent();
@@ -381,6 +388,7 @@ public class ElephantPoachingActivity extends CameraGPSActionBarActivity {
 			data.putExtra("semiAdultsCount", semiAdultsCount);
 			data.putExtra("juvenileCount", juvenileCount);
 			data.putExtra("ivoryPresence", tusksPresent ? "Yes" : "No");
+			data.putExtra("ranch", ranchSpinner.getSelectedItem().toString());
 			
 			
 			data.putExtra("actionTaken", action);

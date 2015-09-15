@@ -2,22 +2,15 @@ package com.ihub.rangerapp.view.reports;
 
 import java.text.SimpleDateFormat;
 import java.util.Date;
-
 import com.ihub.rangerapp.CharcoalBurningActivity;
-import com.ihub.rangerapp.GameMeatActivity;
 import com.ihub.rangerapp.ReportViewerActivity;
 import com.ihub.rangerapp.adapter.AmazingAdapter;
 import com.ihub.rangerapp.adapter.CharcoalBagsReportAdapter;
-import com.ihub.rangerapp.adapter.GameMeatReportAdapter;
 import com.ihub.rangerapp.entity.SummaryItem;
 import com.ihub.rangerapp.loader.CharcoalBagsLoader;
-import com.ihub.rangerapp.loader.GameMeatLoader;
 import com.ihub.rangerapp.model.CharcoalBagModel;
-import com.ihub.rangerapp.model.CharcoalKilnModel;
-import com.ihub.rangerapp.model.GameMeatModel;
 import com.ihub.rangerapp.model.Model;
 import com.ihub.rangerapp.util.DateUtil;
-
 import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
@@ -76,6 +69,7 @@ public class CharcoalBurningBagsReport extends ReportFragment {
 					m.setNoOfBags(data.getIntExtra("noOfBags", 0));
 					m.setActionTaken(data.getStringExtra("actionTaken"));
 					m.setExtraNotes(data.getStringExtra("extraNotes"));
+					m.setRanch(data.getStringExtra("ranch"));
 					
 					adapter.notifyDataSetChanged();
 					break;
@@ -98,6 +92,7 @@ public class CharcoalBurningBagsReport extends ReportFragment {
 		activity.addReviewItem(new SummaryItem("Mode of Transport", model.getModeOfTransport(), "", 4));
 		activity.addReviewItem(new SummaryItem("Action Taken", model.getActionTaken(), "", 5));
 		activity.addReviewItem(new SummaryItem("Extra Notes", model.getExtraNotes(), "", 6));
+		activity.addReviewItem(new SummaryItem("Ranch", model.getRanch(), "", 7));
 		
 		if(date != null)
 			activity.addReviewItem(new SummaryItem("Date Created", new SimpleDateFormat( "yyyy-MM-dd" ).format(date), "", 9));

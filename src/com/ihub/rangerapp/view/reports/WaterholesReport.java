@@ -64,10 +64,12 @@ public class WaterholesReport extends ReportFragment {
 				WaterholeModel m = (WaterholeModel) adapter.getItem(i);
 				
 				if(m.getId() == rID) {
+					
 					m.setImagePath(data.getStringExtra("imagePath"));
 					m.setName(data.getStringExtra("name"));
 					m.setLevelOfWater(data.getStringExtra("levelOfWater"));
 					m.setExtraNotes(data.getStringExtra("extraNotes"));
+					m.setRanch(data.getStringExtra("ranch"));
 					
 					adapter.notifyDataSetChanged();
 					break;
@@ -88,9 +90,10 @@ public class WaterholesReport extends ReportFragment {
 		activity.addReviewItem(new SummaryItem("Name", model.getName(), "", 4));
 		activity.addReviewItem(new SummaryItem("Water Level", model.getLevelOfWater(), "", 5));
 		activity.addReviewItem(new SummaryItem("Extra Notes", model.getExtraNotes(), "", 7));
+		activity.addReviewItem(new SummaryItem("Ranch", model.getRanch(), "", 8));
 		
 		if(date != null)
-			activity.addReviewItem(new SummaryItem("Date Created", new SimpleDateFormat( "yyyy-MM-dd" ).format(date), "", 8));
+			activity.addReviewItem(new SummaryItem("Date Created", new SimpleDateFormat( "yyyy-MM-dd" ).format(date), "", 9));
 	}
 	
 	@Override

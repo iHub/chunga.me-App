@@ -32,7 +32,8 @@ public class ElephantServiceImpl extends DatabaseService implements ElephantServ
 			String actionTaken,
 			String extraNotes,
 			String imagePath,
-			String waypoint) {
+			String waypoint,
+			String ranch) {
 		
 		Map<String, Object> result = new HashMap<String, Object>();
 		
@@ -59,6 +60,7 @@ public class ElephantServiceImpl extends DatabaseService implements ElephantServ
  		values.put(Schemas.ElephantPoaching.EXTRA_NOTES, extraNotes);
  		values.put(Schemas.ElephantPoaching.IMAGE_PATH, imagePath);
  		values.put(Schemas.ElephantPoaching.WAYPOINT, waypoint);
+ 		values.put(Schemas.RANCH, ranch);
  		
  		Boolean isValid = true;
  		
@@ -129,6 +131,7 @@ public class ElephantServiceImpl extends DatabaseService implements ElephantServ
 				String imagePath = cursor.getString(12);
 				String dateCreated = cursor.getString(13);
 				Integer shiftID = cursor.getInt(14);
+				String ranch = cursor.getString(19);
 				
 				params.put("no_of_animals", noOfAnimals);
 				params.put("tools_used", toolsUsed);
@@ -142,6 +145,7 @@ public class ElephantServiceImpl extends DatabaseService implements ElephantServ
 				params.put("waypoint", waypoint);
 				params.put("action_taken", actionTaken);
 				params.put("extra_notes", extraNotes);
+				params.put("ranch", ranch);
 				
 				try {
 					File myFile = new File(imagePath);

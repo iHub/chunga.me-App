@@ -63,9 +63,10 @@ public class GameMeatReport extends ReportFragment {
 		activity.addReviewItem(new SummaryItem("No of Animals", model.getNoOfAnimals() + "", "", 4));
 		activity.addReviewItem(new SummaryItem("Action Taken", model.getActionTaken(), "", 5));
 		activity.addReviewItem(new SummaryItem("Extra Notes", model.getExtraNotes(), "", 6));
+		activity.addReviewItem(new SummaryItem("Ranch", model.getRanch(), "", 7));
 		
 		if(date != null)
-			activity.addReviewItem(new SummaryItem("Date Created", new SimpleDateFormat( "yyyy-MM-dd" ).format(date), "", 7));
+			activity.addReviewItem(new SummaryItem("Date Created", new SimpleDateFormat( "yyyy-MM-dd" ).format(date), "", 8));
 	}
 	
 	@Override
@@ -87,6 +88,7 @@ public class GameMeatReport extends ReportFragment {
 					m.setNoOfAnimals(data.getIntExtra("noOfAnimals", 0));
 					m.setActionTaken(data.getStringExtra("actionTaken"));
 					m.setExtraNotes(data.getStringExtra("extraNotes"));
+					m.setRanch(data.getStringExtra("ranch"));
 					
 					adapter.notifyDataSetChanged();
 					break;

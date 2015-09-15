@@ -8,6 +8,8 @@ public abstract class Model implements Serializable {
 	Integer id;
 	
 	String waypoint = "";
+	
+	String ranch= "";
 
 	public Model() {
 	}
@@ -28,5 +30,13 @@ public abstract class Model implements Serializable {
 	
 	public void setWaypoint(String waypoint) {
 		this.waypoint = waypoint;
+	}
+
+	public String getRanch() {
+		return ranch;
+	}
+
+	public void setRanch(String ranch) {
+		this.ranch = ranch;
 	}
 }

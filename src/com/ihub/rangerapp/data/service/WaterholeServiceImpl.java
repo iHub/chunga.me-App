@@ -20,7 +20,7 @@ import com.loopj.android.http.RequestParams;
 public class WaterholeServiceImpl extends DatabaseService implements WaterholeService {
 
 	@Override
-	public Map<String, Object> save(Integer id, String name, String level, String extraNotes, String imagePath) {
+	public Map<String, Object> save(Integer id, String name, String level, String extraNotes, String imagePath, String ranch) {
 		
 		Map<String, Object> result = new HashMap<String, Object>();
 		
@@ -37,6 +37,7 @@ public class WaterholeServiceImpl extends DatabaseService implements WaterholeSe
 		values.put(Schemas.Waterhole.LEVEL_OF_WATER, level);
 		values.put(Schemas.Waterhole.EXTRA_NOTES, extraNotes);
 		values.put(Schemas.Waterhole.IMAGE_PATH, imagePath);
+		values.put(Schemas.RANCH, ranch);
 		
 		Boolean isValid = true;
  		
@@ -93,11 +94,13 @@ public class WaterholeServiceImpl extends DatabaseService implements WaterholeSe
 				String imagePath = cursor.getString(6);
 				String dateCreated = cursor.getString(7);
 				Integer shiftID = cursor.getInt(8);
+				String ranch = cursor.getString(13);
 				
 				params.put("name", name);
 				params.put("level_of_water", levelOfWater);				
 				params.put("waypoint", waypoint);
 				params.put("extra_notes", extraNotes);
+				params.put("ranch", ranch);
 				
 				try {
 					File myFile = new File(imagePath);

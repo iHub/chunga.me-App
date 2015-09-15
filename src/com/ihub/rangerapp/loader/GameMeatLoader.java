@@ -48,6 +48,7 @@ public class GameMeatLoader extends DataLoader {
 				String waypoint = cursor.getString(5);
 				String imagePath = cursor.getString(6);
 				String dateCreated = cursor.getString(7);
+				String ranch = cursor.getString(13);
 								
 				GameMeatModel model = new GameMeatModel();
 				model.setId(id);
@@ -58,6 +59,7 @@ public class GameMeatLoader extends DataLoader {
 				model.setWaypoint(waypoint);
 				model.setImagePath(imagePath);
 				model.setDateCreated(dateCreated);
+				model.setRanch(ranch);
 				
 				data.add(model);
 				

@@ -8,10 +8,12 @@ public interface SuspiciousActivitiesService {
 	
 	public Map<String, Object> save(
 		Integer id, 
+		String activity,
 		String actionTaken,
 		String extraNotes,
 		String imagePath,
-		String waypoint);
+		String waypoint,
+		String ranch);
 	
 	public void sync(Integer id, AsyncHttpResponseHandler handler);
 }

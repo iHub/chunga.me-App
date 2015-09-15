@@ -75,6 +75,7 @@ public class IndividualAnimalsReport extends ReportFragment {
 					m.setAge(data.getStringExtra("age"));
 					m.setDistanceSeen(data.getIntExtra("distanceSeen", 0));
 					m.setExtraNotes(data.getStringExtra("extraNotes"));
+					m.setRanch(data.getStringExtra("ranch"));
 					
 					adapter.notifyDataSetChanged();
 					break;
@@ -98,9 +99,10 @@ public class IndividualAnimalsReport extends ReportFragment {
 		activity.addReviewItem(new SummaryItem("Age", model.getAge(), "", 6));
 		activity.addReviewItem(new SummaryItem("Distance Seen (Mtrs)", model.getDistanceSeen() + "", "", 7));
 		activity.addReviewItem(new SummaryItem("Extra Notes", model.getExtraNotes(), "", 8));
+		activity.addReviewItem(new SummaryItem("Ranch", model.getRanch(), "", 9));
 		
 		if(date != null)
-			activity.addReviewItem(new SummaryItem("Date Created", new SimpleDateFormat( "yyyy-MM-dd" ).format(date), "", 9));
+			activity.addReviewItem(new SummaryItem("Date Created", new SimpleDateFormat( "yyyy-MM-dd" ).format(date), "", 10));
 	}
 	
 	@Override

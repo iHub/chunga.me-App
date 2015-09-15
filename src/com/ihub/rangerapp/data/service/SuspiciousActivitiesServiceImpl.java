@@ -20,7 +20,7 @@ import com.loopj.android.http.RequestParams;
 public class SuspiciousActivitiesServiceImpl extends DatabaseService implements SuspiciousActivitiesService {
 
 	@Override
-	public Map<String, Object> save(Integer id, String actionTaken, String extraNotes, String imagePath, String waypoint) {
+	public Map<String, Object> save(Integer id, String activity, String actionTaken, String extraNotes, String imagePath, String waypoint, String ranch) {
 		
 		Map<String, Object> result = new HashMap<String, Object>();
 	
@@ -37,6 +37,8 @@ public class SuspiciousActivitiesServiceImpl extends DatabaseService implements 
 		values.put(Schemas.SuspiciousActivities.EXTRA_NOTES, extraNotes);
 		values.put(Schemas.SuspiciousActivities.IMAGE_PATH, imagePath);
 		values.put(Schemas.SuspiciousActivities.WAYPOINT, waypoint);
+		values.put(Schemas.SuspiciousActivities.ACTIVITY, activity);
+		values.put(Schemas.RANCH, ranch);
 		
 		Boolean isValid = true;
  		
@@ -95,11 +97,14 @@ public class SuspiciousActivitiesServiceImpl extends DatabaseService implements 
 				String imagePath = cursor.getString(4);
 				String dateCreated = cursor.getString(5);
 				Integer shiftID = cursor.getInt(6);
-				
+				String ranch = cursor.getString(11);
+				String activity = cursor.getString(12);
 				
 				params.put("waypoint", waypoint);
 				params.put("action_taken", actionTaken);
 				params.put("extra_notes", extraNotes);
+				params.put("ranch", ranch);
+				params.put("activity", activity);
 				
 				try {
 					File myFile = new File(imagePath);

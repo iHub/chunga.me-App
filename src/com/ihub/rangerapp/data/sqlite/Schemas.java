@@ -289,7 +289,7 @@ public class Schemas {
 	}
 	
 	private static void createCharcoalLogsTable(SQLiteDatabase db) {
-		String sql = "create table " + CHARCOAL_KILN_TABLE + "(" +
+		String sql = "create table " + CHARCOAL_LOGS_TABLE + "(" +
 			BaseColumns._ID + " integer primary key autoincrement," +
 			CharcoalLogs.NO_OF_LOGS + " INTEGER, " +
 			CharcoalLogs.TREE + " text," +
@@ -454,6 +454,12 @@ public class Schemas {
 	
 	public static void onUpgrage(SQLiteDatabase db, int oldVersion, int newVersion) {
 		
+		if(oldVersion != newVersion) {
+			deleteSchemas(db);
+		}
+	}
+
+	private static void deleteSchemas(SQLiteDatabase db) {
 		db.execSQL("DROP TABLE IF EXISTS " + SHIFTS_TABLE);
 		db.execSQL("DROP TABLE IF EXISTS " + GAME_MEAT_TABLE);
 		db.execSQL("DROP TABLE IF EXISTS " + CHARCOAL_KILN_TABLE);

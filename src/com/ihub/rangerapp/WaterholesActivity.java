@@ -111,6 +111,12 @@ public class WaterholesActivity extends CameraGPSActionBarActivity {
         	
         	//TODO prefill values
         	
+        	if(!TextUtils.isEmpty(getIntent().getStringExtra("ranch")))
+            	for(int i = 0; i < ranchesAdapter.getCount(); i++) {
+            		if(ranchSpinner.getItemAtPosition(i).toString().equals(getIntent().getStringExtra("ranch")))
+            			ranchSpinner.setSelection(i);
+            	}
+        	
         	if(!TextUtils.isEmpty(getIntent().getStringExtra("name")))
         		waterholeName.setText(getIntent().getStringExtra("name"));
         	
@@ -147,7 +153,8 @@ public class WaterholesActivity extends CameraGPSActionBarActivity {
 			waterholeName.getText().toString(), 
 			level, 
 			extraNotes.getText().toString(), 
-			imagePath);
+			imagePath,
+			ranchSpinner.getSelectedItem().toString());
 		
 		if(mode == 2) {
 			Intent data = new Intent();
@@ -157,6 +164,7 @@ public class WaterholesActivity extends CameraGPSActionBarActivity {
 			data.putExtra("name", waterholeName.getText().toString());
 			data.putExtra("levelOfWater", level);
 			data.putExtra("extraNotes", extraNotes.getText().toString());
+			data.putExtra("ranch", ranchSpinner.getSelectedItem().toString());
 			
 			setResult(RESULT_OK, data);
 		}

@@ -13,7 +13,8 @@ public interface GameMeatService {
 		String actionTaken, 
 		String extraNotes,
 		String imagePath,
-		String waypoint);		
+		String waypoint,
+		String ranch);		
 	
 	public Map<String, Object> edit(
 		Integer id, 
@@ -22,7 +23,8 @@ public interface GameMeatService {
 		String actionTaken, 
 		String extraNotes,
 		String imagePath,
-		String waypoint);
+		String waypoint,
+		String ranch);
 	
 	public void sync(Integer id, AsyncHttpResponseHandler handler);
 }

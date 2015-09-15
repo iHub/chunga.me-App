@@ -61,6 +61,7 @@ public class GameMeatModel extends Model {
 		intent.putExtra("waypoint", waypoint);
 		intent.putExtra("imagePath", imagePath);
 		intent.putExtra("dateCreated", dateCreated);
+		intent.putExtra("ranch", ranch);
 		
 		return intent;
 	}

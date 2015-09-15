@@ -75,6 +75,7 @@ public class HerdsReport extends ReportFragment {
 					m.setJuvenileCount(Integer.valueOf(data.getIntExtra("juvenileCount", 0)));
 					m.setDistanceSeen(data.getIntExtra("distanceSeen", 0));
 					m.setExtraNotes(data.getStringExtra("extraNotes"));
+					m.setRanch(data.getStringExtra("ranch"));
 					
 					adapter.notifyDataSetChanged();
 					break;
@@ -100,9 +101,10 @@ public class HerdsReport extends ReportFragment {
 		activity.addReviewItem(new SummaryItem("Juvenile Count", model.getJuvenileCount() + "", "", 9));
 		activity.addReviewItem(new SummaryItem("Distance Seen (Mtrs)", model.getDistanceSeen() + "", "", 10));
 		activity.addReviewItem(new SummaryItem("Extra Notes", model.getExtraNotes(), "", 11));
+		activity.addReviewItem(new SummaryItem("Ranch", model.getRanch(), "", 12));
 		
 		if(date != null)
-			activity.addReviewItem(new SummaryItem("Date Created", new SimpleDateFormat( "yyyy-MM-dd" ).format(date), "", 10));
+			activity.addReviewItem(new SummaryItem("Date Created", new SimpleDateFormat( "yyyy-MM-dd" ).format(date), "", 13));
 	}
 	
 	@Override

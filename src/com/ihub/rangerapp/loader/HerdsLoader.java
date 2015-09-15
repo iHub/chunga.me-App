@@ -7,7 +7,6 @@ import android.database.sqlite.SQLiteDatabase;
 import com.ihub.rangerapp.RangerApp;
 import com.ihub.rangerapp.data.sqlite.DB;
 import com.ihub.rangerapp.data.sqlite.Schemas;
-import com.ihub.rangerapp.data.sqlite.Schemas.AnimalHerdSighting;
 import com.ihub.rangerapp.model.HerdModel;
 import com.ihub.rangerapp.model.Model;
 import com.ihub.rangerapp.util.PagingLoadConfig;
@@ -50,6 +49,7 @@ public class HerdsLoader extends DataLoader {
 				String waypoint = cursor.getString(9);
 				String imagePath = cursor.getString(10);
 				String dateCreated = cursor.getString(11);
+				String ranch = cursor.getString(17);
 												
 				HerdModel  model = new HerdModel();
 				model.setId(id);
@@ -64,6 +64,7 @@ public class HerdsLoader extends DataLoader {
 				model.setWaypoint(waypoint);
 				model.setImagePath(imagePath);
 				model.setDateCreated(dateCreated);
+				model.setRanch(ranch);
 				
 				data.add(model);
 				

@@ -41,7 +41,8 @@ public class WaterholesLoader extends DataLoader {
 				String extraNotes = cursor.getString(4);
 				String imagePath = cursor.getString(6);
 				String dateCreated = cursor.getString(7);
-												
+				String ranch = cursor.getString(13);
+				
 				WaterholeModel  model = new WaterholeModel();
 				model.setId(id);
 				model.setName(name);
@@ -50,6 +51,7 @@ public class WaterholesLoader extends DataLoader {
 				model.setImagePath(imagePath);
 				model.setDateCreated(dateCreated);
 				model.setId(id);
+				model.setRanch(ranch);
 				
 				data.add(model);
 				

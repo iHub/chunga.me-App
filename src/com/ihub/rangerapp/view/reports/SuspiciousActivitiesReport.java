@@ -70,6 +70,7 @@ AmazingAdapter adapter;
 					m.setImagePath(data.getStringExtra("imagePath"));
 					m.setActionTaken(data.getStringExtra("actionTaken"));
 					m.setExtraNotes(data.getStringExtra("extraNotes"));
+					m.setRanch(data.getStringExtra("ranch"));
 					
 					adapter.notifyDataSetChanged();
 					break;
@@ -90,9 +91,10 @@ AmazingAdapter adapter;
 		activity.addReviewItem(new SummaryItem("Waypoint", model.getWaypoint(), "", 2));
 		activity.addReviewItem(new SummaryItem("Action Taken", model.getActionTaken(), "", 4));
 		activity.addReviewItem(new SummaryItem("Extra Notes", model.getExtraNotes(), "", 5));
+		activity.addReviewItem(new SummaryItem("Ranch", model.getRanch(), "", 6));
 		
 		if(date != null)
-			activity.addReviewItem(new SummaryItem("Date Created", new SimpleDateFormat( "yyyy-MM-dd" ).format(date), "", 6));
+			activity.addReviewItem(new SummaryItem("Date Created", new SimpleDateFormat( "yyyy-MM-dd" ).format(date), "", 7));
 	}
 	
 	@Override

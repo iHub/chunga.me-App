@@ -20,7 +20,7 @@ public class CharcoalServiceImpl extends DatabaseService implements CharcoalServ
 
 	@Override
 	public Map<String, Object> saveBagsData(Integer id, Integer noOfBags, String mode,
-		String actionTaken, String extraNotes, String imagePath, String waypoint) {
+		String actionTaken, String extraNotes, String imagePath, String waypoint, String ranch) {
 		
 		Map<String, Object> result = new HashMap<String, Object>();
 		
@@ -40,6 +40,7 @@ public class CharcoalServiceImpl extends DatabaseService implements CharcoalServ
  		values.put(Schemas.CharcoalBags.EXTRA_NOTES, extraNotes);
  		values.put(Schemas.CharcoalBags.IMAGE_PATH, imagePath);
  		values.put(Schemas.CharcoalBags.WAYPOINT, waypoint);
+ 		values.put(Schemas.RANCH, ranch);
  		
  		Boolean isValid = true;
  		
@@ -76,7 +77,7 @@ public class CharcoalServiceImpl extends DatabaseService implements CharcoalServ
 	@Override
 	public Map<String, Object> saveKilns(Integer id, Integer noOfKilns,
 		String freshnessLevels, String treeUsed, String actionTaken,
-		String extraNotes, String imagePath, String waypoint) {
+		String extraNotes, String imagePath, String waypoint, String ranch) {
 		
 		Map<String, Object> result = new HashMap<String, Object>();
 		
@@ -96,6 +97,7 @@ public class CharcoalServiceImpl extends DatabaseService implements CharcoalServ
  		values.put(Schemas.CharcoalKilns.EXTRA_NOTES, extraNotes);
  		values.put(Schemas.CharcoalKilns.IMAGE_PATH, imagePath);
  		values.put(Schemas.CharcoalKilns.WAYPOINT, waypoint);
+ 		values.put(Schemas.RANCH, ranch);
  		
  		Boolean isValid = true;
  		
@@ -157,12 +159,14 @@ public class CharcoalServiceImpl extends DatabaseService implements CharcoalServ
 				String imagePath = cursor.getString(6);
 				String dateCreated = cursor.getString(7);
 				Integer shiftID = cursor.getInt(8);
+				String ranch = cursor.getString(13);
 				
 				params.put("mode_of_transport", modeOfTransport);
 				params.put("no_of_bags", noOfBags + "");
 				params.put("waypoint", waypoint);
 				params.put("action_taken", actionTaken);
 				params.put("extra_notes", extraNotes);
+				params.put("ranch", ranch);
 				
 				try {
 					File myFile = new File(imagePath);
@@ -219,6 +223,7 @@ public class CharcoalServiceImpl extends DatabaseService implements CharcoalServ
 				String imagePath = cursor.getString(7);
 				String dateCreated = cursor.getString(8);
 				Integer shiftID = cursor.getInt(9);
+				String ranch = cursor.getString(14);
 				
 				
 				params.put("no_of_kilns", noOfKilns + "");
@@ -228,6 +233,7 @@ public class CharcoalServiceImpl extends DatabaseService implements CharcoalServ
 				params.put("waypoint", waypoint);
 				params.put("action_taken", actionTaken);
 				params.put("extra_notes", extraNotes);
+				params.put("ranch", ranch);
 				
 				try {
 					File myFile = new File(imagePath);

@@ -191,6 +191,12 @@ public class AnimalsSightingsActivity extends CameraGPSActionBarActivity {
         if(mode != 1) {
         	radioGroup.setVisibility(View.GONE);
         	
+        	if(!TextUtils.isEmpty(getIntent().getStringExtra("ranch")))
+            	for(int i = 0; i < ranchesAdapter.getCount(); i++) {
+            		if(ranchSpinner.getItemAtPosition(i).toString().equals(getIntent().getStringExtra("ranch")))
+            			ranchSpinner.setSelection(i);
+            	}
+        	
         	waypointView.setText(getIntent().getStringExtra("waypoint"));
         	
         	if(mode == 2) {
@@ -330,7 +336,8 @@ public class AnimalsSightingsActivity extends CameraGPSActionBarActivity {
 					distanceSeen, 
 					extraNotes.getText().toString(), 
 					imagePath, 
-					waypointView.getText().toString());
+					waypointView.getText().toString(),
+					ranchSpinner.getSelectedItem().toString());
 			
 			if(mode == 2) {
 				Intent data = new Intent();
@@ -342,6 +349,7 @@ public class AnimalsSightingsActivity extends CameraGPSActionBarActivity {
 				data.putExtra("age", age);
 				data.putExtra("distanceSeen", distanceSeen);
 				data.putExtra("extraNotes", extraNotes.getText().toString());
+				data.putExtra("ranch", ranchSpinner.getSelectedItem().toString());
 				
 				setResult(RESULT_OK, data);
 			}
@@ -416,7 +424,8 @@ public class AnimalsSightingsActivity extends CameraGPSActionBarActivity {
 					distanceSeen,
 					extraNotes.getText().toString(), 
 					imagePath, 
-					waypointView.getText().toString());
+					waypointView.getText().toString(),
+					ranchSpinner.getSelectedItem().toString());
 			
 			if(mode == 2) {
 				Intent data = new Intent();
@@ -431,6 +440,7 @@ public class AnimalsSightingsActivity extends CameraGPSActionBarActivity {
 				data.putExtra("juvenileCount", juvenileCount);
 				data.putExtra("distanceSeen", distanceSeen);
 				data.putExtra("extraNotes", extraNotes.getText().toString());
+				data.putExtra("ranch", ranchSpinner.getSelectedItem().toString());
 				
 				setResult(RESULT_OK, data);
 			}

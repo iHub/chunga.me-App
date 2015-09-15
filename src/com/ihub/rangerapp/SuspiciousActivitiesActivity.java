@@ -105,6 +105,18 @@ public class SuspiciousActivitiesActivity extends CameraGPSActionBarActivity {
         
         if(mode != 1) {
         	
+        	if(!TextUtils.isEmpty(getIntent().getStringExtra("activity")))
+            	for(int i = 0; i < activityAdapter.getCount(); i++) {
+            		if(activitySpinner.getItemAtPosition(i).toString().equals(getIntent().getStringExtra("activity")))
+            			activitySpinner.setSelection(i);
+            	}
+        	
+        	if(!TextUtils.isEmpty(getIntent().getStringExtra("ranch")))
+            	for(int i = 0; i < ranchesAdapter.getCount(); i++) {
+            		if(ranchSpinner.getItemAtPosition(i).toString().equals(getIntent().getStringExtra("ranch")))
+            			ranchSpinner.setSelection(i);
+            	}
+        	
         	if(!TextUtils.isEmpty(getIntent().getStringExtra("actionTaken")))
             	for(int i = 0; i < actionTakenAdapter.getCount(); i++) {
             		if(actionTakenSpinner.getItemAtPosition(i).toString().equals(getIntent().getStringExtra("actionTaken")))
@@ -133,15 +145,23 @@ public class SuspiciousActivitiesActivity extends CameraGPSActionBarActivity {
 		String action = actionTakenSpinner.getSelectedItemPosition() == 0 ? "" : actionTakenSpinner.getSelectedItem().toString();
 		
 		SuspiciousActivitiesService service = new SuspiciousActivitiesServiceImpl();
-		Map<String, Object> result = service.save(id, action, extraNotes.getText().toString(), imagePath, waypointView.getText().toString());
+		Map<String, Object> result = service.save(
+				id, 
+				activitySpinner.getSelectedItem().toString(),
+				action, 
+				extraNotes.getText().toString(), 
+				imagePath, waypointView.getText().toString(), 
+				ranchSpinner.getSelectedItem().toString());
 		
 		if(mode == 2) {
 			Intent data = new Intent();
 			
 			data.putExtra("imagePath", imagePath);
+			data.putExtra("activity", activitySpinner.getSelectedItem().toString());
 			data.putExtra("id", id);
 			data.putExtra("actionTaken", action);
 			data.putExtra("extraNotes", extraNotes.getText().toString());
+			data.putExtra("ranch", ranchSpinner.getSelectedItem().toString());
 			
 			setResult(RESULT_OK, data);
 		}

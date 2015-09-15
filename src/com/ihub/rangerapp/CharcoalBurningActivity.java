@@ -157,6 +157,12 @@ public class CharcoalBurningActivity extends CameraGPSActionBarActivity {
         if(mode != 1) {
         	radioGroup.setVisibility(View.GONE);
         	
+        	if(!TextUtils.isEmpty(getIntent().getStringExtra("ranch")))
+            	for(int i = 0; i < ranchesAdapter.getCount(); i++) {
+            		if(ranchSpinner.getItemAtPosition(i).toString().equals(getIntent().getStringExtra("ranch")))
+            			ranchSpinner.setSelection(i);
+            	}
+        	
         	waypointView.setText(getIntent().getStringExtra("waypoint"));
         	
         	if(mode == 2) {
@@ -253,7 +259,8 @@ public class CharcoalBurningActivity extends CameraGPSActionBarActivity {
 					kilnActionTaken, 
 					extraNotes.getText().toString(), 
 					imagePath, 
-					waypointView.getText().toString());
+					waypointView.getText().toString(), 
+					ranchSpinner.getSelectedItem().toString());
 			
 			if(mode == 2) {
 				Intent data = new Intent();
@@ -265,6 +272,7 @@ public class CharcoalBurningActivity extends CameraGPSActionBarActivity {
 				data.putExtra("treeUsed", treeUsedView.getText().toString());
 				data.putExtra("actionTaken", kilnActionTaken);
 				data.putExtra("extraNotes", extraNotes.getText().toString());
+				data.putExtra("ranch", ranchSpinner.getSelectedItem().toString());
 				
 				setResult(RESULT_OK, data);
 			}
@@ -298,7 +306,8 @@ public class CharcoalBurningActivity extends CameraGPSActionBarActivity {
 					bagsActionTaken, 
 					extraNotes.getText().toString(), 
 					imagePath,
-					waypointView.getText().toString());
+					waypointView.getText().toString(),
+					ranchSpinner.getSelectedItem().toString());
 			
 			if(mode == 2) {
 				Intent data = new Intent();
@@ -309,6 +318,7 @@ public class CharcoalBurningActivity extends CameraGPSActionBarActivity {
 				data.putExtra("modeOfTransport", modeOfTransport);
 				data.putExtra("actionTaken", bagsActionTaken);
 				data.putExtra("extraNotes", extraNotes.getText().toString());
+				data.putExtra("ranch", ranchSpinner.getSelectedItem().toString());
 				
 				setResult(RESULT_OK, data);
 			}

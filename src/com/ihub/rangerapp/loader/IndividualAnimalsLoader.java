@@ -5,15 +5,11 @@ import java.util.List;
 
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
-import android.provider.BaseColumns;
-
 import com.ihub.rangerapp.RangerApp;
 import com.ihub.rangerapp.data.sqlite.DB;
 import com.ihub.rangerapp.data.sqlite.Schemas;
-import com.ihub.rangerapp.data.sqlite.Schemas.IndividualAnimalSighting;
 import com.ihub.rangerapp.model.IndividualAnimalModel;
 import com.ihub.rangerapp.model.Model;
-import com.ihub.rangerapp.model.SuspiciousActivityModel;
 import com.ihub.rangerapp.util.PagingLoadConfig;
 
 public class IndividualAnimalsLoader extends DataLoader {
@@ -50,6 +46,7 @@ public class IndividualAnimalsLoader extends DataLoader {
 				String waypoint = cursor.getString(6);
 				String imagePath = cursor.getString(7);
 				String dateCreated = cursor.getString(8);
+				String ranch = cursor.getString(14);
 												
 				IndividualAnimalModel  model = new IndividualAnimalModel();
 				model.setId(id);
@@ -61,6 +58,7 @@ public class IndividualAnimalsLoader extends DataLoader {
 				model.setWaypoint(waypoint);
 				model.setImagePath(imagePath);
 				model.setDateCreated(dateCreated);
+				model.setRanch(ranch);
 				
 				data.add(model);
 				

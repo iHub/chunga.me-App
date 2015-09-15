@@ -293,6 +293,7 @@
         <item>Female</item>
     </string-array>
     <string-array name="suspicious_activities_activities">
+        <item>Select Activity</item>
         <item>Footprints</item>
         <item>Habitat Destruction (trees)</item>
         <item>Mining Prospects</item>

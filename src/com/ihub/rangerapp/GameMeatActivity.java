@@ -117,6 +117,12 @@ public class GameMeatActivity extends CameraGPSActionBarActivity {
         		if(!TextUtils.isEmpty(getIntent().getStringExtra("animal")))
             		animalView.setText(getIntent().getStringExtra("animal"));
         		
+        		if(!TextUtils.isEmpty(getIntent().getStringExtra("ranch")))
+                	for(int i = 0; i < ranchesAdapter.getCount(); i++) {
+                		if(ranchSpinner.getItemAtPosition(i).toString().equals(getIntent().getStringExtra("ranch")))
+                			ranchSpinner.setSelection(i);
+                	}
+        		
                 if(data.hasExtra("noOfAnimals"))
                 	noOfAnimalsView.setText(data.getIntExtra("noOfAnimals", 0) + "");
                 
@@ -166,7 +172,8 @@ public class GameMeatActivity extends CameraGPSActionBarActivity {
 				actionTaken, 
 				extraNotes.getText().toString(), 
 				imagePath, 
-				waypointView.getText().toString());
+				waypointView.getText().toString(),
+				ranchSpinner.getSelectedItem().toString());
 		
 		if(mode == 2) {
 			Intent data = new Intent();
@@ -177,6 +184,7 @@ public class GameMeatActivity extends CameraGPSActionBarActivity {
 			data.putExtra("noOfAnimals", noOfAnimals);
 			data.putExtra("actionTaken", actionTaken);
 			data.putExtra("extraNotes", extraNotes.getText().toString());
+			data.putExtra("ranch", ranchSpinner.getSelectedItem().toString());
 			
 			setResult(RESULT_OK, data);
 		}

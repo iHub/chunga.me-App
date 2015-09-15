@@ -19,7 +19,7 @@ import com.loopj.android.http.RequestParams;
 public class AnimalSightingsServiceImpl extends DatabaseService implements AnimalSightingsService {
 
 	@Override
-	public Map<String, Object> saveIndividualAnimal(Integer id, String name, String gender, String age, Integer distanceSeen, String extraNotes, String imagePath, String waypoint) {
+	public Map<String, Object> saveIndividualAnimal(Integer id, String name, String gender, String age, Integer distanceSeen, String extraNotes, String imagePath, String waypoint, String ranch) {
 		
 		Map<String, Object> result = new HashMap<String, Object>();
 		
@@ -39,6 +39,7 @@ public class AnimalSightingsServiceImpl extends DatabaseService implements Anima
  		values.put(Schemas.IndividualAnimalSighting.EXTRA_NOTES, extraNotes);
  		values.put(Schemas.IndividualAnimalSighting.IMAGE_PATH, imagePath);
  		values.put(Schemas.IndividualAnimalSighting.WAYPOINT, waypoint);
+ 		values.put(Schemas.RANCH, ranch);
  		
  		Boolean isValid = true;
  		
@@ -70,7 +71,7 @@ public class AnimalSightingsServiceImpl extends DatabaseService implements Anima
 	}
 	
 	@Override
-	public Map<String, Object> saveHerd(Integer id, String name, String species, Integer noOfAnimals, Integer adultsCount, Integer semiAdultsCount, Integer juvenileCount, Integer distanceSeen, String extraNotes, String imagePath, String waypoint) {
+	public Map<String, Object> saveHerd(Integer id, String name, String species, Integer noOfAnimals, Integer adultsCount, Integer semiAdultsCount, Integer juvenileCount, Integer distanceSeen, String extraNotes, String imagePath, String waypoint, String ranch) {
 		
 		Map<String, Object> result = new HashMap<String, Object>();
 		
@@ -95,6 +96,7 @@ public class AnimalSightingsServiceImpl extends DatabaseService implements Anima
  		values.put(Schemas.AnimalHerdSighting.EXTRA_NOTES, extraNotes);
  		values.put(Schemas.AnimalHerdSighting.IMAGE_PATH, imagePath);
  		values.put(Schemas.AnimalHerdSighting.WAYPOINT, waypoint);
+ 		values.put(Schemas.RANCH, ranch);
  		
  		Boolean isValid = true;
  		
@@ -159,6 +161,7 @@ public class AnimalSightingsServiceImpl extends DatabaseService implements Anima
 				String imagePath = cursor.getString(7);
 				String dateCreated = cursor.getString(8);
 				Integer shiftID = cursor.getInt(9);
+				String ranch = cursor.getString(14);
 				
 				params.put("gender", gender);
 				params.put("age", age);
@@ -167,6 +170,7 @@ public class AnimalSightingsServiceImpl extends DatabaseService implements Anima
 				params.put("animal", animal);
 				params.put("waypoint", waypoint);
 				params.put("extra_notes", extraNotes);
+				params.put("ranch", ranch);
 				
 				try {
 					File myFile = new File(imagePath);
@@ -223,6 +227,7 @@ public class AnimalSightingsServiceImpl extends DatabaseService implements Anima
 				Integer juvenileCount = cursor.getInt(6);
 				
 				Integer distanceSeen = cursor.getInt(7);
+				String ranch = cursor.getString(17);
 				
 				
 				params.put("name", name);
@@ -232,6 +237,7 @@ public class AnimalSightingsServiceImpl extends DatabaseService implements Anima
 				params.put("semi_adults_count", semiAdultsCount + "");
 				params.put("juvenile_count", juvenileCount + "");
 				params.put("distance_seen", distanceSeen + "");
+				params.put("ranch", ranch);
 				
 				String extraNotes = cursor.getString(8);
 				String waypoint = cursor.getString(9);

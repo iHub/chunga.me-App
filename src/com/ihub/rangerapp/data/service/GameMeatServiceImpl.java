@@ -19,7 +19,7 @@ import com.loopj.android.http.RequestParams;
 public class GameMeatServiceImpl extends DatabaseService implements GameMeatService {
 	
 	@Override
-	public Map<String, Object> save(Integer id, String animal, Integer noOfAnimals, String actionTaken, String extraNotes, String imagePath, String waypoint) {
+	public Map<String, Object> save(Integer id, String animal, Integer noOfAnimals, String actionTaken, String extraNotes, String imagePath, String waypoint, String ranch) {
 		
 		Map<String, Object> result = new HashMap<String, Object>();
 		
@@ -38,6 +38,7 @@ public class GameMeatServiceImpl extends DatabaseService implements GameMeatServ
  		values.put(Schemas.GameMeat.EXTRA_NOTES, extraNotes);
  		values.put(Schemas.GameMeat.WAYPOINT, waypoint);
  		values.put(Schemas.GameMeat.IMAGE_PATH, imagePath);
+ 		values.put(Schemas.RANCH, ranch);
  		
  		Boolean isValid = true;
  		
@@ -72,7 +73,7 @@ public class GameMeatServiceImpl extends DatabaseService implements GameMeatServ
 	}
 	
 	@Override
-	public Map<String, Object> edit(Integer id, String animal, Integer noOfAnimals, String actionTaken, String extraNotes, String imagePath, String waypoint) {
+	public Map<String, Object> edit(Integer id, String animal, Integer noOfAnimals, String actionTaken, String extraNotes, String imagePath, String waypoint, String ranch) {
 		
 		return null;
 	}
@@ -104,12 +105,14 @@ public class GameMeatServiceImpl extends DatabaseService implements GameMeatServ
 				String imagePath = cursor.getString(6);
 				String dateCreated = cursor.getString(7);
 				Integer shiftID = cursor.getInt(8);
+				String ranch = cursor.getString(13);
 				
 				params.put("waypoint", waypoint);
 				params.put("animal", animal);
 				params.put("no_of_animals", noOfAnimals);
 				params.put("action_taken", actionTaken);
 				params.put("extra_notes", extraNotes);
+				params.put("ranch", ranch);
 				
 				try {
 					File myFile = new File(imagePath);
