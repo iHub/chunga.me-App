@@ -104,6 +104,7 @@
     <string name="male">Male</string>
     <string name="male_count">Male Count</string>
     <string name="female">Female</string>
+    <string name="unknown">Unknown</string>
     <string name="female_count">Female Count</string>
     <string name="adults">Adults</string>
     <string name="sub_adults">Sub-Adults</string>

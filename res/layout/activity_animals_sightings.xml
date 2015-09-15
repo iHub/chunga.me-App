@@ -111,14 +111,23 @@
 						android:layout_height="wrap_content"
 						android:text="@string/male"
 						android:onClick="onGenderRadioButtonClicked"
-						android:layout_marginRight="25dp" />
+						android:layout_marginRight="10dp" />
 					
 					<RadioButton 
 					    android:id="@+id/radio_gender_female"
 						android:layout_width="wrap_content"
 						android:layout_height="wrap_content"
 						android:text="@string/female"
+						android:onClick="onGenderRadioButtonClicked"
+						android:layout_marginRight="10dp" />
+					
+					<RadioButton 
+					    android:id="@+id/radio_gender_unknown"
+						android:layout_width="wrap_content"
+						android:layout_height="wrap_content"
+						android:text="@string/unknown"
 						android:onClick="onGenderRadioButtonClicked" />
+					
 				</RadioGroup>
 				
 		        <TextView
