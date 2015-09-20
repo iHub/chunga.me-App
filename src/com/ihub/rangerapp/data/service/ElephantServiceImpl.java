@@ -33,7 +33,9 @@ public class ElephantServiceImpl extends DatabaseService implements ElephantServ
 			String extraNotes,
 			String imagePath,
 			String waypoint,
-			String ranch) {
+			String ranch,
+			Integer leftTuskWeight,
+			Integer rightTuskWeight) {
 		
 		Map<String, Object> result = new HashMap<String, Object>();
 		
@@ -61,6 +63,8 @@ public class ElephantServiceImpl extends DatabaseService implements ElephantServ
  		values.put(Schemas.ElephantPoaching.IMAGE_PATH, imagePath);
  		values.put(Schemas.ElephantPoaching.WAYPOINT, waypoint);
  		values.put(Schemas.RANCH, ranch);
+ 		values.put(Schemas.ElephantPoaching.LEFT_TUSK_WEIGHT, leftTuskWeight);
+ 		values.put(Schemas.ElephantPoaching.RIGHT_TUSK_WEIGHT, rightTuskWeight);
  		
  		Boolean isValid = true;
  		

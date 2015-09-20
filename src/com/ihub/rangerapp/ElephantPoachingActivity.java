@@ -37,9 +37,12 @@ public class ElephantPoachingActivity extends CameraGPSActionBarActivity {
 	EditText adultsCountView;
 	EditText femaleCountView;
 	EditText maleCountView;
+	EditText leftTuskWeightView;
+	EditText rightTuskWeightView;
 	
 	LinearLayout multiAnimalsView;
 	LinearLayout singleAnimalView;
+	LinearLayout tusksWeightLayout;
 	
 	Boolean tusksPresent = false;
 	
@@ -80,6 +83,9 @@ public class ElephantPoachingActivity extends CameraGPSActionBarActivity {
         multiAnimalsView = (LinearLayout) findViewById(R.id.multiAnimalsView);
         singleAnimalView = (LinearLayout) findViewById(R.id.singleAnimalView);
         
+        leftTuskWeightView = (EditText) findViewById(R.id.leftTuskWeightView);
+        rightTuskWeightView = (EditText) findViewById(R.id.rightTuskWeightView);
+        
         toolsUsedSpinner = (Spinner) findViewById(R.id.toolsUsedSpinner);
         noOfAnimalsView = (EditText) findViewById(R.id.noOfAnimalsView);
         ageSpinner = (Spinner) findViewById(R.id.ageSpinner);
@@ -90,6 +96,10 @@ public class ElephantPoachingActivity extends CameraGPSActionBarActivity {
         
         hasTusksYes = (RadioButton) findViewById(R.id.radio_yes);
         hasTusksNo = (RadioButton) findViewById(R.id.radio_no);
+        
+        tusksWeightLayout = (LinearLayout) findViewById(R.id.tusksWeightLayout);
+        
+        
         
         noOfAnimalsView.addTextChangedListener(new TextWatcher() {
         	
@@ -268,9 +278,22 @@ public class ElephantPoachingActivity extends CameraGPSActionBarActivity {
         	
         	if(!TextUtils.isEmpty(getIntent().getStringExtra("ivoryPresence"))) {
         		
-        		if("Yes".equals(getIntent().getStringExtra("ivoryPresence")))
+        		if("Yes".equals(getIntent().getStringExtra("ivoryPresence"))) {
+        			tusksPresent = true;
         			hasTusksYes.setChecked(true);
-        		else
+        			tusksWeightLayout.setVisibility(View.VISIBLE);
+        			
+        			if(getIntent().hasExtra("leftTuskWeight"))
+        				try {
+        					leftTuskWeightView.setText(""+getIntent().getIntExtra("leftTuskWeight", 0));
+        				} catch(Exception e) {}
+        			
+        			if(getIntent().hasExtra("rightTuskWeight"))
+        				try {
+        					rightTuskWeightView.setText(""+getIntent().getIntExtra("rightTuskWeight", 0));
+        				} catch(Exception e) {}
+        				
+        		} else
         			hasTusksNo.setChecked(true);
         	}
         	
@@ -358,6 +381,19 @@ public class ElephantPoachingActivity extends CameraGPSActionBarActivity {
 		String action = actionTakenSpinner.getSelectedItemPosition() == 0 ? "" : actionTakenSpinner.getSelectedItem().toString();
 		String ranch = ranchSpinner.getSelectedItemPosition() == 0 ? "" : ranchSpinner.getSelectedItem().toString();
 		
+		Integer leftTuskWeight = 0;
+		Integer rightTuskWeight = 0;
+		
+		try{
+			if(!TextUtils.isEmpty(leftTuskWeightView.getText().toString()))
+				leftTuskWeight = Integer.valueOf(leftTuskWeightView.getText().toString());
+		} catch (NumberFormatException e) {}
+		
+		try{
+			if(!TextUtils.isEmpty(rightTuskWeightView.getText().toString()))
+				rightTuskWeight = Integer.valueOf(rightTuskWeightView.getText().toString());
+		} catch (NumberFormatException e) {}
+		
 		Map<String, Object> result = service.save(
 				id,
 				toolUsed, 
@@ -372,7 +408,9 @@ public class ElephantPoachingActivity extends CameraGPSActionBarActivity {
 				extraNotes.getText().toString(), 
 				imagePath,
 				waypointView.getText().toString(),
-				ranch);
+				ranch,
+				leftTuskWeight,
+				rightTuskWeight);
 				
 		if(mode == 2) {
 			Intent data = new Intent();
@@ -391,6 +429,10 @@ public class ElephantPoachingActivity extends CameraGPSActionBarActivity {
 			data.putExtra("ivoryPresence", tusksPresent ? "Yes" : "No");
 			data.putExtra("ranch", ranch);
 			
+			if(tusksPresent) {
+				data.putExtra("leftTuskWeight", leftTuskWeightView.getText());
+				data.putExtra("rightTuskWeight", rightTuskWeightView.getText());
+			}
 			
 			data.putExtra("actionTaken", action);
 			data.putExtra("extraNotes", extraNotes.getText().toString());
@@ -406,9 +448,11 @@ public class ElephantPoachingActivity extends CameraGPSActionBarActivity {
 		switch (view.getId()) {
 		case R.id.radio_yes:
 			tusksPresent = true;
+			tusksWeightLayout.setVisibility(View.VISIBLE);
 			break;
 		case R.id.radio_no:
 			tusksPresent = false;
+			tusksWeightLayout.setVisibility(View.GONE);
 			break;
 		default:
 			break;

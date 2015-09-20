@@ -85,8 +85,13 @@ public class ElephantPoachingReport extends ReportFragment {
 		activity.addReviewItem(new SummaryItem("Extra Notes", model.getExtraNotes(), "", 11));
 		activity.addReviewItem(new SummaryItem("Ranch", model.getRanch(), "", 12));
 		
+		if("Yes".equals(model.getIvoryPresence())) {
+			activity.addReviewItem(new SummaryItem("Left Tusk Weight", model.getLeftTuskWeight() + "", "", 13));
+			activity.addReviewItem(new SummaryItem("Right Tusk Weight", model.getRightTuskWeight() + "", "", 14));
+		}
+		 
 		if(date != null)
-			activity.addReviewItem(new SummaryItem("Date Created", new SimpleDateFormat( "yyyy-MM-dd" ).format(date), "", 13));
+			activity.addReviewItem(new SummaryItem("Date Created", new SimpleDateFormat( "yyyy-MM-dd" ).format(date), "", 16));
 	}
 	
 	@Override
@@ -117,6 +122,18 @@ public class ElephantPoachingReport extends ReportFragment {
 					m.setJuvenileCount(Integer.valueOf(data.getIntExtra("juvenileCount", 0)));
 					m.setIvoryPresence(data.getStringExtra("ivoryPresence"));
 					m.setRanch(data.getStringExtra("ranch"));
+					
+					if("Yes".equals(data.getStringExtra("ivoryPresence"))) {
+						
+						try {
+							m.setLeftTuskWeight(Integer.valueOf(data.getStringExtra("leftTuskWeight")));
+						} catch(Exception e) {}
+						
+						try {
+							m.setRightTuskWeight(Integer.valueOf(data.getStringExtra("rightTuskWeight")));
+						} catch(Exception e) {}
+						
+					}
 					
 					adapter.notifyDataSetChanged();
 					break;

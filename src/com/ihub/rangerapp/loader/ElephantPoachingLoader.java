@@ -51,9 +51,9 @@ public class ElephantPoachingLoader extends DataLoader {
 				String imagePath = cursor.getString(12);
 				String dateCreated = cursor.getString(13);
 				String ranch = cursor.getString(19);
+				Integer leftTaskWeight = cursor.getInt(21);
+				Integer rightTaskWeight = cursor.getInt(22);
 				
-				
-												
 				ElephantPoachingModel  model = new ElephantPoachingModel();
 				model.setId(id);
 				model.setNoOfAnimals(noOfAnimals);
@@ -71,6 +71,8 @@ public class ElephantPoachingLoader extends DataLoader {
 				model.setImagePath(imagePath);
 				model.setDateCreated(dateCreated);
 				model.setRanch(ranch);
+				model.setLeftTuskWeight(leftTaskWeight);
+				model.setRightTuskWeight(rightTaskWeight);
 				
 				data.add(model);
 				

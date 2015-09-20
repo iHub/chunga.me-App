@@ -20,7 +20,9 @@ public interface ElephantService {
 		String extraNotes,
 		String imagePath,
 		String waypoint,
-		String ranch
+		String ranch,
+		Integer leftTuskWeight,
+		Integer rightTuskWeight
 	);
 	
 	public void sync(Integer id, AsyncHttpResponseHandler handler);

@@ -16,6 +16,8 @@ public class ElephantPoachingModel extends Model {
 	String extraNotes;
 	String imagePath;
 	String dateCreated;
+	Integer leftTuskWeight;
+	Integer rightTuskWeight;
 	
 	public String getToolsUsed() {
 		return toolsUsed;
@@ -89,6 +91,18 @@ public class ElephantPoachingModel extends Model {
 	public void setJuvenileCount(Integer juvenileCount) {
 		this.juvenileCount = juvenileCount;
 	}
+	public Integer getLeftTuskWeight() {
+		return leftTuskWeight;
+	}
+	public void setLeftTuskWeight(Integer leftTuskWeight) {
+		this.leftTuskWeight = leftTuskWeight;
+	}
+	public Integer getRightTuskWeight() {
+		return rightTuskWeight;
+	}
+	public void setRightTuskWeight(Integer rightTuskWeight) {
+		this.rightTuskWeight = rightTuskWeight;
+	}
 	@Override
 	public Intent getExtras() {
 		
@@ -108,6 +122,8 @@ public class ElephantPoachingModel extends Model {
 		intent.putExtra("imagePath", imagePath);
 		intent.putExtra("dateCreated", dateCreated);
 		intent.putExtra("ranch", ranch);
+		intent.putExtra("leftTuskWeight", leftTuskWeight);
+		intent.putExtra("rightTuskWeight", rightTuskWeight);
 		
 		return intent;
 	}

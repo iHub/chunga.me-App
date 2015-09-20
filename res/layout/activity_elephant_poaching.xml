@@ -268,29 +268,99 @@
 		        android:textColor="@color/bg"
 	            android:layout_marginBottom="5dp" />
 		        
-		        <RadioGroup
-		            android:id="@+id/tusksFlagGroup"
-		            android:layout_width="wrap_content"
+	        <RadioGroup
+	            android:id="@+id/tusksFlagGroup"
+	            android:layout_width="wrap_content"
+	            android:layout_height="wrap_content"
+	            android:orientation="horizontal"
+	            android:layout_marginBottom="15dp" >
+	            
+	            <RadioButton 
+	                android:id="@+id/radio_yes"
+					android:layout_width="wrap_content"
+					android:layout_height="wrap_content"
+					android:text="@string/yes"
+					android:onClick="onTusksRadioButtonClicked"
+					android:layout_marginRight="25dp" />
+				
+				<RadioButton 
+				    android:id="@+id/radio_no"
+					android:layout_width="wrap_content"
+					android:layout_height="wrap_content"
+					android:text="@string/no"
+					android:onClick="onTusksRadioButtonClicked" />
+			</RadioGroup>
+			
+	        <LinearLayout
+	            android:id="@+id/tusksWeightLayout"
+	            android:layout_width="match_parent"
+	            android:layout_height="wrap_content"
+	            android:orientation="vertical"
+	            android:visibility="gone" >
+				
+	            <TextView
+		            android:layout_width="match_parent"
 		            android:layout_height="wrap_content"
-		            android:orientation="horizontal"
-		            android:layout_marginBottom="15dp" >
-		            
-		            <RadioButton 
-		                android:id="@+id/radio_yes"
-						android:layout_width="wrap_content"
-						android:layout_height="wrap_content"
-						android:text="@string/yes"
-						android:onClick="onTusksRadioButtonClicked"
-						android:layout_marginRight="25dp" />
+		            android:text="@string/weight_of_tusks"
+		            android:textSize="18sp"
+		            android:textColor="@color/bg"
+		            android:layout_marginBottom="15dp"
+		            android:layout_marginTop="15dp" />
+	            
+	            <LinearLayout
+		            android:layout_width="match_parent"
+		            android:layout_height="wrap_content"
+		            android:orientation="horizontal" >
+			        
+	                <LinearLayout
+			            android:layout_width="match_parent"
+			            android:layout_height="wrap_content"
+			            android:orientation="vertical"
+			            android:layout_weight="1" >
+				        
+		                <TextView
+				            android:layout_width="match_parent"
+				            android:layout_height="wrap_content"
+				            android:text="@string/left"
+				            android:textSize="18sp"
+				            android:textColor="@color/bg"
+				            android:layout_marginBottom="5dp" />
+				        
+				        <EditText
+					        android:id="@+id/leftTuskWeightView"
+					        android:layout_width="match_parent"
+					        android:layout_height="wrap_content"
+					        android:layout_marginBottom="10dp"
+					        android:inputType="number" />
+		                
+					</LinearLayout>
 					
-					<RadioButton 
-					    android:id="@+id/radio_no"
-						android:layout_width="wrap_content"
-						android:layout_height="wrap_content"
-						android:text="@string/no"
-						android:onClick="onTusksRadioButtonClicked" />
-				</RadioGroup>
-		    
+		            <LinearLayout
+			            android:layout_width="match_parent"
+			            android:layout_height="wrap_content"
+			            android:orientation="vertical"
+			            android:layout_weight="1" >
+				        
+		                <TextView
+				            android:layout_width="match_parent"
+				            android:layout_height="wrap_content"
+				            android:text="@string/right"
+				            android:textSize="18sp"
+				            android:textColor="@color/bg"
+				            android:layout_marginBottom="5dp" />
+				        
+				        <EditText
+					        android:id="@+id/rightTuskWeightView"
+					        android:layout_width="match_parent"
+					        android:layout_height="wrap_content"
+					        android:layout_marginBottom="10dp"
+					        android:inputType="number" />
+		                
+					</LinearLayout>
+			        
+			    </LinearLayout>
+	            
+	        </LinearLayout>
 		    
 		    <TextView
 	            android:layout_width="match_parent"
