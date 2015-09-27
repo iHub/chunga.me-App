@@ -331,8 +331,8 @@
 					        android:layout_width="match_parent"
 					        android:layout_height="wrap_content"
 					        android:layout_marginBottom="10dp"
-					        android:inputType="number" />
-		                
+					        android:inputType="numberDecimal" />
+				        
 					</LinearLayout>
 					
 		            <LinearLayout
@@ -348,20 +348,20 @@
 				            android:textSize="18sp"
 				            android:textColor="@color/bg"
 				            android:layout_marginBottom="5dp" />
-				        
+		                
 				        <EditText
 					        android:id="@+id/rightTuskWeightView"
 					        android:layout_width="match_parent"
 					        android:layout_height="wrap_content"
 					        android:layout_marginBottom="10dp"
-					        android:inputType="number" />
-		                
+					        android:inputType="numberDecimal" />
+				        
 					</LinearLayout>
-			        
+					
 			    </LinearLayout>
-	            
+			    
 	        </LinearLayout>
-		    
+	        
 		    <TextView
 	            android:layout_width="match_parent"
 	            android:layout_height="wrap_content"
