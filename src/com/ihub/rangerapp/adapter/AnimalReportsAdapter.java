@@ -74,7 +74,8 @@ public class AnimalReportsAdapter extends RecyclerView.Adapter<AnimalReportsAdap
             super(itemView);
             name = (TextView) itemView.findViewById(R.id.name);
             hAct = mAct;
-            name.setOnClickListener(this);
+            LinearLayout r = (LinearLayout) ((ViewGroup) name.getParent());
+            r.setOnClickListener(this);
         }
         
         @Override
