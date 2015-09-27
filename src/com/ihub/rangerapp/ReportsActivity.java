@@ -5,7 +5,6 @@ import java.util.Collections;
 import java.util.List;
 import com.ihub.rangerapp.adapter.ReportsAdapter;
 import com.ihub.rangerapp.anim.CustomItemAnimator;
-
 import android.support.v7.app.ActionBarActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;

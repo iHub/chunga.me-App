@@ -5,7 +5,6 @@ import java.util.List;
 import org.apache.http.Header;
 import org.json.JSONArray;
 import org.json.JSONObject;
-
 import com.ihub.rangerapp.adapter.SyncTaskAdapter;
 import com.ihub.rangerapp.data.service.AnimalSightingsService;
 import com.ihub.rangerapp.data.service.AnimalSightingsServiceImpl;

@@ -114,7 +114,7 @@ public class AnimalSightingsServiceImpl extends DatabaseService implements Anima
  		
  		values.put(Schemas.REQUIRES_SYNC, isValid ? 1 : 0); //TODO check data changes
 		values.put(Schemas.CAN_SYNC, isValid ? 1 : 0);
- 		
+		
  		try {
  			
  			if(id == -1) {
