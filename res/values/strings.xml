@@ -244,13 +244,7 @@
         <item>Taken to Greenhouse/HQ</item>
         <item>Taken to Chief\'s camp</item>
         <item>Warned</item>
-        <item>Taken to MacKinnon Police St.</item>
-        <item>Taken to Voi Police Station</item>
-        <item>Taken to Mwatate Police Station</item>
-        <item>Taken to Wundanyi Police Station</item>
-        <item>Taken to Mwakitau Police Station</item>
-        <item>Taken to Taveta Police Station</item>
-        <item>Taken to Kishushe Police Station</item>
+        <item>Taken to a Police Station</item>
     </string-array>
     <string-array name="kiln_freshness_levels">
         <item>Select State</item>
@@ -277,13 +271,7 @@
         <item>Reported to KWS</item>
         <item>Laid an Ambush</item>
         <item>Taken to Greenhouse/HQ</item>
-        <item>Taken to MacKinnon Police St.</item>
-        <item>Taken to Voi Police Station</item>
-        <item>Taken to Mwatate Police Station</item>
-        <item>Taken to Wundanyi Police Station</item>
-        <item>Taken to Mwakitau Police Station</item>
-        <item>Taken to Taveta Police Station</item>
-        <item>Taken to Kishushe Police Station</item>
+        <item>Taken to a Police Station</item>
     </string-array>
     <string-array name="age_array">
         <item>Select Age</item>
@@ -322,13 +310,7 @@
         <item>Warned</item>
         <item>Laid an ambush</item>
         <item>Taken to Greenhouse/HQ</item>
-        <item>Taken to MacKinnon Police St.</item>
-        <item>Taken to Voi Police Station</item>
-        <item>Taken to Mwatate Police Station</item>
-        <item>Taken to Wundanyi Police Station</item>
-        <item>Taken to Mwakitau Police Station</item>
-        <item>Taken to Taveta Police Station</item>
-        <item>Taken to Kishushe Police Station</item>
+        <item>Taken to a Police Station</item>
     </string-array>
     <string-array name="ivory_presence">
         <item></item>
