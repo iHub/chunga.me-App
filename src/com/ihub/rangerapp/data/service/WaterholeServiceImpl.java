@@ -90,17 +90,13 @@ public class WaterholeServiceImpl extends DatabaseService implements WaterholeSe
                 String name = cursor.getString(1);
 				String levelOfWater = cursor.getString(2);
 				String extraNotes = cursor.getString(4);
-				String waypoint = cursor.getString(5);
 				String imagePath = cursor.getString(6);
 				String dateCreated = cursor.getString(7);
 				Integer shiftID = cursor.getInt(8);
-				String ranch = cursor.getString(13);
 				
 				params.put("name", name);
 				params.put("level_of_water", levelOfWater);				
-				params.put("waypoint", waypoint);
 				params.put("extra_notes", extraNotes);
-				params.put("ranch", ranch);
 				
 				try {
 					File myFile = new File(imagePath);

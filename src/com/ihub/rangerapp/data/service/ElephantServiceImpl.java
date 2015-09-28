@@ -137,6 +137,9 @@ public class ElephantServiceImpl extends DatabaseService implements ElephantServ
 				Integer shiftID = cursor.getInt(14);
 				String ranch = cursor.getString(19);
 				
+				Integer leftTaskWeight = cursor.getInt(21);
+				Integer rightTaskWeight = cursor.getInt(22);
+				
 				params.put("no_of_animals", noOfAnimals);
 				params.put("tools_used", toolsUsed);
 				params.put("adults_count", adultsCount);
@@ -150,6 +153,8 @@ public class ElephantServiceImpl extends DatabaseService implements ElephantServ
 				params.put("action_taken", actionTaken);
 				params.put("extra_notes", extraNotes);
 				params.put("ranch", ranch);
+				params.put("left_tusk_weight", leftTaskWeight);
+				params.put("right_tusk_weight", rightTaskWeight);
 				
 				try {
 					File myFile = new File(imagePath);
