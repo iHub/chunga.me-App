@@ -30,14 +30,16 @@ Your project should now compile.
 
 <h2>Structure</h2>
 
-You will find the following under the **com.ihub.rangerapp** package
+You will find the following under the **com.ihub.rangerapp** package:
 
-    * **adapter**. Contains utility functions used in the app.
-    * **data/service**. Contains the CRUD and Data export functions.
-    * **data/sqlite**. Contains the schema definition and function for connecting to the sqlite db.
-    * **loader**. Contains functions that load data from the database.
-    * **model**. Contains definitions of tables in the database.
-    * **view**. Contains fragments used in the application.
-    * **view/reports**. Contains fragments for the the report viewer.
+    * **adapter** - Contains utility functions used in the app.
+    * **data/service** - Contains the CRUD and Data export functions.
+    * **data/sqlite** - Contains the schema definition and function for connecting to the sqlite db.
+    * **loader** - Contains functions that load data from the database.
+    * **model** - Contains definitions of tables in the database.
+    * **view** - Contains fragments used in the application.
+    * **view/reports** - Contains fragments for the the report viewer.
+
+<h2>Support</h2>
 
 For support, contact Vincent - vintuwei@gmail.com
