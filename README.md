@@ -13,7 +13,7 @@ Copyright (C) 2015 Ihub.
 <h2>Running the project</h2>
 
 1. Start Eclipse
-1. Import the Google Play Services library project (available for download through the SDK manager):
+1. Import the Chungame application:
     1. Click **File | Import | Android | Existing Android Code into Workspace**
     1. Select `RangerApp`
     1. Click **Finish**
@@ -32,13 +32,13 @@ Your project should now compile.
 
 You will find the following under the **com.ihub.rangerapp** package:
 
-    * **adapter** - Contains utility functions used in the app.
-    * **data/service** - Contains the CRUD and Data export functions.
-    * **data/sqlite** - Contains the schema definition and function for connecting to the sqlite db.
-    * **loader** - Contains functions that load data from the database.
-    * **model** - Contains definitions of tables in the database.
-    * **view** - Contains fragments used in the application.
-    * **view/reports** - Contains fragments for the the report viewer.
+* **adapter** - Contains utility functions used in the app.
+* **data/service** - Contains the CRUD and Data export functions.
+* **data/sqlite** - Contains the schema definition and function for connecting to the sqlite db.
+* **loader** - Contains functions that load data from the database.
+* **model** - Contains definitions of tables in the database.
+* **view** - Contains fragments used in the application.
+* **view/reports** - Contains fragments for the the report viewer.
 
 <h2>Support</h2>
 
