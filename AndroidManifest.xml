@@ -1,13 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.ihub.rangerapp"
-    android:versionCode="2"
-    android:versionName="2.0" >
-
+    android:versionCode="5"
+    android:versionName="2.3" >
+    
     <uses-sdk
         android:minSdkVersion="8"
         android:targetSdkVersion="21" />
-
+    
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
     <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
@@ -17,7 +17,7 @@
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
     <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
     <uses-permission android:name="android.permission.READ_PHONE_STATE" />
-
+    
     <application
         android:name=".RangerApp"
         android:allowBackup="true"
@@ -161,5 +161,5 @@
             android:theme="@style/NoActionBar" >
         </activity>
     </application>
-
+    
 </manifest>
