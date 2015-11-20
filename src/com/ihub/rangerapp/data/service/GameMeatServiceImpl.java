@@ -12,6 +12,7 @@ import android.text.TextUtils;
 import com.ihub.rangerapp.RangerApp;
 import com.ihub.rangerapp.data.sqlite.Schemas;
 import com.ihub.rangerapp.util.DateUtil;
+import com.ihub.rangerapp.util.UrlUtils;
 import com.loopj.android.http.AsyncHttpClient;
 import com.loopj.android.http.AsyncHttpResponseHandler;
 import com.loopj.android.http.RequestParams;
@@ -57,10 +58,10 @@ public class GameMeatServiceImpl extends DatabaseService implements GameMeatServ
  		try {
  			
  			if(id == -1) {
- 				db.insert(Schemas.GAME_MEAT_TABLE, null, values);
+ 				db.insert(Schemas.BUSH_MEAT_TABLE, null, values);
  	 			result.put("status", "success");
  			} else {
- 				db.update(Schemas.GAME_MEAT_TABLE, values, BaseColumns._ID + "=" + id, null);
+ 				db.update(Schemas.BUSH_MEAT_TABLE, values, BaseColumns._ID + "=" + id, null);
  				result.put("status", "success");
  			}
  			
@@ -90,7 +91,7 @@ public class GameMeatServiceImpl extends DatabaseService implements GameMeatServ
 		try{
         	
         	SQLiteDatabase db = getWritableDatabase(RangerApp.get());
-            cursor = db.rawQuery("SELECT * FROM " + Schemas.GAME_MEAT_TABLE +" WHERE " + BaseColumns._ID +"=?", new String[] {id + ""});
+            cursor = db.rawQuery("SELECT * FROM " + Schemas.BUSH_MEAT_TABLE +" WHERE " + BaseColumns._ID +"=?", new String[] {id + ""});
             
             if(cursor.getCount() > 0) {
                 cursor.moveToFirst();

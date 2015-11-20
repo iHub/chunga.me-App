@@ -85,7 +85,7 @@ public class ElephantPoachingReport extends ReportFragment {
 		activity.addReviewItem(new SummaryItem("Extra Notes", model.getExtraNotes(), "", 11));
 		activity.addReviewItem(new SummaryItem("Ranch", model.getRanch(), "", 12));
 		
-		if("Yes".equals(model.getIvoryPresence())) {
+		if("yes".equals(model.getIvoryPresence().toLowerCase())) {
 			activity.addReviewItem(new SummaryItem("Left Tusk Weight", model.getLeftTuskWeight() + "", "", 13));
 			activity.addReviewItem(new SummaryItem("Right Tusk Weight", model.getRightTuskWeight() + "", "", 14));
 		}

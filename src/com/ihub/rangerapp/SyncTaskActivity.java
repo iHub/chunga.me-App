@@ -163,7 +163,7 @@ public class SyncTaskActivity extends ActionBarActivity {
 				
 				if(Schemas.SHIFTS_TABLE.equals(tableName)) {
 					syncShifts(group, item, ids);
-				} else if(Schemas.GAME_MEAT_TABLE.equals(tableName)) {
+				} else if(Schemas.BUSH_MEAT_TABLE.equals(tableName)) {
 					syncGameMeat(group, item, ids);
 				} else if(Schemas.CHARCOAL_BAGS_TABLE.equals(tableName)) {
 					syncCharcoalBags(group, item, ids);
@@ -289,8 +289,8 @@ public class SyncTaskActivity extends ActionBarActivity {
 		
 		if("Shifts".equals(groupName)) {
 			return Schemas.SHIFTS_TABLE;
-		} else if("Game Meat".equals(groupName)) {
-			return Schemas.GAME_MEAT_TABLE;
+		} else if("Bush Meat".equals(groupName)) {
+			return Schemas.BUSH_MEAT_TABLE;
 		} else if("Charcoal Bags Incidents".equals(groupName)) {
 			return Schemas.CHARCOAL_BAGS_TABLE;
 		} else if("Charcoal Kilns Incidents".equals(groupName)) {

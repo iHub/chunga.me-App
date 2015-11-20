@@ -146,6 +146,7 @@
     <string name="no_of_animals_seen">No of Animals Seen</string>
     <string name="select_date">Select Date</string>
     <string name="end_shift_view_msg">End Shift Coordinates</string>
+    <string name="no_records_label">You haven\'t filed any report under this section</string>
 
     <!-- http://openweathermap.org/weather-conditions -->
     <string-array name="weather_conditions">

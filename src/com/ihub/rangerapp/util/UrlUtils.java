@@ -1,4 +1,4 @@
-package com.ihub.rangerapp.data.service;
+package com.ihub.rangerapp.util;
 
 public class UrlUtils {
 

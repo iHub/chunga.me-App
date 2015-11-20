@@ -7,7 +7,7 @@ public class Schemas {
 	
 	public static String USERS_TABLE = "tbl_users";
 	public static String SHIFTS_TABLE = "tbl_shifts";
-	public static String GAME_MEAT_TABLE = "tbl_game_meat";
+	public static String BUSH_MEAT_TABLE = "tbl_game_meat";
 	public static String CHARCOAL_KILN_TABLE = "tbl_charcoal_kilns";
 	public static String CHARCOAL_LOGS_TABLE = "tbl_charcoal_logs";
 	public static String CHARCOAL_BAGS_TABLE = "tbl_charcoal_bags";
@@ -247,7 +247,7 @@ public class Schemas {
 	}
 	
 	private static void createGameMeatTable(SQLiteDatabase db) {
-		String sql = "create table " + GAME_MEAT_TABLE + "(" +
+		String sql = "create table " + BUSH_MEAT_TABLE + "(" +
 			BaseColumns._ID + " integer primary key autoincrement," +
 			GameMeat.ANIMAL + " text," +
 			GameMeat.NO_OF_ANIMALS + " INTEGER, " +
@@ -461,7 +461,7 @@ public class Schemas {
 
 	private static void deleteSchemas(SQLiteDatabase db) {
 		db.execSQL("DROP TABLE IF EXISTS " + SHIFTS_TABLE);
-		db.execSQL("DROP TABLE IF EXISTS " + GAME_MEAT_TABLE);
+		db.execSQL("DROP TABLE IF EXISTS " + BUSH_MEAT_TABLE);
 		db.execSQL("DROP TABLE IF EXISTS " + CHARCOAL_KILN_TABLE);
 		db.execSQL("DROP TABLE IF EXISTS " + CHARCOAL_LOGS_TABLE);
 		db.execSQL("DROP TABLE IF EXISTS " + CHARCOAL_BAGS_TABLE);

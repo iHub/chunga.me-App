@@ -12,6 +12,7 @@ import android.text.TextUtils;
 import com.ihub.rangerapp.RangerApp;
 import com.ihub.rangerapp.data.sqlite.Schemas;
 import com.ihub.rangerapp.util.DateUtil;
+import com.ihub.rangerapp.util.UrlUtils;
 import com.loopj.android.http.AsyncHttpClient;
 import com.loopj.android.http.AsyncHttpResponseHandler;
 import com.loopj.android.http.RequestParams;

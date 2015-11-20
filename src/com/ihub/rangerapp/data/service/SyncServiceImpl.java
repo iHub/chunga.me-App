@@ -1,14 +1,12 @@
 package com.ihub.rangerapp.data.service;
 
 import java.util.ArrayList;
-import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
 import android.content.ContentValues;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.provider.BaseColumns;
-import android.util.Log;
 import android.util.Pair;
 import com.ihub.rangerapp.RangerApp;
 import com.ihub.rangerapp.data.sqlite.DB;
@@ -24,11 +22,11 @@ public class SyncServiceImpl extends DatabaseService implements SyncService {
 		
 		UserService userService = new UserServiceImpl();
 		Long userID = userService.getCurrentUserID();
- 		
- 		values.put(Schemas.RANGER_ID, userID);
- 		values.put(Schemas.ExportsTable.START_TIME, new Date().getTime() + "");
- 		
- 		Long id = db.insert(Schemas.EXPORTS_TABLE, null, values);
+		
+		values.put(Schemas.RANGER_ID, userID);
+		values.put(Schemas.ExportsTable.START_TIME, new Date().getTime() + "");
+		
+		Long id = db.insert(Schemas.EXPORTS_TABLE, null, values);
 		
 		return id.intValue();
 	}
@@ -84,9 +82,9 @@ public class SyncServiceImpl extends DatabaseService implements SyncService {
 		data.add(new Pair<String, Integer>("Shifts", getCount(sql)));
 		
 		sql = "SELECT count(*) FROM " + 
-				Schemas.GAME_MEAT_TABLE + " WHERE " + Schemas.LAST_SYNC_DATE + " IS NULL OR " + Schemas.REQUIRES_SYNC + " = 1";
+				Schemas.BUSH_MEAT_TABLE + " WHERE " + Schemas.LAST_SYNC_DATE + " IS NULL OR " + Schemas.REQUIRES_SYNC + " = 1";
 		
-		data.add(new Pair<String, Integer>("Game Meat", getCount(sql)));
+		data.add(new Pair<String, Integer>("Bush Meat", getCount(sql)));
 		
 		sql = "SELECT count(*) FROM " + 
 				Schemas.CHARCOAL_BAGS_TABLE + " WHERE " + Schemas.LAST_SYNC_DATE + " IS NULL OR " + Schemas.REQUIRES_SYNC + " = 1";

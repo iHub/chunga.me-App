@@ -19,7 +19,7 @@ public class GameMeatLoader extends DataLoader {
 
 	@Override
 	public String tableName() {
-		return Schemas.GAME_MEAT_TABLE;
+		return Schemas.BUSH_MEAT_TABLE;
 	}
 
 	public List<Model> loadFromLocalDb(PagingLoadConfig config) {

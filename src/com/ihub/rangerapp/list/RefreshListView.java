@@ -33,6 +33,7 @@ import android.widget.ArrayAdapter;
 import android.widget.BaseAdapter;
 import android.widget.ListAdapter;
 import android.widget.ListView;
+import android.widget.TextView;
 import android.widget.Toast;
 
 public abstract class RefreshListView extends BaseView implements OnRefreshListener {
@@ -46,6 +47,8 @@ public abstract class RefreshListView extends BaseView implements OnRefreshListe
 	Map<String, Object> loadParams = new HashMap<String, Object>();
 	
 	Boolean isRefresh = false;
+	
+	TextView noRecordsLabel;
 	
 	int selectedPosition = -1;
 	
@@ -72,6 +75,8 @@ public abstract class RefreshListView extends BaseView implements OnRefreshListe
 	            R.color.color3,
 	            R.color.color4
 	    );
+	    
+	    noRecordsLabel = (TextView) this.getView().findViewById(R.id.noRecordsLabel);
 	    
 	    listView = (ListView) this.getView().findViewById(android.R.id.list);
 	    
@@ -115,6 +120,8 @@ public abstract class RefreshListView extends BaseView implements OnRefreshListe
 					hideSwipeProgress();
 					
 					isRefresh = false;
+					
+					noRecordsLabel.setVisibility((data == null || data.size() == 0) ? View.VISIBLE : View.GONE);
 				}
 				
 				@Override

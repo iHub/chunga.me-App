@@ -20,6 +20,7 @@ public class ElephantPoachingLoader extends DataLoader {
 	
 	public List<Model> loadFromLocalDb(PagingLoadConfig config) {
 		
+		
 		List<Model> data = new ArrayList<Model>();
 		
 		RangerApp application = RangerApp.get();

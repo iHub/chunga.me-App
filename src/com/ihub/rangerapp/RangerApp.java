@@ -46,14 +46,14 @@ public class RangerApp extends Application {
 	    tmDevice = "" + tm.getDeviceId();
 	    tmSerial = "" + tm.getSimSerialNumber();
 	    androidId = "" + android.provider.Settings.Secure.getString(RangerApp.get().getApplicationContext().getContentResolver(), android.provider.Settings.Secure.ANDROID_ID);
-
+	    
 	    UUID deviceUuid = new UUID(androidId.hashCode(), ((long)tmDevice.hashCode() << 32) | tmSerial.hashCode());
 	    return deviceUuid.toString();
 	}
 	
 	private void initLoaders() {
-		dataLoaders.put(GameMeatLoader.class.getSimpleName(), new GameMeatLoader());
 		
+		dataLoaders.put(GameMeatLoader.class.getSimpleName(), new GameMeatLoader());
 		dataLoaders.put(CharcoalBagsLoader.class.getSimpleName(), new CharcoalBagsLoader());
 		dataLoaders.put(CharcoalKilnsLoader.class.getSimpleName(), new CharcoalKilnsLoader());
 		dataLoaders.put(ElephantPoachingLoader.class.getSimpleName(), new ElephantPoachingLoader());
