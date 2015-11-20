@@ -71,9 +71,6 @@ public class SyncServiceImpl extends DatabaseService implements SyncService {
 	@Override
 	public List<Pair<String, Integer>> loadCounts() {
 		
-		UserService userService = new UserServiceImpl();
-		Long userID = userService.getCurrentUserID();
-		
 		List<Pair<String, Integer>> data = new ArrayList<Pair<String, Integer>>();
 		
 		String sql = "SELECT count(*) FROM " + 

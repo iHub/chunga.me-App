@@ -191,6 +191,7 @@ public class CharcoalServiceImpl extends DatabaseService implements CharcoalServ
         }
 		
 		AsyncHttpClient client = new AsyncHttpClient();
+		client.setTimeout(120000); //2 minutes
 		
 		client.post(url, params, handler);
 	}
@@ -258,6 +259,7 @@ public class CharcoalServiceImpl extends DatabaseService implements CharcoalServ
         }
 		
 		AsyncHttpClient client = new AsyncHttpClient();
+		client.setTimeout(120000); //2 minutes
 		
 		client.post(url, params, handler);
 	}

@@ -137,6 +137,7 @@ public class GameMeatServiceImpl extends DatabaseService implements GameMeatServ
         }
 		
 		AsyncHttpClient client = new AsyncHttpClient();
+		client.setTimeout(120000); //2 minutes
 		
 		client.post(url, params, handler);
 	}

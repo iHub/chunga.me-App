@@ -121,6 +121,7 @@ public class WaterholeServiceImpl extends DatabaseService implements WaterholeSe
         }
 		
 		AsyncHttpClient client = new AsyncHttpClient();
+		client.setTimeout(120000); //2 minutes
 		
 		client.post(url, params, handler);
 	}

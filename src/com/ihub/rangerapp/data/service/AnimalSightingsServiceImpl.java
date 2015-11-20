@@ -200,6 +200,7 @@ public class AnimalSightingsServiceImpl extends DatabaseService implements Anima
         }
 		
 		AsyncHttpClient client = new AsyncHttpClient();
+		client.setTimeout(120000); //2 minutes
 		
 		client.post(url, params, handler);
 		
@@ -265,7 +266,6 @@ public class AnimalSightingsServiceImpl extends DatabaseService implements Anima
 				    params.put("image", myFile);
 				    
 				} catch(Exception e) {}
-				
 				                
 				ShiftService service = new ShiftServiceImpl();
 				params.put("shift_unique_record_id", service.getShiftUniqueRecordID(shiftID));
@@ -282,6 +282,7 @@ public class AnimalSightingsServiceImpl extends DatabaseService implements Anima
         }
 		
 		AsyncHttpClient client = new AsyncHttpClient();
+		client.setTimeout(120000); //2 minutes
 		
 		client.post(url, params, handler);
 	}

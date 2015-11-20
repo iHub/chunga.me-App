@@ -26,7 +26,6 @@ import com.ihub.rangerapp.data.sqlite.Schemas;
 import com.ihub.rangerapp.entity.SyncTaskModel;
 import com.loopj.android.http.AsyncHttpResponseHandler;
 import com.loopj.android.http.JsonHttpResponseHandler;
-
 import android.support.v7.app.ActionBarActivity;
 import android.support.v7.widget.Toolbar;
 import android.app.AlertDialog;
@@ -37,7 +36,6 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.ListView;
 import android.widget.TextView;
-import android.widget.Toast;
 
 public class SyncTaskActivity extends ActionBarActivity {
 	
@@ -134,54 +132,9 @@ public class SyncTaskActivity extends ActionBarActivity {
 	
 	private void syncItem(int group, int item, List<Integer> ids) {
 		
-		if(ids.size() == 0) {
+		try {
 			
-			if(group + 1 < names.length) {
-				syncGroup(group + 1);
-			} else {
-				showSuccessDialog();
-			}
-			
-		} else {
-			
-			if(item < ids.size()) {
-				
-				processingCount += 1;
-				String progress =  (item + 1) + " / " + ids.size();
-				//
-				SyncTaskModel model = adapter.getItem(group);
-				model.setProgress(progress);
-				adapter.notifyDataSetChanged();
-				
-				String title = getString(R.string.sync_record_progress);
-	        	title = title.replace("{from}", processingCount + "").replace("{to}", total +"");
-	        	titleView.setText(title);
-				
-				//TODO
-				
-				String tableName = getTableName(names[group]);
-				
-				if(Schemas.SHIFTS_TABLE.equals(tableName)) {
-					syncShifts(group, item, ids);
-				} else if(Schemas.BUSH_MEAT_TABLE.equals(tableName)) {
-					syncGameMeat(group, item, ids);
-				} else if(Schemas.CHARCOAL_BAGS_TABLE.equals(tableName)) {
-					syncCharcoalBags(group, item, ids);
-				} else if(Schemas.CHARCOAL_KILN_TABLE.equals(tableName)) {
-					syncCharcoalKilns(group, item, ids);
-				} else if(Schemas.ELEPHANT_POACHING_TABLE.equals(tableName)) {
-					syncElephantPoaching(group, item, ids);
-				} else if(Schemas.SUSPICIOUS_ACTIVITIES_TABLE.equals(tableName)) {
-					syncSuspiciousActivities(group, item, ids);
-				} else if(Schemas.INDIVIDUAL_ANIMAL_SIGHTING_TABLE.equals(tableName)) {
-					syncIndividualAnimalSighting(group, item, ids);
-				} else if(Schemas.ANIMAL_HERD_SIGHTING_TABLE.equals(tableName)) {
-					syncHerdSighting(group, item, ids);
-				} else if(Schemas.WATER_HOLES_TABLE.equals(tableName)) {
-					syncWaterhole(group, item, ids);
-				}
-				
-			} else {
+			if(ids.size() == 0) {
 				
 				if(group + 1 < names.length) {
 					syncGroup(group + 1);
@@ -189,8 +142,60 @@ public class SyncTaskActivity extends ActionBarActivity {
 					showSuccessDialog();
 				}
 				
+			} else {
+				
+				if(item < ids.size()) {
+					
+					processingCount += 1;
+					String progress =  (item + 1) + " / " + ids.size();
+					//
+					SyncTaskModel model = adapter.getItem(group);
+					model.setProgress(progress);
+					adapter.notifyDataSetChanged();
+					
+					String title = getString(R.string.sync_record_progress);
+		        	title = title.replace("{from}", processingCount + "").replace("{to}", total +"");
+		        	titleView.setText(title);
+					
+					//TODO
+					
+					String tableName = getTableName(names[group]);
+					
+					if(Schemas.SHIFTS_TABLE.equals(tableName)) {
+						syncShifts(group, item, ids);
+					} else if(Schemas.BUSH_MEAT_TABLE.equals(tableName)) {
+						syncGameMeat(group, item, ids);
+					} else if(Schemas.CHARCOAL_BAGS_TABLE.equals(tableName)) {
+						syncCharcoalBags(group, item, ids);
+					} else if(Schemas.CHARCOAL_KILN_TABLE.equals(tableName)) {
+						syncCharcoalKilns(group, item, ids);
+					} else if(Schemas.ELEPHANT_POACHING_TABLE.equals(tableName)) {
+						syncElephantPoaching(group, item, ids);
+					} else if(Schemas.SUSPICIOUS_ACTIVITIES_TABLE.equals(tableName)) {
+						syncSuspiciousActivities(group, item, ids);
+					} else if(Schemas.INDIVIDUAL_ANIMAL_SIGHTING_TABLE.equals(tableName)) {
+						syncIndividualAnimalSighting(group, item, ids);
+					} else if(Schemas.ANIMAL_HERD_SIGHTING_TABLE.equals(tableName)) {
+						syncHerdSighting(group, item, ids);
+					} else if(Schemas.WATER_HOLES_TABLE.equals(tableName)) {
+						syncWaterhole(group, item, ids);
+					}
+					
+				} else {
+					
+					if(group + 1 < names.length) {
+						syncGroup(group + 1);
+					} else {
+						showSuccessDialog();
+					}
+					
+				}
 			}
 			
+		} catch(Exception e) {
+			
+			errorCount++;
+    		syncItem(group, item + 1, ids);
 		}
 	}
 	
@@ -279,6 +284,14 @@ public class SyncTaskActivity extends ActionBarActivity {
         	public void onFailure(int statusCode, Header[] headers,
         			Throwable throwable, JSONObject errorResponse) {
         		super.onFailure(statusCode, headers, throwable, errorResponse);
+        		errorCount++;
+        		syncItem(group, item + 1, ids);
+        	}
+        	
+        	@Override
+        	public void onFailure(int statusCode, Header[] headers,
+        			String responseString, Throwable throwable) {
+        		super.onFailure(statusCode, headers, responseString, throwable);
         		errorCount++;
         		syncItem(group, item + 1, ids);
         	}

@@ -179,6 +179,7 @@ public class ElephantServiceImpl extends DatabaseService implements ElephantServ
         }
 		
 		AsyncHttpClient client = new AsyncHttpClient();
+		client.setTimeout(120000); //2 minutes
 		
 		client.post(url, params, handler);
 	}

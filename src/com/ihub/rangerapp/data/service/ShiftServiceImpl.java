@@ -229,6 +229,7 @@ public class ShiftServiceImpl extends DatabaseService implements ShiftService {
         }
 		
 		AsyncHttpClient client = new AsyncHttpClient();
+		client.setTimeout(120000); //2 minutes
 		
 		client.post(url, params, handler);
 	}	
