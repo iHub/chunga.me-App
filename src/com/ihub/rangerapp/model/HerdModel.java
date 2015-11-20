@@ -10,6 +10,8 @@ public class HerdModel extends Model {
 	Integer adultsCount;
 	Integer semiAdultsCount;
 	Integer juvenileCount;
+	Integer maleCount;
+	Integer femaleCount;
 	Integer distanceSeen;
 	String extraNotes;
 	String imagePath;
@@ -95,6 +97,22 @@ public class HerdModel extends Model {
 		this.dateCreated = dateCreated;
 	}
 
+	public Integer getMaleCount() {
+		return maleCount;
+	}
+
+	public void setMaleCount(Integer maleCount) {
+		this.maleCount = maleCount;
+	}
+
+	public Integer getFemaleCount() {
+		return femaleCount;
+	}
+
+	public void setFemaleCount(Integer femaleCount) {
+		this.femaleCount = femaleCount;
+	}
+
 	@Override
 	public Intent getExtras() {
 		Intent intent = new Intent();
@@ -105,6 +123,8 @@ public class HerdModel extends Model {
 		intent.putExtra("adultsCount", adultsCount);
 		intent.putExtra("semiAdultsCount", semiAdultsCount);
 		intent.putExtra("juvenileCount", juvenileCount);
+		intent.putExtra("maleCount", maleCount);
+		intent.putExtra("femaleCount", femaleCount);
 		intent.putExtra("distanceSeen", distanceSeen);
 		intent.putExtra("extraNotes", extraNotes);
 		intent.putExtra("waypoint", waypoint);

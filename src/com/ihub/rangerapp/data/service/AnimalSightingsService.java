@@ -27,6 +27,8 @@ public interface AnimalSightingsService {
 			Integer adultsCount,
 			Integer semiAdultsCount,
 			Integer juvenileCount,
+			Integer maleCount,
+			Integer femaleCount,
 			Integer distanceSeen,
 			String extraNotes,
 			String imagePath,

@@ -50,6 +50,9 @@ public class HerdsLoader extends DataLoader {
 				String imagePath = cursor.getString(10);
 				String dateCreated = cursor.getString(11);
 				String ranch = cursor.getString(17);
+				
+				Integer maleCount = cursor.getInt(18);
+				Integer femaleCount = cursor.getInt(19);
 												
 				HerdModel  model = new HerdModel();
 				model.setId(id);
@@ -65,6 +68,8 @@ public class HerdsLoader extends DataLoader {
 				model.setImagePath(imagePath);
 				model.setDateCreated(dateCreated);
 				model.setRanch(ranch);
+				model.setMaleCount(maleCount);
+				model.setFemaleCount(femaleCount);
 				
 				data.add(model);
 				

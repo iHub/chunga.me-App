@@ -33,6 +33,8 @@ public class AnimalsSightingsActivity extends CameraGPSActionBarActivity {
 	EditText extraNotes;
 	Button saveBtn;
 	
+	EditText maleCountView;
+	EditText femaleCountView;
 	EditText herdNameView;
 	AutoCompleteTextView typeSpeciesView;
 	EditText herdNoOfAnimalsView;
@@ -124,6 +126,9 @@ public class AnimalsSightingsActivity extends CameraGPSActionBarActivity {
         semiAdultsCountView = (EditText) findViewById(R.id.semiAdultsCountView);
         adultsCountView = (EditText) findViewById(R.id.adultsCountView);
         herdDistanceSeenView = (EditText) findViewById(R.id.herdDistanceSeenView);
+        
+        maleCountView = (EditText) findViewById(R.id.maleCountView);
+        femaleCountView = (EditText) findViewById(R.id.femaleCountView);
 		
         saveBtn.setOnClickListener(new View.OnClickListener() {
         	
@@ -164,8 +169,8 @@ public class AnimalsSightingsActivity extends CameraGPSActionBarActivity {
 
 					} else
 						if(isHerdValid()) {
-							View[] fields = new View[] {herdNameView, typeSpeciesView, herdNoOfAnimalsView, adultsCountView, semiAdultsCountView, juvenilesCountView, herdDistanceSeenView, extraNotes};
-							String fieldNames[] = {"Name / Identity of Herd", "Species", "Number of Animals", "Adults", "Sub-Adults", "Juveniles", "Distance Seen", "Extra Notes"};
+							View[] fields = new View[] {herdNameView, typeSpeciesView, herdNoOfAnimalsView, adultsCountView, semiAdultsCountView, juvenilesCountView, maleCountView, femaleCountView, herdDistanceSeenView, extraNotes};
+							String fieldNames[] = {"Name / Identity of Herd", "Species", "Number of Animals", "Adults", "Sub-Adults", "Juveniles", "Male Count", "Female Count", "Distance Seen", "Extra Notes"};
 							
 							if(hasInvalidFields(fields)) {
 								
@@ -289,6 +294,8 @@ public class AnimalsSightingsActivity extends CameraGPSActionBarActivity {
     	Integer adultsCount = 0;
 		Integer semiAdultsCount = 0;
 		Integer juvenileCount= 0;
+		Integer maleCount = 0;
+		Integer femaleCount = 0;
 		
 		try {
 			adultsCount = getIntent().getIntExtra("adultsCount", 0);
@@ -302,12 +309,23 @@ public class AnimalsSightingsActivity extends CameraGPSActionBarActivity {
 			juvenileCount = getIntent().getIntExtra("juvenileCount", 0);
 		} catch (Exception e) {}
 		
+		try {
+			maleCount = getIntent().getIntExtra("maleCount", 0);
+		} catch (Exception e) {}
+		
+		try {
+			femaleCount = getIntent().getIntExtra("femaleCount", 0);
+		} catch (Exception e) {}
+		
 		if(adultsCount > 0)
 			adultsCountView.setText(adultsCount + "");
 		if(semiAdultsCount > 0)
 			semiAdultsCountView.setText(semiAdultsCount + "");
 		if(juvenileCount > 0)
 			juvenilesCountView.setText(juvenileCount + "");
+		
+		maleCountView.setText(maleCount + "");
+		femaleCountView.setText(femaleCount + "");
         
         if(getIntent().hasExtra("distanceSeen"))
         	herdDistanceSeenView.setText(getIntent().getIntExtra("distanceSeen", 0) + "");
@@ -402,6 +420,8 @@ public class AnimalsSightingsActivity extends CameraGPSActionBarActivity {
 			Integer adultsCount = 0;
 			Integer semiAdultsCount = 0;
 			Integer juvenileCount= 0;
+			Integer maleCount = 0;
+			Integer femaleCount = 0;
 			
 			try {
 				adultsCount = Integer.valueOf(adultsCountView.getText().toString());
@@ -413,6 +433,14 @@ public class AnimalsSightingsActivity extends CameraGPSActionBarActivity {
 			
 			try {
 				juvenileCount = Integer.valueOf(juvenilesCountView.getText().toString());
+			} catch (Exception e) {}
+			
+			try {
+				maleCount = Integer.valueOf(maleCountView.getText().toString());
+			} catch (Exception e) {}
+			
+			try {
+				femaleCount = Integer.valueOf(femaleCountView.getText().toString());
 			} catch (Exception e) {}
 			
 			Integer id = -1;
@@ -429,6 +457,8 @@ public class AnimalsSightingsActivity extends CameraGPSActionBarActivity {
 					adultsCount,
 					semiAdultsCount,
 					juvenileCount,
+					maleCount,
+					femaleCount,
 					distanceSeen,
 					extraNotes.getText().toString(), 
 					imagePath, 
@@ -446,6 +476,9 @@ public class AnimalsSightingsActivity extends CameraGPSActionBarActivity {
 				data.putExtra("adultsCount", adultsCount);
 				data.putExtra("semiAdultsCount", semiAdultsCount);
 				data.putExtra("juvenileCount", juvenileCount);
+				data.putExtra("maleCount", maleCount);
+				data.putExtra("femaleCount", femaleCount);
+				
 				data.putExtra("distanceSeen", distanceSeen);
 				data.putExtra("extraNotes", extraNotes.getText().toString());
 				data.putExtra("ranch", ranch);

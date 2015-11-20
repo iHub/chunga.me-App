@@ -72,7 +72,9 @@ public class AnimalSightingsServiceImpl extends DatabaseService implements Anima
 	}
 	
 	@Override
-	public Map<String, Object> saveHerd(Integer id, String name, String species, Integer noOfAnimals, Integer adultsCount, Integer semiAdultsCount, Integer juvenileCount, Integer distanceSeen, String extraNotes, String imagePath, String waypoint, String ranch) {
+	public Map<String, Object> saveHerd(Integer id, String name, String species, Integer noOfAnimals, 
+			Integer adultsCount, Integer semiAdultsCount, Integer juvenileCount, Integer maleCount, Integer femaleCount, 
+			Integer distanceSeen, String extraNotes, String imagePath, String waypoint, String ranch) {
 		
 		Map<String, Object> result = new HashMap<String, Object>();
 		
@@ -92,6 +94,9 @@ public class AnimalSightingsServiceImpl extends DatabaseService implements Anima
  		values.put(Schemas.AnimalHerdSighting.ADULTS_COUNT, adultsCount);
  		values.put(Schemas.AnimalHerdSighting.SEMI_ADULTS_COUNT, semiAdultsCount);
  		values.put(Schemas.AnimalHerdSighting.JUVENILE_COUNT, juvenileCount);
+ 		
+ 		values.put(Schemas.AnimalHerdSighting.MALE_COUNT, maleCount);
+ 		values.put(Schemas.AnimalHerdSighting.FEMALE_COUNT, femaleCount);
  		
  		values.put(Schemas.AnimalHerdSighting.DISTANCE_SEEN, distanceSeen);
  		values.put(Schemas.AnimalHerdSighting.EXTRA_NOTES, extraNotes);
@@ -230,6 +235,8 @@ public class AnimalSightingsServiceImpl extends DatabaseService implements Anima
 				Integer distanceSeen = cursor.getInt(7);
 				String ranch = cursor.getString(17);
 				
+				Integer maleCount = cursor.getInt(18);
+				Integer femaleCount = cursor.getInt(19);
 				
 				params.put("name", name);
 				params.put("type", type);
@@ -240,17 +247,20 @@ public class AnimalSightingsServiceImpl extends DatabaseService implements Anima
 				params.put("distance_seen", distanceSeen + "");
 				params.put("ranch", ranch);
 				
+				params.put("male_count", maleCount);
+				params.put("female_count", femaleCount);
+				
 				String extraNotes = cursor.getString(8);
 				String waypoint = cursor.getString(9);
 				String imagePath = cursor.getString(10);
 				String dateCreated = cursor.getString(11);
 				Integer shiftID = cursor.getInt(12);
 				
-				
 				params.put("waypoint", waypoint);
 				params.put("extra_notes", extraNotes);
 				
 				try {
+					
 					File myFile = new File(imagePath);
 				    params.put("image", myFile);
 				    

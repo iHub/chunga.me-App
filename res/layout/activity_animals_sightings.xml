@@ -274,6 +274,72 @@
 					
 				</LinearLayout>
 				
+		        
+				<LinearLayout
+					android:layout_width="match_parent"
+					android:layout_height="wrap_content"
+					android:orientation="horizontal"
+					android:paddingRight="3dp" >
+					
+				    <LinearLayout
+				        android:layout_width="wrap_content"
+				        android:layout_height="wrap_content"
+				        android:orientation="vertical"
+				        android:layout_weight="1" >
+				        
+			            <TextView
+				            android:layout_width="match_parent"
+				            android:layout_height="wrap_content"
+				            android:text="@string/male"
+				            android:textSize="18sp"
+				            android:textColor="@color/bg"
+				            android:layout_marginBottom="5dp" />
+				        
+				        <EditText
+					        android:id="@+id/maleCountView"
+					        android:layout_width="match_parent"
+					        android:layout_height="wrap_content"
+					        android:layout_marginBottom="10dp"
+					        android:inputType="number" />
+				        
+					</LinearLayout>
+					
+				    <LinearLayout
+				        android:layout_width="wrap_content"
+				        android:layout_height="wrap_content"
+				        android:orientation="vertical"
+				        android:layout_weight="1" >
+				        
+			            <TextView
+				            android:layout_width="match_parent"
+				            android:layout_height="wrap_content"
+				            android:text="@string/female"
+				            android:textSize="18sp"
+				            android:textColor="@color/bg"
+				            android:layout_marginBottom="5dp" />
+				        
+				        <EditText
+					        android:id="@+id/femaleCountView"
+					        android:layout_width="match_parent"
+					        android:layout_height="wrap_content"
+					        android:layout_marginBottom="10dp"
+					        android:inputType="number" />
+				        
+					</LinearLayout>
+				</LinearLayout>
+		        
+		        
+		        
+		        
+		        
+		        
+		        
+		        
+		        
+		        
+		        
+		        
+				
 		        <TextView
 		            android:layout_width="match_parent"
 		            android:layout_height="wrap_content"

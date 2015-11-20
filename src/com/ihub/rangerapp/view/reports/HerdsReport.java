@@ -63,9 +63,11 @@ public class HerdsReport extends ReportFragment {
 			int rID = data.getIntExtra("id", 0);
 					
 			for(int i = 0; i < adapter.getCount(); i++) {
+				
 				HerdModel m = (HerdModel) adapter.getItem(i);
 				
 				if(m.getId() == rID) {
+					
 					m.setImagePath(data.getStringExtra("imagePath"));
 					m.setName(data.getStringExtra("name"));
 					m.setType(data.getStringExtra("type"));
@@ -76,6 +78,8 @@ public class HerdsReport extends ReportFragment {
 					m.setDistanceSeen(data.getIntExtra("distanceSeen", 0));
 					m.setExtraNotes(data.getStringExtra("extraNotes"));
 					m.setRanch(data.getStringExtra("ranch"));
+					m.setMaleCount(data.getIntExtra("maleCount", 0));
+					m.setFemaleCount(data.getIntExtra("femaleCount", 0));
 					
 					adapter.notifyDataSetChanged();
 					break;
@@ -99,12 +103,14 @@ public class HerdsReport extends ReportFragment {
 		activity.addReviewItem(new SummaryItem("Adult Count", model.getAdultsCount() + "", "", 7));
 		activity.addReviewItem(new SummaryItem("Sub-Adults Count", model.getSemiAdultsCount() + "", "", 8));
 		activity.addReviewItem(new SummaryItem("Juvenile Count", model.getJuvenileCount() + "", "", 9));
-		activity.addReviewItem(new SummaryItem("Distance Seen (Mtrs)", model.getDistanceSeen() + "", "", 10));
-		activity.addReviewItem(new SummaryItem("Extra Notes", model.getExtraNotes(), "", 11));
-		activity.addReviewItem(new SummaryItem("Ranch", model.getRanch(), "", 12));
+		activity.addReviewItem(new SummaryItem("Male Count", model.getMaleCount() + "", "", 10));
+		activity.addReviewItem(new SummaryItem("Female Count", model.getFemaleCount() + "", "", 11));
+		activity.addReviewItem(new SummaryItem("Distance Seen (Mtrs)", model.getDistanceSeen() + "", "", 12));
+		activity.addReviewItem(new SummaryItem("Extra Notes", model.getExtraNotes(), "", 13));
+		activity.addReviewItem(new SummaryItem("Ranch", model.getRanch(), "", 14));
 		
 		if(date != null)
-			activity.addReviewItem(new SummaryItem("Date Created", new SimpleDateFormat( "yyyy-MM-dd" ).format(date), "", 13));
+			activity.addReviewItem(new SummaryItem("Date Created", new SimpleDateFormat( "yyyy-MM-dd" ).format(date), "", 15));
 	}
 	
 	@Override
