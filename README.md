@@ -42,4 +42,4 @@ You will find the following under the **com.ihub.rangerapp** package:
 
 <h2>Support</h2>
 
-For support, contact Vincent - vintuwei@gmail.com
+For support, contact Ihub - consulting@ihub.co.ke
